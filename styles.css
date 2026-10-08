@@ -1,21 +1,39 @@
 /* ==========================================================
-   JAPAN WINTER EXPEDITION 2026 - JAPANESE BLACK THEME
-   Fonts: Shippori Mincho, Noto Serif JP, Plus Jakarta Sans, JetBrains Mono
+   JAPAN WINTER EXPEDITION 2026 - AESTHETIC JAPANESE BLACK THEME
+   OVERKILL ANIMATIONS, HOVER REVEALS, AND GLOWING GLASSMORPHISM
    ========================================================== */
 
 :root {
   --bg-deep: #05070B;
   --bg-surface: #090D15;
   --bg-card: #0F1624;
-  --bg-card-hover: #151F33;
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-active: rgba(232, 57, 41, 0.4);
-  --japan-red: #E83929;
-  --japan-red-glow: rgba(232, 57, 41, 0.25);
-  --japan-gold: #D4AF37;
-  --japan-gold-glow: rgba(212, 175, 55, 0.2);
-  --japan-ice: #38BDF8;
-  --japan-matcha: #10B981;
+  --vermilion: #E83929;
+  --vermilion-glow: rgba(232, 57, 41, 0.4);
+  --gold: #D4AF37;
+  --gold-glow: rgba(212, 175, 55, 0.35);
+  --emerald: #10B981;
+  --cyan: #38BDF8;
+}
+
+/* Lenis Smooth Scroll */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }
 
 body {
@@ -24,13 +42,14 @@ body {
   overflow-x: hidden;
 }
 
-/* Japanese Typography Utilities */
-.font-mincho {
-  font-family: 'Shippori Mincho', 'Noto Serif JP', serif;
+/* Typography */
+.font-display {
+  font-family: 'Bebas Neue', 'Oswald', sans-serif;
+  letter-spacing: 0.04em;
 }
 
-.font-jp-serif {
-  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+.font-mincho {
+  font-family: 'Shippori Mincho', 'Noto Serif JP', serif;
 }
 
 .font-sans {
@@ -41,34 +60,29 @@ body {
   font-family: 'JetBrains Mono', monospace;
 }
 
-/* Subtle Japanese Seigaiha Pattern Background */
+/* Atmospheric Background */
 .bg-japanese-pattern {
   background-color: #05070B;
   background-image: 
-    radial-gradient(circle at 50% 0%, rgba(232, 57, 41, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 100% 50%, rgba(56, 189, 248, 0.04) 0%, transparent 40%),
-    linear-gradient(to bottom, #05070B 0%, #090D15 50%, #05070B 100%);
-}
-
-.bg-pattern-subtle {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 24px 24px;
+    radial-gradient(circle at 50% 0%, rgba(232, 57, 41, 0.07) 0%, transparent 45%),
+    radial-gradient(circle at 85% 30%, rgba(212, 175, 55, 0.04) 0%, transparent 35%),
+    linear-gradient(to bottom, #05070B 0%, #080C14 50%, #05070B 100%);
 }
 
 /* ==========================================================
-   MOUNT FUJI RISING SUN PRELOADER ANIMATION
+   MOUNT FUJI RISING SUN PRELOADER
    ========================================================== */
 
 #fuji-preloader {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: radial-gradient(circle at 50% 60%, #101726 0%, #05070B 75%, #020305 100%);
+  background: radial-gradient(circle at 50% 60%, #0D1424 0%, #05070B 75%, #020305 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s ease;
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.65s ease;
 }
 
 #fuji-preloader.loaded {
@@ -77,20 +91,16 @@ body {
   pointer-events: none;
 }
 
-/* Sun Rising Animation */
 .preloader-sun {
   transform-origin: center;
-  animation: fujiSunRise 2.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  filter: drop-shadow(0 0 25px rgba(232, 57, 41, 0.85)) drop-shadow(0 0 60px rgba(212, 175, 55, 0.4));
+  animation: fujiSunRise 2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  filter: drop-shadow(0 0 25px rgba(232, 57, 41, 0.85)) drop-shadow(0 0 50px rgba(212, 175, 55, 0.4));
 }
 
 @keyframes fujiSunRise {
   0% {
-    transform: translateY(110px) scale(0.7);
-    opacity: 0.2;
-  }
-  40% {
-    opacity: 0.9;
+    transform: translateY(90px) scale(0.75);
+    opacity: 0.3;
   }
   100% {
     transform: translateY(0px) scale(1);
@@ -98,141 +108,255 @@ body {
   }
 }
 
-/* Mountain Silhouette & Snow Pulse */
-.preloader-mountain {
-  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.8));
-}
-
-.preloader-snowcap {
-  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
-}
-
-/* Floating Mist Animation */
 .preloader-mist {
   animation: mistDrift 4s ease-in-out infinite alternate;
 }
 
-.preloader-mist-2 {
-  animation: mistDrift 5s ease-in-out infinite alternate-reverse;
-}
-
 @keyframes mistDrift {
   0% {
-    transform: translateX(-15px);
-    opacity: 0.35;
+    transform: translateX(-12px);
+    opacity: 0.3;
   }
   100% {
-    transform: translateX(15px);
-    opacity: 0.65;
+    transform: translateX(12px);
+    opacity: 0.6;
   }
 }
 
-/* Japanese Calligraphy Shimmer */
 .kanji-title-glow {
   background: linear-gradient(135deg, #FFFFFF 0%, #E2E8F0 50%, #D4AF37 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 30px rgba(212, 175, 55, 0.25);
 }
 
-/* Preloader Progress Bar */
 .preloader-bar-fill {
   width: 0%;
   transition: width 0.15s ease-out;
-  background: linear-gradient(90deg, #E83929 0%, #FF6B4A 50%, #D4AF37 100%);
-  box-shadow: 0 0 12px rgba(232, 57, 41, 0.6);
+  background: linear-gradient(90deg, #E83929 0%, #D4AF37 100%);
+  box-shadow: 0 0 12px rgba(232, 57, 41, 0.8);
 }
 
 /* ==========================================================
-   DAY SWITCHER TABS & BUTTONS
+   AESTHETIC HERO & VIGNETTES
    ========================================================== */
 
-.day-tab-btn {
+.hero-bg-vignette {
+  background: linear-gradient(to bottom, 
+    rgba(5, 7, 11, 0.45) 0%, 
+    rgba(5, 7, 11, 0.25) 40%, 
+    rgba(5, 7, 11, 0.88) 85%, 
+    #05070B 100%);
+}
+
+/* ==========================================================
+   SITE-WIDE OVERKILL SCROLL REVEAL ANIMATIONS
+   ========================================================== */
+
+.reveal-init {
+  opacity: 0;
+  transform: translateY(32px) scale(0.98);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-visible {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+}
+
+/* Stagger animation delays */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+.delay-500 { transition-delay: 500ms; }
+
+/* Pulse Glow Keyframes */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(232, 57, 41, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(232, 57, 41, 0.85);
+  }
+}
+
+.pulse-red-glow {
+  animation: pulseGlow 2.5s infinite ease-in-out;
+}
+
+/* ==========================================================
+   OVERKILL BUDGET CARDS & HOVER REVEAL DRAWERS
+   ========================================================== */
+
+.budget-card-overkill {
   position: relative;
+  background: radial-gradient(circle at 50% 0%, #111827 0%, #080C14 75%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.budget-card-overkill::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.5), transparent);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.budget-card-overkill:hover {
+  transform: translateY(-6px);
+  border-color: rgba(212, 175, 55, 0.55);
+  box-shadow: 0 25px 50px -10px rgba(0, 0, 0, 0.95), 
+              0 0 30px -4px rgba(212, 175, 55, 0.3),
+              inset 0 0 25px rgba(212, 175, 55, 0.06);
+}
+
+.budget-card-overkill:hover::before {
+  opacity: 1;
+}
+
+/* Overkill Total Highlight Card */
+.budget-card-total {
+  background: radial-gradient(circle at 50% 0%, #251211 0%, #0A0E18 80%);
+  border: 1.5px solid rgba(232, 57, 41, 0.55);
+  box-shadow: 0 12px 35px -5px rgba(232, 57, 41, 0.25);
+}
+
+.budget-card-total::before {
+  background: linear-gradient(90deg, transparent, rgba(232, 57, 41, 0.8), transparent);
+}
+
+.budget-card-total:hover {
+  border-color: #E83929;
+  box-shadow: 0 28px 60px -10px rgba(0, 0, 0, 0.98), 
+              0 0 40px -2px rgba(232, 57, 41, 0.5),
+              inset 0 0 30px rgba(232, 57, 41, 0.12);
+}
+
+/* Hover Reveal Drawer */
+.hover-reveal-drawer {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(8px);
+  transition: max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.4s ease,
+              transform 0.4s ease;
+}
+
+.budget-card-overkill:hover .hover-reveal-drawer {
+  max-height: 220px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Icon Pulse & Rotate on Hover */
+.budget-icon-container {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.budget-card-overkill:hover .budget-icon-container {
+  transform: scale(1.12) rotate(6deg);
+}
+
+/* Rolling Number Counter Animation */
+.counter-digit {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+  transition: color 0.3s ease;
+}
+
+/* Toggle Switch Styling */
+.currency-pill-btn {
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.day-tab-btn::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 50%;
-  width: 0%;
-  height: 2px;
+.currency-pill-btn.active {
   background: #E83929;
-  transform: translateX(-50%);
-  transition: width 0.25s ease;
-  box-shadow: 0 0 8px #E83929;
-}
-
-.day-tab-btn.active {
-  background: #111827 !important;
-  color: #FFFFFF !important;
-  border-color: rgba(232, 57, 41, 0.6) !important;
-  box-shadow: 0 0 20px -3px rgba(232, 57, 41, 0.3), inset 0 0 12px rgba(232, 57, 41, 0.1);
-}
-
-.day-tab-btn.active::after {
-  width: 60%;
-}
-
-.day-tab-btn:hover:not(.active) {
-  background: #0F1624;
-  border-color: rgba(255, 255, 255, 0.15);
   color: #FFFFFF;
+  box-shadow: 0 0 15px rgba(232, 57, 41, 0.6);
 }
 
-/* Navigation View Pills */
-.view-nav-pill {
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+.pax-pill-btn {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.view-nav-pill.active {
-  background: linear-gradient(135deg, #182235 0%, #0F1726 100%);
-  color: #FFFFFF;
-  border-color: rgba(212, 175, 55, 0.4);
-  box-shadow: 0 0 15px -3px rgba(212, 175, 55, 0.2);
+.pax-pill-btn.active {
+  background: #D4AF37;
+  color: #05070B;
+  font-weight: 700;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
 }
 
 /* ==========================================================
-   CARD STYLES & MICRO-PHYSICS
+   9-DAY AESTHETIC VERTICAL CARDS
    ========================================================== */
 
+.aesthetic-card {
+  position: relative;
+  background: #090D15;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.25rem;
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.35s ease, 
+              box-shadow 0.35s ease;
+}
+
+.aesthetic-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(232, 57, 41, 0.6);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.95), 0 0 30px -4px rgba(232, 57, 41, 0.35);
+}
+
+.aesthetic-card .card-img {
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+}
+
+.aesthetic-card:hover .card-img {
+  transform: scale(1.09);
+  filter: brightness(1.05);
+}
+
+/* Base Card */
 .jp-card {
-  background-color: #0B101B;
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
-              border-color 0.25s ease, 
-              box-shadow 0.25s ease;
+  background-color: #090D15;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .jp-card:hover {
-  border-color: rgba(232, 57, 41, 0.3);
-  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.8), 0 0 20px -5px rgba(232, 57, 41, 0.15);
-  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.8), 0 0 15px rgba(255, 255, 255, 0.05);
 }
 
-.jp-card-gold {
-  background-color: #0B101B;
-  border: 1px solid rgba(212, 175, 55, 0.2);
-  transition: all 0.25s ease;
+/* Timeline Activity Card */
+.timeline-card {
+  background-color: #090D15;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.25rem;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.jp-card-gold:hover {
-  border-color: rgba(212, 175, 55, 0.5);
-  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.8), 0 0 20px -5px rgba(212, 175, 55, 0.2);
+.timeline-card:hover {
+  border-color: rgba(212, 175, 55, 0.4);
+  background-color: #0D131F;
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.85), 0 0 25px -5px rgba(212, 175, 55, 0.2);
 }
 
-/* Activity Item Accordion Hover */
-.activity-row {
-  transition: background-color 0.2s ease, border-color 0.2s ease;
-}
-
-.activity-row:hover {
-  background-color: rgba(255, 255, 255, 0.02);
-}
-
-/* Scrollbar Customization */
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -243,51 +367,94 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #182235;
+  background: #151F33;
   border-radius: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: #E83929;
 }
 
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+/* ==========================================================
+   OVERKILL CHECKLIST STYLING & ANIMATIONS
+   ========================================================== */
+
+.checklist-card-overkill {
+  position: relative;
+  background: radial-gradient(circle at 50% 0%, #111828 0%, #080C14 75%);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 1.25rem;
+  padding: 1.25rem 1.5rem;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  overflow: hidden;
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.checklist-card-overkill:hover {
+  transform: translateY(-4px);
+  border-color: rgba(168, 85, 247, 0.45);
+  box-shadow: 0 18px 36px -8px rgba(0, 0, 0, 0.9), 
+              0 0 25px -4px rgba(168, 85, 247, 0.2),
+              inset 0 0 20px rgba(168, 85, 247, 0.04);
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+.checklist-card-overkill.checklist-card-checked {
+  background: radial-gradient(circle at 50% 0%, #09261C 0%, #05120D 75%);
+  border-color: rgba(16, 185, 129, 0.65);
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.95), 
+              0 0 28px -3px rgba(16, 185, 129, 0.3),
+              inset 0 0 25px rgba(16, 185, 129, 0.08);
 }
 
-/* Custom Print Rules */
-@media print {
-  #fuji-preloader, header, .sticky, #view-switcher-bar, footer {
-    display: none !important;
-  }
-  body {
-    background: #FFFFFF !important;
-    color: #000000 !important;
-  }
-  .jp-card {
-    background: #FFFFFF !important;
-    color: #000000 !important;
-    border: 1px solid #CCCCCC !important;
-  }
+.checklist-card-overkill.checklist-card-checked:hover {
+  border-color: #10B981;
+  box-shadow: 0 20px 45px -8px rgba(0, 0, 0, 0.95), 
+              0 0 35px -2px rgba(16, 185, 129, 0.45);
 }
+
+/* Custom Check Toggle Button */
+.check-toggle-btn {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 9999px;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  background: #05070B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+}
+
+.checklist-card-checked .check-toggle-btn {
+  border-color: #10B981;
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.7);
+  transform: scale(1.08);
+}
+
+.check-toggle-icon {
+  opacity: 0;
+  transform: scale(0.4) rotate(-45deg);
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  color: #FFFFFF;
+}
+
+.checklist-card-checked .check-toggle-icon {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+/* Checklist Filter Pill Buttons */
+.checklist-filter-pill {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.checklist-filter-pill.active {
+  background: #A855F7;
+  color: #FFFFFF;
+  font-weight: 700;
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.6);
+}
+
+

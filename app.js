@@ -1302,13 +1302,83 @@ const HALAL_RESTAURANTS = [
 
 // Advance Booking Checklist items from source
 const ADVANCE_BOOKINGS = [
-  { id: "stay-osaka", label: "🏨 Osaka Stay: Hotel WBF Namba Motomachi (Nights 16–17)", category: "hotel", detail: "Nights 16–17 Jan (2 Nights). Quad room / 2 twin rooms near Namba transport." },
-  { id: "stay-kyoto", label: "🏨 Kyoto Stay: Hotel MyStays Kyoto - Shijo (Nights 18–19)", category: "hotel", detail: "Nights 18–19 Jan (2 Nights). Prime Shijo Karasuma location near Halal Ayam Ya." },
-  { id: "stay-fuji", label: "🏨 Kawaguchiko Stay: HAOSTAY (Nights 20–21)", category: "hotel", detail: "Nights 20–21 Jan (2 Nights). High-demand winter quad rooms with Fuji views." },
-  { id: "stay-tokyo", label: "🏨 Tokyo Stay: Hotel Tavinos Asakusa (Nights 22–23)", category: "hotel", detail: "Nights 22–23 Jan (2 Nights). In Asakusa near Senso-ji & Halal Sakura." },
-  { id: "train-kyoto-fuji", label: "🚆 Tokaido Shinkansen (Kyoto → Mishima) + Fujikyu Bus", category: "transit", detail: "Day 5 (20 Jan): Tokaido Shinkansen to Mishima (~11,000 JPY) + highway bus (~2,500 JPY)." },
-  { id: "bus-fuji-tokyo", label: "🚌 Highway Express Bus (Kawaguchiko → Tokyo)", category: "transit", detail: "Day 7 (22 Jan): Morning express coach (~2,200 JPY pp) direct to Shinjuku / Tokyo." },
-  { id: "flight-booked", label: "✈️ Departure Flight: NRT → KUL (24 Jan 16:50)", category: "flight", detail: "Booked flight departure from Narita International Airport Terminal 1." }
+  {
+    id: "stay-osaka",
+    title: "Osaka Stay: Hotel WBF Namba Motomachi",
+    dates: "16–17 Jan (2 Nights)",
+    category: "hotel",
+    categoryLabel: "HOTEL BASE",
+    badge: "OSAKA STAY",
+    icon: "building",
+    priceEst: "Quad / Twin Room",
+    detail: "Central Namba transport hub, walking distance to Dotonbori canal & Halal Ramen Naniwaya."
+  },
+  {
+    id: "stay-kyoto",
+    title: "Kyoto Stay: Hotel MyStays Kyoto – Shijo",
+    dates: "18–19 Jan (2 Nights)",
+    category: "hotel",
+    categoryLabel: "HOTEL BASE",
+    badge: "KYOTO STAY",
+    icon: "landmark",
+    priceEst: "Prime Shijo Spot",
+    detail: "Direct access to Gion, Fushimi Inari Torii, Kiyomizu-dera & steps from Halal Ayam-YA Karasuma."
+  },
+  {
+    id: "stay-fuji",
+    title: "Kawaguchiko Stay: HAOSTAY Mt. Fuji",
+    dates: "20–21 Jan (2 Nights)",
+    category: "hotel",
+    categoryLabel: "HOTEL BASE",
+    badge: "HIGH DEMAND • FUJI VIEW",
+    icon: "mountain",
+    priceEst: "Winter Quad Room",
+    detail: "Scenic rooftop Mt. Fuji panorama, lakeside walk access & close to Kawaguchiko Station shuttle."
+  },
+  {
+    id: "stay-tokyo",
+    title: "Tokyo Stay: Hotel Tavinos Asakusa",
+    dates: "22–23 Jan (2 Nights)",
+    category: "hotel",
+    categoryLabel: "HOTEL BASE",
+    badge: "TOKYO STAY",
+    icon: "compass",
+    priceEst: "Asakusa Comic Theme",
+    detail: "Steps from Senso-ji Temple, Nakamise-dori souvenirs, Skytree dusk views & Halal Sakura."
+  },
+  {
+    id: "train-kyoto-fuji",
+    title: "Tokaido Shinkansen (Kyoto → Mishima) + Fujikyu Bus",
+    dates: "Day 5 • 20 Jan",
+    category: "transit",
+    categoryLabel: "SHINKANSEN & COACH",
+    badge: "SEAT RESERVED",
+    icon: "train",
+    priceEst: "~¥11,000 + ¥2,500 pp",
+    detail: "Tokaido Shinkansen bullet train (Hikari/Nozomi) to Mishima, then express highway coach to Kawaguchiko."
+  },
+  {
+    id: "bus-fuji-tokyo",
+    title: "Highway Express Coach (Kawaguchiko → Tokyo)",
+    dates: "Day 7 • 22 Jan",
+    category: "transit",
+    categoryLabel: "HIGHWAY COACH",
+    badge: "EXPRESS BUS",
+    icon: "bus",
+    priceEst: "~¥2,200 pp (~RM 66)",
+    detail: "Morning highway express bus direct from Kawaguchiko Station to Shinjuku Expressway Bus Terminal (Busta)."
+  },
+  {
+    id: "flight-booked",
+    title: "Departure Flight: NRT → KUL (16:50 Touchdown)",
+    dates: "Day 9 • 24 Jan",
+    category: "flight",
+    categoryLabel: "FLIGHT LOGISTICS",
+    badge: "TERMINAL 1",
+    icon: "plane",
+    priceEst: "International Flight",
+    detail: "Return flight from Narita International Airport Terminal 1. Arrive NRT by 13:30 via Keisei Skyliner."
+  }
 ];
 
 // Budget Data Multipliers
@@ -1335,22 +1405,30 @@ let currentCurrency = "MYR"; // "MYR" or "JPY"
 // ==========================================
 
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. Run Preloader Animation
+  // 1. Initialize Lenis Smooth Scroll
+  if (typeof Lenis !== "undefined") {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true
+    });
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+  }
+
+  // 2. Run Preloader Animation
   initPreloader();
 
-  // 2. Render Day Tabs Ribbon & Views
-  renderDayRibbon();
-  renderSingleDay(activeDay);
-  renderGridDays();
-  renderHalalDirectory();
+  // 3. Render Components
   renderChecklist();
-  updateBudgetDashboard();
 
-  // 3. Start Live Clocks & Event Listeners
+  // 4. Start Live Clocks & Event Listeners
   startLiveClocks();
-  setupEventListeners();
 
-  // 4. Initialize Lucide Icons
+  // 5. Initialize Lucide Icons
   if (window.lucide) {
     window.lucide.createIcons();
   }
@@ -1999,8 +2077,10 @@ function updateBudgetDashboard() {
 }
 
 // ==========================================
-// 11. ADVANCE BOOKING CHECKLIST LOGIC
+// 11. OVERKILL ADVANCE BOOKING CHECKLIST ENGINE
 // ==========================================
+
+let activeChecklistFilter = "all";
 
 function getSavedChecklist() {
   try {
@@ -2022,36 +2102,139 @@ function saveChecklistState(id, isChecked) {
 }
 window.saveChecklistState = saveChecklistState;
 
+function toggleChecklistItem(id) {
+  const current = getSavedChecklist();
+  const newState = !current[id];
+  saveChecklistState(id, newState);
+}
+window.toggleChecklistItem = toggleChecklistItem;
+
+function toggleAllChecklist(checkAll) {
+  const current = {};
+  ADVANCE_BOOKINGS.forEach(item => {
+    current[item.id] = checkAll;
+  });
+  try {
+    localStorage.setItem("japan_winter_checklist_2026", JSON.stringify(current));
+  } catch (e) {}
+  updateChecklistProgress();
+  renderChecklist();
+
+  if (checkAll) {
+    showToast("🎉 All 7 Advance Bookings marked as Secured!");
+  } else {
+    showToast("Checklist reset to pending.");
+  }
+}
+window.toggleAllChecklist = toggleAllChecklist;
+
+function filterChecklist(category, btn) {
+  activeChecklistFilter = category;
+  
+  const pills = document.querySelectorAll(".checklist-filter-pill");
+  pills.forEach(p => {
+    p.classList.remove("active", "bg-purple-600", "text-white", "font-bold", "border-purple-500/50");
+    p.classList.add("text-slate-300", "bg-[#090D15]", "border-white/10");
+  });
+
+  if (btn) {
+    btn.classList.add("active", "bg-purple-600", "text-white", "font-bold", "border-purple-500/50");
+    btn.classList.remove("text-slate-300", "bg-[#090D15]", "border-white/10");
+  }
+
+  renderChecklist();
+}
+window.filterChecklist = filterChecklist;
+
 function renderChecklist() {
   const container = document.getElementById("checklist-items-container");
   if (!container) return;
 
   const saved = getSavedChecklist();
+  
+  const filtered = ADVANCE_BOOKINGS.filter(item => {
+    if (activeChecklistFilter === "all") return true;
+    return item.category === activeChecklistFilter;
+  });
 
-  container.innerHTML = ADVANCE_BOOKINGS.map(item => {
+  if (!filtered.length) {
+    container.innerHTML = `
+      <div class="col-span-full py-12 text-center text-slate-400 font-mono text-xs">
+        No items found for this category.
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = filtered.map(item => {
     const isChecked = !!saved[item.id];
+    const catBadgeColor = item.category === 'hotel' 
+      ? 'bg-purple-950/80 text-purple-300 border-purple-800/60' 
+      : (item.category === 'transit' ? 'bg-sky-950/80 text-sky-300 border-sky-800/60' : 'bg-rose-950/80 text-rose-300 border-rose-800/60');
+
     return `
-      <div class="jp-card p-5 rounded-2xl ${isChecked ? 'border-emerald-500/60 bg-emerald-950/20' : 'border-white/10'} shadow-card-oled transition-all flex items-start gap-4">
-        <input 
-          type="checkbox" 
-          id="${item.id}" 
-          ${isChecked ? 'checked' : ''}
-          onchange="saveChecklistState('${item.id}', this.checked)"
-          class="mt-1 w-5 h-5 rounded-lg text-vermilion bg-[#05070B] border-white/20 focus:ring-vermilion cursor-pointer flex-shrink-0 accent-[#E83929]"
-        >
-        <label for="${item.id}" class="cursor-pointer flex-grow space-y-1">
-          <div class="text-sm font-bold ${isChecked ? 'line-through text-slate-500' : 'text-white'}">
-            ${item.label}
+      <div 
+        class="checklist-card-overkill ${isChecked ? 'checklist-card-checked' : ''} group"
+        onclick="toggleChecklistItem('${item.id}')"
+      >
+        <div class="flex items-start gap-4">
+          
+          <!-- Custom Circular Toggle Ring -->
+          <div class="check-toggle-btn mt-0.5">
+            <i data-lucide="check" class="w-4 h-4 check-toggle-icon"></i>
           </div>
-          <div class="text-xs text-slate-400 leading-relaxed font-sans">
-            ${item.detail}
+
+          <!-- Main Content Area -->
+          <div class="flex-grow space-y-1.5 select-none">
+            
+            <!-- Top Metadata Badges -->
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase ${catBadgeColor} border">
+                  ${item.categoryLabel}
+                </span>
+                <span class="text-[10px] font-mono text-gold font-bold">
+                  ${item.dates}
+                </span>
+              </div>
+
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded ${isChecked ? 'bg-emerald-950 text-emerald-300 font-bold border border-emerald-800' : 'bg-slate-900 text-slate-400 border border-white/10'}">
+                ${isChecked ? '✓ CONFIRMED' : 'ACTION PENDING'}
+              </span>
+            </div>
+
+            <!-- Title -->
+            <h4 class="text-sm sm:text-base font-bold transition-colors ${isChecked ? 'line-through text-slate-400' : 'text-white group-hover:text-purple-300'} font-sans">
+              ${item.title}
+            </h4>
+
+            <!-- Detail & Price Tag -->
+            <p class="text-xs text-slate-400 leading-relaxed font-sans">
+              ${item.detail}
+            </p>
+
+            <div class="pt-2 border-t border-white/5 flex items-center justify-between text-[11px] font-mono">
+              <span class="text-slate-400 flex items-center gap-1">
+                <i data-lucide="tag" class="w-3 h-3 text-gold"></i>
+                <span class="text-slate-300 font-semibold">${item.priceEst}</span>
+              </span>
+              <span class="text-slate-500 group-hover:text-gold transition-colors text-[10px]">
+                ${isChecked ? 'Click to uncheck' : 'Click to confirm →'}
+              </span>
+            </div>
+
           </div>
-        </label>
+
+        </div>
       </div>
     `;
   }).join("");
 
   updateChecklistProgress();
+
+  if (window.lucide) {
+    window.lucide.createIcons();
+  }
 }
 
 function updateChecklistProgress() {
@@ -2062,9 +2245,32 @@ function updateChecklistProgress() {
 
   const textEl = document.getElementById("checklist-progress-text");
   const barEl = document.getElementById("checklist-progress-bar");
+  const statusBadge = document.getElementById("checklist-status-badge");
+  const banner = document.getElementById("checklist-celebration-banner");
 
   if (textEl) textEl.textContent = `${completed} of ${total} Booked (${pct}%)`;
   if (barEl) barEl.style.width = `${pct}%`;
+
+  if (statusBadge) {
+    if (completed === total) {
+      statusBadge.className = "px-2 py-0.5 rounded bg-emerald-500 text-black font-bold text-[10px] shadow-[0_0_12px_rgba(16,185,129,0.8)]";
+      statusBadge.textContent = "100% READY 🎉";
+    } else if (completed > 0) {
+      statusBadge.className = "px-2 py-0.5 rounded bg-purple-950/90 text-purple-300 font-bold border border-purple-800 text-[10px]";
+      statusBadge.textContent = `${total - completed} REMAINING`;
+    } else {
+      statusBadge.className = "px-2 py-0.5 rounded bg-amber-950/80 text-amber-300 font-bold border border-amber-800/60 text-[10px]";
+      statusBadge.textContent = "PENDING ACTION";
+    }
+  }
+
+  if (banner) {
+    if (completed === total) {
+      banner.classList.remove("hidden");
+    } else {
+      banner.classList.add("hidden");
+    }
+  }
 }
 
 // ==========================================
@@ -2239,3 +2445,351 @@ function setupEventListeners() {
     }
   });
 }
+
+// ==========================================
+// 14. OVERKILL BUDGET COUNTER & CURRENCY ENGINE
+// ==========================================
+
+let currentBudgetCurrency = 'MYR'; // 'MYR' or 'JPY'
+let currentBudgetPax = 1;          // 1 or 4
+let hasBudgetAnimatedOnce = false;
+
+function setBudgetPax(pax) {
+  currentBudgetPax = pax;
+  
+  const p1 = document.getElementById("pax-1-btn");
+  const p4 = document.getElementById("pax-4-btn");
+  if (p1 && p4) {
+    if (pax === 1) {
+      p1.classList.add("active");
+      p4.classList.remove("active");
+    } else {
+      p4.classList.add("active");
+      p1.classList.remove("active");
+    }
+  }
+
+  const totalLabel = document.getElementById("total-card-label");
+  if (totalLabel) {
+    totalLabel.textContent = pax === 1 ? "Non-Hotel Total / Pax" : "Group Total (4 Pax)";
+  }
+
+  updateBudgetCounters(true);
+}
+window.setBudgetPax = setBudgetPax;
+
+function setBudgetCurrency(curr) {
+  currentBudgetCurrency = curr;
+
+  const cMyr = document.getElementById("curr-myr-btn");
+  const cJpy = document.getElementById("curr-jpy-btn");
+  if (cMyr && cJpy) {
+    if (curr === 'MYR') {
+      cMyr.classList.add("active");
+      cJpy.classList.remove("active");
+    } else {
+      cJpy.classList.add("active");
+      cMyr.classList.remove("active");
+    }
+  }
+
+  updateBudgetCounters(true);
+}
+window.setBudgetCurrency = setBudgetCurrency;
+
+// Smooth cubic ease out rolling number animation
+function animateValue(element, start, end, duration, prefix = "") {
+  if (!element) return;
+  const startTime = performance.now();
+  const diff = end - start;
+
+  function update(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    
+    // EaseOutCubic curve
+    const ease = 1 - Math.pow(1 - progress, 3);
+    const currentVal = Math.round(start + diff * ease);
+
+    element.textContent = `${prefix}${currentVal.toLocaleString()}`;
+
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    } else {
+      element.textContent = `${prefix}${end.toLocaleString()}`;
+    }
+  }
+
+  requestAnimationFrame(update);
+}
+
+function updateBudgetCounters(animate = true) {
+  const isMyr = currentBudgetCurrency === 'MYR';
+  const prefixSymbol = isMyr ? 'RM' : '¥';
+  const duration = animate ? 850 : 0;
+
+  // Update all prefix spans
+  document.querySelectorAll(".curr-prefix").forEach(span => {
+    span.textContent = prefixSymbol;
+  });
+
+  const configs = [
+    {
+      minId: 'cnt-food-min',
+      maxId: 'cnt-food-max',
+      subId: 'sub-food-text',
+      myr: [945, 1350],
+      jpy: [31500, 45000]
+    },
+    {
+      minId: 'cnt-transit-min',
+      maxId: 'cnt-transit-max',
+      subId: 'sub-transit-text',
+      myr: [489, 588],
+      jpy: [16300, 19600]
+    },
+    {
+      minId: 'cnt-local-min',
+      maxId: 'cnt-local-max',
+      subId: 'sub-local-text',
+      myr: [246, 399],
+      jpy: [8200, 13300]
+    },
+    {
+      minId: 'cnt-total-min',
+      maxId: 'cnt-total-max',
+      subId: 'sub-total-text',
+      myr: [1830, 2640],
+      jpy: [61000, 88000]
+    }
+  ];
+
+  configs.forEach(cfg => {
+    const minEl = document.getElementById(cfg.minId);
+    const maxEl = document.getElementById(cfg.maxId);
+    const subEl = document.getElementById(cfg.subId);
+
+    const mult = currentBudgetPax;
+    const minVal = isMyr ? cfg.myr[0] * mult : cfg.jpy[0] * mult;
+    const maxVal = isMyr ? cfg.myr[1] * mult : cfg.jpy[1] * mult;
+
+    if (minEl && maxEl) {
+      if (animate) {
+        animateValue(minEl, 0, minVal, duration, "");
+        animateValue(maxEl, 0, maxVal, duration, "");
+      } else {
+        minEl.textContent = minVal.toLocaleString();
+        maxEl.textContent = maxVal.toLocaleString();
+      }
+    }
+
+    if (subEl) {
+      const altMin = isMyr ? (cfg.jpy[0] * mult).toLocaleString() : (cfg.myr[0] * mult).toLocaleString();
+      const altMax = isMyr ? (cfg.jpy[1] * mult).toLocaleString() : (cfg.myr[1] * mult).toLocaleString();
+      const suffix = currentBudgetPax === 1 ? ' / pax' : ' (Group 4x)';
+      
+      if (isMyr) {
+        subEl.textContent = `~${altMin} – ${altMax} JPY${suffix}`;
+      } else {
+        subEl.textContent = `~RM ${altMin} – ${altMax}${suffix}`;
+      }
+    }
+  });
+}
+
+// ==========================================
+// 15. INTERACTIVE HERO RED ACTIVE BAR
+// ==========================================
+
+function initHeroHighlightsBar() {
+  const activeBar = document.getElementById("hero-active-bar");
+  const indicator = document.getElementById("hero-active-col-indicator");
+  const columns = document.querySelectorAll(".hero-highlight-col");
+  const heroImg = document.getElementById("hero-banner-img");
+
+  if (!activeBar || !columns.length) return;
+
+  let currentIndex = 0;
+  let autoSlideTimer = null;
+  let isHovered = false;
+
+  function setActiveColumn(index) {
+    currentIndex = index;
+    activeBar.style.transform = `translateX(${index * 100}%)`;
+
+    if (indicator) {
+      indicator.textContent = `0${index + 1} / 03`;
+    }
+
+    // Smooth image transition matching day highlight
+    const targetImg = columns[index]?.dataset?.img;
+    if (heroImg && targetImg) {
+      const currentSrc = heroImg.getAttribute('src');
+      if (currentSrc !== targetImg) {
+        heroImg.style.opacity = "0.4";
+        setTimeout(() => {
+          heroImg.setAttribute('src', targetImg);
+          heroImg.src = targetImg;
+          heroImg.style.opacity = "1";
+        }, 120);
+      }
+    }
+
+    columns.forEach((col, idx) => {
+      if (idx === index) {
+        col.classList.remove("opacity-70");
+        col.classList.add("opacity-100");
+      } else {
+        col.classList.remove("opacity-100");
+        col.classList.add("opacity-70");
+      }
+    });
+  }
+
+  columns.forEach((col, idx) => {
+    col.addEventListener("mouseenter", () => {
+      isHovered = true;
+      setActiveColumn(idx);
+    });
+    col.addEventListener("mouseleave", () => {
+      isHovered = false;
+    });
+  });
+
+  // Gentle auto-cycle every 5s
+  autoSlideTimer = setInterval(() => {
+    if (!isHovered) {
+      const nextIdx = (currentIndex + 1) % columns.length;
+      setActiveColumn(nextIdx);
+    }
+  }, 5000);
+}
+
+// ==========================================
+// 16. SITE-WIDE SCROLL REVEAL OBSERVER
+// ==========================================
+
+function initScrollReveal() {
+  const revealElements = document.querySelectorAll(".reveal-init");
+  if (!revealElements.length) return;
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("reveal-visible");
+        
+        // Trigger number ticker animation when budget section enters viewport
+        if (entry.target.id === "budget-section" && !hasBudgetAnimatedOnce) {
+          hasBudgetAnimatedOnce = true;
+          updateBudgetCounters(true);
+        }
+
+        obs.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: "0px 0px -40px 0px"
+  });
+
+  revealElements.forEach(el => observer.observe(el));
+}
+
+// ==========================================
+// 17. MOUNT FUJI PRELOADER ENGINE
+// ==========================================
+
+function initPreloader() {
+  const preloader = document.getElementById("fuji-preloader");
+  if (!preloader) return;
+
+  const bar = document.getElementById("preloader-bar");
+  const percentText = document.getElementById("preloader-percent");
+  const statusText = document.getElementById("preloader-status-text");
+  const skipBtn = document.getElementById("skip-preloader-btn");
+
+  let progress = 0;
+  const statuses = [
+    { at: 0, text: "Preparing journey..." },
+    { at: 35, text: "Mapping Kansai & Kanto routes..." },
+    { at: 70, text: "Verifying 100% Halal spots..." },
+    { at: 95, text: "Ready for Japan." }
+  ];
+
+  function dismiss() {
+    preloader.classList.add("loaded");
+    setTimeout(() => {
+      preloader.remove();
+      if (!hasBudgetAnimatedOnce) {
+        const budgetSec = document.getElementById("budget-section");
+        if (budgetSec && budgetSec.getBoundingClientRect().top < window.innerHeight) {
+          hasBudgetAnimatedOnce = true;
+          updateBudgetCounters(true);
+        }
+      }
+    }, 650);
+  }
+
+  if (skipBtn) {
+    skipBtn.addEventListener("click", dismiss);
+  }
+
+  const interval = setInterval(() => {
+    progress += Math.floor(Math.random() * 14) + 8;
+    if (progress > 100) progress = 100;
+
+    if (bar) bar.style.width = `${progress}%`;
+    if (percentText) percentText.textContent = `${progress}%`;
+
+    const currStatus = statuses.slice().reverse().find(s => progress >= s.at);
+    if (currStatus && statusText) {
+      statusText.textContent = currStatus.text;
+    }
+
+    if (progress >= 100) {
+      clearInterval(interval);
+      setTimeout(dismiss, 350);
+    }
+  }, 80);
+}
+
+// ==========================================
+// 18. LENIS SMOOTH SCROLL BOOTSTRAP
+// ==========================================
+
+function initLenis() {
+  if (typeof Lenis !== 'undefined') {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+  }
+}
+
+// ==========================================
+// 19. MAIN APPLICATION INITIALIZATION
+// ==========================================
+
+document.addEventListener("DOMContentLoaded", () => {
+  initLenis();
+  initPreloader();
+  startLiveClocks();
+  initHeroHighlightsBar();
+  renderChecklist();
+  renderHalalDirectory();
+  setupEventListeners();
+  initScrollReveal();
+
+  if (window.lucide) {
+    window.lucide.createIcons();
+  }
+});
+
+

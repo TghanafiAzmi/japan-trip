@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <radialGradient id="favSunGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FF5A4D" />
+      <stop offset="70%" stop-color="#E83929" />
+      <stop offset="100%" stop-color="#A8180D" />
+    </radialGradient>
+    <radialGradient id="favAura" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#E83929" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#05070B" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Dark Background Rounded Tile -->
+  <rect width="64" height="64" rx="16" fill="#05070B" stroke="#D4AF37" stroke-width="1.5" stroke-opacity="0.6"/>
+
+  <!-- Sun Aura -->
+  <circle cx="32" cy="28" r="24" fill="url(#favAura)"/>
+
+  <!-- Rising Crimson Sun -->
+  <circle cx="32" cy="28" r="16" fill="url(#favSunGlow)"/>
+
+  <!-- Mt. Fuji Silhouette -->
+  <path d="M4 56 L24 30 Q32 28 40 30 L60 56 Z" fill="#090D15" stroke="#151F33" stroke-width="1"/>
+  
+  <!-- Mt. Fuji Snowcap -->
+  <path d="M24 30 Q32 28 40 30 L43 36 L39 39 L35 37 L32 41 L29 37 L25 39 L21 36 Z" fill="#FFFFFF"/>
+
+  <!-- Small Gold Accent Dot -->
+  <circle cx="32" cy="11" r="2" fill="#D4AF37"/>
+</svg>

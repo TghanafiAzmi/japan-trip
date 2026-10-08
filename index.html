@@ -1,18 +1,25 @@
 <!DOCTYPE html>
-<html lang="en" class="dark scroll-smooth">
+<html lang="en" class="dark">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Japan Winter Expedition 2026 • 日本冬の旅 (16–24 Jan)</title>
-  
-  <!-- Meta & SEO -->
-  <meta name="description" content="9-Day Master Winter Itinerary across Osaka, Kyoto, Mt. Fuji (Kawaguchiko), and Tokyo. 100% Halal dining guide, accurate transit routing, and strict budget tracker.">
+  <title>VISIT JAPAN 2026 • 9-Day Winter Expedition (Osaka • Kyoto • Mt. Fuji • Tokyo)</title>
+
+  <meta name="description"
+    content="Official 9-Day Winter Expedition Itinerary (16–24 Jan 2026) across Osaka, Kyoto, Mt. Fuji, and Tokyo with verified Halal dining and budget plan.">
   <meta name="theme-color" content="#05070B">
 
-  <!-- Google Fonts: Shippori Mincho, Noto Serif JP, Plus Jakarta Sans & JetBrains Mono -->
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="favicon.svg">
+
+  <!-- Google Fonts: Bebas Neue, Shippori Mincho, Plus Jakarta Sans, JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Serif+JP:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Shippori+Mincho:wght@500;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Shippori+Mincho:wght@600;700;800&display=swap"
+    rel="stylesheet">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -22,36 +29,15 @@
       theme: {
         extend: {
           fontFamily: {
+            display: ['"Bebas Neue"', 'sans-serif'],
             sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
-            mincho: ['"Shippori Mincho"', '"Noto Serif JP"', 'serif'],
-            serif: ['"Noto Serif JP"', '"Shippori Mincho"', 'serif'],
+            mincho: ['"Shippori Mincho"', 'serif'],
             mono: ['"JetBrains Mono"', 'monospace'],
           },
           colors: {
-            black: {
-              DEFAULT: '#05070B',
-              900: '#05070B',
-              800: '#090D15',
-              700: '#0F1624',
-              600: '#151F33',
-            },
-            vermilion: {
-              DEFAULT: '#E83929',
-              500: '#E83929',
-              600: '#C72A1C',
-              glow: 'rgba(232, 57, 41, 0.35)',
-            },
-            gold: {
-              DEFAULT: '#D4AF37',
-              400: '#E5C07B',
-              500: '#D4AF37',
-              600: '#AA8820',
-            }
-          },
-          boxShadow: {
-            'glow-red': '0 0 25px -4px rgba(232, 57, 41, 0.4)',
-            'glow-gold': '0 0 25px -4px rgba(212, 175, 55, 0.35)',
-            'card-oled': '0 12px 35px -8px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.07)',
+            black: { DEFAULT: '#05070B', 900: '#05070B', 800: '#090D15', 700: '#0F1624' },
+            vermilion: { DEFAULT: '#E83929', 500: '#E83929', 600: '#C72A1C' },
+            gold: { DEFAULT: '#D4AF37', 400: '#E5C07B', 500: '#D4AF37' }
           }
         }
       }
@@ -61,94 +47,70 @@
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
+  <!-- Lenis Smooth Scroll CDN -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+
   <!-- Custom Styles -->
   <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-[#05070B] text-slate-200 antialiased font-sans selection:bg-[#E83929] selection:text-white min-h-screen bg-japanese-pattern">
+
+<body class="bg-[#05070B] text-slate-200 antialiased font-sans min-h-screen">
 
   <!-- ==========================================================
        1. MOUNT FUJI RISING SUN PRELOADER
        ========================================================== -->
   <div id="fuji-preloader" aria-label="Loading Japan Expedition...">
-    <div class="relative flex flex-col items-center max-w-md px-6 text-center">
-      
-      <!-- Mt. Fuji & Sun Animated SVG Artwork -->
-      <div class="relative w-72 h-64 sm:w-80 sm:h-72 flex items-center justify-center">
-        <svg viewBox="0 0 400 320" class="w-full h-full overflow-visible" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Background Stars / Aurora Glow -->
-          <circle cx="200" cy="180" r="160" fill="url(#sunGlowGrad)" opacity="0.4" />
-          
-          <!-- Rising Japanese Sun (Crimson & Gold) -->
+    <div class="relative flex flex-col items-center max-w-sm px-6 text-center">
+
+      <!-- Mt. Fuji & Rising Sun SVG Artwork -->
+      <div class="relative w-64 h-56 sm:w-72 sm:h-60 flex items-center justify-center">
+        <svg viewBox="0 0 400 320" class="w-full h-full overflow-visible" fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <circle cx="200" cy="180" r="150" fill="url(#sunGlow)" opacity="0.35" />
+
           <g class="preloader-sun">
-            <circle cx="200" cy="120" r="64" fill="url(#crimsonSunGrad)" />
-            <circle cx="200" cy="120" r="66" stroke="url(#sunRingGrad)" stroke-width="2" opacity="0.6" />
+            <circle cx="200" cy="120" r="60" fill="url(#crimsonSun)" />
+            <circle cx="200" cy="120" r="62" stroke="#D4AF37" stroke-width="1.5" opacity="0.5" />
           </g>
 
-          <!-- Mt. Fuji Silhouette -->
-          <g class="preloader-mountain">
-            <!-- Fuji Body Outline -->
-            <path d="M20 280 L160 130 Q200 120 240 130 L380 280 Z" fill="url(#mountainBodyGrad)" />
-            <!-- Inner Dark Ridges -->
-            <path d="M120 280 L185 140 L200 128 L215 140 L280 280 Z" fill="#0A0E18" opacity="0.6" />
-            
-            <!-- Mount Fuji Iconic Snow Cap -->
-            <path class="preloader-snowcap" d="M160 130 Q200 120 240 130 L252 152 L234 165 L220 156 L200 172 L180 156 L166 166 L148 152 Z" fill="url(#snowCapGrad)" />
-            <!-- Snow crevasses -->
-            <path d="M185 156 L195 190 L200 172 L205 190 L215 156" stroke="#C8D6E5" stroke-width="1.5" opacity="0.7" />
+          <g>
+            <path d="M20 280 L160 130 Q200 120 240 130 L380 280 Z" fill="#0C1220" />
+            <path d="M120 280 L185 140 L200 128 L215 140 L280 280 Z" fill="#060910" opacity="0.5" />
+            <path d="M160 130 Q200 120 240 130 L250 152 L235 165 L220 156 L200 172 L180 156 L165 166 L150 152 Z"
+              fill="#FFFFFF" />
+            <path d="M185 156 L195 188 L200 172 L205 188 L215 156" stroke="#CBD5E1" stroke-width="1.5" opacity="0.6" />
           </g>
 
-          <!-- Floating Morning Mist & Clouds -->
-          <g class="preloader-mist" opacity="0.5">
-            <path d="M-10 260 Q100 245 200 260 T410 255" stroke="rgba(255, 255, 255, 0.25)" stroke-width="8" stroke-linecap="round" />
-          </g>
-          <g class="preloader-mist-2" opacity="0.35">
-            <path d="M20 275 Q150 262 260 275 T420 270" stroke="rgba(212, 175, 55, 0.2)" stroke-width="6" stroke-linecap="round" />
+          <g class="preloader-mist" opacity="0.4">
+            <path d="M-10 260 Q100 245 200 260 T410 255" stroke="rgba(255, 255, 255, 0.25)" stroke-width="7"
+              stroke-linecap="round" />
           </g>
 
-          <!-- Gradients Definition -->
           <defs>
-            <radialGradient id="sunGlowGrad" cx="0.5" cy="0.5" r="0.5">
-              <stop offset="0%" stop-color="#E83929" stop-opacity="0.5" />
-              <stop offset="60%" stop-color="#D4AF37" stop-opacity="0.2" />
+            <radialGradient id="sunGlow" cx="0.5" cy="0.5" r="0.5">
+              <stop offset="0%" stop-color="#E83929" stop-opacity="0.6" />
               <stop offset="100%" stop-color="#05070B" stop-opacity="0" />
             </radialGradient>
-            <linearGradient id="crimsonSunGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#FF5242" />
-              <stop offset="60%" stop-color="#E83929" />
-              <stop offset="100%" stop-color="#B31A0D" />
-            </linearGradient>
-            <linearGradient id="sunRingGrad" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#FFD700" />
-              <stop offset="100%" stop-color="#E83929" />
-            </linearGradient>
-            <linearGradient id="mountainBodyGrad" x1="0.5" y1="0" x2="0.5" y2="1">
-              <stop offset="0%" stop-color="#182338" />
-              <stop offset="60%" stop-color="#0E1626" />
-              <stop offset="100%" stop-color="#05070B" />
-            </linearGradient>
-            <linearGradient id="snowCapGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#FFFFFF" />
-              <stop offset="80%" stop-color="#E2E8F0" />
-              <stop offset="100%" stop-color="#CBD5E1" />
+            <linearGradient id="crimsonSun" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#FF5A4D" />
+              <stop offset="70%" stop-color="#E83929" />
+              <stop offset="100%" stop-color="#A8180D" />
             </linearGradient>
           </defs>
         </svg>
       </div>
 
-      <!-- Kanji & English Typography -->
-      <div class="mt-2 space-y-1">
-        <div class="font-mincho text-3xl sm:text-4xl font-bold tracking-widest kanji-title-glow">
-          日本冬の旅
+      <div class="mt-1 space-y-1">
+        <div class="font-display text-4xl tracking-wider text-white">
+          VISIT JAPAN
         </div>
-        <div class="text-[11px] font-mono font-semibold tracking-[0.25em] text-gold uppercase pt-1">
-          Japan Winter Expedition 2026
+        <div class="text-[11px] font-mono tracking-[0.25em] text-gold uppercase">
+          WINTER EXPEDITION 2026
         </div>
-        <p class="text-xs text-slate-400 font-medium">Osaka • Kyoto • Mt. Fuji • Tokyo</p>
       </div>
 
-      <!-- Progress Loading Bar -->
-      <div class="w-56 sm:w-64 mt-6">
-        <div class="h-1.5 w-full bg-slate-900 rounded-full overflow-hidden border border-slate-800">
+      <div class="w-56 mt-5">
+        <div class="h-1.5 w-full bg-slate-900 rounded-full overflow-hidden border border-white/10">
           <div id="preloader-bar" class="preloader-bar-fill h-full"></div>
         </div>
         <div class="flex items-center justify-between text-[10px] font-mono text-slate-400 mt-2">
@@ -157,8 +119,8 @@
         </div>
       </div>
 
-      <!-- Quick Skip Button -->
-      <button id="skip-preloader-btn" class="mt-4 text-[10px] font-mono text-slate-500 hover:text-slate-300 transition-colors underline underline-offset-2">
+      <button id="skip-preloader-btn"
+        class="mt-3 text-[10px] font-mono text-slate-500 hover:text-slate-300 transition-colors">
         Skip Intro →
       </button>
 
@@ -167,67 +129,38 @@
 
 
   <!-- ==========================================================
-       2. TOP MASTER NAVIGATION (OLED BLACK & JAPANESE GOLD/VERMILION)
+       2. MINIMALIST FLOATING HEADER (BENCHMARK STYLE)
        ========================================================== -->
-  <header class="sticky top-0 z-50 bg-[#05070B]/90 backdrop-blur-xl border-b border-white/10 transition-all duration-300" id="main-nav">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16 sm:h-20">
-        
-        <!-- Brand & Kanji Seal -->
-        <a href="#hero" class="flex items-center gap-3 group">
-          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-vermilion to-red-800 text-white flex items-center justify-center font-mincho font-bold text-xl shadow-glow-red border border-vermilion/40 group-hover:scale-105 transition-transform">
-            日
-          </div>
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="font-mincho font-bold text-white tracking-wide text-base sm:text-lg">JAPAN 2026</span>
-              <span class="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-mono font-bold bg-vermilion/20 text-vermilion border border-vermilion/40">
-                16–24 JAN
-              </span>
-            </div>
-            <p class="text-[11px] text-slate-400 font-medium font-sans">4 Cities • 9-Day Winter Itinerary</p>
-          </div>
+  <header class="absolute top-0 left-0 right-0 z-40 bg-transparent">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10">
+      <div class="flex items-center justify-between h-20 sm:h-24">
+
+        <!-- Red Dot Logo: VISIT JAPAN -->
+        <a href="index.html" class="flex items-center gap-2.5 group">
+          <span class="w-3 h-3 rounded-full bg-vermilion shadow-[0_0_12px_rgba(232,57,41,0.8)]"></span>
+          <span
+            class="font-mono text-xs sm:text-sm font-bold tracking-[0.2em] text-white uppercase group-hover:text-vermilion transition-colors">
+            VISIT JAPAN
+          </span>
         </a>
 
-        <!-- Dual Live Clocks & Exchange Widget -->
-        <div class="hidden md:flex items-center gap-3 text-xs">
-          <!-- Live Clocks -->
-          <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#090D15] border border-white/10 text-slate-300">
-            <i data-lucide="clock" class="w-3.5 h-3.5 text-gold"></i>
-            <span class="font-mono font-bold text-white" id="live-time-jst">JST: --:--:--</span>
-            <span class="text-slate-700">|</span>
-            <span class="font-mono text-slate-400" id="live-time-myt">MYT: --:--</span>
-          </div>
-          <!-- Exchange Rate Pill -->
-          <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#090D15] border border-white/10 text-emerald-400">
-            <i data-lucide="coins" class="w-3.5 h-3.5 text-emerald-400"></i>
-            <span class="font-mono font-bold">100 JPY ≈ RM 3.00</span>
-          </div>
-        </div>
-
-        <!-- Master View Tabs Navigation -->
-        <nav class="flex items-center gap-1.5 sm:gap-2">
-          <button onclick="switchMainView('itinerary')" id="nav-btn-itinerary" class="view-nav-pill active px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 border border-white/10">
-            <i data-lucide="calendar" class="w-3.5 h-3.5 text-vermilion"></i>
-            <span class="hidden sm:inline">Daily</span> Plan
-          </button>
-          <button onclick="switchMainView('budget')" id="nav-btn-budget" class="view-nav-pill px-3 py-1.5 rounded-xl text-xs font-medium text-slate-300 hover:text-white bg-[#090D15] hover:bg-slate-800 flex items-center gap-1.5 border border-white/10">
-            <i data-lucide="wallet" class="w-3.5 h-3.5 text-gold"></i>
-            <span>Budget</span>
-          </button>
-          <button onclick="switchMainView('halal')" id="nav-btn-halal" class="view-nav-pill px-3 py-1.5 rounded-xl text-xs font-medium text-slate-300 hover:text-white bg-[#090D15] hover:bg-slate-800 flex items-center gap-1.5 border border-white/10">
-            <i data-lucide="utensils" class="w-3.5 h-3.5 text-emerald-400"></i>
-            <span class="hidden sm:inline">Halal</span> Food
-          </button>
-          <button onclick="switchMainView('akiba')" id="nav-btn-akiba" class="view-nav-pill px-3 py-1.5 rounded-xl text-xs font-medium text-slate-300 hover:text-white bg-[#090D15] hover:bg-slate-800 flex items-center gap-1.5 border border-white/10">
-            <i data-lucide="cpu" class="w-3.5 h-3.5 text-sky-400"></i>
-            <span class="hidden sm:inline">Akiba</span> Tech
-          </button>
-          <button onclick="switchMainView('checklist')" id="nav-btn-checklist" class="view-nav-pill px-3 py-1.5 rounded-xl text-xs font-medium text-slate-300 hover:text-white bg-[#090D15] hover:bg-slate-800 flex items-center gap-1.5 border border-white/10">
-            <i data-lucide="check-square" class="w-3.5 h-3.5 text-purple-400"></i>
-            <span>Checklist</span>
-          </button>
+        <!-- Centered Minimalist Navigation -->
+        <nav
+          class="hidden md:flex items-center gap-8 text-[11px] font-mono font-semibold tracking-[0.18em] uppercase text-slate-300">
+          <a href="#hero" class="text-white hover:text-vermilion transition-colors">Home</a>
+          <a href="#days-grid" class="hover:text-white transition-colors">Itinerary</a>
+          <a href="#budget-section" class="hover:text-white transition-colors">Budget</a>
+          <a href="#halal-section" class="hover:text-white transition-colors">Halal</a>
+          <a href="#checklist-section" class="hover:text-white transition-colors">Checklist</a>
         </nav>
+
+        <!-- Right Side Language / Status -->
+        <div class="flex items-center gap-4 text-xs font-mono">
+          <span class="text-slate-400 hidden sm:inline" id="live-time-jst">JST: --:--</span>
+          <span class="px-2 py-0.5 rounded text-[11px] font-bold text-white bg-white/10 border border-white/10">
+            EN
+          </span>
+        </div>
 
       </div>
     </div>
@@ -235,415 +168,685 @@
 
 
   <!-- ==========================================================
-       3. HERO BANNER (PROPER CINEMATIC JAPANESE SHOWCASE)
+       3. AESTHETIC CINEMATIC HERO BANNER (BENCHMARK STYLE)
        ========================================================== -->
-  <section id="hero" class="relative pt-12 pb-16 lg:pt-16 lg:pb-20 border-b border-white/10 overflow-hidden bg-pattern-subtle">
-    <!-- Atmospheric Ambient Lights -->
-    <div class="absolute -top-32 left-1/4 w-96 h-96 bg-vermilion/10 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute top-1/3 -right-20 w-80 h-80 bg-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+  <section id="hero" class="relative min-h-[92vh] sm:min-h-screen flex flex-col justify-between overflow-hidden">
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-        
-        <!-- Left Column: Title, Subtitle, Key Metrics & CTAs -->
-        <div class="lg:col-span-7 space-y-6">
-          
-          <!-- Eyebrow Badge -->
-          <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#0E1524] border border-vermilion/40 text-xs font-semibold text-slate-200 shadow-sm">
-            <span class="w-2 h-2 rounded-full bg-vermilion animate-pulse"></span>
-            <span class="font-mono text-gold font-bold">日本冬の旅 2026</span>
-            <span class="text-slate-600">|</span>
-            <span>4 Travelers • Verified Halal</span>
-          </div>
-
-          <!-- Main Japanese Display Headline -->
-          <div class="space-y-2">
-            <h1 class="font-mincho text-3xl sm:text-5xl lg:text-5xl font-extrabold text-white tracking-tight leading-[1.15]">
-              Japan Winter Expedition: <br>
-              <span class="bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-gold">
-                Osaka • Kyoto • Mt. Fuji • Tokyo
-              </span>
-            </h1>
-            <p class="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl font-sans pt-1">
-              Precision hour-by-hour routing through Japan's winter landscapes (16–24 Jan 2026). Structured with zero fluff, guaranteed Halal food dining stops, locked transit transfers, and strict financial budgeting.
-            </p>
-          </div>
-
-          <!-- 4 Trip Highlights Pill Grid -->
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
-            <div class="jp-card rounded-xl p-3 text-center">
-              <div class="text-[11px] font-mono text-slate-400 uppercase">Duration</div>
-              <div class="text-base sm:text-lg font-extrabold text-white font-mono mt-0.5">9 Days</div>
-              <div class="text-[10px] text-gold font-mono">16–24 Jan</div>
-            </div>
-            <div class="jp-card rounded-xl p-3 text-center">
-              <div class="text-[11px] font-mono text-slate-400 uppercase">Group Size</div>
-              <div class="text-base sm:text-lg font-extrabold text-white font-mono mt-0.5">4 Pax</div>
-              <div class="text-[10px] text-slate-400">Quad / Twins</div>
-            </div>
-            <div class="jp-card rounded-xl p-3 text-center">
-              <div class="text-[11px] font-mono text-slate-400 uppercase">Food Policy</div>
-              <div class="text-base sm:text-lg font-extrabold text-emerald-400 font-mono mt-0.5">100% Halal</div>
-              <div class="text-[10px] text-emerald-400/80">Certified Stops</div>
-            </div>
-            <div class="jp-card rounded-xl p-3 text-center">
-              <div class="text-[11px] font-mono text-slate-400 uppercase">Non-Hotel / Pax</div>
-              <div class="text-base sm:text-lg font-extrabold text-gold font-mono mt-0.5">~RM 1.8k</div>
-              <div class="text-[10px] text-gold font-mono">~61,000 JPY</div>
-            </div>
-          </div>
-
-          <!-- Quick Action CTA Buttons -->
-          <div class="flex flex-wrap items-center gap-3 pt-2">
-            <button onclick="focusDay(1)" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-vermilion to-red-700 hover:from-red-600 hover:to-red-800 text-white font-bold text-xs sm:text-sm shadow-glow-red transition-all flex items-center gap-2">
-              <i data-lucide="compass" class="w-4 h-4"></i>
-              <span>Explore Day 1 (Osaka)</span>
-            </button>
-            <button onclick="switchMainView('budget')" class="px-4 py-2.5 rounded-xl bg-[#0F1624] hover:bg-[#151F33] text-slate-200 font-semibold text-xs sm:text-sm border border-white/10 hover:border-gold/40 transition-all flex items-center gap-2">
-              <i data-lucide="calculator" class="w-4 h-4 text-gold"></i>
-              <span>Cost Calculator</span>
-            </button>
-            <button onclick="window.print()" class="p-2.5 rounded-xl bg-[#0F1624] hover:bg-slate-800 text-slate-300 hover:text-white border border-white/10 transition-colors" title="Print Clean Plan">
-              <i data-lucide="printer" class="w-4 h-4"></i>
-            </button>
-          </div>
-
-        </div>
-
-        <!-- Right Column: Interactive Real Photography Showcase -->
-        <div class="lg:col-span-5">
-          <div class="relative rounded-2xl overflow-hidden shadow-card-oled border border-white/10 bg-[#090D15] group">
-            
-            <!-- Main Hero Image Element -->
-            <div class="relative h-72 sm:h-88 w-full overflow-hidden">
-              <img id="hero-feature-img" src="./images/mt-fuji-kawaguchiko.jpg" alt="Mount Fuji in Winter from Lake Kawaguchiko" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-              
-              <!-- Gradient Vignette -->
-              <div class="absolute inset-0 bg-gradient-to-t from-[#05070B] via-[#05070B]/40 to-transparent flex flex-col justify-end p-6 text-white">
-                <div class="flex items-center gap-2 mb-2">
-                  <span class="px-2.5 py-0.5 rounded-md bg-vermilion/90 backdrop-blur-md text-[10px] font-mono font-bold tracking-wider uppercase">
-                    Key Highlight
-                  </span>
-                  <span id="hero-featured-day" class="px-2 py-0.5 rounded-md bg-gold/90 text-black-900 text-[10px] font-mono font-bold">
-                    Day 5 & 6
-                  </span>
-                </div>
-                <h3 id="hero-featured-title" class="font-mincho text-xl font-bold text-white tracking-tight">
-                  Mount Fuji & Lake Kawaguchiko
-                </h3>
-                <p id="hero-featured-desc" class="text-xs text-slate-300 mt-1 line-clamp-2">
-                  Crisp winter lakeside views at Oishi Park, snow-capped Mt. Fuji reflections, and Arakurayama Sengen Pagoda.
-                </p>
-
-                <!-- City Photo Switcher Thumbnails -->
-                <div class="flex items-center gap-2 mt-4 pt-3 border-t border-white/10">
-                  <button onclick="switchHeroImg('./images/osaka-castle.jpg', 'Osaka Castle Park', 'Day 1 & 2: Historical stone fortifications, Dotonbori neon & Kuromon Market', 'Day 1 & 2')" class="w-11 h-11 rounded-xl overflow-hidden border-2 border-slate-700 hover:border-vermilion transition-all shadow-sm focus:border-vermilion">
-                    <img src="./images/osaka-castle.jpg" alt="Osaka Castle" class="w-full h-full object-cover">
-                  </button>
-                  <button onclick="switchHeroImg('./images/kyoto-pagoda.jpg', 'Kyoto Higashiyama', 'Day 3 & 4: Historic machiya lanes, Fushimi Inari torii gates, and Kiyomizu-dera', 'Day 3 & 4')" class="w-11 h-11 rounded-xl overflow-hidden border-2 border-slate-700 hover:border-vermilion transition-all shadow-sm focus:border-vermilion">
-                    <img src="./images/kyoto-pagoda.jpg" alt="Kyoto Pagoda" class="w-full h-full object-cover">
-                  </button>
-                  <button onclick="switchHeroImg('./images/mt-fuji-kawaguchiko.jpg', 'Mt. Fuji Kawaguchiko', 'Day 5 & 6: Snow-capped peak, lake reflections & Arakurayama Sengen', 'Day 5 & 6')" class="w-11 h-11 rounded-xl overflow-hidden border-2 border-vermilion transition-all shadow-sm focus:border-vermilion">
-                    <img src="./images/mt-fuji-kawaguchiko.jpg" alt="Mount Fuji" class="w-full h-full object-cover">
-                  </button>
-                  <button onclick="switchHeroImg('./images/tokyo-akihabara.jpg', 'Tokyo Akihabara & Shibuya', 'Day 7 & 8: Electric town electronics, Shibuya Crossing & gadget shopping', 'Day 7 & 8')" class="w-11 h-11 rounded-xl overflow-hidden border-2 border-slate-700 hover:border-vermilion transition-all shadow-sm focus:border-vermilion">
-                    <img src="./images/tokyo-akihabara.jpg" alt="Akihabara" class="w-full h-full object-cover">
-                  </button>
-                  <button onclick="switchHeroImg('./images/tokyo-sensoji.jpg', 'Asakusa Senso-ji', 'Day 7, 8 & 9: Traditional Asakusa, Senso-ji pagoda & Halal Sakura dining', 'Day 7, 8 & 9')" class="w-11 h-11 rounded-xl overflow-hidden border-2 border-slate-700 hover:border-vermilion transition-all shadow-sm focus:border-vermilion">
-                    <img src="./images/tokyo-sensoji.jpg" alt="Sensoji" class="w-full h-full object-cover">
-                  </button>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
+    <!-- Background Hero City/Landscape Photograph -->
+    <div class="absolute inset-0 z-0">
+      <img id="hero-banner-img" src="./images/osaka-dotonbori.jpg" alt="Japan Expedition Landscape"
+        class="w-full h-full object-cover object-center scale-105 filter brightness-95 contrast-105 transition-all duration-700">
+      <div class="absolute inset-0 hero-bg-vignette"></div>
     </div>
-  </section>
 
+    <!-- Empty Spacer for Top Nav -->
+    <div class="h-24"></div>
 
-  <!-- ==========================================================
-       4. DAY-BY-DAY ITINERARY (SPLIT INTO CLEAN DAY 1–9 TABS)
-       ========================================================== -->
-  <section id="section-itinerary" class="py-12 border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <!-- Day Selector Sticky Ribbon -->
-      <div class="mb-8 pb-4 border-b border-white/10">
-        
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
-          <div>
-            <div class="text-[11px] font-mono font-bold uppercase tracking-widest text-vermilion mb-0.5">
-              CHRONOLOGICAL PLAN • 日本の旅程
-            </div>
-            <h2 class="font-mincho text-2xl sm:text-3xl font-bold text-white tracking-tight">
-              Day-by-Day Expedition (1–9)
-            </h2>
-          </div>
+    <!-- Main Hero Center Title & Subtitle -->
+    <div class="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 w-full my-auto py-12">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
 
-          <!-- View Mode Toggles (Single Day View vs 9-Day Grid) -->
-          <div class="flex items-center gap-2">
-            <button id="viewmode-single-btn" onclick="toggleViewMode('single')" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-vermilion text-white shadow-glow-red transition-all flex items-center gap-1.5">
-              <i data-lucide="layout" class="w-3.5 h-3.5"></i>
-              <span>Single Day View</span>
-            </button>
-            <button id="viewmode-grid-btn" onclick="toggleViewMode('grid')" class="px-3 py-1.5 rounded-lg text-xs font-medium bg-[#0F1624] text-slate-300 hover:text-white border border-white/10 transition-all flex items-center gap-1.5">
-              <i data-lucide="grid" class="w-3.5 h-3.5"></i>
-              <span>9-Day Summary Grid</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Horizontal Day Switcher Ribbon (D1 to D9) -->
-        <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-2" id="day-tabs-ribbon">
-          <!-- Dynamically populated buttons Day 1 to Day 9 -->
-        </div>
-
-        <!-- Search & Category Filters -->
-        <div class="flex flex-col sm:flex-row items-center justify-between gap-3 mt-4 pt-3 border-t border-white/5">
-          <!-- Search Input -->
-          <div class="relative w-full sm:w-72">
-            <i data-lucide="search" class="w-3.5 h-3.5 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"></i>
-            <input 
-              type="text" 
-              id="itinerary-search-input" 
-              placeholder="Search ramen, castle, shinkansen..." 
-              class="w-full bg-[#0B101B] text-xs text-white pl-8 pr-3 py-2 rounded-xl border border-white/10 focus:outline-none focus:border-vermilion placeholder-slate-500"
-            >
-          </div>
-
-          <!-- Category Filter Tags -->
-          <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar w-full sm:w-auto">
-            <button class="filter-btn active px-3 py-1 text-xs font-bold rounded-lg bg-vermilion text-white transition-all shadow-sm" data-category="all">
-              All
-            </button>
-            <button class="filter-btn px-3 py-1 text-xs font-semibold rounded-lg bg-[#0F1624] text-emerald-400 hover:bg-emerald-950/60 border border-emerald-800/40 transition-all flex items-center gap-1" data-category="food">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Halal Dining
-            </button>
-            <button class="filter-btn px-3 py-1 text-xs font-semibold rounded-lg bg-[#0F1624] text-sky-400 hover:bg-sky-950/60 border border-sky-800/40 transition-all flex items-center gap-1" data-category="transit">
-              <i data-lucide="train" class="w-3 h-3"></i> Transit
-            </button>
-            <button class="filter-btn px-3 py-1 text-xs font-semibold rounded-lg bg-[#0F1624] text-purple-400 hover:bg-purple-950/60 border border-purple-800/40 transition-all flex items-center gap-1" data-category="sightseeing">
-              <i data-lucide="landmark" class="w-3 h-3"></i> Sights
-            </button>
-            <button class="filter-btn px-3 py-1 text-xs font-semibold rounded-lg bg-[#0F1624] text-amber-400 hover:bg-amber-950/60 border border-amber-800/40 transition-all flex items-center gap-1" data-category="shopping">
-              <i data-lucide="shopping-bag" class="w-3 h-3"></i> Shopping
-            </button>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Single Day View Container -->
-      <div id="single-day-container" class="animate-fade-in">
-        <!-- Rendered by app.js -->
-      </div>
-
-      <!-- 9-Day Grid Overview Container (Hidden by default) -->
-      <div id="grid-days-container" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in">
-        <!-- Rendered by app.js -->
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- ==========================================================
-       5. BUDGET CALCULATOR & MAKE-OR-BREAK TARGET
-       ========================================================== -->
-  <section id="section-budget" class="py-16 border-b border-white/10 bg-[#090D15]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <!-- Section Header -->
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-6 border-b border-white/10 gap-6">
-        <div>
-          <div class="text-[11px] font-mono font-bold uppercase tracking-widest text-gold mb-1">
-            FINANCIAL DASHBOARD • 予算管理
-          </div>
-          <h2 class="font-mincho text-2xl sm:text-3xl font-bold text-white tracking-tight">
-            Trip Budget Breakdown & Calculator
-          </h2>
-          <p class="text-sm text-slate-400 mt-1 max-w-xl">
-            Live interactive expense calculator for solo traveler or group of 4 with currency conversion.
+        <!-- Left Big Display Typography -->
+        <div class="space-y-3">
+          <h1
+            class="font-display text-7xl sm:text-9xl lg:text-[10.5rem] font-black uppercase tracking-tight text-white leading-[0.88] select-none drop-shadow-2xl">
+            VISIT<br>JAPAN
+          </h1>
+          <p class="text-xs sm:text-sm font-sans text-slate-300 tracking-wide font-normal max-w-md pt-2 drop-shadow">
+            Welcome to the Japan Winter Expedition • 16–24 Jan 2026
           </p>
         </div>
 
-        <!-- Controls: Pax & Currency -->
+        <!-- Right Side Minimalist Pagination Counter -->
+        <div class="hidden lg:flex flex-col items-end space-y-1 font-mono text-xs text-slate-400 select-none pr-4">
+          <span class="opacity-40" id="hero-active-col-indicator">01 / 03</span>
+          <span class="text-white font-bold text-base tracking-widest flex items-center gap-2">
+            09 <span class="w-4 h-px bg-vermilion"></span> <span class="text-[10px] text-gold font-bold">DAYS</span>
+          </span>
+          <span class="opacity-40">2026</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Bottom 3-Column Highlights Strip with Red Active Progress Bar -->
+    <div class="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 w-full pb-10">
+
+      <!-- 3 Feature Columns with Interactive Image Switching Matching Day List -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-10 pb-4 text-xs" id="hero-highlights-grid">
+
+        <!-- Highlight 1: Osaka & Kansai (Day 1-2) -->
+        <a href="day-1.html" class="hero-highlight-col group space-y-1.5 cursor-pointer transition-all duration-300 opacity-100 p-2 rounded-xl hover:bg-white/5" data-index="0" data-img="./images/osaka-dotonbori.jpg">
+          <div class="flex items-center gap-2">
+            <i data-lucide="map-pin" class="w-4 h-4 text-vermilion group-hover:scale-110 transition-transform"></i>
+            <span class="font-mono text-[11px] font-bold text-white tracking-wider uppercase">01 • Osaka & Dotonbori</span>
+          </div>
+          <p class="text-slate-300 text-[11px] leading-relaxed line-clamp-2">
+            KIX touchdown, Namba hotel base, Halal Ramen Naniwaya, and historic Osaka Castle.
+          </p>
+          <div class="text-[10px] font-mono text-gold group-hover:text-vermilion transition-colors">
+            DAY 1–2 →
+          </div>
+        </a>
+
+        <!-- Highlight 2: Kyoto (Day 3-4) -->
+        <a href="day-3.html" class="hero-highlight-col group space-y-1.5 cursor-pointer transition-all duration-300 opacity-70 hover:opacity-100 p-2 rounded-xl hover:bg-white/5" data-index="1" data-img="./images/kyoto-pagoda.jpg">
+          <div class="flex items-center gap-2">
+            <i data-lucide="landmark" class="w-4 h-4 text-vermilion group-hover:scale-110 transition-transform"></i>
+            <span class="font-mono text-[11px] font-bold text-white tracking-wider uppercase">02 • Kyoto Machiya & Shrines</span>
+          </div>
+          <p class="text-slate-300 text-[11px] leading-relaxed line-clamp-2">
+            Fushimi Inari Torii gates hike, Kiyomizu-dera wooden stage, and Halal Ayam-YA.
+          </p>
+          <div class="text-[10px] font-mono text-gold group-hover:text-vermilion transition-colors">
+            DAY 3–4 →
+          </div>
+        </a>
+
+        <!-- Highlight 3: Fuji & Tokyo (Day 5-9) -->
+        <a href="day-5.html" class="hero-highlight-col group space-y-1.5 cursor-pointer transition-all duration-300 opacity-70 hover:opacity-100 p-2 rounded-xl hover:bg-white/5" data-index="2" data-img="./images/hero-banner.jpg">
+          <div class="flex items-center gap-2">
+            <i data-lucide="compass" class="w-4 h-4 text-vermilion group-hover:scale-110 transition-transform"></i>
+            <span class="font-mono text-[11px] font-bold text-white tracking-wider uppercase">03 • Mt. Fuji & Tokyo Tech</span>
+          </div>
+          <p class="text-slate-300 text-[11px] leading-relaxed line-clamp-2">
+            Chureito Pagoda lake views, Shibuya Crossing, Akihabara gadget shopping & departure.
+          </p>
+          <div class="text-[10px] font-mono text-gold group-hover:text-vermilion transition-colors">
+            DAY 5–9 →
+          </div>
+        </a>
+
+      </div>
+
+      <!-- Functional Red Active Sliding Bar -->
+      <div class="h-1 w-full bg-white/10 rounded-full overflow-hidden mt-2 relative">
+        <div id="hero-active-bar" class="h-full bg-vermilion w-1/3 rounded-full shadow-[0_0_12px_#E83929] transition-transform duration-500 cubic-bezier(0.16,1,0.3,1)" style="transform: translateX(0%);"></div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ==========================================================
+       4. "FAVORITE SPOTS" / 9-DAY EXPEDITION (BENCHMARK STYLE)
+       ========================================================== -->
+  <section id="days-grid" class="py-20 sm:py-28 bg-[#05070B] border-b border-white/10 relative">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10">
+
+      <!-- Section Header -->
+      <div class="text-center space-y-1 mb-14">
+        <div class="text-[11px] font-mono tracking-[0.25em] text-slate-400 uppercase">
+          Find the best spots for you
+        </div>
+        <h2 class="font-display text-4xl sm:text-5xl font-bold tracking-wider text-white uppercase">
+          9-Day Expedition
+        </h2>
+      </div>
+
+      <!-- 9 Aesthetic Vertical Cards Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+
+        <!-- Day 1 -->
+        <a href="day-1.html" class="aesthetic-card h-96 group reveal-init delay-100">
+          <img src="./images/osaka-dotonbori.jpg" alt="Day 1 Osaka"
+            class="card-img absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#05070B] via-[#05070B]/50 to-transparent"></div>
+
+          <div class="relative h-full flex flex-col justify-between p-6 text-white">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-1 rounded bg-vermilion text-white text-[10px] font-mono font-bold tracking-wider">
+                DAY 01
+              </span>
+              <span class="text-xs font-mono text-gold">16 JAN</span>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] font-mono uppercase tracking-widest text-slate-300">OSAKA • ARRIVAL</div>
+              <h3 class="font-mincho text-xl font-bold text-white group-hover:text-vermilion transition-colors">
+                Dotonbori & Namba
+              </h3>
+              <p class="text-xs text-slate-300 line-clamp-2 pt-1 font-sans">
+                Kansai Airport arrival, Hotel WBF check-in, Halal Ramen Naniwaya & neon canal walk.
+              </p>
+              <div
+                class="pt-2 text-xs font-mono text-gold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                <span>View Day 1</span>
+                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Day 2 -->
+        <a href="day-2.html" class="aesthetic-card h-96 group reveal-init delay-200">
+          <img src="./images/osaka-castle.jpg" alt="Day 2 Osaka Castle"
+            class="card-img absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#05070B] via-[#05070B]/50 to-transparent"></div>
+
+          <div class="relative h-full flex flex-col justify-between p-6 text-white">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-1 rounded bg-vermilion text-white text-[10px] font-mono font-bold tracking-wider">
+                DAY 02
+              </span>
+              <span class="text-xs font-mono text-gold">17 JAN</span>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] font-mono uppercase tracking-widest text-slate-300">OSAKA CASTLE</div>
+              <h3 class="font-mincho text-xl font-bold text-white group-hover:text-vermilion transition-colors">
+                Kuromon & Shinsekai
+              </h3>
+              <p class="text-xs text-slate-300 line-clamp-2 pt-1 font-sans">
+                Stone castle fortification, fresh seafood market, Shinsaibashi street & Tsutenkaku Tower.
+              </p>
+              <div
+                class="pt-2 text-xs font-mono text-gold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                <span>View Day 2</span>
+                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Day 3 -->
+        <a href="day-3.html" class="aesthetic-card h-96 group reveal-init delay-300">
+          <img src="./images/kyoto-pagoda.jpg" alt="Day 3 Kyoto Pagoda"
+            class="card-img absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#05070B] via-[#05070B]/50 to-transparent"></div>
+
+          <div class="relative h-full flex flex-col justify-between p-6 text-white">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-1 rounded bg-vermilion text-white text-[10px] font-mono font-bold tracking-wider">
+                DAY 03
+              </span>
+              <span class="text-xs font-mono text-gold">18 JAN</span>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] font-mono uppercase tracking-widest text-slate-300">KYOTO • SHIJO</div>
+              <h3 class="font-mincho text-xl font-bold text-white group-hover:text-vermilion transition-colors">
+                Gion & Kamo River
+              </h3>
+              <p class="text-xs text-slate-300 line-clamp-2 pt-1 font-sans">
+                JR train to Kyoto, Halal Ayam-YA Karasuma, Gion Shirakawa canal & Yasaka Shrine.
+              </p>
+              <div
+                class="pt-2 text-xs font-mono text-gold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                <span>View Day 3</span>
+                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Day 4 -->
+        <a href="day-4.html" class="aesthetic-card h-96 group reveal-init delay-100">
+          <img src="./images/kyoto-pagoda.jpg" alt="Day 4 Fushimi Inari"
+            class="card-img absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#05070B] via-[#05070B]/50 to-transparent"></div>
+
+          <div class="relative h-full flex flex-col justify-between p-6 text-white">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-1 rounded bg-vermilion text-white text-[10px] font-mono font-bold tracking-wider">
+                DAY 04
+              </span>
+              <span class="text-xs font-mono text-gold">19 JAN</span>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] font-mono uppercase tracking-widest text-slate-300">HISTORIC KYOTO</div>
+              <h3 class="font-mincho text-xl font-bold text-white group-hover:text-vermilion transition-colors">
+                Fushimi Inari & Kiyomizu
+              </h3>
+              <p class="text-xs text-slate-300 line-clamp-2 pt-1 font-sans">
+                Early morning Senbon Torii tunnel walk, Kiyomizu-dera wooden temple & Nishiki Market.
+              </p>
+              <div
+                class="pt-2 text-xs font-mono text-gold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                <span>View Day 4</span>
+                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Day 5 -->
+        <a href="day-5.html" class="aesthetic-card h-96 group reveal-init delay-200">
+          <img src="./images/mt-fuji-kawaguchiko.jpg" alt="Day 5 Mt. Fuji"
+            class="card-img absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#05070B] via-[#05070B]/50 to-transparent"></div>
+
+          <div class="relative h-full flex flex-col justify-between p-6 text-white">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-1 rounded bg-vermilion text-white text-[10px] font-mono font-bold tracking-wider">
+                DAY 05
+              </span>
+              <span class="text-xs font-mono text-gold">20 JAN</span>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] font-mono uppercase tracking-widest text-slate-300">MT. FUJI ARRIVAL</div>
+              <h3 class="font-mincho text-xl font-bold text-white group-hover:text-vermilion transition-colors">
+                Kawaguchiko & Oishi Park
+              </h3>
+              <p class="text-xs text-slate-300 line-clamp-2 pt-1 font-sans">
+                Tokaido Shinkansen bullet train, HAOSTAY check-in & lakeside sunset views of Mt. Fuji.
+              </p>
+              <div
+                class="pt-2 text-xs font-mono text-gold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                <span>View Day 5</span>
+                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Day 6 -->
+        <a href="day-6.html" class="aesthetic-card h-96 group reveal-init delay-300">
+          <img src="./images/mt-fuji-kawaguchiko.jpg" alt="Day 6 Chureito Pagoda"
+            class="card-img absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#05070B] via-[#05070B]/50 to-transparent"></div>
+
+          <div class="relative h-full flex flex-col justify-between p-6 text-white">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-1 rounded bg-vermilion text-white text-[10px] font-mono font-bold tracking-wider">
+                DAY 06
+              </span>
+              <span class="text-xs font-mono text-gold">21 JAN</span>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] font-mono uppercase tracking-widest text-slate-300">FUJI EXPLORATION</div>
+              <h3 class="font-mincho text-xl font-bold text-white group-hover:text-vermilion transition-colors">
+                Chureito Pagoda View
+              </h3>
+              <p class="text-xs text-slate-300 line-clamp-2 pt-1 font-sans">
+                Iconic 5-story red pagoda with snow volcano panorama, Honcho street & south lake stroll.
+              </p>
+              <div
+                class="pt-2 text-xs font-mono text-gold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                <span>View Day 6</span>
+                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Day 7 -->
+        <a href="day-7.html" class="aesthetic-card h-96 group reveal-init delay-100">
+          <img src="./images/tokyo-sensoji.jpg" alt="Day 7 Tokyo Asakusa"
+            class="card-img absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#05070B] via-[#05070B]/50 to-transparent"></div>
+
+          <div class="relative h-full flex flex-col justify-between p-6 text-white">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-1 rounded bg-vermilion text-white text-[10px] font-mono font-bold tracking-wider">
+                DAY 07
+              </span>
+              <span class="text-xs font-mono text-gold">22 JAN</span>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] font-mono uppercase tracking-widest text-slate-300">TOKYO • ASAKUSA</div>
+              <h3 class="font-mincho text-xl font-bold text-white group-hover:text-vermilion transition-colors">
+                Senso-ji & Halal Sakura
+              </h3>
+              <p class="text-xs text-slate-300 line-clamp-2 pt-1 font-sans">
+                Highway coach to Tokyo, Hotel Tavinos Asakusa, Halal Sakura sukiyaki lunch & Skytree dusk.
+              </p>
+              <div
+                class="pt-2 text-xs font-mono text-gold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                <span>View Day 7</span>
+                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Day 8 -->
+        <a href="day-8.html" class="aesthetic-card h-96 group reveal-init delay-200">
+          <img src="./images/tokyo-akihabara.jpg" alt="Day 8 Akihabara"
+            class="card-img absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#05070B] via-[#05070B]/50 to-transparent"></div>
+
+          <div class="relative h-full flex flex-col justify-between p-6 text-white">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-1 rounded bg-vermilion text-white text-[10px] font-mono font-bold tracking-wider">
+                DAY 08
+              </span>
+              <span class="text-xs font-mono text-gold">23 JAN</span>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] font-mono uppercase tracking-widest text-slate-300">SHIBUYA & AKIBA</div>
+              <h3 class="font-mincho text-xl font-bold text-white group-hover:text-vermilion transition-colors">
+                Shibuya & Gadget Shopping
+              </h3>
+              <p class="text-xs text-slate-300 line-clamp-2 pt-1 font-sans">
+                Meiji Jingu forest, Shibuya scramble crossing & Akihabara tech shopping across Yodobashi.
+              </p>
+              <div
+                class="pt-2 text-xs font-mono text-gold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                <span>View Day 8</span>
+                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Day 9 -->
+        <a href="day-9.html" class="aesthetic-card h-96 group reveal-init delay-300">
+          <img src="./images/tokyo-sensoji.jpg" alt="Day 9 Departure"
+            class="card-img absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#05070B] via-[#05070B]/50 to-transparent"></div>
+
+          <div class="relative h-full flex flex-col justify-between p-6 text-white">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-1 rounded bg-vermilion text-white text-[10px] font-mono font-bold tracking-wider">
+                DAY 09
+              </span>
+              <span class="text-xs font-mono text-gold">24 JAN</span>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] font-mono uppercase tracking-widest text-slate-300">TOKYO • DEPARTURE</div>
+              <h3 class="font-mincho text-xl font-bold text-white group-hover:text-vermilion transition-colors">
+                Asakusa Souvenirs → NRT
+              </h3>
+              <p class="text-xs text-slate-300 line-clamp-2 pt-1 font-sans">
+                Nakamise souvenir shopping, farewell lunch at HALAL SAKURA, Skyliner to Narita & 16:50 flight home.
+              </p>
+              <div
+                class="pt-2 text-xs font-mono text-gold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                <span>View Day 9</span>
+                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              </div>
+            </div>
+          </div>
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ==========================================================
+       5. OVERKILL INTERACTIVE BUDGET BREAKDOWN SECTION
+       ========================================================== -->
+  <section id="budget-section" class="py-20 sm:py-28 border-b border-white/10 bg-[#070B12] relative overflow-hidden reveal-init">
+    <!-- Atmospheric subtle gold flare -->
+    <div class="absolute top-0 right-1/4 w-96 h-96 bg-gold/5 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-0 left-10 w-96 h-96 bg-vermilion/5 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-6 sm:px-10 relative z-10">
+
+      <!-- Section Header with Interactive Toggle Controls -->
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-12 pb-6 border-b border-white/10 gap-6">
+        <div class="space-y-1">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-gold animate-ping"></span>
+            <span class="text-[11px] font-mono font-bold uppercase tracking-[0.25em] text-gold">
+              ESTIMATED SPEND • 予算計画
+            </span>
+          </div>
+          <h2 class="font-display text-4xl sm:text-5xl font-bold tracking-wider text-white uppercase">
+            Trip Budget Breakdown
+          </h2>
+          <p class="text-xs font-mono text-slate-400">
+            Baseline Conversion: <span class="text-white font-bold">100 JPY ≈ RM 3.00</span> • Hover cards to reveal itemized costs
+          </p>
+        </div>
+
+        <!-- Interactive Currency & Pax Switches -->
         <div class="flex flex-wrap items-center gap-3">
-          <!-- Pax Toggle -->
-          <div class="inline-flex rounded-xl bg-[#05070B] p-1 border border-white/10">
-            <button id="pax-1-btn" class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-vermilion text-white shadow-sm transition-all" onclick="setBudgetPax(1)">
-              Per Person (1 Pax)
+          <!-- Pax Selector -->
+          <div class="flex items-center bg-[#05070B] border border-white/15 rounded-xl p-1 text-xs font-mono">
+            <button id="pax-1-btn" class="pax-pill-btn active px-3 py-1.5 rounded-lg text-slate-300 font-bold transition-all" onclick="setBudgetPax(1)">
+              1 Pax (Solo)
             </button>
-            <button id="pax-4-btn" class="px-3.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition-all" onclick="setBudgetPax(4)">
-              Group of 4 (4 Pax)
+            <button id="pax-4-btn" class="pax-pill-btn px-3 py-1.5 rounded-lg text-slate-400 transition-all hover:text-white" onclick="setBudgetPax(4)">
+              4 Pax (Group)
             </button>
           </div>
 
-          <!-- Currency Toggle -->
-          <div class="inline-flex rounded-xl bg-[#05070B] p-1 border border-white/10">
-            <button id="curr-myr-btn" class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-gold text-black-900 font-bold shadow-sm transition-all" onclick="setBudgetCurrency('MYR')">
+          <!-- Currency Selector -->
+          <div class="flex items-center bg-[#05070B] border border-white/15 rounded-xl p-1 text-xs font-mono">
+            <button id="curr-myr-btn" class="currency-pill-btn active px-3 py-1.5 rounded-lg text-slate-300 font-bold transition-all" onclick="setBudgetCurrency('MYR')">
               MYR (RM)
             </button>
-            <button id="curr-jpy-btn" class="px-3.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition-all" onclick="setBudgetCurrency('JPY')">
+            <button id="curr-jpy-btn" class="currency-pill-btn px-3 py-1.5 rounded-lg text-slate-400 transition-all hover:text-white" onclick="setBudgetCurrency('JPY')">
               JPY (¥)
             </button>
           </div>
         </div>
       </div>
 
-      <!-- Make-or-Break Accommodation Warning Box -->
-      <div class="mb-10 rounded-2xl bg-gradient-to-r from-[#18110B] to-[#141822] border-2 border-gold/60 p-6 sm:p-8 shadow-card-oled">
-        <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
-          <div class="space-y-2">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold/20 text-gold text-xs font-bold tracking-wide border border-gold/40">
-              <i data-lucide="alert-circle" class="w-4 h-4 text-gold"></i>
-              MAKE-OR-BREAK ACCOMMODATION BUDGET LINE
+      <!-- 4 Overkill Cards Grid with Counter Targets & Hover Reveal Drawers -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <!-- Card 1: Food & Halal Meals -->
+        <div class="budget-card-overkill group reveal-init delay-100" data-category="food">
+          <div class="flex items-center justify-between mb-3">
+            <div class="budget-icon-container w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+              <i data-lucide="utensils" class="w-5 h-5"></i>
             </div>
-            <h3 class="font-mincho text-xl sm:text-2xl font-bold text-white tracking-tight">
-              Target Hotel Spend: <span id="hotel-target-display" class="font-mono text-gold">~170,000–215,000 JPY (≈ RM 5,100–6,450)</span> for all 4
-            </h3>
-            <p class="text-sm text-slate-300 leading-relaxed max-w-3xl">
-              Non-hotel costs for 4 people total <strong class="font-bold text-gold">RM 7,320–10,560</strong>. To maintain the <strong class="font-bold text-white">RM 8,000 cap</strong> with a safe <strong class="font-bold text-emerald-400">RM 500–1,000 buffer</strong>, quad/family rooms or budget twins in Tokyo and Kawaguchiko must be prioritized.
+            <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-emerald-950/80 text-emerald-300 border border-emerald-800/60">
+              51% Spend
+            </span>
+          </div>
+
+          <div class="text-xs font-mono text-slate-400">Food & Halal Meals</div>
+          
+          <!-- Compact Animated Counter Range -->
+          <div class="text-lg sm:text-xl font-bold text-white font-mono tracking-tight my-1.5 whitespace-nowrap overflow-hidden flex items-center">
+            <span class="curr-prefix text-slate-300 font-semibold mr-1">RM</span>
+            <span class="budget-counter" id="cnt-food-min" data-myr-1="945" data-myr-4="3780" data-jpy-1="31500" data-jpy-4="126000">945</span>
+            <span class="text-slate-500 font-normal px-1">–</span>
+            <span class="budget-counter" id="cnt-food-max" data-myr-1="1350" data-myr-4="5400" data-jpy-1="45000" data-jpy-4="180000">1,350</span>
+          </div>
+
+          <div class="text-[11px] text-emerald-400 font-mono flex items-center gap-1">
+            <span id="sub-food-text">~31,500 – 45,000 JPY / pax</span>
+          </div>
+
+          <!-- Hover Reveal Drawer -->
+          <div class="hover-reveal-drawer mt-4 pt-3 border-t border-white/10 space-y-2 text-[11px] font-mono">
+            <div class="flex justify-between text-slate-300">
+              <span>• Ramen & Naniwaya</span>
+              <span class="text-gold">RM 420 (¥14k)</span>
+            </div>
+            <div class="flex justify-between text-slate-300">
+              <span>• Sukiyaki & Nabe</span>
+              <span class="text-gold">RM 360 (¥12k)</span>
+            </div>
+            <div class="flex justify-between text-slate-300">
+              <span>• Daily Konbini/Snacks</span>
+              <span class="text-gold">RM 165 (¥5.5k)</span>
+            </div>
+            <div class="pt-1.5 flex items-center gap-1.5 text-[10px] text-emerald-400 font-bold border-t border-white/5">
+              <i data-lucide="check-check" class="w-3.5 h-3.5"></i>
+              <span>100% Halal Certified Venues</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Intercity Bullet & Bus -->
+        <div class="budget-card-overkill group reveal-init delay-200" data-category="transit">
+          <div class="flex items-center justify-between mb-3">
+            <div class="budget-icon-container w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/30 flex items-center justify-center text-sky-400">
+              <i data-lucide="train" class="w-5 h-5"></i>
+            </div>
+            <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-sky-950/80 text-sky-300 border border-sky-800/60">
+              26% Spend
+            </span>
+          </div>
+
+          <div class="text-xs font-mono text-slate-400">Intercity Bullet & Bus</div>
+          
+          <!-- Compact Animated Counter Range -->
+          <div class="text-lg sm:text-xl font-bold text-white font-mono tracking-tight my-1.5 whitespace-nowrap overflow-hidden flex items-center">
+            <span class="curr-prefix text-slate-300 font-semibold mr-1">RM</span>
+            <span class="budget-counter" id="cnt-transit-min" data-myr-1="489" data-myr-4="1956" data-jpy-1="16300" data-jpy-4="65200">489</span>
+            <span class="text-slate-500 font-normal px-1">–</span>
+            <span class="budget-counter" id="cnt-transit-max" data-myr-1="588" data-myr-4="2352" data-jpy-1="19600" data-jpy-4="78400">588</span>
+          </div>
+
+          <div class="text-[11px] text-sky-400 font-mono flex items-center gap-1">
+            <span id="sub-transit-text">~16,300 – 19,600 JPY / pax</span>
+          </div>
+
+          <!-- Hover Reveal Drawer -->
+          <div class="hover-reveal-drawer mt-4 pt-3 border-t border-white/10 space-y-2 text-[11px] font-mono">
+            <div class="flex justify-between text-slate-300">
+              <span>• Shinkansen Tokaido</span>
+              <span class="text-gold">RM 330 (¥11k)</span>
+            </div>
+            <div class="flex justify-between text-slate-300">
+              <span>• Fuji Express Bus</span>
+              <span class="text-gold">RM 75 (¥2.5k)</span>
+            </div>
+            <div class="flex justify-between text-slate-300">
+              <span>• Keisei Skyliner (NRT)</span>
+              <span class="text-gold">RM 84 (¥2.8k)</span>
+            </div>
+            <div class="pt-1.5 flex items-center gap-1.5 text-[10px] text-sky-400 font-bold border-t border-white/5">
+              <i data-lucide="ticket" class="w-3.5 h-3.5"></i>
+              <span>Reserved Bullet Seats</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Local Metro & Sights -->
+        <div class="budget-card-overkill group reveal-init delay-300" data-category="local">
+          <div class="flex items-center justify-between mb-3">
+            <div class="budget-icon-container w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+              <i data-lucide="compass" class="w-5 h-5"></i>
+            </div>
+            <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-indigo-950/80 text-indigo-300 border border-indigo-800/60">
+              15% Spend
+            </span>
+          </div>
+
+          <div class="text-xs font-mono text-slate-400">Local Metro & Sights</div>
+          
+          <!-- Compact Animated Counter Range -->
+          <div class="text-lg sm:text-xl font-bold text-white font-mono tracking-tight my-1.5 whitespace-nowrap overflow-hidden flex items-center">
+            <span class="curr-prefix text-slate-300 font-semibold mr-1">RM</span>
+            <span class="budget-counter" id="cnt-local-min" data-myr-1="246" data-myr-4="984" data-jpy-1="8200" data-jpy-4="32800">246</span>
+            <span class="text-slate-500 font-normal px-1">–</span>
+            <span class="budget-counter" id="cnt-local-max" data-myr-1="399" data-myr-4="1596" data-jpy-1="13300" data-jpy-4="53200">399</span>
+          </div>
+
+          <div class="text-[11px] text-indigo-400 font-mono flex items-center gap-1">
+            <span id="sub-local-text">~8,200 – 13,300 JPY / pax</span>
+          </div>
+
+          <!-- Hover Reveal Drawer -->
+          <div class="hover-reveal-drawer mt-4 pt-3 border-t border-white/10 space-y-2 text-[11px] font-mono">
+            <div class="flex justify-between text-slate-300">
+              <span>• Osaka & Kyoto Metro</span>
+              <span class="text-gold">RM 90 (¥3k)</span>
+            </div>
+            <div class="flex justify-between text-slate-300">
+              <span>• Tokyo 72h Subway Pass</span>
+              <span class="text-gold">RM 45 (¥1.5k)</span>
+            </div>
+            <div class="flex justify-between text-slate-300">
+              <span>• Castle & Temple Entry</span>
+              <span class="text-gold">RM 111 (¥3.7k)</span>
+            </div>
+            <div class="pt-1.5 flex items-center gap-1.5 text-[10px] text-indigo-400 font-bold border-t border-white/5">
+              <i data-lucide="credit-card" class="w-3.5 h-3.5"></i>
+              <span>IC Tap & Go Ready</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4: Non-Hotel Total / Pax (Overkill Highlight) -->
+        <div class="budget-card-overkill budget-card-total group reveal-init delay-400" data-category="total">
+          <div class="flex items-center justify-between mb-3">
+            <div class="budget-icon-container w-10 h-10 rounded-xl bg-vermilion/20 border border-vermilion/40 flex items-center justify-center text-vermilion">
+              <i data-lucide="sparkles" class="w-5 h-5"></i>
+            </div>
+            <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-vermilion text-white shadow-[0_0_10px_rgba(232,57,41,0.6)]">
+              Total / Pax
+            </span>
+          </div>
+
+          <div class="text-xs font-mono text-vermilion font-bold" id="total-card-label">Non-Hotel Total / Pax</div>
+          
+          <!-- Compact Animated Counter Range -->
+          <div class="text-lg sm:text-xl font-bold text-gold font-mono tracking-tight my-1.5 whitespace-nowrap overflow-hidden flex items-center">
+            <span class="curr-prefix text-gold/80 font-semibold mr-1">RM</span>
+            <span class="budget-counter" id="cnt-total-min" data-myr-1="1830" data-myr-4="7320" data-jpy-1="61000" data-jpy-4="244000">1,830</span>
+            <span class="text-gold/50 font-normal px-1">–</span>
+            <span class="budget-counter" id="cnt-total-max" data-myr-1="2640" data-myr-4="10560" data-jpy-1="88000" data-jpy-4="352000">2,640</span>
+          </div>
+
+          <div class="text-[11px] text-slate-300 font-mono flex items-center gap-1">
+            <span id="sub-total-text">~61,000 – 88,000 JPY</span>
+          </div>
+
+          <!-- Hover Reveal Drawer -->
+          <div class="hover-reveal-drawer mt-4 pt-3 border-t border-vermilion/20 space-y-2 text-[11px] font-mono">
+            <div class="flex justify-between text-slate-200">
+              <span class="text-emerald-400">• Food</span>
+              <span class="text-white">~51%</span>
+            </div>
+            <div class="flex justify-between text-slate-200">
+              <span class="text-sky-400">• Intercity</span>
+              <span class="text-white">~26%</span>
+            </div>
+            <div class="flex justify-between text-slate-200">
+              <span class="text-indigo-400">• Local Metro</span>
+              <span class="text-white">~15%</span>
+            </div>
+            <div class="pt-1.5 flex items-center gap-1.5 text-[10px] text-gold font-bold border-t border-white/10">
+              <i data-lucide="shield-check" class="w-3.5 h-3.5 text-gold"></i>
+              <span>Zero Hidden Cost Guarantee</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Overkill Group Hotel Spend Target & RM 8,000 Cap Safeguard Bar -->
+      <div class="mt-8 p-6 rounded-2xl bg-gradient-to-r from-[#090D15] via-[#0D1424] to-[#090D15] border border-gold/35 shadow-[0_0_30px_rgba(212,175,55,0.08)] reveal-init delay-500">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="space-y-1.5 max-w-2xl">
+            <div class="flex items-center gap-2">
+              <i data-lucide="building" class="w-4 h-4 text-gold"></i>
+              <span class="font-mono text-xs font-bold text-white tracking-wider uppercase">
+                Group Hotel Spend Target (4 Pax)
+              </span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-gold/15 text-gold border border-gold/40">
+                RM 8,000 Cap Safeguard
+              </span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed font-sans">
+              Allocated target: <strong class="text-white font-mono">~170,000–215,000 JPY</strong> (≈ <strong class="text-gold font-mono">RM 5,100–6,450 total</strong>) across all 8 nights. This preserves a safe <strong class="text-emerald-400 font-mono">RM 500–1,000 emergency buffer</strong> well under the strict RM 8,000 ceiling.
             </p>
           </div>
 
-          <div class="flex-shrink-0 bg-[#05070B] rounded-xl p-4 border border-gold/30 text-center w-full lg:w-auto shadow-inner">
-            <div class="text-xs text-gold font-semibold mb-1">Target Per Night (4 Pax)</div>
-            <div class="text-xl sm:text-2xl font-extrabold text-white font-mono">RM 638 – 806</div>
-            <div class="text-[11px] text-slate-400 font-mono mt-0.5">~21,250 – 26,875 JPY / night</div>
+          <!-- Visual Safety Meter Gauge -->
+          <div class="w-full md:w-64 space-y-2 font-mono">
+            <div class="flex items-center justify-between text-[11px]">
+              <span class="text-slate-400">Budget Allocated:</span>
+              <span class="text-emerald-400 font-bold">88% (Optimal)</span>
+            </div>
+            <div class="h-2.5 w-full bg-slate-900 rounded-full overflow-hidden border border-white/10 p-0.5">
+              <div class="h-full rounded-full bg-gradient-to-r from-emerald-500 via-gold to-vermilion w-[88%] shadow-[0_0_12px_rgba(16,185,129,0.7)]"></div>
+            </div>
+            <div class="flex items-center justify-between text-[10px] text-slate-500">
+              <span>RM 0</span>
+              <span class="text-emerald-400 font-bold">Buffer: RM 1,000</span>
+              <span class="text-vermilion">RM 8,000 Cap</span>
+            </div>
           </div>
         </div>
-      </div>
-
-      <!-- 5 Category Cards Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="budget-cards-grid">
-        
-        <!-- Category 1: Food -->
-        <div class="jp-card rounded-2xl p-6">
-          <div class="flex items-center justify-between mb-4">
-            <div class="w-10 h-10 rounded-xl bg-emerald-950 text-emerald-400 border border-emerald-800/80 flex items-center justify-center font-bold">
-              <i data-lucide="utensils" class="w-5 h-5"></i>
-            </div>
-            <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-950 text-emerald-300 border border-emerald-800">
-              100% Halal Plan
-            </span>
-          </div>
-          <h4 class="text-lg font-bold text-white mb-1">Food & Halal Meals</h4>
-          <p class="text-xs text-slate-400 mb-4">Ramen, Yakiniku, Arab/Pakistani, & simple breakfasts</p>
-          <div class="text-2xl font-extrabold text-white font-mono mb-1" id="cat-food-cost">
-            RM 945 – 1,350
-          </div>
-          <div class="text-xs text-slate-400 font-mono" id="cat-food-jpy">
-            ~31,500 – 45,000 JPY
-          </div>
-        </div>
-
-        <!-- Category 2: Intercity Transport -->
-        <div class="jp-card rounded-2xl p-6">
-          <div class="flex items-center justify-between mb-4">
-            <div class="w-10 h-10 rounded-xl bg-sky-950 text-sky-400 border border-sky-800/80 flex items-center justify-center font-bold">
-              <i data-lucide="train" class="w-5 h-5"></i>
-            </div>
-            <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-sky-950 text-sky-300 border border-sky-800">
-              Shinkansen + Bus
-            </span>
-          </div>
-          <h4 class="text-lg font-bold text-white mb-1">Intercity Transport</h4>
-          <p class="text-xs text-slate-400 mb-4">KIX transfer, Osaka→Kyoto, Kyoto→Fuji, Fuji→Tokyo, NRT</p>
-          <div class="text-2xl font-extrabold text-white font-mono mb-1" id="cat-intercity-cost">
-            RM 489 – 588
-          </div>
-          <div class="text-xs text-slate-400 font-mono" id="cat-intercity-jpy">
-            ~16,300 – 19,600 JPY
-          </div>
-        </div>
-
-        <!-- Category 3: Local Transit -->
-        <div class="jp-card rounded-2xl p-6">
-          <div class="flex items-center justify-between mb-4">
-            <div class="w-10 h-10 rounded-xl bg-indigo-950 text-indigo-400 border border-indigo-800/80 flex items-center justify-center font-bold">
-              <i data-lucide="bus" class="w-5 h-5"></i>
-            </div>
-            <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-indigo-950 text-indigo-300 border border-indigo-800">
-              IC Card Metro
-            </span>
-          </div>
-          <h4 class="text-lg font-bold text-white mb-1">Local Transit</h4>
-          <p class="text-xs text-slate-400 mb-4">Osaka metro, Kyoto bus/trains, Fuji lakeside bus, Tokyo metro</p>
-          <div class="text-2xl font-extrabold text-white font-mono mb-1" id="cat-local-cost">
-            RM 216 – 324
-          </div>
-          <div class="text-xs text-slate-400 font-mono" id="cat-local-jpy">
-            ~7,200 – 10,800 JPY
-          </div>
-        </div>
-
-        <!-- Category 4: Attractions & Tickets -->
-        <div class="jp-card rounded-2xl p-6">
-          <div class="flex items-center justify-between mb-4">
-            <div class="w-10 h-10 rounded-xl bg-purple-950 text-purple-400 border border-purple-800/80 flex items-center justify-center font-bold">
-              <i data-lucide="ticket" class="w-5 h-5"></i>
-            </div>
-            <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-purple-950 text-purple-300 border border-purple-800">
-              Low Ticket Cost
-            </span>
-          </div>
-          <h4 class="text-lg font-bold text-white mb-1">Attraction Tickets</h4>
-          <p class="text-xs text-slate-400 mb-4">Osaka Castle (¥600), Kiyomizu-dera (¥400), Parks/Temples</p>
-          <div class="text-2xl font-extrabold text-white font-mono mb-1" id="cat-tickets-cost">
-            RM 30 – 75
-          </div>
-          <div class="text-xs text-slate-400 font-mono" id="cat-tickets-jpy">
-            ~1,000 – 2,500 JPY
-          </div>
-        </div>
-
-        <!-- Category 5: Misc (SIM, Lockers, Drinks) -->
-        <div class="jp-card rounded-2xl p-6">
-          <div class="flex items-center justify-between mb-4">
-            <div class="w-10 h-10 rounded-xl bg-amber-950 text-amber-400 border border-amber-800/80 flex items-center justify-center font-bold">
-              <i data-lucide="package" class="w-5 h-5"></i>
-            </div>
-            <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-amber-950 text-amber-300 border border-amber-800">
-              Buffer Reserve
-            </span>
-          </div>
-          <h4 class="text-lg font-bold text-white mb-1">Miscellaneous & SIM</h4>
-          <p class="text-xs text-slate-400 mb-4">eSIM, coin lockers, vending machines, emergency snacks</p>
-          <div class="text-2xl font-extrabold text-white font-mono mb-1" id="cat-misc-cost">
-            RM 150 – 300
-          </div>
-          <div class="text-xs text-slate-400 font-mono" id="cat-misc-jpy">
-            ~5,000 – 10,000 JPY
-          </div>
-        </div>
-
-        <!-- Total Summary Card -->
-        <div class="bg-gradient-to-br from-[#1A0E0C] to-[#0A0E18] text-white rounded-2xl p-6 border-2 border-vermilion/50 shadow-glow-red flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between mb-4">
-              <span class="text-xs font-mono font-bold uppercase tracking-widest text-vermilion">NON-HOTEL TOTAL</span>
-              <span class="px-2.5 py-1 rounded-full text-[10px] font-mono font-extrabold bg-vermilion/30 text-white border border-vermilion/50" id="total-pax-label">
-                1 Pax Total
-              </span>
-            </div>
-            <h4 class="font-mincho text-lg font-bold text-white mb-2">Estimated Spend</h4>
-            <div class="text-3xl font-extrabold text-gold font-mono mb-1" id="grand-total-display">
-              RM 1,830 – 2,640
-            </div>
-            <div class="text-xs text-slate-300 font-mono" id="grand-total-jpy">
-              ~61,000 – 88,000 JPY
-            </div>
-          </div>
-
-          <div class="mt-4 pt-4 border-t border-white/10 text-[11px] text-slate-300 font-sans">
-            *Excludes flights & hotel stays. Group hotel target: RM 5,100–6,450.
-          </div>
-        </div>
-
       </div>
 
     </div>
@@ -651,28 +854,51 @@
 
 
   <!-- ==========================================================
-       6. HALAL DINING DIRECTORY & MARKET GUIDE
+       6. HALAL SECTION
        ========================================================== -->
-  <section id="section-halal" class="py-16 border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-6 border-b border-white/10 gap-4">
-        <div>
-          <div class="text-[11px] font-mono font-bold uppercase tracking-widest text-emerald-400 mb-1">
-            HALAL FOOD GUIDE • ハラール食事
+  <section id="halal-section" class="py-16 sm:py-24 border-b border-white/10 reveal-init">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10">
+
+      <div class="mb-10 pb-4 border-b border-white/10">
+        <div class="text-[11px] font-mono font-bold uppercase tracking-widest text-emerald-400">
+          HALAL DINING • ハラール食事
+        </div>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold tracking-wide text-white uppercase">
+          Certified Halal Food Plan
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="jp-card rounded-2xl p-6 space-y-2 reveal-init delay-100">
+          <div class="flex items-center justify-between">
+            <span class="text-sm font-bold text-white font-mincho">Halal Ramen Naniwaya</span>
+            <span
+              class="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-950 text-emerald-300 border border-emerald-800">Osaka</span>
           </div>
-          <h2 class="font-mincho text-2xl sm:text-3xl font-bold text-white tracking-tight">
-            Verified Halal Dining Directory
-          </h2>
-          <p class="text-sm text-slate-400 mt-1 max-w-xl">
-            Strictly halal-certified and halal-focused eateries across Osaka, Kyoto, and Tokyo.
+          <p class="text-xs text-slate-400">Authentic chicken and beef broth ramen in central Namba (Day 1 & 2).</p>
+          <div class="text-xs font-mono text-gold pt-1">~1,200 JPY (36 MYR)</div>
+        </div>
+
+        <div class="jp-card rounded-2xl p-6 space-y-2 reveal-init delay-200">
+          <div class="flex items-center justify-between">
+            <span class="text-sm font-bold text-white font-mincho">Halal Ayam-YA Karasuma</span>
+            <span
+              class="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-950 text-emerald-300 border border-emerald-800">Kyoto</span>
+          </div>
+          <p class="text-xs text-slate-400">Rich Torisoba chicken ramen and crispy karaage near Shijo (Day 3 & 4).</p>
+          <div class="text-xs font-mono text-gold pt-1">~1,500 JPY (45 MYR)</div>
+        </div>
+
+        <div class="jp-card rounded-2xl p-6 space-y-2 reveal-init delay-300">
+          <div class="flex items-center justify-between">
+            <span class="text-sm font-bold text-white font-mincho">HALAL SAKURA</span>
+            <span
+              class="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-950 text-emerald-300 border border-emerald-800">Tokyo</span>
+          </div>
+          <p class="text-xs text-slate-400">Sukiyaki hotpot, Japanese nabe sets & grilled fish in Asakusa (Day 7 & 9).
           </p>
+          <div class="text-xs font-mono text-gold pt-1">~2,500 JPY (75 MYR)</div>
         </div>
-      </div>
-
-      <!-- Halal Spots Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="halal-spots-grid">
-        <!-- Injected via app.js -->
       </div>
 
     </div>
@@ -680,210 +906,100 @@
 
 
   <!-- ==========================================================
-       7. DAY 8 AKIHABARA TECH SHOPPING GUIDE
+       7. OVERKILL ADVANCE BOOKING READINESS CHECKLIST
        ========================================================== -->
-  <section id="section-akiba" class="py-16 border-b border-white/10 bg-[#090D15]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
+  <section id="checklist-section" class="py-20 sm:py-28 border-b border-white/10 bg-[#070B12] reveal-init relative overflow-hidden">
+    <!-- Atmospheric glows -->
+    <div class="absolute top-0 right-10 w-96 h-96 bg-purple-600/5 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-0 left-10 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-6 sm:px-10 relative z-10">
+
+      <!-- Section Header with Progress Status -->
       <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-10 pb-6 border-b border-white/10 gap-6">
-        <div>
-          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-sky-950/80 text-sky-300 text-xs font-semibold mb-2 border border-sky-800/60 font-mono">
-            <i data-lucide="cpu" class="w-3.5 h-3.5"></i> DAY 8 SPECIALIZED STOP (16:00–18:30)
+        <div class="space-y-1">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-purple-400 animate-ping"></span>
+            <span class="text-[11px] font-mono font-bold uppercase tracking-[0.25em] text-purple-400">
+              CHECKLIST • 予約確認 • PRE-EXPEDITION READINESS
+            </span>
           </div>
-          <h2 class="font-mincho text-2xl sm:text-3xl font-bold text-white tracking-tight">
-            Akihabara Tech & Gadget Shopping
+          <h2 class="font-display text-4xl sm:text-5xl font-bold tracking-wider text-white uppercase">
+            Advance Booking Readiness
           </h2>
-          <p class="text-sm text-slate-400 mt-1 max-w-2xl">
-            Objective breakdown of Akihabara's top 4 electronics stops for PC parts, camera accessories, and luggage.
+          <p class="text-xs font-mono text-slate-400">
+            Track key hotels, Shinkansen bullet seats, and departure flight confirmations in real-time.
           </p>
         </div>
 
-        <div class="flex items-center gap-3">
-          <span class="text-xs text-slate-400 font-mono">Filter by item:</span>
-          <select id="gadget-filter" class="bg-[#05070B] text-white text-xs font-semibold px-3 py-2 rounded-xl border border-white/10 focus:outline-none focus:ring-1 focus:ring-vermilion">
-            <option value="all">All 4 Stores</option>
-            <option value="camera">Camera & Lenses</option>
-            <option value="pc">PC Parts & Cables</option>
-            <option value="luggage">Luggage & Travel</option>
-          </select>
+        <!-- Progress Readiness Meter & Actions -->
+        <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+          <!-- Readiness Meter Gauge -->
+          <div class="bg-[#05070B] border border-white/15 rounded-2xl p-3.5 min-w-[260px] space-y-2 font-mono">
+            <div class="flex items-center justify-between text-xs">
+              <span class="text-slate-400">Readiness:</span>
+              <span class="font-bold text-gold" id="checklist-progress-text">0 of 7 Booked (0%)</span>
+            </div>
+            <div class="h-2 w-full bg-slate-900 rounded-full overflow-hidden border border-white/10">
+              <div id="checklist-progress-bar" class="h-full rounded-full bg-gradient-to-r from-purple-500 via-vermilion to-emerald-400 w-0 transition-all duration-500 shadow-[0_0_10px_rgba(168,85,247,0.7)]"></div>
+            </div>
+            <div class="flex items-center justify-between text-[10px]">
+              <span id="checklist-status-badge" class="px-2 py-0.5 rounded bg-amber-950/80 text-amber-300 font-bold border border-amber-800/60">
+                PENDING ACTION
+              </span>
+              <span class="text-slate-500">7 Critical Items</span>
+            </div>
+          </div>
+
+          <!-- Quick Action Buttons (Check All / Reset) -->
+          <div class="flex flex-col gap-2 font-mono text-xs">
+            <button onclick="toggleAllChecklist(true)" class="px-3.5 py-2 rounded-xl bg-white/5 hover:bg-emerald-600 hover:text-white text-slate-300 border border-white/10 hover:border-emerald-500 transition-all flex items-center gap-1.5 font-bold shadow-sm">
+              <i data-lucide="check-square" class="w-3.5 h-3.5"></i>
+              <span>Select All</span>
+            </button>
+            <button onclick="toggleAllChecklist(false)" class="px-3.5 py-2 rounded-xl bg-white/5 hover:bg-red-950 hover:text-red-300 text-slate-400 border border-white/10 hover:border-red-800 transition-all flex items-center gap-1.5">
+              <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+              <span>Reset</span>
+            </button>
+          </div>
         </div>
       </div>
 
-      <!-- 4 Gadget Cards Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="gadget-cards-grid">
-        
-        <!-- Store 1: Akihabara Electric Town -->
-        <div class="gadget-card jp-card rounded-2xl p-6 flex flex-col justify-between" data-tags="pc,camera">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="px-2.5 py-1 rounded-md bg-sky-950 text-sky-400 text-[10px] font-mono font-bold uppercase border border-sky-800">
-                District / Walk
-              </span>
-              <div class="flex items-center gap-1 bg-amber-950 text-amber-300 px-2 py-0.5 rounded text-xs font-bold border border-amber-800">
-                <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400 text-amber-400"></i>
-                <span>4.5</span>
-              </div>
-            </div>
+      <!-- Filter Categories Bar -->
+      <div class="flex flex-wrap items-center gap-2 mb-8 text-xs font-mono">
+        <button class="checklist-filter-pill active px-3.5 py-1.5 rounded-xl text-white font-bold bg-purple-600 border border-purple-500/50" onclick="filterChecklist('all', this)">
+          All Items (7)
+        </button>
+        <button class="checklist-filter-pill px-3.5 py-1.5 rounded-xl text-slate-300 bg-[#090D15] hover:bg-slate-800 border border-white/10" onclick="filterChecklist('hotel', this)">
+          🏨 Stays & Hotels (4)
+        </button>
+        <button class="checklist-filter-pill px-3.5 py-1.5 rounded-xl text-slate-300 bg-[#090D15] hover:bg-slate-800 border border-white/10" onclick="filterChecklist('transit', this)">
+          🚆 Bullet & Coach (2)
+        </button>
+        <button class="checklist-filter-pill px-3.5 py-1.5 rounded-xl text-slate-300 bg-[#090D15] hover:bg-slate-800 border border-white/10" onclick="filterChecklist('flight', this)">
+          ✈️ Flights (1)
+        </button>
+      </div>
 
-            <h3 class="font-mincho text-lg font-bold text-white mb-1">Akihabara Electric Town</h3>
-            <p class="text-xs text-slate-400 font-mono mb-4">7,400+ Reviews • General Area</p>
-
-            <div class="p-3.5 rounded-xl bg-[#05070B] border border-white/5 mb-4">
-              <div class="text-[10px] font-mono font-bold text-gold uppercase mb-1">Best For:</div>
-              <p class="text-xs text-slate-300 leading-relaxed">
-                Comparing multiple indie PC part shops, back-alley component stalls, cables, and adapters.
-              </p>
-            </div>
-
-            <div class="space-y-2 text-xs text-slate-300">
-              <div class="flex items-center gap-2">
-                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i>
-                <span>Niche PC components & mods</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i>
-                <span>Cables, OTG, & power adapters</span>
-              </div>
+      <!-- 100% Completion Celebration Banner (Hidden by default) -->
+      <div id="checklist-celebration-banner" class="hidden mb-8 p-4 rounded-2xl bg-gradient-to-r from-emerald-950 via-[#062319] to-emerald-950 border border-emerald-500/60 shadow-[0_0_30px_rgba(16,185,129,0.3)] animate-pulse">
+        <div class="flex items-center justify-between gap-4 font-mono text-xs">
+          <div class="flex items-center gap-3">
+            <span class="text-2xl">🎉</span>
+            <div>
+              <div class="font-bold text-emerald-300 text-sm">ALL 7 ADVANCE BOOKINGS SECURED!</div>
+              <div class="text-slate-300">Your Japan Winter Expedition 2026 is 100% locked in and flight-ready.</div>
             </div>
           </div>
-
-          <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs text-slate-400 font-mono">
-            <span class="italic text-[10px]">Mentioned by Shay, Bharat</span>
-            <span>2 Mentions</span>
-          </div>
+          <span class="hidden sm:inline-block px-3 py-1 rounded-full bg-emerald-500 text-black font-bold text-xs">
+            100% READY 🇯🇵
+          </span>
         </div>
+      </div>
 
-        <!-- Store 2: Yodobashi Akiba (Top Pick) -->
-        <div class="gadget-card jp-card-gold rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden" data-tags="camera,luggage,pc">
-          <div class="absolute top-0 right-0 bg-gold text-black-900 text-[10px] font-mono font-extrabold px-3 py-1 rounded-bl-xl uppercase tracking-wider">
-            Top Group Pick
-          </div>
-
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="px-2.5 py-1 rounded-md bg-gold/20 text-gold text-[10px] font-mono font-bold uppercase border border-gold/40">
-                9-Floor Complex
-              </span>
-              <div class="flex items-center gap-1 bg-amber-950 text-amber-300 px-2 py-0.5 rounded text-xs font-bold border border-amber-800">
-                <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400 text-amber-400"></i>
-                <span>4.2</span>
-              </div>
-            </div>
-
-            <h3 class="font-mincho text-lg font-bold text-white mb-1">Yodobashi Akiba</h3>
-            <p class="text-xs text-slate-400 font-mono mb-4">25,300+ Reviews • Station Direct</p>
-
-            <div class="p-3.5 rounded-xl bg-[#05070B] border border-gold/20 mb-4">
-              <div class="text-[10px] font-mono font-bold text-gold uppercase mb-1">Best For:</div>
-              <p class="text-xs text-slate-300 leading-relaxed">
-                Most efficient all-in-one building for cameras, lenses, PC gear, and group luggage on tax-free receipts.
-              </p>
-            </div>
-
-            <div class="space-y-2 text-xs text-slate-300">
-              <div class="flex items-center gap-2">
-                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i>
-                <span>Comprehensive camera floors</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i>
-                <span>Luggage & travel accessories</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i>
-                <span>10% Tax-free + card discounts</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs text-gold font-mono">
-            <span class="italic text-[10px]">Mentioned by Chau, Christopher</span>
-            <span class="font-bold">8 Mentions</span>
-          </div>
-        </div>
-
-        <!-- Store 3: BicCamera AKIBA -->
-        <div class="gadget-card jp-card rounded-2xl p-6 flex flex-col justify-between" data-tags="camera,luggage">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="px-2.5 py-1 rounded-md bg-rose-950 text-rose-400 text-[10px] font-mono font-bold uppercase border border-rose-800">
-                Major Retailer
-              </span>
-              <div class="flex items-center gap-1 bg-amber-950 text-amber-300 px-2 py-0.5 rounded text-xs font-bold border border-amber-800">
-                <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400 text-amber-400"></i>
-                <span>4.0</span>
-              </div>
-            </div>
-
-            <h3 class="font-mincho text-lg font-bold text-white mb-1">BicCamera AKIBA</h3>
-            <p class="text-xs text-slate-400 font-mono mb-4">11,400+ Reviews • Main Crossing</p>
-
-            <div class="p-3.5 rounded-xl bg-[#05070B] border border-white/5 mb-4">
-              <div class="text-[10px] font-mono font-bold text-gold uppercase mb-1">Best For:</div>
-              <p class="text-xs text-slate-300 leading-relaxed">
-                Great to price-match against Yodobashi for cameras, audio, and tourist discount coupons.
-              </p>
-            </div>
-
-            <div class="space-y-2 text-xs text-slate-300">
-              <div class="flex items-center gap-2">
-                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i>
-                <span>Aggressive price matching</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i>
-                <span>Digital cameras & audio tech</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs text-slate-400 font-mono">
-            <span class="italic text-[10px]">Mentioned by Chau, Kawaii</span>
-            <span>4 Mentions</span>
-          </div>
-        </div>
-
-        <!-- Store 4: Laox Akihabara Main Shop -->
-        <div class="gadget-card jp-card rounded-2xl p-6 flex flex-col justify-between" data-tags="luggage">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="px-2.5 py-1 rounded-md bg-teal-950 text-teal-400 text-[10px] font-mono font-bold uppercase border border-teal-800">
-                Duty Free
-              </span>
-              <div class="flex items-center gap-1 bg-amber-950 text-amber-300 px-2 py-0.5 rounded text-xs font-bold border border-amber-800">
-                <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400 text-amber-400"></i>
-                <span>3.6</span>
-              </div>
-            </div>
-
-            <h3 class="font-mincho text-lg font-bold text-white mb-1">Laox Akihabara Main</h3>
-            <p class="text-xs text-slate-400 font-mono mb-4">391 Reviews • Tourist Goods</p>
-
-            <div class="p-3.5 rounded-xl bg-[#05070B] border border-white/5 mb-4">
-              <div class="text-[10px] font-mono font-bold text-gold uppercase mb-1">Best For:</div>
-              <p class="text-xs text-slate-300 leading-relaxed">
-                Emergency travel adapters, quick souvenirs, and Japanese lifestyle accessories.
-              </p>
-            </div>
-
-            <div class="space-y-2 text-xs text-slate-300">
-              <div class="flex items-center gap-2">
-                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i>
-                <span>Travel adapters & chargers</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <i data-lucide="alert-circle" class="w-3.5 h-3.5 text-amber-400"></i>
-                <span class="text-amber-300">Compare with Yodobashi</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs text-slate-400 font-mono">
-            <span class="italic text-[10px]">Mentioned by Cassandra</span>
-            <span>1 Mention</span>
-          </div>
-        </div>
-
+      <!-- 7 Overkill Cards Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-5" id="checklist-items-container">
+        <!-- Dynamically injected via app.js -->
       </div>
 
     </div>
@@ -891,119 +1007,25 @@
 
 
   <!-- ==========================================================
-       8. ADVANCE BOOKING CHECKLIST (WITH LOCALSTORAGE)
+       8. MINIMALIST FOOTER
        ========================================================== -->
-  <section id="section-checklist" class="py-16 border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-6 border-b border-white/10 gap-6">
-        <div>
-          <div class="text-[11px] font-mono font-bold uppercase tracking-widest text-purple-400 mb-1">
-            PRE-TRIP READINESS • 事前準備
-          </div>
-          <h2 class="font-mincho text-2xl sm:text-3xl font-bold text-white tracking-tight">
-            What to Book in Advance ✅
-          </h2>
-          <p class="text-sm text-slate-400 mt-1 max-w-xl">
-            Track reserved hotel quad-rooms, Shinkansen seats, and express highway buses. Auto-saved locally.
-          </p>
-        </div>
-
-        <!-- Progress Counter -->
-        <div class="jp-card px-5 py-3 rounded-2xl flex items-center gap-4">
-          <div>
-            <div class="text-[11px] font-mono text-slate-400">Booking Status</div>
-            <div class="text-base font-bold text-white font-mono" id="checklist-progress-text">0 of 7 Booked (0%)</div>
-          </div>
-          <div class="w-24 h-2.5 rounded-full bg-slate-900 overflow-hidden border border-white/10">
-            <div id="checklist-progress-bar" class="h-full bg-vermilion shadow-glow-red transition-all duration-500" style="width: 0%"></div>
-          </div>
-        </div>
+  <footer class="bg-[#030407] text-slate-400 py-12 border-t border-white/10">
+    <div
+      class="max-w-7xl mx-auto px-6 sm:px-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono">
+      <div class="flex items-center gap-2 text-white">
+        <span class="w-2.5 h-2.5 rounded-full bg-vermilion"></span>
+        <span class="font-bold tracking-wider">VISIT JAPAN 2026 • 日本冬の旅</span>
       </div>
-
-      <!-- Checklist Items Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6" id="checklist-items-container">
-        <!-- Injected via app.js with localStorage -->
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- ==========================================================
-       9. FOOTER & EMERGENCY CONTACTS
-       ========================================================== -->
-  <footer class="bg-[#030407] text-slate-400 py-16 border-t border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 pb-12 border-b border-white/10">
-        
-        <!-- Col 1: Brand Info -->
-        <div class="space-y-3">
-          <div class="flex items-center gap-2 text-white font-mincho font-bold text-lg">
-            <div class="w-8 h-8 rounded-xl bg-vermilion text-white flex items-center justify-center font-mincho text-sm shadow-glow-red">日</div>
-            <span>Japan Winter 2026 • 日本冬の旅</span>
-          </div>
-          <p class="text-xs text-slate-400 leading-relaxed font-sans">
-            Optimized travel application for 16–24 January 2026. Built with luxury Japanese dark aesthetics, Halal-first routing, and split-view day architecture.
-          </p>
-          <div class="text-[11px] text-gold font-mono">
-            Rate: 100 JPY ≈ RM 3.00 • Group Cap: RM 8,000
-          </div>
-        </div>
-
-        <!-- Col 2: Japan Emergency Contacts -->
-        <div class="space-y-3">
-          <h4 class="font-mincho text-sm font-bold text-white uppercase tracking-wider">Japan Emergency Numbers</h4>
-          <ul class="text-xs space-y-2 font-sans">
-            <li class="flex items-center justify-between">
-              <span>Police Emergency:</span>
-              <span class="font-mono font-bold text-white bg-slate-900 px-2 py-0.5 rounded border border-white/10">110</span>
-            </li>
-            <li class="flex items-center justify-between">
-              <span>Ambulance / Fire:</span>
-              <span class="font-mono font-bold text-white bg-slate-900 px-2 py-0.5 rounded border border-white/10">119</span>
-            </li>
-            <li class="flex items-center justify-between">
-              <span>Japan Tourist Helpline (JNTO):</span>
-              <span class="font-mono text-gold font-bold">050-3816-2720</span>
-            </li>
-            <li class="flex items-center justify-between">
-              <span>Embassy of Malaysia Tokyo:</span>
-              <span class="font-mono text-slate-300">+81-3-3476-3840</span>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Col 3: Navigation Links -->
-        <div class="space-y-3">
-          <h4 class="font-mincho text-sm font-bold text-white uppercase tracking-wider">Quick Jump</h4>
-          <div class="grid grid-cols-2 gap-2 text-xs font-sans">
-            <button onclick="switchMainView('itinerary'); focusDay(1);" class="text-left hover:text-white transition-colors">📅 Day 1 Osaka</button>
-            <button onclick="switchMainView('itinerary'); focusDay(3);" class="text-left hover:text-white transition-colors">⛩️ Day 3 Kyoto</button>
-            <button onclick="switchMainView('itinerary'); focusDay(5);" class="text-left hover:text-white transition-colors">🗻 Day 5 Mt. Fuji</button>
-            <button onclick="switchMainView('itinerary'); focusDay(7);" class="text-left hover:text-white transition-colors">🗼 Day 7 Tokyo</button>
-            <button onclick="switchMainView('budget')" class="text-left hover:text-white transition-colors">💰 Budget Planner</button>
-            <button onclick="switchMainView('halal')" class="text-left hover:text-white transition-colors">🍜 Halal Food</button>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4 font-sans">
-        <div>Safe travels in Japan • 2026 Winter Expedition (日本冬の旅)</div>
-        <div>
-          <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="hover:text-white flex items-center gap-1 transition-colors">
-            <span>Back to top ↑</span>
-          </button>
-        </div>
+      <div class="text-slate-500">16–24 Jan 2026 • Osaka • Kyoto • Mt. Fuji • Tokyo</div>
+      <div>
+        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="hover:text-white transition-colors">
+          Back to Top ↑
+        </button>
       </div>
     </div>
   </footer>
 
-  <!-- Toast Notification Container -->
-  <div id="toast-container" class="fixed bottom-6 right-6 z-50 pointer-events-none"></div>
-
-  <!-- Application Logic -->
   <script src="app.js"></script>
 </body>
+
 </html>
