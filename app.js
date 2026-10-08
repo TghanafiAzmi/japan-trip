@@ -1,10 +1,11 @@
 /**
- * JAPAN WINTER 2026 TRIP - DARK THEME SPA ENGINE
- * Based strictly on JpItenary-2.md
+ * JAPAN WINTER 2026 TRIP - DARK JAPANESE SPA ENGINE
+ * Features: Mt. Fuji Rising Sun Preloader, Day 1-9 Split Pagination,
+ * Real-time JST/MYT Clocks, Budget Calculator, and 100% Halal Guide.
  */
 
 // ==========================================
-// 1. DATA SOURCE (Strictly from JpItenary-2.md)
+// 1. DATA SOURCE (Based strictly on JpItenary-2.md)
 // ==========================================
 
 const ITINERARY_DATA = [
@@ -148,144 +149,132 @@ const ITINERARY_DATA = [
     hotel: {
       name: "Hotel WBF Namba Motomachi",
       nights: "Night 2 of 2",
-      notes: "Central Osaka base; pack tonight for Kyoto transfer tomorrow",
+      notes: "Central Namba base; pack luggage for Kyoto checkout tomorrow",
       mapQuery: "Hotel WBF Namba Motomachi Osaka"
     },
     activities: [
       {
-        time: "07:30–08:30",
-        title: "Breakfast (simple/convenience store; ingredient-check)",
+        time: "08:30–09:15",
+        title: "Breakfast",
         costJpy: 600,
         costMyr: 18,
         category: "food",
         halal: "caution",
-        halalNote: "Halal caution: verify onigiri/bread ingredients (no pork/mirin/gelatin)",
-        note: "Quick breakfast at 7-Eleven / FamilyMart / Lawson with ingredient checking.",
+        halalNote: "Simple breakfast (halal-conscious choice)",
+        note: "Quick breakfast at cafe or convenience store onigiri (tuna mayo / salmon - check ingredients).",
         transit: null,
-        mapQuery: "7-Eleven Namba Osaka"
+        mapQuery: "Namba Osaka"
       },
       {
-        time: "08:30–09:00",
-        title: "Metro to Osaka Castle",
+        time: "09:15–09:45",
+        title: "Subway Namba → Osakajokoen / Tanimachi 4-chome",
         costJpy: 240,
         costMyr: 7,
         category: "transit",
         halal: null,
-        note: "Take Osaka Metro Nagahori Tsurumi-ryokuchi Line or Tanimachi Line.",
-        transit: "~30 min | ~240 JPY (7 MYR) pp",
-        mapQuery: "Osakajokoen Station"
+        note: "Osaka Metro direct line.",
+        transit: "~20–25 min | ~240 JPY (7 MYR) pp",
+        mapQuery: "Tanimachi 4-chome Station"
       },
       {
-        time: "09:00–11:30",
-        title: "Osaka Castle + park walk",
+        time: "09:45–12:00",
+        title: "Osaka Castle Park (walk grounds, castle tower view)",
         costJpy: 600,
         costMyr: 18,
         category: "sightseeing",
         halal: null,
-        note: "Historic castle keep, grand stone ramparts, and winter park grounds.",
-        transit: "Ticket ~600 JPY (18 MYR) pp",
-        mapQuery: "Osaka Castle Main Keep"
+        note: "Historic stone fortifications, massive moats, and castle exterior. Tower admission optional (~600 JPY pp).",
+        transit: "Park stroll",
+        mapQuery: "Osaka Castle"
       },
       {
-        time: "11:30–12:00",
-        title: "Transit to Kuromon Ichiba Market",
+        time: "12:00–12:30",
+        title: "Subway to Kuromon Market area",
         costJpy: 240,
         costMyr: 7,
         category: "transit",
         halal: null,
-        note: "Metro back toward Nippombashi / Namba area.",
-        transit: "~30 min | ~240 JPY (7 MYR) pp",
-        mapQuery: "Kuromon Ichiba Market"
+        note: "Osaka Metro to Nippombashi Station.",
+        transit: "~20 min | ~240 JPY (7 MYR) pp",
+        mapQuery: "Nippombashi Station Osaka"
       },
       {
-        time: "12:00–13:00",
-        title: "Lunch @ Ali's Kitchen Osaka Halal Pakistani & Arabic Restaurant",
+        time: "12:30–14:00",
+        title: "Kuromon Market (stroll & snacks) + Halal Lunch",
         costJpy: 1800,
         costMyr: 54,
         category: "food",
         halal: "certified",
-        halalNote: "Halal: halal-certified (Pioneer Halal in Kansai)",
-        note: "Hearty Biryani, Curries, and Fresh Naan bread.",
-        transit: "Short walk",
-        mapQuery: "Ali's Kitchen Osaka Halal"
-      },
-      {
-        time: "13:00–14:15",
-        title: "Browse Kuromon Ichiba Market (shop/snacks; halal caution)",
-        costJpy: 0,
-        costMyr: 0,
-        category: "shopping",
-        halal: "caution",
-        halalNote: "Halal Caution: check seafood stalls for cooking wine / non-halal sauces",
-        note: "Known as 'Osaka's Kitchen'. Enjoy fresh fruit (winter strawberries) & plain grilled seafood.",
+        halalNote: "Ali's Kitchen / Halal dining option",
+        note: "Explore fresh seafood market (caution: check sauces) or enjoy certified Halal lunch at Ali's Kitchen / Naniwaya.",
         transit: "Walking",
         mapQuery: "Kuromon Ichiba Market"
       },
       {
-        time: "14:15–15:00",
-        title: "Back toward Namba",
-        costJpy: 240,
-        costMyr: 7,
-        category: "transit",
-        halal: null,
-        note: "Transit or walk back to hotel area.",
-        transit: "~240 JPY (7 MYR) pp",
-        mapQuery: "Namba Osaka"
-      },
-      {
-        time: "15:00–16:30",
-        title: "Rest break at hotel",
+        time: "14:00–15:30",
+        title: "Prayer + rest break",
         costJpy: 0,
         costMyr: 0,
         category: "prayer",
         halal: null,
-        note: "Midday prayer & warm recharge at hotel.",
+        note: "Perform Zuhr/Asr prayer at Osaka Islamic Center / prayer room or hotel.",
         transit: null,
-        mapQuery: "Hotel WBF Namba Motomachi"
+        mapQuery: "Osaka Islamic Center"
       },
       {
-        time: "16:30–17:00",
-        title: "Transit to Shinsekai",
-        costJpy: 240,
-        costMyr: 7,
+        time: "15:30–17:30",
+        title: "Shinsaibashi-suji & Amerikamura shopping walk",
+        costJpy: 0,
+        costMyr: 0,
+        category: "shopping",
+        halal: null,
+        note: "Covered shopping street, streetwear in Amerikamura, and Japanese retail stores.",
+        transit: "Walking",
+        mapQuery: "Shinsaibashi-suji Shopping Street"
+      },
+      {
+        time: "17:30–18:00",
+        title: "Walk / subway to Shinsekai",
+        costJpy: 190,
+        costMyr: 6,
         category: "transit",
         halal: null,
-        note: "Metro to Dobutsuen-mae or Ebisucho Station.",
-        transit: "~30 min | ~240 JPY (7 MYR) pp",
+        note: "Subway to Dobutsuen-mae or short walk.",
+        transit: "~15 min | ~190 JPY (6 MYR) pp",
         mapQuery: "Shinsekai Osaka"
       },
       {
-        time: "17:00–18:30",
-        title: "Explore Shinsekai",
+        time: "18:00–19:30",
+        title: "Shinsekai & Tsutenkaku Tower (retro neon vibe)",
         costJpy: 0,
         costMyr: 0,
         category: "sightseeing",
         halal: null,
-        note: "Retro Showa-era district, Tsutenkaku Tower viewpoints, and vintage arcade vibes.",
+        note: "Nostalgic Showa-era streetscape with vibrant giant lanterns and Tsutenkaku Tower glow.",
         transit: "Walking",
         mapQuery: "Tsutenkaku Tower"
       },
       {
-        time: "18:30–19:30",
-        title: "Dinner @ Halal Ramen Naniwaya",
-        costJpy: 1200,
-        costMyr: 36,
+        time: "19:30–20:45",
+        title: "Dinner (Halal dining near Namba / Shinsaibashi)",
+        costJpy: 2000,
+        costMyr: 60,
         category: "food",
         halal: "certified",
-        halalNote: "Halal: halal-certified / halal-focused",
-        note: "Warm up with rich halal ramen bowls in Osaka.",
-        transit: "Walk / metro",
-        mapQuery: "Halal Ramen Naniwaya Osaka"
+        halalNote: "Halal: halal-certified option",
+        note: "Sit-down halal Japanese / Pakistani curry dinner in Namba.",
+        transit: "Walk / Subway",
+        mapQuery: "Ali's Kitchen Osaka"
       },
       {
-        time: "19:30–20:15",
-        title: "Return to hotel",
-        costJpy: 240,
-        costMyr: 7,
-        category: "transit",
+        time: "20:45–21:30",
+        title: "Back to hotel; pack for Kyoto checkout tomorrow",
+        costJpy: 0,
+        costMyr: 0,
+        category: "logistics",
         halal: null,
-        note: "Return to Hotel WBF Namba Motomachi & pack for Kyoto check-out.",
-        transit: "~240 JPY (7 MYR) pp",
+        note: "Pack bags for Day 3 intercity transfer to Kyoto.",
+        transit: "Walk",
         mapQuery: "Hotel WBF Namba Motomachi"
       }
     ]
@@ -293,7 +282,7 @@ const ITINERARY_DATA = [
   {
     day: 3,
     date: "Mon, 18 Jan 2026",
-    city: "Kyoto",
+    city: "Osaka → Kyoto",
     cityTag: "Intercity Transfer",
     weather: "6°C • Chilly & Serene",
     theme: "🚆 Osaka → Kyoto (Transfer & Shijo Exploration)",
@@ -301,110 +290,143 @@ const ITINERARY_DATA = [
     hotel: {
       name: "Hotel MyStays Kyoto - Shijo",
       nights: "Nights 18–19 Jan (2 Nights)",
-      notes: "Central Shijo-Karasuma area; ideal for walking to Halal Ramen Ayam Ya & Nishiki",
+      notes: "Drop luggage at reception ~10:45; prime central Shijo Karasuma location",
       mapQuery: "Hotel MyStays Kyoto - Shijo"
     },
     activities: [
       {
-        time: "07:30–08:30",
-        title: "Breakfast (simple)",
+        time: "08:30–09:15",
+        title: "Breakfast & check-out Hotel WBF",
         costJpy: 600,
         costMyr: 18,
         category: "food",
         halal: "caution",
-        halalNote: "Convenience store ingredient check",
-        note: "Quick breakfast before packing.",
-        transit: null,
-        mapQuery: "Lawson Namba"
-      },
-      {
-        time: "08:30–09:30",
-        title: "Pack + check-out logistics",
-        costJpy: 0,
-        costMyr: 0,
-        category: "logistics",
-        halal: null,
-        note: "Check out from Hotel WBF Namba Motomachi and walk with luggage to station.",
+        halalNote: "Simple breakfast",
+        note: "Check out with bags packed and ready for morning train.",
         transit: null,
         mapQuery: "Hotel WBF Namba Motomachi"
       },
       {
-        time: "09:30–10:30",
-        title: "Train Osaka → Kyoto",
-        costJpy: 900,
-        costMyr: 27,
+        time: "09:15–09:45",
+        title: "Subway Namba → Osaka Station / Umeda",
+        costJpy: 240,
+        costMyr: 7,
         category: "transit",
         halal: null,
-        note: "Hankyu Kyoto Line (from Osaka-Umeda to Karasuma) or JR Special Rapid.",
-        transit: "~60 min | ~600–1,200 JPY (18–36 MYR) pp",
-        mapQuery: "Karasuma Station Kyoto"
+        note: "Osaka Metro Midosuji Line.",
+        transit: "~15 min | ~240 JPY (7 MYR) pp",
+        mapQuery: "Osaka Station"
       },
       {
-        time: "10:30–11:15",
-        title: "Arrive + walk to hotel + luggage drop",
+        time: "09:45–10:30",
+        title: "Train Osaka → Kyoto Station (JR Special Rapid)",
+        costJpy: 580,
+        costMyr: 17.5,
+        category: "transit",
+        halal: null,
+        note: "JR Special Rapid Service is fastest standard train (no expensive Shinkansen needed for this short leg).",
+        transit: "~30 min | ~580 JPY (17.5 MYR) pp",
+        mapQuery: "Kyoto Station"
+      },
+      {
+        time: "10:30–10:45",
+        title: "Subway Kyoto Station → Shijo (Karasuma Line)",
+        costJpy: 220,
+        costMyr: 6.5,
+        category: "transit",
+        halal: null,
+        note: "Kyoto Subway Karasuma Line.",
+        transit: "~5 min | ~220 JPY (6.5 MYR) pp",
+        mapQuery: "Shijo Station Kyoto"
+      },
+      {
+        time: "10:45–11:15",
+        title: "Walk to Hotel MyStays Kyoto - Shijo / Luggage drop",
         costJpy: 0,
         costMyr: 0,
         category: "logistics",
         halal: null,
-        note: "Arrive at Hotel MyStays Kyoto - Shijo to leave bags at concierge.",
-        transit: "Short walk from Karasuma/Shijo Station",
+        note: "Store luggage securely at hotel front desk before starting Kyoto exploration.",
+        transit: "~6 min walk",
         mapQuery: "Hotel MyStays Kyoto - Shijo"
       },
       {
-        time: "11:30–12:30",
-        title: "Lunch @ Halal Ramen Ayam Ya Karasuma Kyoto",
+        time: "11:30–12:45",
+        title: "Lunch @ Halal Ramen Ayam-YA Karasuma",
         costJpy: 1500,
         costMyr: 45,
         category: "food",
         halal: "certified",
-        halalNote: "Halal: halal-certified / halal-focused (Rich Torisoba)",
-        note: "Iconic Halal chicken-broth ramen with spicy options and karaage.",
-        transit: "Walking distance in Karasuma",
-        mapQuery: "Ayam Ya Halal Ramen Kyoto Karasuma"
+        halalNote: "Halal: halal-certified / halal-focused",
+        note: "Famous Halal Torisoba Ramen with rich chicken broth and halal crispy karaage.",
+        transit: "Short walk from hotel",
+        mapQuery: "Ayam-YA Karasuma Kyoto"
       },
       {
-        time: "12:30–14:30",
-        title: "Check-in (or rest/prayer nearby) + recharge",
+        time: "12:45–13:45",
+        title: "Prayer + short rest (at hotel / nearby prayer space)",
         costJpy: 0,
         costMyr: 0,
         category: "prayer",
         halal: null,
-        note: "Official room check-in or prayer at nearby facility / room.",
+        note: "Perform Zuhr & Asr prayers.",
         transit: null,
         mapQuery: "Hotel MyStays Kyoto - Shijo"
       },
       {
-        time: "14:30–16:30",
-        title: "Light central Kyoto stroll / shopping (keep flexible)",
+        time: "14:00–15:30",
+        title: "Explore Shijo-dori & Kawaramachi",
         costJpy: 0,
         costMyr: 0,
-        category: "sightseeing",
+        category: "shopping",
         halal: null,
-        note: "Stroll along Shijo Dori, Kawaramachi, and Kamogawa riverside.",
+        note: "Traditional craft stores, Kyoto Department Stores (Takashimaya), and souvenir boutiques.",
         transit: "Walking",
         mapQuery: "Shijo Dori Kyoto"
       },
       {
-        time: "17:00–18:30",
-        title: "Dinner @ Halal Wagyu Yakiniku Panga",
+        time: "15:30–17:30",
+        title: "Walk to Kamogawa (Kamo River) + Gion Shirakawa canal area",
+        costJpy: 0,
+        costMyr: 0,
+        category: "sightseeing",
+        halal: null,
+        note: "Scenic river stroll, historic wooden machiya teahouses, and stone bridges at dusk.",
+        transit: "Walking",
+        mapQuery: "Gion Shirakawa Kyoto"
+      },
+      {
+        time: "17:30–19:00",
+        title: "Yasaka Shrine (evening lanterns lit up)",
+        costJpy: 0,
+        costMyr: 0,
+        category: "sightseeing",
+        halal: null,
+        note: "Atmospheric traditional courtyard with hundreds of glowing hanging lanterns.",
+        transit: "Walking",
+        mapQuery: "Yasaka Shrine Kyoto"
+      },
+      {
+        time: "19:00–20:30",
+        title: "Dinner (Halal Wagyu Yakiniku Panga / Halal restaurant)",
         costJpy: 3500,
         costMyr: 105,
         category: "food",
         halal: "certified",
-        halalNote: "Halal: halal-certified premium Japanese Wagyu",
-        note: "High quality Halal Wagyu beef BBQ experience. (Can order lighter set).",
-        transit: "Walk / bus",
+        halalNote: "Halal: halal-certified (Halal Wagyu option)",
+        note: "Special dinner treat: grilled Halal Japanese Wagyu beef in Kyoto.",
+        transit: "Walking / short transit",
         mapQuery: "Halal Wagyu Yakiniku Panga Kyoto"
       },
       {
-        time: "18:30–19:30",
-        title: "Back to hotel, early night",
+        time: "20:30–21:00",
+        title: "Back to hotel; rest for full historical Kyoto Day 4",
         costJpy: 0,
         costMyr: 0,
         category: "logistics",
         halal: null,
-        note: "Rest well for early morning temple tour tomorrow.",
-        transit: "Walk to Hotel MyStays Kyoto - Shijo",
+        note: "Check into rooms at Hotel MyStays Kyoto - Shijo and recharge.",
+        transit: "Walk / Subway",
         mapQuery: "Hotel MyStays Kyoto - Shijo"
       }
     ]
@@ -420,133 +442,133 @@ const ITINERARY_DATA = [
     hotel: {
       name: "Hotel MyStays Kyoto - Shijo",
       nights: "Night 2 of 2",
-      notes: "Prepare luggage for tomorrow's Shinkansen transfer to Mt. Fuji",
+      notes: "Early start essential to beat tour crowds at Fushimi Inari",
       mapQuery: "Hotel MyStays Kyoto - Shijo"
     },
     activities: [
       {
-        time: "07:00–07:40",
-        title: "Breakfast",
+        time: "07:30–08:15",
+        title: "Early breakfast",
         costJpy: 600,
         costMyr: 18,
         category: "food",
         halal: "caution",
-        halalNote: "Convenience store check",
-        note: "Early morning breakfast to beat the temple crowds.",
+        halalNote: "Simple breakfast",
+        note: "Quick energy boost before early morning shrine climb.",
         transit: null,
-        mapQuery: "FamilyMart Shijo"
+        mapQuery: "Shijo Kyoto"
       },
       {
-        time: "07:40–08:10",
-        title: "Train to Fushimi Inari Taisha",
-        costJpy: 240,
-        costMyr: 7,
+        time: "08:15–08:45",
+        title: "Train Shijo / Kyoto Station → Fushimi Inari (JR Nara Line)",
+        costJpy: 200,
+        costMyr: 6,
         category: "transit",
         halal: null,
-        note: "Keihan Main Line or JR Nara Line to Fushimi-Inari.",
-        transit: "~30 min | ~240 JPY (7 MYR) pp",
-        mapQuery: "Fushimi Inari Station"
+        note: "Direct local train to Inari Station.",
+        transit: "~20 min | ~200 JPY (6 MYR) pp",
+        mapQuery: "Inari Station Kyoto"
       },
       {
-        time: "08:10–10:30",
-        title: "Fushimi Inari Taisha (lower/mid route; winter pacing)",
+        time: "08:45–11:00",
+        title: "Fushimi Inari Taisha (thousands of vermilion Torii gates)",
         costJpy: 0,
         costMyr: 0,
         category: "sightseeing",
         halal: null,
-        note: "Walk through thousands of vermilion Senbon Torii gates on Mount Inari.",
-        transit: "Free entry",
+        note: "Hike the iconic Senbon Torii tunnel pathways through forested sacred mountain slopes.",
+        transit: "Mountain walk",
         mapQuery: "Fushimi Inari Taisha"
       },
       {
-        time: "10:30–11:15",
-        title: "Transit to Kiyomizu-dera",
-        costJpy: 400,
-        costMyr: 12,
+        time: "11:00–11:30",
+        title: "Train / bus from Fushimi Inari → Kiyomizu-dera area",
+        costJpy: 230,
+        costMyr: 7,
         category: "transit",
         halal: null,
-        note: "Keihan train to Kiyomizu-Gojo + gentle uphill walk along historic lanes.",
-        transit: "~45 min | ~400 JPY (12 MYR) pp",
-        mapQuery: "Kiyomizu-dera"
+        note: "Keihan Main Line to Kiyomizu-Gojo or bus.",
+        transit: "~25 min | ~230 JPY (7 MYR) pp",
+        mapQuery: "Kiyomizu-Gojo Station"
       },
       {
-        time: "11:15–13:00",
-        title: "Kiyomizu-dera + nearby lanes (Ninenzaka & Sannenzaka)",
+        time: "11:30–13:30",
+        title: "Kiyomizu-dera + Ninenzaka & Sannenzaka preserved lanes",
         costJpy: 400,
         costMyr: 12,
         category: "sightseeing",
         halal: null,
-        note: "Iconic wooden stage overlooking Kyoto city and historic preserved alleyways.",
-        transit: "Ticket ~400 JPY (12 MYR) pp",
-        mapQuery: "Ninenzaka Kyoto"
+        note: "UNESCO wooden temple stage overlooking Kyoto. Stroll historic cobblestone preservation streets.",
+        transit: "Walking",
+        mapQuery: "Kiyomizu-dera Kyoto"
       },
       {
-        time: "13:00–14:00",
-        title: "Lunch @ Halal Ramen Ayam Ya Karasuma Kyoto",
+        time: "13:30–14:30",
+        title: "Lunch @ Halal Restaurant / Ayam-YA / nearby Halal spot",
         costJpy: 1500,
         costMyr: 45,
         category: "food",
         halal: "certified",
         halalNote: "Halal: halal-certified / halal-focused",
-        note: "Delicious warm ramen lunch in central Karasuma.",
-        transit: "Transit to Karasuma",
-        mapQuery: "Ayam Ya Halal Ramen Kyoto Karasuma"
+        note: "Hearty warm ramen / rice set lunch.",
+        transit: "Short walk / transit",
+        mapQuery: "Ayam-YA Karasuma Kyoto"
       },
       {
-        time: "14:00–15:00",
-        title: "Rest / prayer break",
+        time: "14:30–15:30",
+        title: "Prayer + rest break",
         costJpy: 0,
         costMyr: 0,
         category: "prayer",
         halal: null,
-        note: "Midday rest and prayer at hotel.",
+        note: "Perform Zuhr & Asr prayers.",
         transit: null,
         mapQuery: "Hotel MyStays Kyoto - Shijo"
       },
       {
-        time: "15:00–16:30",
-        title: "Walk Gion",
-        costJpy: 0,
-        costMyr: 0,
-        category: "sightseeing",
-        halal: null,
-        note: "Traditional geisha district, Hanami-koji street, and preservation architecture.",
-        transit: "Walking",
-        mapQuery: "Hanami-koji Street Gion"
-      },
-      {
-        time: "16:30–17:30",
-        title: "Browse Nishiki Market (shopping; halal caution)",
+        time: "15:30–17:00",
+        title: "Nishiki Market (Kitchen of Kyoto) - caution on sauces",
         costJpy: 0,
         costMyr: 0,
         category: "shopping",
         halal: "caution",
-        halalNote: "Halal Caution: avoid non-halal dashi, mirin, and pork snacks",
-        note: "Kyoto's 400-year-old pantry with traditional souvenirs, pickles, and crafts.",
+        halalNote: "Market food caution: inspect ingredients, mirin, and sauces",
+        note: "Explore 400-year-old narrow food street. Fresh whole fruits and plain grilled seafood are safe.",
         transit: "Walking",
-        mapQuery: "Nishiki Market"
+        mapQuery: "Nishiki Market Kyoto"
       },
       {
-        time: "18:00–19:15",
-        title: "Dinner (keep halal-safe): Halal Wagyu Panga or Ayam Ya",
-        costJpy: 2500,
-        costMyr: 75,
+        time: "17:00–18:30",
+        title: "Gion evening walk (Hanami-koji street, traditional lanterns)",
+        costJpy: 0,
+        costMyr: 0,
+        category: "sightseeing",
+        halal: null,
+        note: "Atmospheric traditional geisha district with preserved wooden facades and paper lanterns.",
+        transit: "Walking",
+        mapQuery: "Hanami-koji Street Gion"
+      },
+      {
+        time: "18:30–20:00",
+        title: "Dinner (Halal dining around Gion / Shijo)",
+        costJpy: 2000,
+        costMyr: 60,
         category: "food",
         halal: "certified",
-        halalNote: "Halal: halal-certified",
-        note: "Return to Halal Wagyu Yakiniku Panga or repeat Ayam Ya.",
-        transit: "~1,500–3,500 JPY (45–105 MYR) pp",
-        mapQuery: "Halal Wagyu Yakiniku Panga Kyoto"
+        halalNote: "Halal: halal-certified option",
+        note: "Sit-down halal Japanese dinner.",
+        transit: "Walk",
+        mapQuery: "Gion Kyoto Halal Dining"
       },
       {
-        time: "19:15–20:00",
-        title: "Return to hotel",
-        costJpy: 240,
-        costMyr: 7,
-        category: "transit",
+        time: "20:00–21:00",
+        title: "Return to hotel; pack for early Shinkansen to Fuji tomorrow",
+        costJpy: 0,
+        costMyr: 0,
+        category: "logistics",
         halal: null,
-        note: "Return to Hotel MyStays Kyoto - Shijo and pack for tomorrow's early Shinkansen.",
-        transit: "~240 JPY (7 MYR) pp",
+        note: "Crucial packing night for Day 5 cross-country transfer to Kawaguchiko.",
+        transit: "Walk",
         mapQuery: "Hotel MyStays Kyoto - Shijo"
       }
     ]
@@ -554,7 +576,7 @@ const ITINERARY_DATA = [
   {
     day: 5,
     date: "Wed, 20 Jan 2026",
-    city: "Kawaguchiko",
+    city: "Kyoto → Mt. Fuji",
     cityTag: "Mt. Fuji Arrival",
     weather: "-2°C • Snowy & Crisp",
     theme: "🗻 Kyoto → Kawaguchiko + Light Fuji (Oishi Park)",
@@ -562,118 +584,140 @@ const ITINERARY_DATA = [
     hotel: {
       name: "HAOSTAY",
       nights: "Nights 20–21 Jan (2 Nights)",
-      notes: "Quad room booked for group; close to Lake Kawaguchi scenic spots",
+      notes: "Check-in at HAOSTAY Lake Kawaguchiko; prepare winter snow layers",
       mapQuery: "HAOSTAY Lake Kawaguchiko"
     },
     activities: [
       {
-        time: "07:00–07:45",
-        title: "Breakfast",
+        time: "07:30–08:15",
+        title: "Breakfast & check-out Hotel MyStays",
         costJpy: 600,
         costMyr: 18,
         category: "food",
         halal: "caution",
-        halalNote: "Simple breakfast / bakery check",
-        note: "Early breakfast before morning Shinkansen departure.",
+        halalNote: "Simple breakfast",
+        note: "Check out and head to Kyoto Station.",
         transit: null,
-        mapQuery: "Kyoto Station Cafe"
+        mapQuery: "Hotel MyStays Kyoto - Shijo"
       },
       {
-        time: "07:45–08:30",
-        title: "Pack + check-out from Hotel MyStays Kyoto - Shijo",
-        costJpy: 0,
-        costMyr: 0,
-        category: "logistics",
+        time: "08:15–08:45",
+        title: "Subway to Kyoto Station",
+        costJpy: 220,
+        costMyr: 6.5,
+        category: "transit",
         halal: null,
-        note: "Check out and head to Kyoto Station Shinkansen platform.",
-        transit: "Subway to Kyoto Station",
+        note: "Kyoto Subway Karasuma Line.",
+        transit: "~10 min | ~220 JPY (6.5 MYR) pp",
         mapQuery: "Kyoto Station"
       },
       {
-        time: "08:30–12:30",
-        title: "Kyoto → Mishima/Shin-Fuji → Kawaguchiko (Shinkansen + bus)",
-        costJpy: 12000,
-        costMyr: 360,
+        time: "08:45–10:45",
+        title: "Tokaido Shinkansen Kyoto → Mishima / Shin-Fuji",
+        costJpy: 11000,
+        costMyr: 330,
         category: "transit",
         halal: null,
-        note: "Tokaido Shinkansen from Kyoto to Mishima/Shin-Fuji, then express Fujikyu bus to Kawaguchiko Station.",
-        transit: "~4 hrs | ~11,000–13,000 JPY (330–390 MYR) pp",
+        note: "High-speed bullet train across central Honshu. Enjoy views of the Japanese countryside.",
+        transit: "~110 min | ~11,000 JPY (330 MYR) pp",
+        mapQuery: "Mishima Station"
+      },
+      {
+        time: "11:00–12:30",
+        title: "Highway Bus Mishima → Kawaguchiko Station (Fujikyu Bus)",
+        costJpy: 2500,
+        costMyr: 75,
+        category: "transit",
+        halal: null,
+        note: "Scenic highway bus winding up into the Five Lakes highlands.",
+        transit: "~90 min | ~2,500 JPY (75 MYR) pp",
         mapQuery: "Kawaguchiko Station"
       },
       {
-        time: "12:30–13:15",
-        title: "Arrive + hotel luggage drop",
+        time: "12:30–13:30",
+        title: "Arrive Kawaguchiko Station + Lunch (Halal / vegetarian)",
+        costJpy: 1500,
+        costMyr: 45,
+        category: "food",
+        halal: "caution",
+        halalNote: "Halal / Muslim-friendly option at Kawaguchiko",
+        note: "Warm up with hot noodles or halal-certified dishes near the station.",
+        transit: "Walk",
+        mapQuery: "Kawaguchiko Station Restaurant"
+      },
+      {
+        time: "13:30–14:15",
+        title: "Check-in / drop luggage at HAOSTAY",
         costJpy: 0,
         costMyr: 0,
         category: "logistics",
         halal: null,
-        note: "Arrive at HAOSTAY hotel; drop bags and put on heavy winter thermal layers.",
-        transit: "Transfer from Kawaguchiko Station",
-        mapQuery: "HAOSTAY Lake Kawaguchiko"
+        note: "Check into HAOSTAY rooms; gear up with warm winter jackets, gloves & thermal heat packs.",
+        transit: "Short taxi / bus to hotel",
+        mapQuery: "HAOSTAY Kawaguchiko"
       },
       {
-        time: "13:15–14:15",
-        title: "Lunch (simple supermarket; ingredient-check)",
-        costJpy: 900,
-        costMyr: 27,
-        category: "food",
-        halal: "caution",
-        halalNote: "Supermarket / local grocery check",
-        note: "Warm lunch at local supermarket / bakery with ingredient check.",
-        transit: null,
-        mapQuery: "Ogino Supermarket Kawaguchiko"
-      },
-      {
-        time: "14:15–15:30",
-        title: "Rest / warm up (January cold)",
+        time: "14:15–15:00",
+        title: "Prayer + freshen up",
         costJpy: 0,
         costMyr: 0,
         category: "prayer",
         halal: null,
-        note: "Warm up with hot tea, perform prayers, and prepare for sunset photography.",
+        note: "Perform Zuhr & Asr prayers in hotel room.",
         transit: null,
-        mapQuery: "HAOSTAY Lake Kawaguchiko"
+        mapQuery: "HAOSTAY Kawaguchiko"
       },
       {
-        time: "15:30–17:00",
-        title: "Fuji-view stroll at Oishi Park",
+        time: "15:00–17:00",
+        title: "Oishi Park (north shore Mt. Fuji lake views at sunset)",
         costJpy: 0,
         costMyr: 0,
         category: "sightseeing",
         halal: null,
-        note: "Unobstructed panorama of Mount Fuji across the snowy northern shore of Lake Kawaguchi.",
-        transit: "Retro Bus to Oishi Park",
-        mapQuery: "Oishi Park Lake Kawaguchi"
+        note: "World-class postcard views across Lake Kawaguchiko with Mount Fuji reflected in the frozen waters.",
+        transit: "Omni Sightseeing Bus",
+        mapQuery: "Oishi Park Lake Kawaguchiko"
       },
       {
         time: "17:00–18:00",
-        title: "Back to hotel + early dinner (simple)",
-        costJpy: 1000,
-        costMyr: 30,
-        category: "food",
-        halal: "caution",
-        halalNote: "Halal caution / simple halal-friendly dining",
-        note: "Early dinner in Kawaguchiko town.",
-        transit: "Bus / walk",
-        mapQuery: "Kawaguchiko town"
+        title: "Lakeside walk + souvenir browse (Kawaguchiko Natural Living Center)",
+        costJpy: 0,
+        costMyr: 0,
+        category: "shopping",
+        halal: null,
+        note: "Browse local blueberry tea, Fujisan glassware, and winter crafts.",
+        transit: "Walking",
+        mapQuery: "Kawaguchiko Natural Living Center"
       },
       {
-        time: "18:00–20:00",
-        title: "Pack / relax",
+        time: "18:30–20:00",
+        title: "Dinner near hotel / Kawaguchiko",
+        costJpy: 2000,
+        costMyr: 60,
+        category: "food",
+        halal: "certified",
+        halalNote: "Halal / Muslim-friendly dining",
+        note: "Hot winter dinner; halal-friendly dining.",
+        transit: "Short transit",
+        mapQuery: "Kawaguchiko Dining"
+      },
+      {
+        time: "20:00–21:00",
+        title: "Relax at HAOSTAY, early rest (sub-zero winter night)",
         costJpy: 0,
         costMyr: 0,
         category: "logistics",
         halal: null,
-        note: "Relax in warm HAOSTAY rooms; enjoy winter night mountain calm.",
+        note: "Rest well in heated rooms for full Mt. Fuji sunrise/exploration on Day 6.",
         transit: null,
-        mapQuery: "HAOSTAY Lake Kawaguchiko"
+        mapQuery: "HAOSTAY Kawaguchiko"
       }
     ]
   },
   {
     day: 6,
     date: "Thu, 21 Jan 2026",
-    city: "Kawaguchiko",
+    city: "Mt. Fuji / Kawaguchiko",
     cityTag: "Mt. Fuji Exploration",
     weather: "-3°C • Clear & Frozen",
     theme: "🗻 Kawaguchiko / Mt. Fuji winter-safe day (Chureito & Lake)",
@@ -681,118 +725,140 @@ const ITINERARY_DATA = [
     hotel: {
       name: "HAOSTAY",
       nights: "Night 2 of 2",
-      notes: "Pack bags tonight for tomorrow morning's Tokyo Highway Express Bus",
+      notes: "Strict winter clothing required (gloves, beanies, thermals, non-slip footwear)",
       mapQuery: "HAOSTAY Lake Kawaguchiko"
     },
     activities: [
       {
-        time: "07:30–08:15",
-        title: "Breakfast",
+        time: "07:30–08:30",
+        title: "Breakfast & sunrise view of Mt. Fuji",
         costJpy: 600,
         costMyr: 18,
         category: "food",
         halal: "caution",
         halalNote: "Simple breakfast",
-        note: "Breakfast with hot drinks before heading out.",
+        note: "Watch morning winter sunlight turn Mt. Fuji's snowcap into glowing pink & gold.",
         transit: null,
-        mapQuery: "HAOSTAY Lake Kawaguchiko"
+        mapQuery: "HAOSTAY Kawaguchiko"
       },
       {
-        time: "08:15–09:00",
-        title: "Bus/taxi toward Arakurayama Sengen Park",
-        costJpy: 600,
-        costMyr: 18,
+        time: "08:30–09:15",
+        title: "Train Kawaguchiko Station → Shimoyoshida (Fujikyu Railway)",
+        costJpy: 310,
+        costMyr: 9.5,
         category: "transit",
         halal: null,
-        note: "Fujikyuko Line train or bus/taxi to Shimoyoshida Station.",
-        transit: "~45 min | ~600 JPY (18 MYR) pp",
+        note: "Local alpine train line.",
+        transit: "~15 min | ~310 JPY (9.5 MYR) pp",
         mapQuery: "Shimoyoshida Station"
       },
       {
-        time: "09:00–10:30",
-        title: "Arakurayama Sengen Park (Chureito-style viewpoint; careful if icy)",
+        time: "09:15–11:30",
+        title: "Arakurayama Sengen Park & Chureito Pagoda (iconic Fuji view)",
         costJpy: 0,
         costMyr: 0,
         category: "sightseeing",
         halal: null,
-        note: "Iconic 5-story pagoda with Mount Fuji backdrop. 398 steps—take care on icy stairs!",
-        transit: "Free entry",
-        mapQuery: "Chureito Pagoda Arakurayama"
-      },
-      {
-        time: "10:30–11:15",
-        title: "Return toward lake area",
-        costJpy: 600,
-        costMyr: 18,
-        category: "transit",
-        halal: null,
-        note: "Bus or local train back to central Kawaguchiko.",
-        transit: "~600 JPY (18 MYR) pp",
-        mapQuery: "Lake Kawaguchi"
+        note: "Climb the 398 stone steps for Japan's most famous panoramic vista: 5-story red pagoda with snow-covered Mt. Fuji.",
+        transit: "Step climb / slow winter pace",
+        mapQuery: "Chureito Pagoda"
       },
       {
         time: "11:30–12:30",
-        title: "Warm lunch (simple)",
-        costJpy: 1200,
-        costMyr: 36,
-        category: "food",
-        halal: "caution",
-        halalNote: "Simple halal-friendly / vegetarian options",
-        note: "Warm udon / soba (without mirin/alcohol) or fish dish.",
-        transit: null,
-        mapQuery: "Kawaguchiko Eatery"
-      },
-      {
-        time: "12:30–14:30",
-        title: "Lakeside time at Lake Kawaguchi",
+        title: "Explore Honcho Street in Shimoyoshida (retro street photo framing Mt. Fuji)",
         costJpy: 0,
         costMyr: 0,
         category: "sightseeing",
         halal: null,
-        note: "Scenic stroll along Lake Kawaguchi, souvenir shopping at herb hall, Mount Fuji reflections.",
+        note: "Vintage Japanese shop signs framing the towering snow volcano centered down the avenue.",
         transit: "Walking",
-        mapQuery: "Lake Kawaguchi Shore"
+        mapQuery: "Honcho Street Shimoyoshida"
       },
       {
-        time: "14:30–16:00",
-        title: "Rest at hotel (hot drinks, prayer)",
+        time: "12:30–13:15",
+        title: "Train Shimoyoshida → Kawaguchiko Station",
+        costJpy: 310,
+        costMyr: 9.5,
+        category: "transit",
+        halal: null,
+        note: "Return to Kawaguchiko hub.",
+        transit: "~15 min | ~310 JPY (9.5 MYR) pp",
+        mapQuery: "Kawaguchiko Station"
+      },
+      {
+        time: "13:15–14:30",
+        title: "Lunch @ Halal / Muslim-friendly restaurant",
+        costJpy: 1500,
+        costMyr: 45,
+        category: "food",
+        halal: "caution",
+        halalNote: "Halal / Muslim-friendly option",
+        note: "Warm Japanese Hoto noodle soup (check broth ingredients) or halal curry.",
+        transit: "Walk",
+        mapQuery: "Kawaguchiko Restaurant"
+      },
+      {
+        time: "14:30–15:30",
+        title: "Prayer + rest break at HAOSTAY",
         costJpy: 0,
         costMyr: 0,
         category: "prayer",
         halal: null,
-        note: "Warm up indoors, perform Zuhr/Asr prayers at HAOSTAY.",
+        note: "Perform Zuhr & Asr prayers in warmth.",
         transit: null,
-        mapQuery: "HAOSTAY Lake Kawaguchiko"
+        mapQuery: "HAOSTAY Kawaguchiko"
       },
       {
-        time: "16:00–17:30",
-        title: "Early dinner (simple)",
-        costJpy: 1000,
-        costMyr: 30,
+        time: "15:30–17:00",
+        title: "Lake Kawaguchiko south shore / Ropeway area stroll",
+        costJpy: 0,
+        costMyr: 0,
+        category: "sightseeing",
+        halal: null,
+        note: "Lakeside promenade, mountain reflections, and souvenir shops.",
+        transit: "Walking / local bus",
+        mapQuery: "Lake Kawaguchiko South Shore"
+      },
+      {
+        time: "17:00–18:30",
+        title: "Winter sunset over Lake Kawaguchiko",
+        costJpy: 0,
+        costMyr: 0,
+        category: "sightseeing",
+        halal: null,
+        note: "Stunning twilight over the lake waters as the evening temperature drops.",
+        transit: "Walking",
+        mapQuery: "Lake Kawaguchiko"
+      },
+      {
+        time: "18:30–20:00",
+        title: "Dinner in Kawaguchiko",
+        costJpy: 2000,
+        costMyr: 60,
         category: "food",
         halal: "caution",
-        halalNote: "Simple dinner",
-        note: "Early dinner before winter sunset.",
-        transit: null,
-        mapQuery: "HAOSTAY Area"
+        halalNote: "Halal / Muslim-friendly meal",
+        note: "Cozy hotpot or grilled fish dinner.",
+        transit: "Short transit",
+        mapQuery: "Kawaguchiko Dining"
       },
       {
-        time: "17:30–20:00",
-        title: "Pack for Tokyo transfer + early sleep",
+        time: "20:00–21:00",
+        title: "Back to hotel; pack for morning Highway Bus to Tokyo",
         costJpy: 0,
         costMyr: 0,
         category: "logistics",
         halal: null,
-        note: "Pack all luggage for tomorrow's transfer to Tokyo and get good rest.",
+        note: "Pack bags for Highway Express Bus to Tokyo on Day 7.",
         transit: null,
-        mapQuery: "HAOSTAY Lake Kawaguchiko"
+        mapQuery: "HAOSTAY Kawaguchiko"
       }
     ]
   },
   {
     day: 7,
     date: "Fri, 22 Jan 2026",
-    city: "Tokyo",
+    city: "Mt. Fuji → Tokyo",
     cityTag: "Tokyo Arrival & Asakusa",
     weather: "8°C • Winter Sun",
     theme: "🚆 Kawaguchiko → Tokyo + Asakusa (Senso-ji & Halal Sakura)",
@@ -800,110 +866,132 @@ const ITINERARY_DATA = [
     hotel: {
       name: "Hotel Tavinos Asakusa",
       nights: "Nights 22–23 Jan (2 Nights)",
-      notes: "Manga-themed stylish hotel in historic Asakusa, near Senso-ji Temple & Halal eateries",
+      notes: "Check-in at Hotel Tavinos Asakusa; short walk to Senso-ji Temple & Halal Sakura",
       mapQuery: "Hotel Tavinos Asakusa Tokyo"
     },
     activities: [
       {
         time: "07:30–08:15",
-        title: "Breakfast",
+        title: "Breakfast & check-out HAOSTAY",
         costJpy: 600,
         costMyr: 18,
         category: "food",
         halal: "caution",
         halalNote: "Simple breakfast",
-        note: "Breakfast at hotel / bakery.",
+        note: "Final view of Mt. Fuji before boarding Tokyo bus.",
         transit: null,
-        mapQuery: "Kawaguchiko Station Bakery"
+        mapQuery: "HAOSTAY Kawaguchiko"
       },
       {
-        time: "08:15–09:00",
-        title: "Check-out from HAOSTAY",
+        time: "08:15–08:45",
+        title: "Transfer to Kawaguchiko Station",
         costJpy: 0,
         costMyr: 0,
-        category: "logistics",
+        category: "transit",
         halal: null,
-        note: "Check out and transfer to Kawaguchiko Station Bus Terminal.",
-        transit: "To station",
+        note: "Bus / short taxi to station bus terminal.",
+        transit: null,
         mapQuery: "Kawaguchiko Station"
       },
       {
-        time: "09:00–11:30",
-        title: "Kawaguchiko → Tokyo (bus/train)",
+        time: "08:45–11:15",
+        title: "Highway Express Bus Kawaguchiko → Tokyo (Shinjuku / Tokyo Station)",
         costJpy: 2200,
         costMyr: 66,
         category: "transit",
         halal: null,
-        note: "Highway Express Bus directly to Tokyo Station / Shinjuku / Asakusa.",
-        transit: "~2.5 hrs | ~2,200 JPY (66 MYR) pp",
-        mapQuery: "Tokyo Station"
+        note: "Comfortable direct highway coach straight into metropolitan Tokyo.",
+        transit: "~2–2.5 hrs | ~2,200 JPY (66 MYR) pp",
+        mapQuery: "Shinjuku Expressway Bus Terminal"
       },
       {
-        time: "11:30–12:15",
-        title: "Hotel luggage drop",
+        time: "11:15–12:00",
+        title: "Subway Shinjuku / Tokyo Station → Asakusa",
+        costJpy: 240,
+        costMyr: 7,
+        category: "transit",
+        halal: null,
+        note: "Tokyo Metro Ginza / Asakusa Line direct.",
+        transit: "~30 min | ~240 JPY (7 MYR) pp",
+        mapQuery: "Asakusa Station Tokyo"
+      },
+      {
+        time: "12:00–12:30",
+        title: "Walk to Hotel Tavinos Asakusa / Luggage drop",
         costJpy: 0,
         costMyr: 0,
         category: "logistics",
         halal: null,
-        note: "Drop luggage at Hotel Tavinos Asakusa front desk.",
-        transit: "Walk from Asakusa Station",
+        note: "Leave bags at front desk of Hotel Tavinos Asakusa.",
+        transit: "~8 min walk",
         mapQuery: "Hotel Tavinos Asakusa"
       },
       {
-        time: "12:30–13:30",
-        title: "Lunch @ HALAL SAKURA",
+        time: "12:30–13:45",
+        title: "Lunch @ HALAL SAKURA (Asakusa)",
         costJpy: 2500,
         costMyr: 75,
         category: "food",
         halal: "certified",
-        halalNote: "Halal: halal-certified (Japanese & Halal Shabu/Nabe)",
-        note: "Renowned Halal restaurant in Asakusa serving Japanese beef sets, ramen, and shabu-shabu.",
+        halalNote: "Halal: halal-certified",
+        note: "Authentic Halal Japanese sukiyaki hotpot, nabe sets, and grilled fish.",
         transit: "Short walk",
         mapQuery: "HALAL SAKURA Asakusa Tokyo"
       },
       {
-        time: "13:30–15:30",
-        title: "Check-in + rest",
+        time: "13:45–14:45",
+        title: "Friday Prayer @ Asakusa Mosque (Darul Arqam) / Rest",
         costJpy: 0,
         costMyr: 0,
         category: "prayer",
         halal: null,
-        note: "Settle into Hotel Tavinos Asakusa rooms, perform prayers.",
-        transit: null,
-        mapQuery: "Hotel Tavinos Asakusa"
+        note: "Perform Jumu'ah Friday prayer at Masjid Asakusa (Darul Arqam Mosque).",
+        transit: "Short walk",
+        mapQuery: "Asakusa Mosque Tokyo"
       },
       {
-        time: "15:30–18:00",
-        title: "Senso-ji Temple (Asakusa Temple) + Nakamise shopping",
+        time: "15:00–17:30",
+        title: "Senso-ji Temple & Nakamise-dori shopping street",
         costJpy: 0,
         costMyr: 0,
         category: "sightseeing",
         halal: null,
-        note: "Tokyo's oldest Buddhist temple, giant Kaminarimon lantern, and traditional souvenir stalls.",
-        transit: "Free entry / walking",
-        mapQuery: "Senso-ji Asakusa Tokyo"
+        note: "Tokyo's oldest Buddhist temple, giant Kaminarimon red lantern, and heritage souvenir market.",
+        transit: "Walking",
+        mapQuery: "Senso-ji Asakusa"
       },
       {
-        time: "18:00–19:15",
-        title: "Dinner @ Gyumon Halal Ramen Asakusa",
+        time: "17:30–19:00",
+        title: "Sumida Park & Tokyo Skytree view across river",
+        costJpy: 0,
+        costMyr: 0,
+        category: "sightseeing",
+        halal: null,
+        note: "Evening cityscape viewing illuminated Tokyo Skytree soaring across the Sumida River.",
+        transit: "Walking",
+        mapQuery: "Sumida Park Tokyo"
+      },
+      {
+        time: "19:00–20:30",
+        title: "Dinner @ Halal Ramen / Japanese dining in Asakusa",
         costJpy: 1600,
         costMyr: 48,
         category: "food",
         halal: "certified",
         halalNote: "Halal: halal-certified / halal-focused",
-        note: "Savory Halal beef ramen with tender chashu in Asakusa.",
-        transit: "Walking distance",
+        note: "Rich beef ramen at Gyumon Asakusa or nearby halal dining.",
+        transit: "Walk",
         mapQuery: "Gyumon Halal Ramen Asakusa"
       },
       {
-        time: "19:15–20:00",
-        title: "Back to hotel",
-        costJpy: 240,
-        costMyr: 7,
-        category: "transit",
+        time: "20:30–21:30",
+        title: "Check into Hotel Tavinos Asakusa; rest",
+        costJpy: 0,
+        costMyr: 0,
+        category: "logistics",
         halal: null,
-        note: "Return to Hotel Tavinos Asakusa for rest.",
-        transit: "~240 JPY (7 MYR) pp",
+        note: "Check in and rest for full mega Tokyo Day 8.",
+        transit: "Walk",
         mapQuery: "Hotel Tavinos Asakusa"
       }
     ]
@@ -919,81 +1007,70 @@ const ITINERARY_DATA = [
     hotel: {
       name: "Hotel Tavinos Asakusa",
       nights: "Night 2 of 2",
-      notes: "Final night in Tokyo; organize baggage & tax-free receipts",
+      notes: "Day 8 Gadget Hub: Yodobashi Akiba, BicCamera AKIBA, Electric Town alleys & Laox",
       mapQuery: "Hotel Tavinos Asakusa Tokyo"
     },
     activities: [
       {
-        time: "07:30–08:15",
-        title: "Breakfast",
+        time: "08:00–08:45",
+        title: "Breakfast in Asakusa",
         costJpy: 600,
         costMyr: 18,
         category: "food",
         halal: "caution",
         halalNote: "Simple breakfast",
-        note: "Breakfast before morning shrine exploration.",
+        note: "Start early for comprehensive Tokyo city loop.",
         transit: null,
-        mapQuery: "Asakusa Cafe"
+        mapQuery: "Asakusa Tokyo"
       },
       {
-        time: "08:15–09:00",
-        title: "Train to Meiji Jingu",
+        time: "08:45–09:30",
+        title: "Subway Asakusa → Harajuku / Meiji-Jingumae",
         costJpy: 240,
         costMyr: 7,
         category: "transit",
         halal: null,
-        note: "Ginza / Yamanote Line to Harajuku / Meiji-jingumae.",
-        transit: "~45 min | ~240 JPY (7 MYR) pp",
-        mapQuery: "Harajuku Station"
+        note: "Tokyo Metro Ginza Line + Chiyoda Line.",
+        transit: "~35 min | ~240 JPY (7 MYR) pp",
+        mapQuery: "Meiji-Jingumae Station"
       },
       {
-        time: "09:00–10:30",
-        title: "Meiji Jingu",
+        time: "09:30–11:00",
+        title: "Meiji Jingu Shrine & Yoyogi forest walk",
         costJpy: 0,
         costMyr: 0,
         category: "sightseeing",
         halal: null,
-        note: "Majestic forested Shinto shrine in central Tokyo, giant cedar torii gate.",
-        transit: "Free entry",
-        mapQuery: "Meiji Jingu Shrine"
+        note: "Tranquil forest shrine complex with towering cedar trees and massive wooden Torii.",
+        transit: "Walking",
+        mapQuery: "Meiji Jingu Shrine Tokyo"
       },
       {
-        time: "10:30–12:00",
-        title: "Shibuya Crossing + quick shopping / photo time",
-        costJpy: 0,
-        costMyr: 0,
-        category: "sightseeing",
-        halal: null,
-        note: "World's busiest pedestrian scramble, Hachiko statue, Shibuya 109 area.",
-        transit: "Short walk or 1 stop train",
-        mapQuery: "Shibuya Scramble Crossing"
-      },
-      {
-        time: "12:00–13:00",
-        title: "Lunch @ HALAL SAKURA",
-        costJpy: 2500,
-        costMyr: 75,
-        category: "food",
-        halal: "certified",
-        halalNote: "Halal: halal-certified",
-        note: "Wholesome halal meal in Tokyo.",
-        transit: "Transit",
-        mapQuery: "HALAL SAKURA Tokyo"
-      },
-      {
-        time: "13:00–15:00",
-        title: "Shopping block (Shibuya area; keep budget-controlled)",
+        time: "11:00–12:30",
+        title: "Walk Harajuku (Takeshita Street / Omotesando avenues)",
         costJpy: 0,
         costMyr: 0,
         category: "shopping",
         halal: null,
-        note: "Browse Shibuya apparel, Loft, Muji, and electronics. Keep spend controlled.",
+        note: "Trendy youth fashion and modern architectural avenues.",
         transit: "Walking",
-        mapQuery: "Shibuya Loft"
+        mapQuery: "Takeshita Street Harajuku"
       },
       {
-        time: "15:00–15:30",
-        title: "Rest / prayer break (warm drinks)",
+        time: "12:30–14:00",
+        title: "Shibuya Crossing, Hachiko Statue + Halal Lunch in Shibuya",
+        costJpy: 1800,
+        costMyr: 54,
+        category: "food",
+        halal: "certified",
+        halalNote: "Halal: halal-certified (Halal Ramen / Curry in Shibuya)",
+        note: "Experience the world's busiest pedestrian crossing & loyal dog Hachiko bronze monument.",
+        transit: "Short walk / train",
+        mapQuery: "Shibuya Crossing Tokyo"
+      },
+      {
+        time: "14:00–15:30",
+        title: "Prayer + rest break (Tokyo Camii Mosque / Prayer Room)",
         costJpy: 0,
         costMyr: 0,
         category: "prayer",
@@ -1223,290 +1300,436 @@ const HALAL_RESTAURANTS = [
   }
 ];
 
-// Checklist items from source
+// Advance Booking Checklist items from source
 const ADVANCE_BOOKINGS = [
-  { id: "stay-osaka", label: "🏨 Osaka Accommodation: Hotel WBF Namba Motomachi (Nights 16–17)", category: "hotel", detail: "Nights 16–17 Jan. Quad / family room or 2 twins. Near transport." },
-  { id: "stay-kyoto", label: "🏨 Kyoto Accommodation: Hotel MyStays Kyoto - Shijo (Nights 18–19)", category: "hotel", detail: "Nights 18–19 Jan. Near Shijo Karasuma & Halal Ayam Ya." },
-  { id: "stay-fuji", label: "🏨 Kawaguchiko Accommodation: HAOSTAY (Nights 20–21)", category: "hotel", detail: "Nights 20–21 Jan. Quad rooms sell out fast in winter!" },
-  { id: "stay-tokyo", label: "🏨 Tokyo Accommodation: Hotel Tavinos Asakusa (Nights 22–23)", category: "hotel", detail: "Nights 22–23 Jan. Manga-style hotel in Asakusa near Senso-ji." },
-  { id: "train-kyoto-fuji", label: "🚆 Kyoto → Kawaguchiko Shinkansen + Bus connection", category: "transit", detail: "Day 5 (20 Jan): Tokaido Shinkansen (Kyoto → Mishima/Shin-Fuji) + Fujikyu Bus." },
-  { id: "bus-fuji-tokyo", label: "🚌 Kawaguchiko → Tokyo Highway Express Bus", category: "transit", detail: "Day 7 (22 Jan): Morning express bus to Tokyo (~2.5 hrs, ~2,200 JPY pp)." },
-  { id: "flight-booked", label: "✈️ Flight Booking: NRT → KUL (24 Jan 16:50)", category: "flight", detail: "Booked flight departure from Narita International Airport." }
+  { id: "stay-osaka", label: "🏨 Osaka Stay: Hotel WBF Namba Motomachi (Nights 16–17)", category: "hotel", detail: "Nights 16–17 Jan (2 Nights). Quad room / 2 twin rooms near Namba transport." },
+  { id: "stay-kyoto", label: "🏨 Kyoto Stay: Hotel MyStays Kyoto - Shijo (Nights 18–19)", category: "hotel", detail: "Nights 18–19 Jan (2 Nights). Prime Shijo Karasuma location near Halal Ayam Ya." },
+  { id: "stay-fuji", label: "🏨 Kawaguchiko Stay: HAOSTAY (Nights 20–21)", category: "hotel", detail: "Nights 20–21 Jan (2 Nights). High-demand winter quad rooms with Fuji views." },
+  { id: "stay-tokyo", label: "🏨 Tokyo Stay: Hotel Tavinos Asakusa (Nights 22–23)", category: "hotel", detail: "Nights 22–23 Jan (2 Nights). In Asakusa near Senso-ji & Halal Sakura." },
+  { id: "train-kyoto-fuji", label: "🚆 Tokaido Shinkansen (Kyoto → Mishima) + Fujikyu Bus", category: "transit", detail: "Day 5 (20 Jan): Tokaido Shinkansen to Mishima (~11,000 JPY) + highway bus (~2,500 JPY)." },
+  { id: "bus-fuji-tokyo", label: "🚌 Highway Express Bus (Kawaguchiko → Tokyo)", category: "transit", detail: "Day 7 (22 Jan): Morning express coach (~2,200 JPY pp) direct to Shinjuku / Tokyo." },
+  { id: "flight-booked", label: "✈️ Departure Flight: NRT → KUL (24 Jan 16:50)", category: "flight", detail: "Booked flight departure from Narita International Airport Terminal 1." }
 ];
 
+// Budget Data Multipliers
+const BUDGET_DATA = {
+  food: { minJpy: 31500, maxJpy: 45000, minMyr: 945, maxMyr: 1350 },
+  intercity: { minJpy: 16300, maxJpy: 19600, minMyr: 489, maxMyr: 588 },
+  local: { minJpy: 7200, maxJpy: 10800, minMyr: 216, maxMyr: 324 },
+  attractions: { minJpy: 1000, maxJpy: 2500, minMyr: 30, maxMyr: 75 },
+  misc: { minJpy: 5000, maxJpy: 10000, minMyr: 150, maxMyr: 300 },
+  totalNonHotel: { minJpy: 61000, maxJpy: 88000, minMyr: 1830, maxMyr: 2640 },
+  targetHotel: { minJpy: 170000, maxJpy: 215000, minMyr: 5100, maxMyr: 6450 }
+};
+
 // Application State
-let currentPax = 1; // 1 or 4
-let currentCurrency = "MYR"; // "MYR" or "JPY"
+let activeDay = 1;
+let currentViewMode = "single"; // "single" or "grid"
 let activeCategoryFilter = "all";
 let searchQuery = "";
-let allExpanded = true;
+let currentPax = 1; // 1 or 4
+let currentCurrency = "MYR"; // "MYR" or "JPY"
 
 // ==========================================
 // 2. INITIALIZATION
 // ==========================================
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Initialize Lenis Smooth Scroll
-  initLenis();
+  // 1. Run Preloader Animation
+  initPreloader();
 
-  // Render Views
-  renderTimeline();
-  renderChecklist();
+  // 2. Render Day Tabs Ribbon & Views
+  renderDayRibbon();
+  renderSingleDay(activeDay);
+  renderGridDays();
   renderHalalDirectory();
+  renderChecklist();
   updateBudgetDashboard();
 
-  // Setup Live Clocks
+  // 3. Start Live Clocks & Event Listeners
   startLiveClocks();
-
-  // Setup Event Listeners
   setupEventListeners();
 
-  // Refresh Lucide Icons
+  // 4. Initialize Lucide Icons
   if (window.lucide) {
     window.lucide.createIcons();
   }
 });
 
-// Lenis Smooth Scroll Setup
-function initLenis() {
-  if (typeof Lenis !== "undefined") {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      wheelMultiplier: 1.0,
-      touchMultiplier: 1.5,
-    });
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    // Anchor links smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-      anchor.addEventListener("click", function (e) {
-        const targetId = this.getAttribute("href");
-        if (targetId && targetId !== "#") {
-          const targetEl = document.querySelector(targetId);
-          if (targetEl) {
-            e.preventDefault();
-            lenis.scrollTo(targetEl, { offset: -140 });
-          }
-        }
-      });
-    });
-  }
-}
-
-// Live Clocks for Japan (JST) and Malaysia (MYT)
-function startLiveClocks() {
-  function update() {
-    const now = new Date();
-    
-    // JST (UTC+9)
-    const jstFormatter = new Intl.DateTimeFormat("en-GB", {
-      timeZone: "Asia/Tokyo",
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-      hour12: false
-    });
-    
-    // MYT (UTC+8)
-    const mytFormatter = new Intl.DateTimeFormat("en-GB", {
-      timeZone: "Asia/Kuala_Lumpur",
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: false
-    });
-
-    const jstEl = document.getElementById("live-time-jst");
-    const mytEl = document.getElementById("live-time-myt");
-    if (jstEl) jstEl.textContent = `JST: ${jstFormatter.format(now)}`;
-    if (mytEl) mytEl.textContent = `MYT: ${mytFormatter.format(now)}`;
-  }
-  update();
-  setInterval(update, 1000);
-}
-
-// Switch Hero Image
-function switchHeroImg(src, title, desc) {
-  const imgEl = document.getElementById("hero-feature-img");
-  if (imgEl) {
-    imgEl.style.opacity = "0.5";
-    setTimeout(() => {
-      imgEl.src = src;
-      imgEl.style.opacity = "1";
-    }, 150);
-  }
-}
-window.switchHeroImg = switchHeroImg;
-
-// Show Toast Notification
-function showToast(message) {
-  const container = document.getElementById("toast-container");
-  if (!container) return;
-
-  const toast = document.createElement("div");
-  toast.className = "toast-msg px-4 py-3 rounded-xl bg-indigo-600 text-white text-xs font-semibold shadow-glow-indigo border border-indigo-400/50 flex items-center gap-2 mb-2 pointer-events-auto";
-  toast.innerHTML = `<i data-lucide="check-circle" class="w-4 h-4 text-white"></i><span>${message}</span>`;
-  container.appendChild(toast);
-
-  if (window.lucide) window.lucide.createIcons();
-
-  setTimeout(() => {
-    toast.style.opacity = "0";
-    toast.style.transform = "translateY(10px)";
-    toast.style.transition = "all 0.3s ease";
-    setTimeout(() => toast.remove(), 300);
-  }, 2500);
-}
-
-// Copy formatted Day Itinerary to clipboard
-function copyDayItinerary(dayNum) {
-  const dayData = ITINERARY_DATA.find(d => d.day === dayNum);
-  if (!dayData) return;
-
-  let text = `🇯🇵 Japan Winter 2026 — Day ${dayData.day}: ${dayData.date}\n`;
-  text += `📍 Location: ${dayData.city} | ${dayData.theme}\n`;
-  text += `🏨 Hotel: ${dayData.hotel.name} (${dayData.hotel.nights})\n\n`;
-  text += `📅 Hour-by-hour Plan:\n`;
-
-  dayData.activities.forEach(act => {
-    const cost = act.costJpy > 0 ? ` [¥${act.costJpy.toLocaleString()} / RM ${act.costMyr}]` : '';
-    const halalTag = act.halal === 'certified' ? ' [Halal Certified]' : (act.halal === 'caution' ? ' [Halal Caution]' : '');
-    text += `• ${act.time} — ${act.title}${cost}${halalTag}\n`;
-    if (act.note) text += `  ${act.note}\n`;
-    if (act.transit) text += `  Route: ${act.transit}\n`;
-  });
-
-  navigator.clipboard.writeText(text).then(() => {
-    showToast(`Day ${dayNum} itinerary copied to clipboard!`);
-  }).catch(() => {
-    showToast(`Could not copy, permission denied.`);
-  });
-}
-window.copyDayItinerary = copyDayItinerary;
-
 // ==========================================
-// 3. TIMELINE RENDERING
+// 3. MOUNT FUJI RISING SUN PRELOADER LOGIC
 // ==========================================
 
-function renderTimeline() {
-  const container = document.getElementById("timeline-container");
-  if (!container) return;
+function initPreloader() {
+  const preloader = document.getElementById("fuji-preloader");
+  const bar = document.getElementById("preloader-bar");
+  const percentText = document.getElementById("preloader-percent");
+  const statusText = document.getElementById("preloader-status-text");
+  const skipBtn = document.getElementById("skip-preloader-btn");
 
-  const query = searchQuery.toLowerCase().trim();
+  if (!preloader) return;
 
-  container.innerHTML = ITINERARY_DATA.map((dayData) => {
-    // Filter activities by category and search query
-    const filteredActivities = dayData.activities.filter(act => {
-      // Category Match
-      let categoryMatch = true;
-      if (activeCategoryFilter === "halal") {
-        categoryMatch = act.halal !== null;
-      } else if (activeCategoryFilter !== "all") {
-        categoryMatch = act.category === activeCategoryFilter;
-      }
+  const statuses = [
+    { at: 20, text: "Rising sun over Mount Fuji..." },
+    { at: 45, text: "Loading Osaka, Kyoto & Tokyo routes..." },
+    { at: 70, text: "Verifying 100% Halal dining stops..." },
+    { at: 90, text: "Calculating Winter 2026 budgets..." },
+    { at: 100, text: "Welcome • 日本へようこそ！" }
+  ];
 
-      // Search Query Match
-      let searchMatch = true;
-      if (query.length > 0) {
-        const fullText = `${act.title} ${act.note || ''} ${act.transit || ''} ${dayData.city} ${dayData.theme}`.toLowerCase();
-        searchMatch = fullText.includes(query);
-      }
+  let progress = 0;
+  const interval = setInterval(() => {
+    progress += Math.floor(Math.random() * 8) + 4;
+    if (progress > 100) progress = 100;
 
-      return categoryMatch && searchMatch;
-    });
+    if (bar) bar.style.width = `${progress}%`;
+    if (percentText) percentText.textContent = `${progress}%`;
 
-    const hasActivities = filteredActivities.length > 0;
-
-    // If searching and this day has 0 matches, hide day section
-    if (query.length > 0 && !hasActivities) {
-      return "";
+    const currentStatus = statuses.find(s => progress <= s.at);
+    if (currentStatus && statusText) {
+      statusText.textContent = currentStatus.text;
     }
 
+    if (progress >= 100) {
+      clearInterval(interval);
+      setTimeout(() => {
+        dismissPreloader();
+      }, 400);
+    }
+  }, 40);
+
+  function dismissPreloader() {
+    preloader.classList.add("loaded");
+  }
+
+  if (skipBtn) {
+    skipBtn.addEventListener("click", () => {
+      clearInterval(interval);
+      dismissPreloader();
+    });
+  }
+}
+
+// ==========================================
+// 4. DAY 1-9 PAGINATION & RIBBON SWITCHER
+// ==========================================
+
+function renderDayRibbon() {
+  const ribbon = document.getElementById("day-tabs-ribbon");
+  if (!ribbon) return;
+
+  ribbon.innerHTML = ITINERARY_DATA.map(dayData => {
+    const isActive = dayData.day === activeDay;
     return `
-      <div class="day-section scroll-mt-36 transition-all duration-300" id="day-${dayData.day}" data-day="${dayData.day}">
+      <button 
+        onclick="focusDay(${dayData.day})" 
+        class="day-tab-btn flex-shrink-0 px-4 py-2 rounded-xl text-xs font-semibold border ${isActive ? 'active' : 'bg-[#0B101B] border-white/10 text-slate-300'}"
+        data-day="${dayData.day}"
+      >
+        <div class="flex items-center gap-1.5">
+          <span class="font-mono font-bold ${isActive ? 'text-vermilion' : 'text-slate-200'}">D${dayData.day}</span>
+          <span class="text-[11px] text-slate-400 font-normal">| ${dayData.city}</span>
+        </div>
+      </button>
+    `;
+  }).join("");
+}
+
+function focusDay(dayNumber) {
+  activeDay = dayNumber;
+
+  // Ensure we are in single day view
+  if (currentViewMode !== "single") {
+    toggleViewMode("single");
+  }
+
+  // Update Ribbon active states
+  renderDayRibbon();
+
+  // Render the selected day
+  renderSingleDay(dayNumber);
+
+  // Smooth scroll to itinerary container
+  const container = document.getElementById("section-itinerary");
+  if (container) {
+    const yOffset = -90;
+    const y = container.getBoundingClientRect().top + window.pageYOffset + yOffset;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  }
+}
+window.focusDay = focusDay;
+
+function nextDay() {
+  if (activeDay < 9) {
+    focusDay(activeDay + 1);
+  } else {
+    focusDay(1);
+  }
+}
+window.nextDay = nextDay;
+
+function prevDay() {
+  if (activeDay > 1) {
+    focusDay(activeDay - 1);
+  } else {
+    focusDay(9);
+  }
+}
+window.prevDay = prevDay;
+
+function toggleViewMode(mode) {
+  currentViewMode = mode;
+  const singleContainer = document.getElementById("single-day-container");
+  const gridContainer = document.getElementById("grid-days-container");
+  const singleBtn = document.getElementById("viewmode-single-btn");
+  const gridBtn = document.getElementById("viewmode-grid-btn");
+
+  if (mode === "single") {
+    if (singleContainer) singleContainer.classList.remove("hidden");
+    if (gridContainer) gridContainer.classList.add("hidden");
+    if (singleBtn) {
+      singleBtn.className = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-vermilion text-white shadow-glow-red transition-all flex items-center gap-1.5";
+    }
+    if (gridBtn) {
+      gridBtn.className = "px-3 py-1.5 rounded-lg text-xs font-medium bg-[#0F1624] text-slate-300 hover:text-white border border-white/10 transition-all flex items-center gap-1.5";
+    }
+    renderSingleDay(activeDay);
+  } else {
+    if (singleContainer) singleContainer.classList.add("hidden");
+    if (gridContainer) gridContainer.classList.remove("hidden");
+    if (gridBtn) {
+      gridBtn.className = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-vermilion text-white shadow-glow-red transition-all flex items-center gap-1.5";
+    }
+    if (singleBtn) {
+      singleBtn.className = "px-3 py-1.5 rounded-lg text-xs font-medium bg-[#0F1624] text-slate-300 hover:text-white border border-white/10 transition-all flex items-center gap-1.5";
+    }
+    renderGridDays();
+  }
+}
+window.toggleViewMode = toggleViewMode;
+
+// ==========================================
+// 5. SINGLE DAY VIEW RENDERER
+// ==========================================
+
+function renderSingleDay(dayNumber) {
+  const container = document.getElementById("single-day-container");
+  if (!container) return;
+
+  const dayData = ITINERARY_DATA.find(d => d.day === dayNumber) || ITINERARY_DATA[0];
+
+  // Filter activities
+  const query = searchQuery.toLowerCase().trim();
+  const filteredActivities = dayData.activities.filter(act => {
+    let categoryMatch = true;
+    if (activeCategoryFilter === "food") {
+      categoryMatch = act.category === "food" || act.halal !== null;
+    } else if (activeCategoryFilter !== "all") {
+      categoryMatch = act.category === activeCategoryFilter;
+    }
+
+    let searchMatch = true;
+    if (query.length > 0) {
+      const full = `${act.title} ${act.note || ''} ${act.transit || ''}`.toLowerCase();
+      searchMatch = full.includes(query);
+    }
+    return categoryMatch && searchMatch;
+  });
+
+  // Calculate day totals
+  const totalCostJpy = dayData.activities.reduce((acc, curr) => acc + curr.costJpy, 0);
+  const totalCostMyr = dayData.activities.reduce((acc, curr) => acc + curr.costMyr, 0);
+  const halalMealsCount = dayData.activities.filter(a => a.halal === "certified").length;
+
+  container.innerHTML = `
+    <!-- Active Day Master Header Card -->
+    <div class="jp-card rounded-3xl overflow-hidden mb-8 border border-white/10 shadow-card-oled">
+      <div class="grid grid-cols-1 lg:grid-cols-12">
         
-        <!-- Day Header Card -->
-        <div class="bg-[#141E33] rounded-3xl border border-slate-800 shadow-card-dark overflow-hidden mb-6">
-          <div class="grid grid-cols-1 lg:grid-cols-12">
-            
-            <!-- Left Info Block -->
-            <div class="lg:col-span-8 p-6 sm:p-8 flex flex-col justify-between">
+        <!-- Left Day Summary Details -->
+        <div class="lg:col-span-8 p-6 sm:p-8 flex flex-col justify-between">
+          <div>
+            <!-- Day & City Pill -->
+            <div class="flex flex-wrap items-center gap-2 mb-3">
+              <span class="px-3 py-1 rounded-xl bg-vermilion text-white text-xs font-bold font-mono tracking-wider shadow-glow-red">
+                DAY ${dayData.day} OF 9
+              </span>
+              <span class="px-3 py-1 rounded-xl bg-[#0B101B] text-gold text-xs font-mono font-semibold border border-gold/30">
+                ${dayData.date}
+              </span>
+              <span class="px-3 py-1 rounded-xl bg-[#0B101B] text-slate-200 text-xs font-semibold border border-white/10">
+                📍 ${dayData.cityTag}
+              </span>
+              <span class="px-3 py-1 rounded-xl bg-[#0B101B] text-sky-400 text-xs font-mono border border-sky-800/40 flex items-center gap-1">
+                ❄️ ${dayData.weather}
+              </span>
+            </div>
+
+            <h3 class="font-mincho text-2xl sm:text-3xl font-bold text-white tracking-tight mb-3">
+              ${dayData.theme}
+            </h3>
+
+            <!-- Day Quick Metrics -->
+            <div class="grid grid-cols-3 gap-3 py-3 border-y border-white/10 my-4 text-center">
+              <div class="p-2 rounded-xl bg-[#05070B] border border-white/5">
+                <div class="text-[10px] font-mono text-slate-400 uppercase">Estimated Spend</div>
+                <div class="text-sm sm:text-base font-bold text-gold font-mono">RM ${totalCostMyr}</div>
+                <div class="text-[10px] text-slate-400 font-mono">~¥${totalCostJpy.toLocaleString()}</div>
+              </div>
+              <div class="p-2 rounded-xl bg-[#05070B] border border-white/5">
+                <div class="text-[10px] font-mono text-slate-400 uppercase">Halal Meals</div>
+                <div class="text-sm sm:text-base font-bold text-emerald-400 font-mono">${halalMealsCount} Verified</div>
+                <div class="text-[10px] text-emerald-400/80 font-mono">100% Halal</div>
+              </div>
+              <div class="p-2 rounded-xl bg-[#05070B] border border-white/5">
+                <div class="text-[10px] font-mono text-slate-400 uppercase">Total Stops</div>
+                <div class="text-sm sm:text-base font-bold text-white font-mono">${dayData.activities.length} Activities</div>
+                <div class="text-[10px] text-slate-400 font-mono">Timed Plan</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hotel Card & Actions -->
+          <div class="mt-2 p-4 rounded-2xl bg-[#05070B] border border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 rounded-xl bg-vermilion/20 text-vermilion border border-vermilion/40 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <i data-lucide="hotel" class="w-4 h-4"></i>
+              </div>
               <div>
-                <div class="flex flex-wrap items-center gap-2.5 mb-3">
-                  <span class="px-3 py-1 rounded-xl bg-indigo-600 text-white text-xs font-bold font-mono tracking-wider shadow-glow-indigo">
-                    DAY ${dayData.day}
-                  </span>
-                  <span class="px-3 py-1 rounded-xl bg-indigo-950/80 text-indigo-300 text-xs font-semibold border border-indigo-800/80">
-                    ${dayData.date}
-                  </span>
-                  <span class="px-3 py-1 rounded-xl bg-slate-900 text-slate-300 text-xs font-medium border border-slate-800">
-                    ${dayData.cityTag}
-                  </span>
-                  <span class="px-3 py-1 rounded-xl bg-sky-950/80 text-sky-300 text-xs font-medium border border-sky-800/60 flex items-center gap-1">
-                    <i data-lucide="thermometer" class="w-3.5 h-3.5"></i> ${dayData.weather}
-                  </span>
-                </div>
-
-                <h3 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight mb-2">
-                  ${dayData.theme}
-                </h3>
-              </div>
-
-              <!-- Day Accommodation Card & Copy Bar -->
-              <div class="mt-4 p-4 rounded-2xl bg-[#0F172A] border border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-                <div class="flex items-start gap-3">
-                  <div class="w-9 h-9 rounded-xl bg-indigo-950 text-indigo-400 border border-indigo-800/60 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <i data-lucide="hotel" class="w-4 h-4"></i>
-                  </div>
-                  <div>
-                    <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Accommodation</div>
-                    <div class="text-sm font-bold text-white">${dayData.hotel.name}</div>
-                    <div class="text-xs text-slate-400">${dayData.hotel.notes} • <span class="font-medium text-indigo-400">${dayData.hotel.nights}</span></div>
-                  </div>
-                </div>
-
-                <div class="flex items-center gap-2 flex-shrink-0 w-full sm:w-auto justify-end">
-                  <button onclick="copyDayItinerary(${dayData.day})" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700 transition-colors" title="Copy Day Schedule to Clipboard">
-                    <i data-lucide="copy" class="w-3.5 h-3.5 text-slate-400"></i>
-                    <span>Copy Day</span>
-                  </button>
-                  <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(dayData.hotel.mapQuery)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-sm transition-colors">
-                    <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
-                    <span>Map</span>
-                  </a>
-                </div>
-              </div>
-
-            </div>
-
-            <!-- Right Visual Image -->
-            <div class="lg:col-span-4 relative min-h-[180px] lg:min-h-full border-t lg:border-t-0 lg:border-l border-slate-800">
-              <img src="${dayData.image}" alt="${dayData.theme}" class="w-full h-full object-cover max-h-60 lg:max-h-none">
-              <div class="absolute inset-0 bg-gradient-to-t from-[#090D16] via-[#090D16]/30 to-transparent flex items-end p-4 text-white">
-                <span class="text-xs font-semibold drop-shadow-md flex items-center gap-1.5 bg-slate-900/80 backdrop-blur px-2.5 py-1 rounded-lg border border-slate-700">
-                  <i data-lucide="camera" class="w-3.5 h-3.5 text-indigo-400"></i> ${dayData.city}
-                </span>
+                <div class="text-[10px] font-mono font-bold text-slate-400 uppercase">Accommodation Base</div>
+                <div class="text-sm font-bold text-white">${dayData.hotel.name}</div>
+                <div class="text-xs text-slate-400">${dayData.hotel.notes} • <span class="font-medium text-gold font-mono">${dayData.hotel.nights}</span></div>
               </div>
             </div>
 
+            <div class="flex items-center gap-2 flex-shrink-0 w-full sm:w-auto justify-end">
+              <button onclick="copyDayItinerary(${dayData.day})" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#0F1624] hover:bg-slate-800 text-slate-200 text-xs font-semibold border border-white/10 transition-colors" title="Copy Day Schedule to Clipboard">
+                <i data-lucide="copy" class="w-3.5 h-3.5 text-slate-400"></i>
+                <span>Copy</span>
+              </button>
+              <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(dayData.hotel.mapQuery)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-vermilion hover:bg-red-600 text-white text-xs font-semibold shadow-glow-red transition-colors">
+                <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
+                <span>Map</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Visual Showcase Image -->
+        <div class="lg:col-span-4 relative min-h-[220px] lg:min-h-full border-t lg:border-t-0 lg:border-l border-white/10">
+          <img src="${dayData.image}" alt="${dayData.theme}" class="w-full h-full object-cover max-h-72 lg:max-h-none">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#05070B] via-[#05070B]/30 to-transparent flex items-end justify-between p-4 text-white">
+            <span class="text-xs font-mono font-semibold flex items-center gap-1.5 bg-[#05070B]/90 backdrop-blur px-3 py-1 rounded-lg border border-white/10">
+              <i data-lucide="camera" class="w-3.5 h-3.5 text-gold"></i> ${dayData.city}
+            </span>
+
+            <!-- Pagination Arrows inside Hero -->
+            <div class="flex items-center gap-1.5 bg-[#05070B]/90 backdrop-blur p-1 rounded-xl border border-white/10">
+              <button onclick="prevDay()" class="p-1.5 hover:text-gold transition-colors text-slate-300" title="Previous Day">
+                <i data-lucide="chevron-left" class="w-4 h-4"></i>
+              </button>
+              <span class="text-xs font-mono font-bold px-1.5 text-white">${dayData.day}/9</span>
+              <button onclick="nextDay()" class="p-1.5 hover:text-gold transition-colors text-slate-300" title="Next Day">
+                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+              </button>
+            </div>
           </div>
         </div>
 
-        <!-- Timeline Items Container -->
-        <div class="day-activities-wrapper space-y-3 pl-2 sm:pl-4">
-          ${
-            hasActivities
-              ? filteredActivities.map((activity, idx) => renderActivityCard(activity, idx, dayData.activities.length)).join("")
-              : `<div class="p-8 text-center bg-[#141E33] rounded-2xl border border-slate-800 text-slate-400 text-sm">
-                  No activities matching current filters on Day ${dayData.day}.
-                </div>`
-          }
+      </div>
+    </div>
+
+    <!-- Activity Timeline for Selected Day -->
+    <div class="space-y-3 pl-1 sm:pl-2">
+      ${
+        filteredActivities.length > 0
+          ? filteredActivities.map((activity, idx) => renderActivityCard(activity, idx)).join("")
+          : `<div class="p-10 text-center jp-card rounded-2xl border border-white/10 text-slate-400 text-sm">
+               No activities matching "${searchQuery}" on Day ${dayData.day}.
+             </div>`
+      }
+    </div>
+
+    <!-- Bottom Day Navigator Buttons -->
+    <div class="flex items-center justify-between mt-8 pt-6 border-t border-white/10">
+      <button onclick="prevDay()" class="px-4 py-2 rounded-xl bg-[#0B101B] hover:bg-[#0F1624] text-slate-200 text-xs font-semibold border border-white/10 flex items-center gap-2 transition-all">
+        <i data-lucide="arrow-left" class="w-3.5 h-3.5 text-gold"></i>
+        <span>Previous (Day ${dayData.day === 1 ? 9 : dayData.day - 1})</span>
+      </button>
+
+      <span class="text-xs font-mono text-slate-500 hidden sm:inline">Use ← Left / Right → Arrow Keys to switch days</span>
+
+      <button onclick="nextDay()" class="px-4 py-2 rounded-xl bg-vermilion hover:bg-red-600 text-white text-xs font-semibold shadow-glow-red flex items-center gap-2 transition-all">
+        <span>Next (Day ${dayData.day === 9 ? 1 : dayData.day + 1})</span>
+        <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+      </button>
+    </div>
+  `;
+
+  if (window.lucide) {
+    window.lucide.createIcons();
+  }
+}
+
+// ==========================================
+// 6. 9-DAY SUMMARY GRID OVERVIEW RENDERER
+// ==========================================
+
+function renderGridDays() {
+  const container = document.getElementById("grid-days-container");
+  if (!container) return;
+
+  container.innerHTML = ITINERARY_DATA.map(dayData => {
+    const totalMyr = dayData.activities.reduce((acc, curr) => acc + curr.costMyr, 0);
+    const halalCount = dayData.activities.filter(a => a.halal === "certified").length;
+
+    return `
+      <div class="jp-card rounded-2xl overflow-hidden border border-white/10 shadow-card-oled flex flex-col justify-between group">
+        <div>
+          <!-- Thumbnail Image -->
+          <div class="relative h-44 w-full overflow-hidden">
+            <img src="${dayData.image}" alt="${dayData.city}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0B101B] via-transparent to-transparent flex items-end justify-between p-3">
+              <span class="px-2.5 py-0.5 rounded-md bg-vermilion text-white text-[10px] font-mono font-bold shadow-sm">
+                DAY ${dayData.day}
+              </span>
+              <span class="px-2 py-0.5 rounded-md bg-[#05070B]/80 text-gold text-[10px] font-mono font-bold border border-white/10">
+                ${dayData.date}
+              </span>
+            </div>
+          </div>
+
+          <!-- Card Content -->
+          <div class="p-5 space-y-3">
+            <div class="flex items-center gap-2 text-[11px] font-mono text-slate-400">
+              <span>📍 ${dayData.city}</span>
+              <span>•</span>
+              <span class="text-sky-400">${dayData.weather}</span>
+            </div>
+
+            <h4 class="font-mincho text-base font-bold text-white line-clamp-2">
+              ${dayData.theme}
+            </h4>
+
+            <div class="text-xs text-slate-400 flex items-center gap-1.5">
+              <i data-lucide="hotel" class="w-3.5 h-3.5 text-gold flex-shrink-0"></i>
+              <span class="truncate">${dayData.hotel.name}</span>
+            </div>
+
+            <div class="flex items-center justify-between text-xs font-mono pt-2 border-t border-white/5">
+              <span class="text-slate-400">${dayData.activities.length} stops (${halalCount} Halal)</span>
+              <span class="font-bold text-gold">RM ${totalMyr} pp</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Button to open this day -->
+        <div class="p-4 pt-0">
+          <button onclick="focusDay(${dayData.day})" class="w-full py-2 rounded-xl bg-[#0F1624] hover:bg-vermilion text-slate-200 hover:text-white text-xs font-semibold border border-white/10 hover:border-vermilion transition-all flex items-center justify-center gap-1.5">
+            <span>View Full Day Plan</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </button>
         </div>
 
       </div>
@@ -1518,45 +1741,48 @@ function renderTimeline() {
   }
 }
 
-// Activity Card Renderer (Dark High Contrast)
-function renderActivityCard(activity, idx, total) {
+// ==========================================
+// 7. ACTIVITY ROW COMPONENT
+// ==========================================
+
+function renderActivityCard(activity, idx) {
   let catBadge = "";
-  let borderAccent = "border-slate-800 hover:border-slate-700";
+  let borderAccent = "border-white/10 hover:border-white/20";
 
   switch (activity.category) {
     case "food":
-      catBadge = `<span class="px-2.5 py-0.5 rounded-lg text-[11px] font-semibold bg-emerald-950/80 text-emerald-300 border border-emerald-800/80 flex items-center gap-1">
+      catBadge = `<span class="px-2 py-0.5 rounded-md text-[10px] font-mono font-semibold bg-emerald-950/80 text-emerald-300 border border-emerald-800/80 flex items-center gap-1">
                     <i data-lucide="utensils" class="w-3 h-3"></i> Food
                   </span>`;
-      borderAccent = "border-emerald-900/50 hover:border-emerald-700/80";
+      borderAccent = "border-emerald-900/40 hover:border-emerald-700/60";
       break;
     case "transit":
-      catBadge = `<span class="px-2.5 py-0.5 rounded-lg text-[11px] font-semibold bg-sky-950/80 text-sky-300 border border-sky-800/80 flex items-center gap-1">
+      catBadge = `<span class="px-2 py-0.5 rounded-md text-[10px] font-mono font-semibold bg-sky-950/80 text-sky-300 border border-sky-800/80 flex items-center gap-1">
                     <i data-lucide="train" class="w-3 h-3"></i> Transit
                   </span>`;
-      borderAccent = "border-sky-900/50 hover:border-sky-700/80";
+      borderAccent = "border-sky-900/40 hover:border-sky-700/60";
       break;
     case "sightseeing":
-      catBadge = `<span class="px-2.5 py-0.5 rounded-lg text-[11px] font-semibold bg-purple-950/80 text-purple-300 border border-purple-800/80 flex items-center gap-1">
+      catBadge = `<span class="px-2 py-0.5 rounded-md text-[10px] font-mono font-semibold bg-purple-950/80 text-purple-300 border border-purple-800/80 flex items-center gap-1">
                     <i data-lucide="landmark" class="w-3 h-3"></i> Sightseeing
                   </span>`;
-      borderAccent = "border-purple-900/50 hover:border-purple-700/80";
+      borderAccent = "border-purple-900/40 hover:border-purple-700/60";
       break;
     case "shopping":
-      catBadge = `<span class="px-2.5 py-0.5 rounded-lg text-[11px] font-semibold bg-amber-950/80 text-amber-300 border border-amber-800/80 flex items-center gap-1">
+      catBadge = `<span class="px-2 py-0.5 rounded-md text-[10px] font-mono font-semibold bg-amber-950/80 text-amber-300 border border-amber-800/80 flex items-center gap-1">
                     <i data-lucide="shopping-bag" class="w-3 h-3"></i> Shopping
                   </span>`;
-      borderAccent = "border-amber-900/50 hover:border-amber-700/80";
+      borderAccent = "border-amber-900/40 hover:border-amber-700/60";
       break;
     case "prayer":
-      catBadge = `<span class="px-2.5 py-0.5 rounded-lg text-[11px] font-semibold bg-teal-950/80 text-teal-300 border border-teal-800/80 flex items-center gap-1">
-                    <i data-lucide="moon" class="w-3 h-3"></i> Rest / Prayer
+      catBadge = `<span class="px-2 py-0.5 rounded-md text-[10px] font-mono font-semibold bg-teal-950/80 text-teal-300 border border-teal-800/80 flex items-center gap-1">
+                    <i data-lucide="moon" class="w-3 h-3"></i> Prayer / Rest
                   </span>`;
-      borderAccent = "border-teal-900/50 hover:border-teal-700/80";
+      borderAccent = "border-teal-900/40 hover:border-teal-700/60";
       break;
     default:
-      catBadge = `<span class="px-2.5 py-0.5 rounded-lg text-[11px] font-semibold bg-slate-900 text-slate-300 border border-slate-800 flex items-center gap-1">
-                    <i data-lucide="activity" class="w-3 h-3"></i> Schedule
+      catBadge = `<span class="px-2 py-0.5 rounded-md text-[10px] font-mono font-semibold bg-[#0F1624] text-slate-300 border border-white/10 flex items-center gap-1">
+                    <i data-lucide="activity" class="w-3 h-3"></i> Logistics
                   </span>`;
   }
 
@@ -1564,14 +1790,14 @@ function renderActivityCard(activity, idx, total) {
   let halalBadge = "";
   if (activity.halal === "certified") {
     halalBadge = `
-      <span class="px-2.5 py-0.5 rounded-lg text-[11px] font-bold bg-emerald-600 text-white flex items-center gap-1 shadow-glow-emerald" title="${activity.halalNote || 'Halal Certified'}">
-        <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Halal Verified
+      <span class="px-2 py-0.5 rounded-md text-[10px] font-mono font-bold bg-emerald-600 text-white flex items-center gap-1 shadow-sm" title="${activity.halalNote || 'Halal Certified'}">
+        <i data-lucide="shield-check" class="w-3 h-3"></i> Halal Verified
       </span>
     `;
   } else if (activity.halal === "caution") {
     halalBadge = `
-      <span class="px-2.5 py-0.5 rounded-lg text-[11px] font-bold bg-amber-600 text-white flex items-center gap-1 shadow-sm" title="${activity.halalNote || 'Ingredient Check Required'}">
-        <i data-lucide="alert-circle" class="w-3.5 h-3.5"></i> Halal Caution
+      <span class="px-2 py-0.5 rounded-md text-[10px] font-mono font-bold bg-amber-600 text-white flex items-center gap-1" title="${activity.halalNote || 'Check Ingredients'}">
+        <i data-lucide="alert-circle" class="w-3 h-3"></i> Halal Caution
       </span>
     `;
   }
@@ -1580,12 +1806,12 @@ function renderActivityCard(activity, idx, total) {
   const costDisplay = (activity.costJpy > 0 || activity.costMyr > 0)
     ? `<div class="text-right flex-shrink-0 font-mono">
          <div class="text-sm font-bold text-white">~¥${activity.costJpy.toLocaleString()}</div>
-         <div class="text-[11px] font-semibold text-emerald-400 font-mono">RM ${activity.costMyr} pp</div>
+         <div class="text-[11px] font-semibold text-gold font-mono">RM ${activity.costMyr} pp</div>
        </div>`
     : `<div class="text-right flex-shrink-0 text-xs font-semibold text-slate-400 font-mono">Free / Included</div>`;
 
   return `
-    <div class="itinerary-card bg-[#141E33] rounded-2xl p-4 sm:p-5 border ${borderAccent} shadow-card-dark relative transition-all">
+    <div class="jp-card rounded-2xl p-4 sm:p-5 border ${borderAccent} shadow-card-oled relative transition-all">
       <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
         
         <!-- Left Details -->
@@ -1593,7 +1819,7 @@ function renderActivityCard(activity, idx, total) {
           
           <div class="flex flex-wrap items-center gap-2">
             <!-- Time Badge -->
-            <span class="px-2.5 py-1 rounded-lg bg-[#0F172A] border border-slate-700 text-white text-xs font-bold font-mono tracking-tight">
+            <span class="px-2.5 py-1 rounded-lg bg-[#05070B] border border-white/10 text-white text-xs font-bold font-mono tracking-tight">
               ${activity.time}
             </span>
             ${catBadge}
@@ -1606,19 +1832,19 @@ function renderActivityCard(activity, idx, total) {
             </h4>
             ${
               activity.mapQuery
-                ? `<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(activity.mapQuery)}" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-indigo-400 transition-colors p-1" title="Open in Google Maps">
+                ? `<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(activity.mapQuery)}" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-vermilion transition-colors p-1" title="Open in Google Maps">
                      <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
                    </a>`
                 : ''
             }
           </div>
 
-          ${activity.note ? `<p class="text-xs text-slate-300 leading-relaxed">${activity.note}</p>` : ""}
+          ${activity.note ? `<p class="text-xs text-slate-300 leading-relaxed font-sans">${activity.note}</p>` : ""}
 
           ${
             activity.transit
-              ? `<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#0F172A] text-slate-300 text-[11px] font-medium border border-slate-800">
-                   <i data-lucide="navigation" class="w-3 h-3 text-indigo-400"></i>
+              ? `<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#05070B] text-slate-300 text-[11px] font-mono border border-white/10">
+                   <i data-lucide="navigation" class="w-3 h-3 text-gold"></i>
                    <span>${activity.transit}</span>
                  </div>`
               : ""
@@ -1627,8 +1853,8 @@ function renderActivityCard(activity, idx, total) {
         </div>
 
         <!-- Right Cost Tag -->
-        <div class="border-t sm:border-t-0 pt-2 sm:pt-0 sm:pl-4 sm:border-l border-slate-800/80 flex sm:flex-col justify-between sm:justify-start items-center sm:items-end">
-          <span class="text-[10px] uppercase font-bold text-slate-400 tracking-wider sm:mb-1">EST. COST</span>
+        <div class="border-t sm:border-t-0 pt-2 sm:pt-0 sm:pl-4 sm:border-l border-white/10 flex sm:flex-col justify-between sm:justify-start items-center sm:items-end">
+          <span class="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider sm:mb-1">EST. COST</span>
           ${costDisplay}
         </div>
 
@@ -1638,53 +1864,88 @@ function renderActivityCard(activity, idx, total) {
 }
 
 // ==========================================
-// 4. BUDGET DASHBOARD LOGIC
+// 8. MASTER VIEW SWITCHER
 // ==========================================
 
-const BUDGET_DATA = {
-  food: { minJpy: 31500, maxJpy: 45000, minMyr: 945, maxMyr: 1350 },
-  intercity: { minJpy: 16300, maxJpy: 19600, minMyr: 489, maxMyr: 588 },
-  local: { minJpy: 7200, maxJpy: 10800, minMyr: 216, maxMyr: 324 },
-  attractions: { minJpy: 1000, maxJpy: 2500, minMyr: 30, maxMyr: 75 },
-  misc: { minJpy: 5000, maxJpy: 10000, minMyr: 150, maxMyr: 300 },
-  totalNonHotel: { minJpy: 61000, maxJpy: 88000, minMyr: 1830, maxMyr: 2640 },
-  targetHotel: { minJpy: 170000, maxJpy: 215000, minMyr: 5100, maxMyr: 6450 }
-};
+function switchMainView(viewName) {
+  const views = ['itinerary', 'budget', 'halal', 'akiba', 'checklist'];
+  views.forEach(v => {
+    const btn = document.getElementById(`nav-btn-${v}`);
+    if (btn) {
+      if (v === viewName) {
+        btn.className = "view-nav-pill active px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 border border-white/10";
+      } else {
+        btn.className = "view-nav-pill px-3 py-1.5 rounded-xl text-xs font-medium text-slate-300 hover:text-white bg-[#090D15] hover:bg-slate-800 flex items-center gap-1.5 border border-white/10";
+      }
+    }
+  });
+
+  const targetSection = document.getElementById(`section-${viewName}`);
+  if (targetSection) {
+    const yOffset = -80;
+    const y = targetSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  }
+}
+window.switchMainView = switchMainView;
+
+// ==========================================
+// 9. HERO IMAGE SWITCHER
+// ==========================================
+
+function switchHeroImg(src, title, desc, daysTag) {
+  const imgEl = document.getElementById("hero-feature-img");
+  const titleEl = document.getElementById("hero-featured-title");
+  const descEl = document.getElementById("hero-featured-desc");
+  const dayEl = document.getElementById("hero-featured-day");
+
+  if (imgEl) {
+    imgEl.style.opacity = "0.4";
+    setTimeout(() => {
+      imgEl.src = src;
+      imgEl.style.opacity = "1";
+    }, 150);
+  }
+  if (titleEl && title) titleEl.textContent = title;
+  if (descEl && desc) descEl.textContent = desc;
+  if (dayEl && daysTag) dayEl.textContent = daysTag;
+}
+window.switchHeroImg = switchHeroImg;
+
+// ==========================================
+// 10. BUDGET DASHBOARD LOGIC
+// ==========================================
 
 function setBudgetPax(pax) {
   currentPax = pax;
-  
   const p1 = document.getElementById("pax-1-btn");
   const p4 = document.getElementById("pax-4-btn");
   if (p1 && p4) {
     if (pax === 1) {
-      p1.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold bg-indigo-600 text-white shadow-sm transition-all";
+      p1.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold bg-vermilion text-white shadow-sm transition-all";
       p4.className = "px-3.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition-all";
     } else {
-      p4.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold bg-indigo-600 text-white shadow-sm transition-all";
+      p4.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold bg-vermilion text-white shadow-sm transition-all";
       p1.className = "px-3.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition-all";
     }
   }
-
   updateBudgetDashboard();
 }
 window.setBudgetPax = setBudgetPax;
 
 function setBudgetCurrency(curr) {
   currentCurrency = curr;
-
   const cMyr = document.getElementById("curr-myr-btn");
   const cJpy = document.getElementById("curr-jpy-btn");
   if (cMyr && cJpy) {
     if (curr === "MYR") {
-      cMyr.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold bg-indigo-600 text-white shadow-sm transition-all";
+      cMyr.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold bg-gold text-black-900 font-bold shadow-sm transition-all";
       cJpy.className = "px-3.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition-all";
     } else {
-      cJpy.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold bg-indigo-600 text-white shadow-sm transition-all";
+      cJpy.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold bg-gold text-black-900 font-bold shadow-sm transition-all";
       cMyr.className = "px-3.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition-all";
     }
   }
-
   updateBudgetDashboard();
 }
 window.setBudgetCurrency = setBudgetCurrency;
@@ -1735,15 +1996,10 @@ function updateBudgetDashboard() {
   if (grandTotalEl) grandTotalEl.textContent = grandFormatted.primary;
   if (grandTotalJpyEl) grandTotalJpyEl.textContent = grandFormatted.secondary;
   if (totalPaxLabel) totalPaxLabel.textContent = `${currentPax} Pax Total`;
-
-  const hotelTargetEl = document.getElementById("hotel-target-display");
-  if (hotelTargetEl) {
-    hotelTargetEl.textContent = `~170,000–215,000 JPY (≈ RM 5,100–6,450) for all 4`;
-  }
 }
 
 // ==========================================
-// 5. ADVANCE BOOKING CHECKLIST LOGIC
+// 11. ADVANCE BOOKING CHECKLIST LOGIC
 // ==========================================
 
 function getSavedChecklist() {
@@ -1764,6 +2020,7 @@ function saveChecklistState(id, isChecked) {
   updateChecklistProgress();
   renderChecklist();
 }
+window.saveChecklistState = saveChecklistState;
 
 function renderChecklist() {
   const container = document.getElementById("checklist-items-container");
@@ -1774,19 +2031,19 @@ function renderChecklist() {
   container.innerHTML = ADVANCE_BOOKINGS.map(item => {
     const isChecked = !!saved[item.id];
     return `
-      <div class="checklist-card p-5 rounded-2xl bg-[#141E33] border ${isChecked ? 'border-emerald-500/80 bg-emerald-950/20' : 'border-slate-800'} shadow-card-dark transition-all flex items-start gap-4">
+      <div class="jp-card p-5 rounded-2xl ${isChecked ? 'border-emerald-500/60 bg-emerald-950/20' : 'border-white/10'} shadow-card-oled transition-all flex items-start gap-4">
         <input 
           type="checkbox" 
           id="${item.id}" 
           ${isChecked ? 'checked' : ''}
           onchange="saveChecklistState('${item.id}', this.checked)"
-          class="mt-1 w-5 h-5 rounded-lg text-indigo-600 bg-[#0F172A] border-slate-700 focus:ring-indigo-500 cursor-pointer flex-shrink-0"
+          class="mt-1 w-5 h-5 rounded-lg text-vermilion bg-[#05070B] border-white/20 focus:ring-vermilion cursor-pointer flex-shrink-0 accent-[#E83929]"
         >
         <label for="${item.id}" class="cursor-pointer flex-grow space-y-1">
           <div class="text-sm font-bold ${isChecked ? 'line-through text-slate-500' : 'text-white'}">
             ${item.label}
           </div>
-          <div class="text-xs text-slate-400 leading-relaxed">
+          <div class="text-xs text-slate-400 leading-relaxed font-sans">
             ${item.detail}
           </div>
         </label>
@@ -1809,10 +2066,9 @@ function updateChecklistProgress() {
   if (textEl) textEl.textContent = `${completed} of ${total} Booked (${pct}%)`;
   if (barEl) barEl.style.width = `${pct}%`;
 }
-window.saveChecklistState = saveChecklistState;
 
 // ==========================================
-// 6. HALAL DIRECTORY RENDERING
+// 12. HALAL DIRECTORY RENDERING
 // ==========================================
 
 function renderHalalDirectory() {
@@ -1820,34 +2076,113 @@ function renderHalalDirectory() {
   if (!grid) return;
 
   grid.innerHTML = HALAL_RESTAURANTS.map(spot => `
-    <div class="bg-[#141E33] rounded-3xl p-6 border border-slate-800 shadow-card-dark hover:border-slate-700 transition-all flex flex-col justify-between">
+    <div class="jp-card rounded-3xl p-6 border border-white/10 shadow-card-oled flex flex-col justify-between">
       <div>
         <div class="flex items-center justify-between mb-3">
-          <span class="px-2.5 py-1 rounded-lg text-[11px] font-bold ${spot.status.includes('Caution') ? 'bg-amber-950 text-amber-300 border border-amber-800' : 'bg-emerald-950 text-emerald-300 border border-emerald-800'}">
+          <span class="px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold ${spot.status.includes('Caution') ? 'bg-amber-950 text-amber-300 border border-amber-800' : 'bg-emerald-950 text-emerald-300 border border-emerald-800'}">
             ${spot.status}
           </span>
           <span class="text-xs font-mono font-semibold text-slate-400">${spot.days}</span>
         </div>
 
-        <h4 class="text-lg font-bold text-white mb-1">${spot.name}</h4>
-        <div class="text-xs text-indigo-400 font-semibold mb-3 flex items-center gap-1">
-          <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> ${spot.city} • <span class="text-slate-400 font-normal">${spot.type}</span>
+        <h4 class="font-mincho text-lg font-bold text-white mb-1">${spot.name}</h4>
+        <div class="text-xs text-gold font-semibold mb-3 flex items-center gap-1 font-mono">
+          <i data-lucide="map-pin" class="w-3.5 h-3.5 text-gold"></i> ${spot.city} • <span class="text-slate-400 font-normal">${spot.type}</span>
         </div>
 
-        <p class="text-xs text-slate-300 leading-relaxed mb-4">${spot.desc}</p>
+        <p class="text-xs text-slate-300 leading-relaxed mb-4 font-sans">${spot.desc}</p>
       </div>
 
-      <div class="pt-4 border-t border-slate-800 flex items-center justify-between text-xs">
-        <span class="text-slate-400 font-medium">Est. Spend:</span>
-        <span class="font-mono font-bold text-emerald-400">${spot.avgCost}</span>
+      <div class="pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono">
+        <span class="text-slate-400">Est. Spend:</span>
+        <span class="font-bold text-emerald-400">${spot.avgCost}</span>
       </div>
     </div>
   `).join("");
+
+  if (window.lucide) {
+    window.lucide.createIcons();
+  }
 }
 
 // ==========================================
-// 7. EVENT LISTENERS & SEARCH
+// 13. LIVE CLOCKS & EVENT LISTENERS
 // ==========================================
+
+function startLiveClocks() {
+  function update() {
+    const now = new Date();
+    
+    // JST (UTC+9)
+    const jstFormatter = new Intl.DateTimeFormat("en-GB", {
+      timeZone: "Asia/Tokyo",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: false
+    });
+    
+    // MYT (UTC+8)
+    const mytFormatter = new Intl.DateTimeFormat("en-GB", {
+      timeZone: "Asia/Kuala_Lumpur",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: false
+    });
+
+    const jstEl = document.getElementById("live-time-jst");
+    const mytEl = document.getElementById("live-time-myt");
+    if (jstEl) jstEl.textContent = `JST: ${jstFormatter.format(now)}`;
+    if (mytEl) mytEl.textContent = `MYT: ${mytFormatter.format(now)}`;
+  }
+  update();
+  setInterval(update, 1000);
+}
+
+function copyDayItinerary(dayNum) {
+  const dayData = ITINERARY_DATA.find(d => d.day === dayNum);
+  if (!dayData) return;
+
+  let text = `🇯🇵 Japan Winter 2026 — Day ${dayData.day}: ${dayData.date}\n`;
+  text += `📍 Location: ${dayData.city} | ${dayData.theme}\n`;
+  text += `🏨 Hotel: ${dayData.hotel.name} (${dayData.hotel.nights})\n\n`;
+  text += `📅 Hour-by-hour Plan:\n`;
+
+  dayData.activities.forEach(act => {
+    const cost = act.costJpy > 0 ? ` [¥${act.costJpy.toLocaleString()} / RM ${act.costMyr}]` : '';
+    const halalTag = act.halal === 'certified' ? ' [Halal Certified]' : (act.halal === 'caution' ? ' [Halal Caution]' : '');
+    text += `• ${act.time} — ${act.title}${cost}${halalTag}\n`;
+    if (act.note) text += `  ${act.note}\n`;
+    if (act.transit) text += `  Route: ${act.transit}\n`;
+  });
+
+  navigator.clipboard.writeText(text).then(() => {
+    showToast(`Day ${dayNum} itinerary copied to clipboard!`);
+  }).catch(() => {
+    showToast(`Permission denied for clipboard.`);
+  });
+}
+window.copyDayItinerary = copyDayItinerary;
+
+function showToast(message) {
+  const container = document.getElementById("toast-container");
+  if (!container) return;
+
+  const toast = document.createElement("div");
+  toast.className = "toast-msg px-4 py-3 rounded-xl bg-vermilion text-white text-xs font-semibold shadow-glow-red border border-vermilion/50 flex items-center gap-2 mb-2 pointer-events-auto";
+  toast.innerHTML = `<i data-lucide="check-circle" class="w-4 h-4 text-white"></i><span>${message}</span>`;
+  container.appendChild(toast);
+
+  if (window.lucide) window.lucide.createIcons();
+
+  setTimeout(() => {
+    toast.style.opacity = "0";
+    toast.style.transform = "translateY(10px)";
+    toast.style.transition = "all 0.3s ease";
+    setTimeout(() => toast.remove(), 300);
+  }, 2500);
+}
 
 function setupEventListeners() {
   // Category Filter Buttons
@@ -1855,23 +2190,23 @@ function setupEventListeners() {
   filterBtns.forEach(btn => {
     btn.addEventListener("click", () => {
       filterBtns.forEach(b => {
-        b.classList.remove("active", "bg-indigo-600", "text-white");
-        b.classList.add("bg-[#0F172A]");
+        b.classList.remove("active", "bg-vermilion", "text-white");
+        b.classList.add("bg-[#0F1624]");
       });
-      btn.classList.add("active", "bg-indigo-600", "text-white");
-      btn.classList.remove("bg-[#0F172A]");
+      btn.classList.add("active", "bg-vermilion", "text-white");
+      btn.classList.remove("bg-[#0F1624]");
 
       activeCategoryFilter = btn.dataset.category;
-      renderTimeline();
+      renderSingleDay(activeDay);
     });
   });
 
-  // Quick Search Input
-  const searchInput = document.getElementById("quick-search-input");
+  // Search input
+  const searchInput = document.getElementById("itinerary-search-input");
   if (searchInput) {
     searchInput.addEventListener("input", (e) => {
       searchQuery = e.target.value;
-      renderTimeline();
+      renderSingleDay(activeDay);
     });
   }
 
@@ -1892,50 +2227,15 @@ function setupEventListeners() {
     });
   }
 
-  // Expand / Collapse All Days
-  const expandBtn = document.getElementById("btn-expand-all");
-  const expandText = document.getElementById("expand-toggle-text");
-  if (expandBtn && expandText) {
-    expandBtn.addEventListener("click", () => {
-      allExpanded = !allExpanded;
-      const wrappers = document.querySelectorAll(".day-activities-wrapper");
-      wrappers.forEach(w => {
-        w.style.display = allExpanded ? "block" : "none";
-      });
-      expandText.textContent = allExpanded ? "Collapse All Days" : "Expand All Days";
-    });
-  }
-
-  // Jump to Day 1 Button
-  const jumpBtn = document.getElementById("btn-jump-today");
-  if (jumpBtn) {
-    jumpBtn.addEventListener("click", () => {
-      const day1 = document.getElementById("day-1");
-      if (day1) {
-        day1.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    });
-  }
-
-  // Scroll-spy for Day Pills
-  window.addEventListener("scroll", () => {
-    const daySections = document.querySelectorAll(".day-section");
-    const pills = document.querySelectorAll(".day-pill");
-    let currentDay = null;
-
-    daySections.forEach(section => {
-      const rect = section.getBoundingClientRect();
-      if (rect.top <= 250 && rect.bottom >= 250) {
-        currentDay = section.dataset.day;
-      }
-    });
-
-    pills.forEach(pill => {
-      if (pill.dataset.day === currentDay) {
-        pill.classList.add("active");
-      } else if (pill.dataset.day) {
-        pill.classList.remove("active");
-      }
-    });
-  }, { passive: true });
+  // Keyboard navigation for Days (Left / Right arrow keys)
+  window.addEventListener("keydown", (e) => {
+    if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA" || e.target.tagName === "SELECT") {
+      return;
+    }
+    if (e.key === "ArrowRight") {
+      nextDay();
+    } else if (e.key === "ArrowLeft") {
+      prevDay();
+    }
+  });
 }
