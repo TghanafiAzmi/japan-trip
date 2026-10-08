@@ -15,7 +15,7 @@ const ITINERARY_DATA = [
     cityTag: "Osaka • Arrival",
     weather: "8°C • Crisp Winter",
     theme: "Arrive KIX 09:45 ✈️ • Dotonbori & Namba",
-    image: "./images/dotonbori.jpg",
+    image: "./images/osaka-dotonbori.jpg",
     hotel: {
       name: "Hotel WBF Namba Motomachi",
       nights: "Nights 16–17 Jan (2 Nights)",
@@ -144,7 +144,7 @@ const ITINERARY_DATA = [
     cityTag: "Osaka Highlights",
     weather: "7°C • Clear & Crisp",
     theme: "🏯 Osaka day (Castle → Market → Namba → Shinsekai)",
-    image: "./images/osaka_castle.jpg",
+    image: "./images/osaka-castle.jpg",
     hotel: {
       name: "Hotel WBF Namba Motomachi",
       nights: "Night 2 of 2",
@@ -297,7 +297,7 @@ const ITINERARY_DATA = [
     cityTag: "Intercity Transfer",
     weather: "6°C • Chilly & Serene",
     theme: "🚆 Osaka → Kyoto (Transfer & Shijo Exploration)",
-    image: "./images/kyoto.jpg",
+    image: "./images/kyoto-pagoda.jpg",
     hotel: {
       name: "Hotel MyStays Kyoto - Shijo",
       nights: "Nights 18–19 Jan (2 Nights)",
@@ -416,7 +416,7 @@ const ITINERARY_DATA = [
     cityTag: "Historic Kyoto",
     weather: "5°C • Morning Mist",
     theme: "⛩️ Kyoto highlights (Fushimi Inari → Kiyomizu → Gion → Nishiki)",
-    image: "./images/kyoto.jpg",
+    image: "./images/kyoto-pagoda.jpg",
     hotel: {
       name: "Hotel MyStays Kyoto - Shijo",
       nights: "Night 2 of 2",
@@ -558,7 +558,7 @@ const ITINERARY_DATA = [
     cityTag: "Mt. Fuji Arrival",
     weather: "-2°C • Snowy & Crisp",
     theme: "🗻 Kyoto → Kawaguchiko + Light Fuji (Oishi Park)",
-    image: "./images/fuji.jpg",
+    image: "./images/mt-fuji-kawaguchiko.jpg",
     hotel: {
       name: "HAOSTAY",
       nights: "Nights 20–21 Jan (2 Nights)",
@@ -677,7 +677,7 @@ const ITINERARY_DATA = [
     cityTag: "Mt. Fuji Exploration",
     weather: "-3°C • Clear & Frozen",
     theme: "🗻 Kawaguchiko / Mt. Fuji winter-safe day (Chureito & Lake)",
-    image: "./images/fuji.jpg",
+    image: "./images/mt-fuji-kawaguchiko.jpg",
     hotel: {
       name: "HAOSTAY",
       nights: "Night 2 of 2",
@@ -796,7 +796,7 @@ const ITINERARY_DATA = [
     cityTag: "Tokyo Arrival & Asakusa",
     weather: "8°C • Winter Sun",
     theme: "🚆 Kawaguchiko → Tokyo + Asakusa (Senso-ji & Halal Sakura)",
-    image: "./images/sensoji.jpg",
+    image: "./images/tokyo-sensoji.jpg",
     hotel: {
       name: "Hotel Tavinos Asakusa",
       nights: "Nights 22–23 Jan (2 Nights)",
@@ -915,7 +915,7 @@ const ITINERARY_DATA = [
     cityTag: "Tokyo Mega Exploration",
     weather: "7°C • Electric City Night",
     theme: "🗼 Tokyo full day + gadget shopping (Meiji Jingu → Shibuya → Akihabara)",
-    image: "./images/akihabara.jpg",
+    image: "./images/tokyo-akihabara.jpg",
     hotel: {
       name: "Hotel Tavinos Asakusa",
       nights: "Night 2 of 2",
@@ -1056,7 +1056,7 @@ const ITINERARY_DATA = [
     cityTag: "Departure Day",
     weather: "7°C • Clear Flight Weather",
     theme: "🧳 Departure (Asakusa Souvenirs → HALAL SAKURA → NRT 16:50 Flight)",
-    image: "./images/sensoji.jpg",
+    image: "./images/tokyo-sensoji.jpg",
     hotel: {
       name: "Hotel Tavinos Asakusa",
       nights: "Check-out Day",
