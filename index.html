@@ -50,6 +50,9 @@
   <!-- Lenis Smooth Scroll CDN -->
   <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
 
+  <!-- Leaflet CSS for Live Roadmap -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
   <!-- Custom Styles -->
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -149,6 +152,7 @@
           class="hidden md:flex items-center gap-8 text-[11px] font-mono font-semibold tracking-[0.18em] uppercase text-slate-300">
           <a href="#hero" class="text-white hover:text-vermilion transition-colors">Home</a>
           <a href="#days-grid" class="hover:text-white transition-colors">Itinerary</a>
+          <a href="#live-roadmap-section" class="hover:text-vermilion transition-colors text-vermilion font-bold flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-vermilion animate-ping"></span><span>Roadmap</span></a>
           <a href="#budget-section" class="hover:text-white transition-colors">Budget</a>
           <a href="#halal-section" class="hover:text-white transition-colors">Halal</a>
           <a href="#checklist-section" class="hover:text-white transition-colors">Checklist</a>
@@ -563,6 +567,122 @@
         </a>
 
       </div>
+    </div>
+  </section>
+
+
+  <!-- ==========================================================
+       4B. LIVE INTERACTIVE ROADMAP & GEO-ROUTE TRACKER
+       ========================================================== -->
+  <section id="live-roadmap-section" class="py-20 sm:py-28 bg-[#05070B] border-b border-white/10 relative overflow-hidden reveal-init">
+    <!-- Atmospheric subtle ambient glows -->
+    <div class="absolute top-1/3 left-0 w-80 h-80 bg-vermilion/5 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-10 right-0 w-80 h-80 bg-gold/5 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-6 sm:px-10 relative z-10 space-y-8">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-8">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-vermilion/10 text-vermilion text-[11px] font-mono font-bold border border-vermilion/30 mb-3">
+            <span class="w-2 h-2 rounded-full bg-vermilion animate-ping"></span>
+            <span>REAL-TIME JST ROUTE ENGINE • ライブ旅程マップ</span>
+          </div>
+          <h2 class="font-display text-4xl sm:text-5xl font-bold tracking-wider text-white uppercase">
+            Live Daily Roadmap
+          </h2>
+          <p class="text-sm text-slate-400 font-sans mt-2 max-w-xl">
+            Interactive geographical route tracker for every day of your expedition. Tracks active stops in real-time or simulate your journey hour-by-hour.
+          </p>
+        </div>
+
+        <!-- Live Clock & Mode Pill -->
+        <div class="flex items-center gap-3">
+          <div class="px-4 py-2 rounded-xl bg-[#090D15] border border-white/10 text-right">
+            <div class="text-[10px] font-mono text-slate-400 uppercase">JAPAN TIME (JST)</div>
+            <div id="roadmap-live-jst-clock" class="text-sm font-bold font-mono text-gold">--:-- JST</div>
+          </div>
+          <button id="roadmap-live-sync-btn" class="px-3.5 py-2.5 rounded-xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-xs font-mono font-bold transition-all hover:scale-105">
+            ● Real JST Active
+          </button>
+        </div>
+      </div>
+
+      <!-- Day Selector Ribbon (D1 - D9 + All-Trip) -->
+      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
+        <button data-day="1" class="master-roadmap-day-btn px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all bg-vermilion text-white shadow-glow-red flex-shrink-0">
+          Day 1 (Osaka)
+        </button>
+        <button data-day="2" class="master-roadmap-day-btn px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all bg-[#090D15] text-slate-400 hover:text-white border border-white/10 flex-shrink-0">
+          Day 2 (Nara)
+        </button>
+        <button data-day="3" class="master-roadmap-day-btn px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all bg-[#090D15] text-slate-400 hover:text-white border border-white/10 flex-shrink-0">
+          Day 3 (Kyoto)
+        </button>
+        <button data-day="4" class="master-roadmap-day-btn px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all bg-[#090D15] text-slate-400 hover:text-white border border-white/10 flex-shrink-0">
+          Day 4 (Kyoto East)
+        </button>
+        <button data-day="5" class="master-roadmap-day-btn px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all bg-[#090D15] text-slate-400 hover:text-white border border-white/10 flex-shrink-0">
+          Day 5 (Tokyo)
+        </button>
+        <button data-day="6" class="master-roadmap-day-btn px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all bg-[#090D15] text-slate-400 hover:text-white border border-white/10 flex-shrink-0">
+          Day 6 (GALA Snow)
+        </button>
+        <button data-day="7" class="master-roadmap-day-btn px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all bg-[#090D15] text-slate-400 hover:text-white border border-white/10 flex-shrink-0">
+          Day 7 (Mt. Fuji)
+        </button>
+        <button data-day="8" class="master-roadmap-day-btn px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all bg-[#090D15] text-slate-400 hover:text-white border border-white/10 flex-shrink-0">
+          Day 8 (Akiba & Shinjuku)
+        </button>
+        <button data-day="9" class="master-roadmap-day-btn px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all bg-[#090D15] text-slate-400 hover:text-white border border-white/10 flex-shrink-0">
+          Day 9 (Narita Flight)
+        </button>
+        <button data-day="0" class="master-roadmap-day-btn px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all bg-[#090D15] text-gold hover:text-white border border-gold/30 flex-shrink-0">
+          🗾 All 9 Days Route
+        </button>
+      </div>
+
+      <!-- Time Simulation Scrubber Bar -->
+      <div class="p-4 rounded-2xl bg-[#090D15] border border-white/10 space-y-3">
+        <div class="flex items-center justify-between text-xs font-mono">
+          <div class="flex items-center gap-2 text-slate-300">
+            <i data-lucide="clock" class="w-4 h-4 text-vermilion"></i>
+            <span>Interactive Hour Scrubber (Simulation Mode):</span>
+          </div>
+          <div class="font-bold text-white px-2.5 py-1 rounded bg-[#05070B] border border-white/10">
+            <span id="roadmap-slider-time-label" class="text-gold">11:00</span>
+          </div>
+        </div>
+        <input id="roadmap-time-slider" type="range" min="360" max="1380" step="10" value="660" class="roadmap-time-slider">
+        <div class="flex justify-between text-[10px] font-mono text-slate-500">
+          <span>06:00 (Morning)</span>
+          <span>12:00 (Noon)</span>
+          <span>18:00 (Evening)</span>
+          <span>23:00 (Night)</span>
+        </div>
+      </div>
+
+      <!-- Live / Active Stop Highlight Card -->
+      <div id="roadmap-active-stop-card">
+        <!-- Rendered by roadmap.js -->
+      </div>
+
+      <!-- Interactive Leaflet Map Container -->
+      <div class="relative rounded-2xl overflow-hidden shadow-card-oled border border-white/10">
+        <div id="master-roadmap-map" class="roadmap-map-container"></div>
+      </div>
+
+      <!-- Horizontal Stop Chips Carousel -->
+      <div class="space-y-2">
+        <div class="text-[11px] font-mono uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+          <i data-lucide="milestone" class="w-3.5 h-3.5 text-vermilion"></i>
+          <span>Click any stop to fly to location:</span>
+        </div>
+        <div id="roadmap-stops-chips-container" class="flex items-center gap-3 overflow-x-auto no-scrollbar py-2">
+          <!-- Rendered dynamically by roadmap.js -->
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -1019,7 +1139,18 @@
     </div>
   </footer>
 
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <!-- Live Roadmap Engine -->
+  <script src="roadmap.js"></script>
   <script src="app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.initMasterRoadmap) {
+        window.initMasterRoadmap('master-roadmap-map');
+      }
+    });
+  </script>
 </body>
 
 </html>

@@ -23,7 +23,9 @@
         "halal": null,
         "note": "Flight touchdown at KIX. Clear immigration, collect checked luggage, and set up / top up IC Card (ICOCA/Suica).",
         "transit": "Flight arrival KIX",
-        "mapQuery": "Kansai International Airport"
+        "mapQuery": "Kansai International Airport",
+        "lat": 34.4347,
+        "lng": 135.2443
       },
       {
         "time": "10:30–12:00",
@@ -34,7 +36,9 @@
         "halal": null,
         "note": "Board Nankai Airport Express or JR Kansai Airport Rapid train directly to Namba / Osaka.",
         "transit": "~60–75 min | ~1,000 JPY (30 MYR) pp",
-        "mapQuery": "Namba Station Osaka"
+        "mapQuery": "Namba Station Osaka",
+        "lat": 34.6629,
+        "lng": 135.5003
       },
       {
         "time": "12:00–13:00",
@@ -45,7 +49,9 @@
         "halal": null,
         "note": "Drop luggage at Plum Hotel reception before lunch; check-in window opens from 1:00pm.",
         "transit": "~10–15 min walk",
-        "mapQuery": "Plum Hotel Osaka"
+        "mapQuery": "Plum Hotel Osaka",
+        "lat": 34.6565,
+        "lng": 135.4985
       },
       {
         "time": "13:00–14:30",
@@ -57,7 +63,9 @@
         "halalNote": "Halal: halal-certified / halal-focused",
         "note": "Authentic Halal Japanese Ramen in central Osaka with rich, comforting chicken and beef broth.",
         "transit": "Walk from hotel",
-        "mapQuery": "Halal Ramen Naniwaya Osaka"
+        "mapQuery": "Halal Ramen Naniwaya Osaka",
+        "lat": 34.6682,
+        "lng": 135.505
       },
       {
         "time": "15:00–17:00",
@@ -68,7 +76,9 @@
         "halal": null,
         "note": "Check in, settle into Plum Hotel rooms, freshen up, perform Zuhr & Asr prayers, and recover from travel.",
         "transit": null,
-        "mapQuery": "Plum Hotel Osaka"
+        "mapQuery": "Plum Hotel Osaka",
+        "lat": 34.6565,
+        "lng": 135.4985
       },
       {
         "time": "17:30–19:00",
@@ -79,7 +89,9 @@
         "halal": null,
         "note": "Evening stroll through covered shopping arcades, Don Quijote, and duty-free retail stalls.",
         "transit": "Walking",
-        "mapQuery": "Shinsaibashi-suji Shopping Street"
+        "mapQuery": "Shinsaibashi-suji Shopping Street",
+        "lat": 34.671,
+        "lng": 135.5006
       },
       {
         "time": "19:00–21:00",
@@ -91,7 +103,9 @@
         "halalNote": "Halal: halal-certified",
         "note": "Iconic Glico Running Man neon sign, canal walkway, and famous Halal Osaka Takoyaki, Okonomiyaki & set meals.",
         "transit": "Walk / short transit",
-        "mapQuery": "Matsuri Halal Restaurant Osaka"
+        "mapQuery": "Matsuri Halal Restaurant Osaka",
+        "lat": 34.6937,
+        "lng": 135.4746
       },
       {
         "time": "21:00–21:30",
@@ -102,7 +116,9 @@
         "halal": null,
         "note": "Rest well to prepare for Nara Park deer & Umeda Sky sunset tomorrow.",
         "transit": "Walk to Plum Hotel",
-        "mapQuery": "Plum Hotel Osaka"
+        "mapQuery": "Plum Hotel Osaka",
+        "lat": 34.6565,
+        "lng": 135.4985
       }
     ]
   },
@@ -131,7 +147,9 @@
         "halalNote": "Halal caution: verify onigiri/bread ingredients (no pork/mirin/gelatin)",
         "note": "Quick breakfast at 7-Eleven / FamilyMart with ingredient checking.",
         "transit": null,
-        "mapQuery": "7-Eleven Namba Osaka"
+        "mapQuery": "7-Eleven Namba Osaka",
+        "lat": 34.661,
+        "lng": 135.5015
       },
       {
         "time": "09:00–10:00",
@@ -142,7 +160,9 @@
         "halal": null,
         "note": "Take Kintetsu-Nara Line Rapid Express from Osaka-Namba directly to Kintetsu-Nara Station.",
         "transit": "~45 min | ~680 JPY (20 MYR) pp",
-        "mapQuery": "Kintetsu-Nara Station"
+        "mapQuery": "Kintetsu-Nara Station",
+        "lat": 34.6844,
+        "lng": 135.8279
       },
       {
         "time": "10:00–14:00",
@@ -154,7 +174,9 @@
         "halalNote": "Halal-conscious lunch / shika senbei deer crackers",
         "note": "Stroll with hundreds of free-roaming, polite bowing sika deer, see Todai-ji Great Buddha hall exterior, and Kasuga Taisha lantern paths.",
         "transit": "Walking inside park | Entry ~600 JPY optional",
-        "mapQuery": "Nara Park"
+        "mapQuery": "Nara Park",
+        "lat": 34.6851,
+        "lng": 135.843
       },
       {
         "time": "14:00–15:00",
@@ -165,7 +187,9 @@
         "halal": null,
         "note": "Board return train from Kintetsu-Nara back to Osaka Namba.",
         "transit": "~45 min | ~680 JPY (20 MYR) pp",
-        "mapQuery": "Osaka Namba Station"
+        "mapQuery": "Osaka Namba Station",
+        "lat": 34.666,
+        "lng": 135.5
       },
       {
         "time": "15:00–16:00",
@@ -176,7 +200,9 @@
         "halal": null,
         "note": "Freshen up, perform Zuhr/Asr prayer break, and warm up at Plum Hotel.",
         "transit": null,
-        "mapQuery": "Plum Hotel Osaka"
+        "mapQuery": "Plum Hotel Osaka",
+        "lat": 34.6565,
+        "lng": 135.4985
       },
       {
         "time": "16:00–16:30",
@@ -187,7 +213,9 @@
         "halal": null,
         "note": "Osaka Metro Midosuji Line from Namba to Umeda Station.",
         "transit": "~15 min | ~240 JPY (7 MYR) pp",
-        "mapQuery": "Umeda Station Osaka"
+        "mapQuery": "Umeda Station Osaka",
+        "lat": 34.7025,
+        "lng": 135.496
       },
       {
         "time": "16:30–18:30",
@@ -198,7 +226,9 @@
         "halal": null,
         "note": "Kuchu Teien Floating Garden Observatory: 360-degree open-air rooftop views over Osaka skyline and Yodo River at sunset.",
         "transit": "Ticket ~1,500 JPY (45 MYR) pp",
-        "mapQuery": "Umeda Sky Building Floating Garden Observatory"
+        "mapQuery": "Umeda Sky Building Floating Garden Observatory",
+        "lat": 34.7052,
+        "lng": 135.4897
       },
       {
         "time": "18:30–20:00",
@@ -210,7 +240,9 @@
         "halalNote": "Halal: halal-certified (Pioneer Halal in Kansai)",
         "note": "Hearty Biryani, curries, and freshly baked tandoor naan in Shinsaibashi.",
         "transit": "Short metro / walk",
-        "mapQuery": "Ali's Kitchen Osaka Halal"
+        "mapQuery": "Ali's Kitchen Osaka Halal",
+        "lat": 34.6744,
+        "lng": 135.5009
       },
       {
         "time": "20:00–21:00",
@@ -221,7 +253,9 @@
         "halal": null,
         "note": "Return to Plum Hotel, pack all luggage for tomorrow's transfer to Kyoto.",
         "transit": "Metro back to Namba",
-        "mapQuery": "Plum Hotel Osaka"
+        "mapQuery": "Plum Hotel Osaka",
+        "lat": 34.6565,
+        "lng": 135.4985
       }
     ]
   },
@@ -250,7 +284,9 @@
         "halalNote": "Convenience store ingredient check",
         "note": "Breakfast before morning checkout from Plum Hotel.",
         "transit": null,
-        "mapQuery": "Plum Hotel Osaka"
+        "mapQuery": "Plum Hotel Osaka",
+        "lat": 34.6565,
+        "lng": 135.4985
       },
       {
         "time": "08:30–09:30",
@@ -261,7 +297,9 @@
         "halal": null,
         "note": "Check out from Plum Hotel (scheduled by 9:00am/9:30am) and head to train station.",
         "transit": null,
-        "mapQuery": "Plum Hotel Osaka"
+        "mapQuery": "Plum Hotel Osaka",
+        "lat": 34.6565,
+        "lng": 135.4985
       },
       {
         "time": "10:00–11:00",
@@ -272,7 +310,9 @@
         "halal": null,
         "note": "Take Hankyu Kyoto Line (Osaka-Umeda to Kyoto-Kawaramachi/Gion-Shijo) or JR Special Rapid train.",
         "transit": "~45–60 min | ~600–1,000 JPY (18–30 MYR) pp",
-        "mapQuery": "Kyoto-Kawaramachi Station"
+        "mapQuery": "Kyoto-Kawaramachi Station",
+        "lat": 35.0037,
+        "lng": 135.7686
       },
       {
         "time": "11:00–11:45",
@@ -283,7 +323,9 @@
         "halal": null,
         "note": "Walk to Rinn Shirakawa South to drop heavy bags with concierge before lunch.",
         "transit": "Short walk from Gion-Shijo / Sanjo",
-        "mapQuery": "Rinn Shirakawa South Kyoto"
+        "mapQuery": "Rinn Shirakawa South Kyoto",
+        "lat": 35.0062,
+        "lng": 135.776
       },
       {
         "time": "11:45–13:00",
@@ -295,7 +337,9 @@
         "halalNote": "Halal: halal-certified / halal-focused (Rich Torisoba)",
         "note": "Iconic Halal chicken-broth ramen with rich soup, spicy options, and crispy karaage.",
         "transit": "Walking distance / subway",
-        "mapQuery": "Halal Ramen Ayam Ya Karasuma Kyoto"
+        "mapQuery": "Halal Ramen Ayam Ya Karasuma Kyoto",
+        "lat": 34.9996,
+        "lng": 135.7583
       },
       {
         "time": "13:00–15:00",
@@ -306,7 +350,9 @@
         "halal": null,
         "note": "Walk along the scenic Kamo River bank, Minamiza Theatre, and central Kyoto streets.",
         "transit": "Walking",
-        "mapQuery": "Kamo River Kyoto"
+        "mapQuery": "Kamo River Kyoto",
+        "lat": 35.0037,
+        "lng": 135.7725
       },
       {
         "time": "15:00–16:30",
@@ -317,7 +363,9 @@
         "halal": null,
         "note": "Official room check-in (from 3:00pm), relax in Japanese boutique accommodation, Zuhr/Asr prayer.",
         "transit": null,
-        "mapQuery": "Rinn Shirakawa South Kyoto"
+        "mapQuery": "Rinn Shirakawa South Kyoto",
+        "lat": 35.0062,
+        "lng": 135.776
       },
       {
         "time": "16:30–18:30",
@@ -328,7 +376,9 @@
         "halal": null,
         "note": "Historic stone-paved canal alleys, willow trees, traditional wooden machiya, and Yasaka Shrine lanterns.",
         "transit": "Walking",
-        "mapQuery": "Shirakawa Canal Gion"
+        "mapQuery": "Shirakawa Canal Gion",
+        "lat": 35.0051,
+        "lng": 135.7745
       },
       {
         "time": "18:30–20:00",
@@ -340,7 +390,9 @@
         "halalNote": "Halal: halal-certified premium Japanese Wagyu",
         "note": "High quality Halal Wagyu beef BBQ experience grilled right at your table.",
         "transit": "Walk / bus",
-        "mapQuery": "Halal Wagyu Yakiniku Panga Kyoto"
+        "mapQuery": "Halal Wagyu Yakiniku Panga Kyoto",
+        "lat": 35.0042,
+        "lng": 135.7763
       },
       {
         "time": "20:00–21:00",
@@ -351,7 +403,9 @@
         "halal": null,
         "note": "Rest well for Kyoto temples tour tomorrow morning.",
         "transit": "Walk back to Rinn Shirakawa South",
-        "mapQuery": "Rinn Shirakawa South Kyoto"
+        "mapQuery": "Rinn Shirakawa South Kyoto",
+        "lat": 35.0062,
+        "lng": 135.776
       }
     ]
   },
@@ -380,7 +434,9 @@
         "halalNote": "Convenience store check",
         "note": "Early breakfast to get ahead of the morning crowds.",
         "transit": null,
-        "mapQuery": "Gion Kyoto"
+        "mapQuery": "Gion Kyoto",
+        "lat": 35.0037,
+        "lng": 135.777
       },
       {
         "time": "08:30–10:30",
@@ -391,7 +447,9 @@
         "halal": null,
         "note": "Iconic UNESCO wooden temple stage built without nails overlooking Kyoto city, Otowa Waterfall, and winter hillside.",
         "transit": "Ticket ~400 JPY (12 MYR) pp",
-        "mapQuery": "Kiyomizu-dera"
+        "mapQuery": "Kiyomizu-dera",
+        "lat": 34.9949,
+        "lng": 135.785
       },
       {
         "time": "10:30–12:00",
@@ -402,7 +460,9 @@
         "halal": null,
         "note": "Historic stone-flagged pedestrian slopes, traditional teahouses, craft shops, and Yasaka Pagoda photo spots.",
         "transit": "Walking",
-        "mapQuery": "Sannenzaka Ninenzaka Kyoto"
+        "mapQuery": "Sannenzaka Ninenzaka Kyoto",
+        "lat": 34.9999,
+        "lng": 135.7816
       },
       {
         "time": "12:00–12:30",
@@ -413,7 +473,9 @@
         "halal": null,
         "note": "Kyoto City Bus to Shijo-Kawaramachi.",
         "transit": "~15 min | ~230 JPY (7 MYR) pp",
-        "mapQuery": "Shijo Kawaramachi"
+        "mapQuery": "Shijo Kawaramachi",
+        "lat": 35.0037,
+        "lng": 135.769
       },
       {
         "time": "12:30–14:00",
@@ -425,7 +487,9 @@
         "halalNote": "Halal caution: check ingredients, seafood & fruit skewers",
         "note": "Kyoto's 400-year-old pantry! Fresh seasonal strawberries, roasted tea, and halal-conscious snacks.",
         "transit": "Walking",
-        "mapQuery": "Nishiki Market"
+        "mapQuery": "Nishiki Market",
+        "lat": 35.005,
+        "lng": 135.765
       },
       {
         "time": "14:00–15:00",
@@ -436,7 +500,9 @@
         "halal": null,
         "note": "Midday Zuhr/Asr prayer break and recharge at hotel.",
         "transit": null,
-        "mapQuery": "Rinn Shirakawa South Kyoto"
+        "mapQuery": "Rinn Shirakawa South Kyoto",
+        "lat": 35.0062,
+        "lng": 135.776
       },
       {
         "time": "15:00–15:30",
@@ -447,7 +513,9 @@
         "halal": null,
         "note": "Direct Kyoto City Bus #12 or #205 to Kinkakuji-michi.",
         "transit": "~30 min | ~230 JPY (7 MYR) pp",
-        "mapQuery": "Kinkakuji-michi Bus Stop"
+        "mapQuery": "Kinkakuji-michi Bus Stop",
+        "lat": 35.038,
+        "lng": 135.731
       },
       {
         "time": "15:30–17:00",
@@ -458,7 +526,9 @@
         "halal": null,
         "note": "World-renowned Zen temple covered in pure gold leaf reflecting into the Kyoko-chi mirror pond, with snow dusting on pine trees.",
         "transit": "Ticket ~500 JPY (15 MYR) pp",
-        "mapQuery": "Kinkaku-ji"
+        "mapQuery": "Kinkaku-ji",
+        "lat": 35.0394,
+        "lng": 135.7292
       },
       {
         "time": "17:00–18:00",
@@ -469,7 +539,9 @@
         "halal": null,
         "note": "Return bus to Karasuma / Gion.",
         "transit": "~230 JPY (7 MYR) pp",
-        "mapQuery": "Gion-Shijo Station"
+        "mapQuery": "Gion-Shijo Station",
+        "lat": 35.0038,
+        "lng": 135.772
       },
       {
         "time": "18:00–19:30",
@@ -481,7 +553,9 @@
         "halalNote": "Halal: halal-certified",
         "note": "Warm halal dinner in central Kyoto.",
         "transit": "Short walk",
-        "mapQuery": "Halal Wagyu Yakiniku Panga Kyoto"
+        "mapQuery": "Halal Wagyu Yakiniku Panga Kyoto",
+        "lat": 35.0042,
+        "lng": 135.7763
       },
       {
         "time": "19:30–20:30",
@@ -492,7 +566,9 @@
         "halal": null,
         "note": "Final packing for tomorrow's Shinkansen bullet train to Tokyo.",
         "transit": "Walk to hotel",
-        "mapQuery": "Rinn Shirakawa South Kyoto"
+        "mapQuery": "Rinn Shirakawa South Kyoto",
+        "lat": 35.0062,
+        "lng": 135.776
       }
     ]
   },
@@ -521,7 +597,9 @@
         "halalNote": "Simple breakfast",
         "note": "Leisurely breakfast before packing up.",
         "transit": null,
-        "mapQuery": "Rinn Shirakawa South Kyoto"
+        "mapQuery": "Rinn Shirakawa South Kyoto",
+        "lat": 35.0062,
+        "lng": 135.776
       },
       {
         "time": "09:30–11:30",
@@ -532,7 +610,9 @@
         "halal": null,
         "note": "Pick up authentic Uji matcha, Kyoto fans, and traditional sweets near Kawaramachi.",
         "transit": "Walking",
-        "mapQuery": "Kawaramachi Kyoto"
+        "mapQuery": "Kawaramachi Kyoto",
+        "lat": 35.0037,
+        "lng": 135.7686
       },
       {
         "time": "11:30–12:00",
@@ -543,7 +623,9 @@
         "halal": null,
         "note": "Check out (completed by 12:00pm) and transfer with luggage to Kyoto Station.",
         "transit": "Subway/taxi to Kyoto Station",
-        "mapQuery": "Kyoto Station"
+        "mapQuery": "Kyoto Station",
+        "lat": 34.9858,
+        "lng": 135.7588
       },
       {
         "time": "12:00–13:30",
@@ -555,7 +637,9 @@
         "halalNote": "Halal-conscious meal before bullet train",
         "note": "Lunch at Kyoto Station mall restaurants or ekiben bento checking.",
         "transit": null,
-        "mapQuery": "Kyoto Station"
+        "mapQuery": "Kyoto Station",
+        "lat": 34.9858,
+        "lng": 135.7588
       },
       {
         "time": "14:00–16:30",
@@ -566,7 +650,9 @@
         "halal": null,
         "note": "Board the high-speed Tokaido Shinkansen (Nozomi / Hikari) from Kyoto Station straight to Tokyo Station.",
         "transit": "~2.5 hrs | ~14,000 JPY (420 MYR) pp",
-        "mapQuery": "Tokyo Station"
+        "mapQuery": "Tokyo Station",
+        "lat": 35.6812,
+        "lng": 139.7671
       },
       {
         "time": "16:30–17:00",
@@ -577,7 +663,9 @@
         "halal": null,
         "note": "Tokyo Metro to hotel base.",
         "transit": "~20 min | ~240 JPY (7 MYR) pp",
-        "mapQuery": "Hotel Tavinos Asakusa Tokyo"
+        "mapQuery": "Hotel Tavinos Asakusa Tokyo",
+        "lat": 35.7171,
+        "lng": 139.7915
       },
       {
         "time": "17:00–18:30",
@@ -588,7 +676,9 @@
         "halal": null,
         "note": "Check-in to Tokyo hotel (booked for 4 nights until Day 9 departure), unpack, Zuhr/Asr prayer break.",
         "transit": null,
-        "mapQuery": "Hotel Tavinos Asakusa Tokyo"
+        "mapQuery": "Hotel Tavinos Asakusa Tokyo",
+        "lat": 35.7171,
+        "lng": 139.7915
       },
       {
         "time": "18:30–20:00",
@@ -600,7 +690,9 @@
         "halalNote": "Halal: halal-certified (Japanese & Halal Shabu/Nabe)",
         "note": "Famous Halal restaurant in Asakusa/Iriya serving authentic Japanese beef shabu-shabu, sukiyaki, and ramen.",
         "transit": "Short walk / transit",
-        "mapQuery": "HALAL SAKURA Tokyo"
+        "mapQuery": "HALAL SAKURA Tokyo",
+        "lat": 35.7225,
+        "lng": 139.7795
       },
       {
         "time": "20:00–21:30",
@@ -611,7 +703,9 @@
         "halal": null,
         "note": "Peaceful nighttime stroll under Senso-ji Temple's illuminated red Kaminarimon gate with views of Tokyo Skytree.",
         "transit": "Walking",
-        "mapQuery": "Senso-ji Asakusa Tokyo"
+        "mapQuery": "Senso-ji Asakusa Tokyo",
+        "lat": 35.7148,
+        "lng": 139.7967
       }
     ]
   },
@@ -640,7 +734,9 @@
         "halalNote": "Quick breakfast",
         "note": "Dress in warm layers, thermal gloves, and boots for alpine snow temperatures.",
         "transit": null,
-        "mapQuery": "Tokyo Station"
+        "mapQuery": "Tokyo Station",
+        "lat": 35.6812,
+        "lng": 139.7671
       },
       {
         "time": "07:00–08:30",
@@ -651,7 +747,9 @@
         "halal": null,
         "note": "Direct Joetsu Shinkansen (Max Tanigawa) from Tokyo Station right into GALA Yuzawa Ski Station lobby!",
         "transit": "~75–85 min | ~7,500 JPY (225 MYR) pp",
-        "mapQuery": "Gala-Yuzawa Station"
+        "mapQuery": "Gala-Yuzawa Station",
+        "lat": 36.9508,
+        "lng": 138.8005
       },
       {
         "time": "08:30–09:00",
@@ -662,7 +760,9 @@
         "halal": null,
         "note": "Pick up sled rental, snow boots, gloves & gondola pass at GALA Yuzawa station counter.",
         "transit": "Station ski counter",
-        "mapQuery": "GALA Yuzawa Snow Resort"
+        "mapQuery": "GALA Yuzawa Snow Resort",
+        "lat": 36.9535,
+        "lng": 138.795
       },
       {
         "time": "09:00–12:00",
@@ -673,7 +773,9 @@
         "halal": null,
         "note": "Ride the scenic mountain gondola, snow sledding down dedicated powder slopes, snow ball fun, and mountain views.",
         "transit": "Gondola ride",
-        "mapQuery": "GALA Yuzawa Snow Resort"
+        "mapQuery": "GALA Yuzawa Snow Resort",
+        "lat": 36.9535,
+        "lng": 138.795
       },
       {
         "time": "12:00–13:30",
@@ -685,7 +787,9 @@
         "halalNote": "Halal-conscious meal (hot vegetable soba / seafood / packed meal)",
         "note": "Warm up indoors with hot lunch & drinks at the ski resort restaurant.",
         "transit": null,
-        "mapQuery": "GALA Yuzawa Rest House"
+        "mapQuery": "GALA Yuzawa Rest House",
+        "lat": 36.952,
+        "lng": 138.798
       },
       {
         "time": "13:30–15:30",
@@ -696,7 +800,9 @@
         "halal": null,
         "note": "Panoramic observation platform overlooking the Japanese Alps, snow photography, and relaxed winter fun.",
         "transit": "Gondola / snow area",
-        "mapQuery": "GALA Yuzawa Observation Deck"
+        "mapQuery": "GALA Yuzawa Observation Deck",
+        "lat": 36.956,
+        "lng": 138.792
       },
       {
         "time": "15:30–16:00",
@@ -707,7 +813,9 @@
         "halal": null,
         "note": "Return sleds & gear; station gates are directly inside the ski center building.",
         "transit": "Inside station",
-        "mapQuery": "Gala-Yuzawa Station"
+        "mapQuery": "Gala-Yuzawa Station",
+        "lat": 36.9508,
+        "lng": 138.8005
       },
       {
         "time": "16:00–17:30",
@@ -718,7 +826,9 @@
         "halal": null,
         "note": "Board Joetsu Shinkansen back to Tokyo Station.",
         "transit": "~75–85 min | ~7,500 JPY (225 MYR) pp",
-        "mapQuery": "Tokyo Station"
+        "mapQuery": "Tokyo Station",
+        "lat": 35.6812,
+        "lng": 139.7671
       },
       {
         "time": "18:00–19:30",
@@ -730,7 +840,9 @@
         "halalNote": "Halal: halal-certified / halal-focused",
         "note": "Rich, soothing halal beef broth ramen with tender chashu slices in Asakusa.",
         "transit": "Subway / walk",
-        "mapQuery": "Gyumon Halal Ramen Asakusa"
+        "mapQuery": "Gyumon Halal Ramen Asakusa",
+        "lat": 35.7118,
+        "lng": 139.7955
       },
       {
         "time": "19:30–21:00",
@@ -741,7 +853,9 @@
         "halal": null,
         "note": "Warm bath and rest after an exciting day in the snow.",
         "transit": "To hotel",
-        "mapQuery": "Hotel Tavinos Asakusa Tokyo"
+        "mapQuery": "Hotel Tavinos Asakusa Tokyo",
+        "lat": 35.7171,
+        "lng": 139.7915
       }
     ]
   },
@@ -770,7 +884,9 @@
         "halalNote": "Simple breakfast",
         "note": "Breakfast before heading to bus terminal / train.",
         "transit": null,
-        "mapQuery": "Tokyo Hotel"
+        "mapQuery": "Tokyo Hotel",
+        "lat": 35.7171,
+        "lng": 139.7915
       },
       {
         "time": "09:00–11:00",
@@ -781,7 +897,9 @@
         "halal": null,
         "note": "Highway express coach from Shinjuku / Tokyo Station directly to Lake Kawaguchiko.",
         "transit": "~2 hrs | ~2,200 JPY (66 MYR) pp",
-        "mapQuery": "Kawaguchiko Station"
+        "mapQuery": "Kawaguchiko Station",
+        "lat": 35.4982,
+        "lng": 138.7688
       },
       {
         "time": "11:00–12:30",
@@ -792,7 +910,9 @@
         "halal": null,
         "note": "World-famous 5-story vermilion pagoda with Mt. Fuji snow peak backdrop. 398 steps to view.",
         "transit": "Local train / bus",
-        "mapQuery": "Chureito Pagoda Arakurayama"
+        "mapQuery": "Chureito Pagoda Arakurayama",
+        "lat": 35.5015,
+        "lng": 138.8016
       },
       {
         "time": "12:30–13:30",
@@ -804,7 +924,9 @@
         "halalNote": "Halal-conscious dining",
         "note": "Warm vegetable soba or local fish lunch with Mt. Fuji views.",
         "transit": null,
-        "mapQuery": "Lake Kawaguchi"
+        "mapQuery": "Lake Kawaguchi",
+        "lat": 35.51,
+        "lng": 138.755
       },
       {
         "time": "13:30–15:30",
@@ -815,7 +937,9 @@
         "halal": null,
         "note": "Panoramic lakeside stroll at Oishi Park with unobstructed reflections of Mount Fuji across the water.",
         "transit": "Retro bus",
-        "mapQuery": "Oishi Park Lake Kawaguchi"
+        "mapQuery": "Oishi Park Lake Kawaguchi",
+        "lat": 35.523,
+        "lng": 138.745
       },
       {
         "time": "15:30–16:30",
@@ -826,7 +950,9 @@
         "halal": null,
         "note": "Browse Fuji berry treats, local crafts, and hot matcha.",
         "transit": "Walking",
-        "mapQuery": "Kawaguchiko Herb Hall"
+        "mapQuery": "Kawaguchiko Herb Hall",
+        "lat": 35.505,
+        "lng": 138.761
       },
       {
         "time": "16:30–18:30",
@@ -837,7 +963,9 @@
         "halal": null,
         "note": "Return express coach back to central Tokyo.",
         "transit": "~2 hrs | ~2,200 JPY (66 MYR) pp",
-        "mapQuery": "Shinjuku Station"
+        "mapQuery": "Shinjuku Station",
+        "lat": 35.6896,
+        "lng": 139.7006
       },
       {
         "time": "18:30–20:00",
@@ -849,7 +977,9 @@
         "halalNote": "Halal: halal-certified",
         "note": "Delicious Halal dinner in Tokyo after the mountain day trip.",
         "transit": "Transit",
-        "mapQuery": "Halal Wagyu Yakiniku Panga Tokyo"
+        "mapQuery": "Halal Wagyu Yakiniku Panga Tokyo",
+        "lat": 35.7078,
+        "lng": 139.777
       },
       {
         "time": "20:00–21:00",
@@ -860,7 +990,9 @@
         "halal": null,
         "note": "Relax and prepare for tomorrow's Godzilla & Akihabara shopping day.",
         "transit": "Subway to hotel",
-        "mapQuery": "Hotel Tavinos Asakusa Tokyo"
+        "mapQuery": "Hotel Tavinos Asakusa Tokyo",
+        "lat": 35.7171,
+        "lng": 139.7915
       }
     ]
   },
@@ -889,7 +1021,9 @@
         "halalNote": "Simple breakfast",
         "note": "Breakfast before heading out for full Tokyo shopping day.",
         "transit": null,
-        "mapQuery": "Tokyo Hotel"
+        "mapQuery": "Tokyo Hotel",
+        "lat": 35.7171,
+        "lng": 139.7915
       },
       {
         "time": "09:00–10:00",
@@ -900,7 +1034,9 @@
         "halal": null,
         "note": "Tokyo Metro / JR Yamanote Line to Shinjuku Station.",
         "transit": "~30 min | ~240 JPY (7 MYR) pp",
-        "mapQuery": "Shinjuku Station"
+        "mapQuery": "Shinjuku Station",
+        "lat": 35.6896,
+        "lng": 139.7006
       },
       {
         "time": "10:00–11:00",
@@ -911,7 +1047,9 @@
         "halal": null,
         "note": "Iconic life-sized roaring Godzilla head monument atop the Toho building terrace in Kabukicho. Snap epic photos from street level!",
         "transit": "Short walk from Shinjuku East Exit",
-        "mapQuery": "Godzilla Head Hotel Gracery Shinjuku"
+        "mapQuery": "Godzilla Head Hotel Gracery Shinjuku",
+        "lat": 35.6953,
+        "lng": 139.702
       },
       {
         "time": "11:00–12:00",
@@ -922,7 +1060,9 @@
         "halal": null,
         "note": "JR Chuo-Sobu Line direct from Shinjuku to Akihabara Station.",
         "transit": "~20 min | ~200 JPY (6 MYR) pp",
-        "mapQuery": "Akihabara Station"
+        "mapQuery": "Akihabara Station",
+        "lat": 35.6983,
+        "lng": 139.7731
       },
       {
         "time": "12:00–15:00",
@@ -934,7 +1074,9 @@
         "halalNote": "Halal lunch in Akiba / arcade games",
         "note": "Tech & camera gadget comparison (Yodobashi Akiba 9-floor complex, BicCamera, PC parts stalls) & SEGA retro arcades.",
         "transit": "Walking",
-        "mapQuery": "Yodobashi Akiba"
+        "mapQuery": "Yodobashi Akiba",
+        "lat": 35.6987,
+        "lng": 139.7747
       },
       {
         "time": "15:15–16:30",
@@ -945,7 +1087,9 @@
         "halal": null,
         "note": "Mega discount duty-free floor: Japanese matcha KitKats, pocky, specialty stationery, and travel gifts.",
         "transit": "Short walk",
-        "mapQuery": "Don Quijote Akihabara"
+        "mapQuery": "Don Quijote Akihabara",
+        "lat": 35.7002,
+        "lng": 139.7712
       },
       {
         "time": "16:30–17:15",
@@ -956,7 +1100,9 @@
         "halal": null,
         "note": "Stroll or 1 stop train to Ueno Station.",
         "transit": "~15 min",
-        "mapQuery": "Ueno Station"
+        "mapQuery": "Ueno Station",
+        "lat": 35.7141,
+        "lng": 139.7774
       },
       {
         "time": "17:15–19:00",
@@ -967,7 +1113,9 @@
         "halal": null,
         "note": "Lively outdoor market beneath the elevated railway arches: vintage clothing thrifting, streetwear stalls, discount sneakers, and Japanese snacks.",
         "transit": "Walking",
-        "mapQuery": "Ameyoko Shopping Street Ueno"
+        "mapQuery": "Ameyoko Shopping Street Ueno",
+        "lat": 35.7115,
+        "lng": 139.7744
       },
       {
         "time": "19:00–20:30",
@@ -979,7 +1127,9 @@
         "halalNote": "Halal: halal-certified",
         "note": "Celebratory final dinner in Tokyo.",
         "transit": "Short transit",
-        "mapQuery": "HALAL SAKURA Tokyo"
+        "mapQuery": "HALAL SAKURA Tokyo",
+        "lat": 35.7225,
+        "lng": 139.7795
       },
       {
         "time": "20:30–22:00",
@@ -990,7 +1140,9 @@
         "halal": null,
         "note": "Pack all luggage, organize duty-free receipts, and get ready for departure flight tomorrow.",
         "transit": "To hotel",
-        "mapQuery": "Hotel Tavinos Asakusa Tokyo"
+        "mapQuery": "Hotel Tavinos Asakusa Tokyo",
+        "lat": 35.7171,
+        "lng": 139.7915
       }
     ]
   },
@@ -1019,7 +1171,9 @@
         "halalNote": "Simple breakfast",
         "note": "Final morning breakfast in Tokyo.",
         "transit": null,
-        "mapQuery": "Asakusa Cafe"
+        "mapQuery": "Asakusa Cafe",
+        "lat": 35.7135,
+        "lng": 139.793
       },
       {
         "time": "09:00–10:00",
@@ -1030,7 +1184,9 @@
         "halal": null,
         "note": "Check out from Tokyo hotel by 9:30am–10:00am and roll bags to transit station.",
         "transit": null,
-        "mapQuery": "Hotel Tavinos Asakusa Tokyo"
+        "mapQuery": "Hotel Tavinos Asakusa Tokyo",
+        "lat": 35.7171,
+        "lng": 139.7915
       },
       {
         "time": "10:30–13:30",
@@ -1041,7 +1197,9 @@
         "halal": null,
         "note": "Board Keisei Skyliner from Keisei Ueno / Nippori (approx 41 min non-stop) directly into Narita Airport (NRT). Arrive 13:30–14:00.",
         "transit": "~41 min train | ~2,570 JPY (77 MYR) pp",
-        "mapQuery": "Keisei Ueno Station"
+        "mapQuery": "Keisei Ueno Station",
+        "lat": 35.7122,
+        "lng": 139.7739
       },
       {
         "time": "13:30–14:00",
@@ -1052,7 +1210,9 @@
         "halal": null,
         "note": "Arrive at airport terminal with comfortable 3-hour pre-flight buffer.",
         "transit": null,
-        "mapQuery": "Narita International Airport"
+        "mapQuery": "Narita International Airport",
+        "lat": 35.772,
+        "lng": 140.3929
       },
       {
         "time": "13:45–15:45",
@@ -1063,7 +1223,9 @@
         "halal": null,
         "note": "Baggage drop, tax-free customs digital scan, security clearance, and last-minute duty-free shopping (Tokyo Banana, Shiroi Koibito cookies).",
         "transit": "Airport Terminal",
-        "mapQuery": "Narita International Airport Terminal 1"
+        "mapQuery": "Narita International Airport Terminal 1",
+        "lat": 35.7647,
+        "lng": 140.3863
       },
       {
         "time": "15:45–16:50",
@@ -1074,7 +1236,9 @@
         "halal": null,
         "note": "Proceed to departure gate for final boarding call.",
         "transit": null,
-        "mapQuery": "Narita Airport Departure Gates"
+        "mapQuery": "Narita Airport Departure Gates",
+        "lat": 35.765,
+        "lng": 140.387
       },
       {
         "time": "16:50",
@@ -1085,7 +1249,9 @@
         "halal": null,
         "note": "Safe flight back home to Kuala Lumpur! End of 9-day Japan Winter Expedition.",
         "transit": "Booked Flight",
-        "mapQuery": "Narita International Airport"
+        "mapQuery": "Narita International Airport",
+        "lat": 35.772,
+        "lng": 140.3929
       }
     ]
   }

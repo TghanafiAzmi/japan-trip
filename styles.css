@@ -457,4 +457,228 @@ body {
   box-shadow: 0 0 15px rgba(168, 85, 247, 0.6);
 }
 
+/* ==========================================================
+   LIVE DAILY ROADMAP & ROUTE VISUALIZER STYLES
+   ========================================================== */
+
+.roadmap-map-container {
+  height: 420px;
+  width: 100%;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #05070B;
+}
+
+@media (min-width: 768px) {
+  .roadmap-map-container {
+    height: 500px;
+  }
+}
+
+/* Leaflet Dark Theme Overrides */
+.leaflet-container {
+  background: #05070B !important;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
+}
+
+.leaflet-bar {
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8) !important;
+  border-radius: 0.75rem !important;
+  overflow: hidden !important;
+}
+
+.leaflet-bar a {
+  background-color: #090D15 !important;
+  color: #E2E8F0 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  transition: all 0.2s ease !important;
+}
+
+.leaflet-bar a:hover {
+  background-color: #E83929 !important;
+  color: #FFFFFF !important;
+}
+
+/* Layer Control Switcher Styling */
+.leaflet-control-layers {
+  background: #090D15 !important;
+  color: #E2E8F0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 0.75rem !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8) !important;
+  padding: 8px 12px !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+}
+
+.leaflet-control-layers-toggle {
+  filter: invert(1) brightness(1.2);
+}
+
+.leaflet-control-layers-expanded {
+  background: #090D15 !important;
+  color: #FFFFFF !important;
+}
+
+.leaflet-control-layers-base label {
+  margin-bottom: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.leaflet-control-layers-base input[type="radio"] {
+  accent-color: #E83929;
+}
+
+.leaflet-popup-content-wrapper {
+  background: #090D15 !important;
+  color: #E2E8F0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 1rem !important;
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.95), 0 0 20px rgba(232, 57, 41, 0.3) !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  line-height: 1.4 !important;
+}
+
+.leaflet-popup-tip {
+  background: #090D15 !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+  color: #94A3B8 !important;
+  padding: 8px !important;
+  top: 4px !important;
+  right: 4px !important;
+}
+
+.leaflet-container a.leaflet-popup-close-button:hover {
+  color: #FFFFFF !important;
+}
+
+.leaflet-control-attribution {
+  background: rgba(5, 7, 11, 0.85) !important;
+  color: #64748B !important;
+  font-size: 9px !important;
+  border-top-left-radius: 6px;
+}
+
+.leaflet-control-attribution a {
+  color: #94A3B8 !important;
+}
+
+/* Custom Marker Pins */
+.roadmap-pin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  background: #090D15;
+  border: 2px solid #E83929;
+  color: #FFFFFF;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 11px;
+  box-shadow: 0 0 15px rgba(232, 57, 41, 0.6);
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+  position: relative;
+}
+
+.roadmap-pin:hover {
+  transform: scale(1.18);
+  box-shadow: 0 0 25px rgba(232, 57, 41, 0.9);
+  z-index: 1000 !important;
+}
+
+.roadmap-pin.is-active {
+  background: #E83929;
+  border-color: #FFFFFF;
+  color: #FFFFFF;
+  transform: scale(1.25);
+  box-shadow: 0 0 30px rgba(232, 57, 41, 1), 0 0 60px rgba(232, 57, 41, 0.6);
+  z-index: 1001 !important;
+}
+
+.roadmap-pin.is-active::after {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 9999px;
+  border: 2px solid #E83929;
+  animation: roadmapPing 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.roadmap-pin.is-completed {
+  border-color: #10B981;
+  color: #10B981;
+  background: #051A13;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+}
+
+.roadmap-pin.is-upcoming {
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #94A3B8;
+  background: #090D15;
+  box-shadow: none;
+}
+
+@keyframes roadmapPing {
+  0% { transform: scale(1); opacity: 0.9; }
+  75%, 100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* Time Scrubber Slider */
+.roadmap-time-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #10B981 0%, #E83929 50%, #D4AF37 100%);
+  outline: none;
+}
+
+.roadmap-time-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 3px solid #E83929;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(232, 57, 41, 0.8);
+  transition: transform 0.15s ease;
+}
+
+.roadmap-time-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.25);
+}
+
+.roadmap-time-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 3px solid #E83929;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(232, 57, 41, 0.8);
+}
+
+
 
