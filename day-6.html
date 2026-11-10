@@ -222,14 +222,14 @@
     <div class="space-y-4">
       <div class="flex items-center justify-between pb-2 border-b border-white/10">
         <h2 class="font-mincho text-xl sm:text-2xl font-bold text-white">
-          Day 6 Chronological Timeline
+          Day 6 Chronological Timeline & Connected Transit
         </h2>
-        <span class="text-xs font-mono text-gold font-bold">10 Scheduled Stops</span>
+        <span class="text-xs font-mono text-gold font-bold">8 Connected Stops</span>
       </div>
 
       <div class="space-y-4">
       <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
-      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative">
+      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative" data-activity-index="0">
         <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
           
           <!-- LEFT: PROMINENT BIG TIME BLOCK -->
@@ -237,12 +237,12 @@
             <div class="space-y-0.5">
               <div class="text-[10px] font-mono uppercase font-bold text-slate-500 tracking-wider">SCHEDULED TIME</div>
               <div class="text-xl sm:text-2xl font-black font-mono text-gold tracking-tight drop-shadow-sm">
-                06:00–06:45
+                06:15–06:45
               </div>
             </div>
             <div class="pt-1 flex flex-wrap gap-1.5">
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-emerald-950/90 text-emerald-300 border border-emerald-800/80">Food</span>
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-bold bg-amber-600 text-white flex items-center gap-1 shadow-sm">⚠️ Halal Caution</span>
+              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-sky-950/90 text-sky-300 border-sky-800/80">Transit</span>
+              
             </div>
           </div>
 
@@ -250,19 +250,19 @@
           <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
             <div class="space-y-2 flex-grow">
               <div class="flex items-center gap-2">
-                <h3 class="text-lg font-bold text-white tracking-tight">
-                  Early breakfast & thermal gear prep
+                <h3 class="text-lg font-bold text-white tracking-tight font-mincho">
+                  Hotel Tavinos Asakusa ➔ Tokyo / Ueno Station
                 </h3>
-                <a href="https://www.google.com/maps/search/?api=1&query=Tokyo%20Station" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Ueno%20Station%20Tokyo" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
               </div>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Dress in warm layers, thermal gloves, and boots for alpine snow temperatures.</p>
-              
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Walk 6 min to Tokyo Metro Asakusa Station ➔ Board Ginza Line 3 stops direct to Ueno Station (5 min, ¥180). Walk through underground concourse (3 min) to JR Ueno Station Shinkansen Ticket Gate (or continue 3 stops to Tokyo Station).</p>
+              <div class="mt-3.5 p-3 rounded-2xl bg-[#05070B] border border-cyan-500/30 space-y-1.5 font-mono text-xs shadow-inner">  <div class="flex flex-wrap items-center justify-between gap-2">    <div class="flex items-center gap-1.5 text-cyan-300 font-bold">      <span class="px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-[10px] uppercase">🚆 Walk (6 min) + Subway (5 min)</span>      <span class="text-white text-xs">🚉 Asakusa Station ➔ Ueno Station</span>    </div>    <span class="text-gold text-[10px] font-bold">● Connected Hub</span>  </div>  <div class="text-slate-300 text-[11px] flex items-start gap-1.5 pl-0.5">    <span class="text-gold flex-shrink-0">🚶</span>    <span class="leading-relaxed">Ginza Line 3 stops to Ueno (5 min) ➔ Walk 3 min to Shinkansen gates</span>  </div></div>
             </div>
 
             <!-- Cost Tag -->
             <div class="border-t sm:border-t-0 pt-2 sm:pt-0 sm:pl-4 sm:border-l border-white/10 flex sm:flex-col justify-between sm:justify-start items-center sm:items-end flex-shrink-0">
               <span class="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider sm:mb-1">EST. COST</span>
-              <div class="text-right font-mono flex-shrink-0"><div class="text-base font-bold text-white">~¥600</div><div class="text-xs font-bold text-gold font-mono">RM 18 pp</div></div>
+              <div class="text-right font-mono font-bold text-white text-sm sm:text-base whitespace-nowrap">  ¥180</div><div class="text-right text-[11px] font-mono font-semibold text-gold whitespace-nowrap">  ~RM 5</div>
             </div>
           </div>
 
@@ -270,7 +270,7 @@
       </div>
 
       <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
-      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative">
+      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative" data-activity-index="1">
         <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
           
           <!-- LEFT: PROMINENT BIG TIME BLOCK -->
@@ -282,7 +282,7 @@
               </div>
             </div>
             <div class="pt-1 flex flex-wrap gap-1.5">
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-sky-950/90 text-sky-300 border border-sky-800/80">Transit</span>
+              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-sky-950/90 text-sky-300 border-sky-800/80">Transit</span>
               
             </div>
           </div>
@@ -291,19 +291,19 @@
           <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
             <div class="space-y-2 flex-grow">
               <div class="flex items-center gap-2">
-                <h3 class="text-lg font-bold text-white tracking-tight">
-                  Tokyo → GALA Yuzawa (Shinkansen)
+                <h3 class="text-lg font-bold text-white tracking-tight font-mincho">
+                  Tokyo / Ueno ➔ GALA Yuzawa (Joetsu Shinkansen)
                 </h3>
-                <a href="https://www.google.com/maps/search/?api=1&query=Gala-Yuzawa%20Station" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
+                <a href="https://www.google.com/maps/search/?api=1&query=GALA%20Yuzawa%20Station" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
               </div>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Direct Joetsu Shinkansen (Max Tanigawa) from Tokyo Station right into GALA Yuzawa Ski Station lobby!</p>
-              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#05070B] text-slate-300 text-xs font-mono border border-white/10"><i data-lucide="navigation" class="w-3.5 h-3.5 text-gold"></i><span>~75–85 min | ~7,500 JPY (225 MYR) pp</span></div>
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Board JR Joetsu Shinkansen Tanigawa (Platform 19/20 at Ueno, or 20–23 at Tokyo). Speed north through Saitama and Gunma, then pass through the 22.2km Daishimizu Tunnel beneath the snow-capped Tanigawa mountain range straight into GALA Yuzawa Station (75 min direct, ~¥7,000 pp or covered by JR Tokyo Wide Pass).</p>
+              <div class="mt-3.5 p-3 rounded-2xl bg-[#05070B] border border-cyan-500/30 space-y-1.5 font-mono text-xs shadow-inner">  <div class="flex flex-wrap items-center justify-between gap-2">    <div class="flex items-center gap-1.5 text-cyan-300 font-bold">      <span class="px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-[10px] uppercase">🚆 High-Speed Rail (Joetsu Shinkansen)</span>      <span class="text-white text-xs">🚉 GALA Yuzawa Station</span>    </div>    <span class="text-gold text-[10px] font-bold">● Connected Hub</span>  </div>  <div class="text-slate-300 text-[11px] flex items-start gap-1.5 pl-0.5">    <span class="text-gold flex-shrink-0">🚶</span>    <span class="leading-relaxed">Board Platform 19/20 at Ueno ➔ 75 min direct through Alps tunnel</span>  </div></div>
             </div>
 
             <!-- Cost Tag -->
             <div class="border-t sm:border-t-0 pt-2 sm:pt-0 sm:pl-4 sm:border-l border-white/10 flex sm:flex-col justify-between sm:justify-start items-center sm:items-end flex-shrink-0">
               <span class="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider sm:mb-1">EST. COST</span>
-              <div class="text-right font-mono flex-shrink-0"><div class="text-base font-bold text-white">~¥7,500</div><div class="text-xs font-bold text-gold font-mono">RM 225 pp</div></div>
+              <div class="text-right font-mono font-bold text-white text-sm sm:text-base whitespace-nowrap">  ¥7,000</div><div class="text-right text-[11px] font-mono font-semibold text-gold whitespace-nowrap">  ~RM 205</div>
             </div>
           </div>
 
@@ -311,7 +311,7 @@
       </div>
 
       <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
-      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative">
+      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative" data-activity-index="2">
         <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
           
           <!-- LEFT: PROMINENT BIG TIME BLOCK -->
@@ -319,11 +319,11 @@
             <div class="space-y-0.5">
               <div class="text-[10px] font-mono uppercase font-bold text-slate-500 tracking-wider">SCHEDULED TIME</div>
               <div class="text-xl sm:text-2xl font-black font-mono text-gold tracking-tight drop-shadow-sm">
-                08:30–09:00
+                08:30–15:30
               </div>
             </div>
             <div class="pt-1 flex flex-wrap gap-1.5">
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-purple-950/90 text-purple-300 border border-purple-800/80">Sightseeing</span>
+              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-rose-950/90 text-rose-300 border-rose-800/80">Sightseeing</span>
               
             </div>
           </div>
@@ -332,19 +332,19 @@
           <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
             <div class="space-y-2 flex-grow">
               <div class="flex items-center gap-2">
-                <h3 class="text-lg font-bold text-white tracking-tight">
-                  Sled & winter gear rental @ ski center
+                <h3 class="text-lg font-bold text-white tracking-tight font-mincho">
+                  GALA Yuzawa Snow Resort (Gondola, Sledding & Play)
                 </h3>
                 <a href="https://www.google.com/maps/search/?api=1&query=GALA%20Yuzawa%20Snow%20Resort" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
               </div>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Pick up sled rental, snow boots, gloves & gondola pass at GALA Yuzawa station counter.</p>
-              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#05070B] text-slate-300 text-xs font-mono border border-white/10"><i data-lucide="navigation" class="w-3.5 h-3.5 text-gold"></i><span>Station ski counter</span></div>
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">The train platform exits directly inside the GALA Yuzawa Ski Center (Cowabunga Station)! No bus or walking required. Rent snow boots, gloves, and sleds on 2F. Board the 8-person Diligence Gondola right inside the terminal up to the mountain alpine area (Cheers, 800m elevation). Sled down snow slopes, take photos against snow peaks, and enjoy hot cocoa.</p>
+              <div class="mt-3.5 p-3 rounded-2xl bg-[#05070B] border border-cyan-500/30 space-y-1.5 font-mono text-xs shadow-inner">  <div class="flex flex-wrap items-center justify-between gap-2">    <div class="flex items-center gap-1.5 text-cyan-300 font-bold">      <span class="px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-[10px] uppercase">🚆 Direct inside station! (0 min walk) + Gondola</span>      <span class="text-white text-xs">🚉 GALA Yuzawa Station</span>    </div>    <span class="text-gold text-[10px] font-bold">● Connected Hub</span>  </div>  <div class="text-slate-300 text-[11px] flex items-start gap-1.5 pl-0.5">    <span class="text-gold flex-shrink-0">🚶</span>    <span class="leading-relaxed">Train platform exits directly inside ski rental concourse (0 min walk!)</span>  </div></div>
             </div>
 
             <!-- Cost Tag -->
             <div class="border-t sm:border-t-0 pt-2 sm:pt-0 sm:pl-4 sm:border-l border-white/10 flex sm:flex-col justify-between sm:justify-start items-center sm:items-end flex-shrink-0">
               <span class="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider sm:mb-1">EST. COST</span>
-              <div class="text-right font-mono flex-shrink-0"><div class="text-base font-bold text-white">~¥3,500</div><div class="text-xs font-bold text-gold font-mono">RM 105 pp</div></div>
+              <div class="text-right font-mono font-bold text-white text-sm sm:text-base whitespace-nowrap">  ¥3,500</div><div class="text-right text-[11px] font-mono font-semibold text-gold whitespace-nowrap">  ~RM 105</div>
             </div>
           </div>
 
@@ -352,130 +352,7 @@
       </div>
 
       <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
-      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative">
-        <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
-          
-          <!-- LEFT: PROMINENT BIG TIME BLOCK -->
-          <div class="flex-shrink-0 flex md:flex-col items-center md:items-start justify-between md:justify-start gap-2 min-w-[150px] pb-3 md:pb-0 border-b md:border-b-0 md:border-r border-white/10 md:pr-5">
-            <div class="space-y-0.5">
-              <div class="text-[10px] font-mono uppercase font-bold text-slate-500 tracking-wider">SCHEDULED TIME</div>
-              <div class="text-xl sm:text-2xl font-black font-mono text-gold tracking-tight drop-shadow-sm">
-                09:00–12:00
-              </div>
-            </div>
-            <div class="pt-1 flex flex-wrap gap-1.5">
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-purple-950/90 text-purple-300 border border-purple-800/80">Sightseeing</span>
-              
-            </div>
-          </div>
-
-          <!-- RIGHT: ACTIVITY DETAILS & COST -->
-          <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-            <div class="space-y-2 flex-grow">
-              <div class="flex items-center gap-2">
-                <h3 class="text-lg font-bold text-white tracking-tight">
-                  GALA Yuzawa snow activities & sledding park
-                </h3>
-                <a href="https://www.google.com/maps/search/?api=1&query=GALA%20Yuzawa%20Snow%20Resort" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
-              </div>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Ride the scenic mountain gondola, snow sledding down dedicated powder slopes, snow ball fun, and mountain views.</p>
-              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#05070B] text-slate-300 text-xs font-mono border border-white/10"><i data-lucide="navigation" class="w-3.5 h-3.5 text-gold"></i><span>Gondola ride</span></div>
-            </div>
-
-            <!-- Cost Tag -->
-            <div class="border-t sm:border-t-0 pt-2 sm:pt-0 sm:pl-4 sm:border-l border-white/10 flex sm:flex-col justify-between sm:justify-start items-center sm:items-end flex-shrink-0">
-              <span class="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider sm:mb-1">EST. COST</span>
-              <div class="text-right text-xs font-semibold text-slate-400 font-mono flex-shrink-0">Free / Included</div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
-      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative">
-        <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
-          
-          <!-- LEFT: PROMINENT BIG TIME BLOCK -->
-          <div class="flex-shrink-0 flex md:flex-col items-center md:items-start justify-between md:justify-start gap-2 min-w-[150px] pb-3 md:pb-0 border-b md:border-b-0 md:border-r border-white/10 md:pr-5">
-            <div class="space-y-0.5">
-              <div class="text-[10px] font-mono uppercase font-bold text-slate-500 tracking-wider">SCHEDULED TIME</div>
-              <div class="text-xl sm:text-2xl font-black font-mono text-gold tracking-tight drop-shadow-sm">
-                12:00–13:30
-              </div>
-            </div>
-            <div class="pt-1 flex flex-wrap gap-1.5">
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-emerald-950/90 text-emerald-300 border border-emerald-800/80">Food</span>
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-bold bg-amber-600 text-white flex items-center gap-1 shadow-sm">⚠️ Halal Caution</span>
-            </div>
-          </div>
-
-          <!-- RIGHT: ACTIVITY DETAILS & COST -->
-          <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-            <div class="space-y-2 flex-grow">
-              <div class="flex items-center gap-2">
-                <h3 class="text-lg font-bold text-white tracking-tight">
-                  Warm lunch at GALA Yuzawa Ski Center
-                </h3>
-                <a href="https://www.google.com/maps/search/?api=1&query=GALA%20Yuzawa%20Rest%20House" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
-              </div>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Warm up indoors with hot lunch & drinks at the ski resort restaurant.</p>
-              
-            </div>
-
-            <!-- Cost Tag -->
-            <div class="border-t sm:border-t-0 pt-2 sm:pt-0 sm:pl-4 sm:border-l border-white/10 flex sm:flex-col justify-between sm:justify-start items-center sm:items-end flex-shrink-0">
-              <span class="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider sm:mb-1">EST. COST</span>
-              <div class="text-right font-mono flex-shrink-0"><div class="text-base font-bold text-white">~¥1,200</div><div class="text-xs font-bold text-gold font-mono">RM 36 pp</div></div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
-      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative">
-        <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
-          
-          <!-- LEFT: PROMINENT BIG TIME BLOCK -->
-          <div class="flex-shrink-0 flex md:flex-col items-center md:items-start justify-between md:justify-start gap-2 min-w-[150px] pb-3 md:pb-0 border-b md:border-b-0 md:border-r border-white/10 md:pr-5">
-            <div class="space-y-0.5">
-              <div class="text-[10px] font-mono uppercase font-bold text-slate-500 tracking-wider">SCHEDULED TIME</div>
-              <div class="text-xl sm:text-2xl font-black font-mono text-gold tracking-tight drop-shadow-sm">
-                13:30–15:30
-              </div>
-            </div>
-            <div class="pt-1 flex flex-wrap gap-1.5">
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-purple-950/90 text-purple-300 border border-purple-800/80">Sightseeing</span>
-              
-            </div>
-          </div>
-
-          <!-- RIGHT: ACTIVITY DETAILS & COST -->
-          <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-            <div class="space-y-2 flex-grow">
-              <div class="flex items-center gap-2">
-                <h3 class="text-lg font-bold text-white tracking-tight">
-                  Afternoon snow play & Bell of Love observation deck
-                </h3>
-                <a href="https://www.google.com/maps/search/?api=1&query=GALA%20Yuzawa%20Observation%20Deck" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
-              </div>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Panoramic observation platform overlooking the Japanese Alps, snow photography, and relaxed winter fun.</p>
-              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#05070B] text-slate-300 text-xs font-mono border border-white/10"><i data-lucide="navigation" class="w-3.5 h-3.5 text-gold"></i><span>Gondola / snow area</span></div>
-            </div>
-
-            <!-- Cost Tag -->
-            <div class="border-t sm:border-t-0 pt-2 sm:pt-0 sm:pl-4 sm:border-l border-white/10 flex sm:flex-col justify-between sm:justify-start items-center sm:items-end flex-shrink-0">
-              <span class="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider sm:mb-1">EST. COST</span>
-              <div class="text-right text-xs font-semibold text-slate-400 font-mono flex-shrink-0">Free / Included</div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
-      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative">
+      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative" data-activity-index="3">
         <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
           
           <!-- LEFT: PROMINENT BIG TIME BLOCK -->
@@ -487,7 +364,7 @@
               </div>
             </div>
             <div class="pt-1 flex flex-wrap gap-1.5">
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-[#0F1624] text-slate-300 border border-white/10">Logistics</span>
+              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-sky-950/90 text-sky-300 border-sky-800/80">Transit</span>
               
             </div>
           </div>
@@ -496,13 +373,13 @@
           <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
             <div class="space-y-2 flex-grow">
               <div class="flex items-center gap-2">
-                <h3 class="text-lg font-bold text-white tracking-tight">
-                  Return rental gear & head to Shinkansen gate
+                <h3 class="text-lg font-bold text-white tracking-tight font-mincho">
+                  Gondola Down to GALA Yuzawa Concourse
                 </h3>
-                <a href="https://www.google.com/maps/search/?api=1&query=Gala-Yuzawa%20Station" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
+                <a href="https://www.google.com/maps/search/?api=1&query=GALA%20Yuzawa%20Station" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
               </div>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Return sleds & gear; station gates are directly inside the ski center building.</p>
-              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#05070B] text-slate-300 text-xs font-mono border border-white/10"><i data-lucide="navigation" class="w-3.5 h-3.5 text-gold"></i><span>Inside station</span></div>
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Ride the Diligence Gondola down to the base terminal. Return rental gear, browse Niigata rice cracker and souvenir stalls, and proceed to the Shinkansen gates.</p>
+              <div class="mt-3.5 p-3 rounded-2xl bg-[#05070B] border border-cyan-500/30 space-y-1.5 font-mono text-xs shadow-inner">  <div class="flex flex-wrap items-center justify-between gap-2">    <div class="flex items-center gap-1.5 text-cyan-300 font-bold">      <span class="px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-[10px] uppercase">🚆 Gondola (8 min)</span>      <span class="text-white text-xs">🚉 GALA Yuzawa Station</span>    </div>    <span class="text-gold text-[10px] font-bold">● Connected Hub</span>  </div>  <div class="text-slate-300 text-[11px] flex items-start gap-1.5 pl-0.5">    <span class="text-gold flex-shrink-0">🚶</span>    <span class="leading-relaxed">Gondola ride down to ski center concourse & Shinkansen gates</span>  </div></div>
             </div>
 
             <!-- Cost Tag -->
@@ -516,7 +393,7 @@
       </div>
 
       <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
-      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative">
+      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative" data-activity-index="4">
         <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
           
           <!-- LEFT: PROMINENT BIG TIME BLOCK -->
@@ -528,7 +405,7 @@
               </div>
             </div>
             <div class="pt-1 flex flex-wrap gap-1.5">
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-sky-950/90 text-sky-300 border border-sky-800/80">Transit</span>
+              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-sky-950/90 text-sky-300 border-sky-800/80">Transit</span>
               
             </div>
           </div>
@@ -537,19 +414,19 @@
           <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
             <div class="space-y-2 flex-grow">
               <div class="flex items-center gap-2">
-                <h3 class="text-lg font-bold text-white tracking-tight">
-                  GALA Yuzawa → Tokyo (Shinkansen)
+                <h3 class="text-lg font-bold text-white tracking-tight font-mincho">
+                  GALA Yuzawa ➔ Tokyo (Return Joetsu Shinkansen)
                 </h3>
-                <a href="https://www.google.com/maps/search/?api=1&query=Tokyo%20Station" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Ueno%20Station%20Tokyo" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
               </div>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Board Joetsu Shinkansen back to Tokyo Station.</p>
-              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#05070B] text-slate-300 text-xs font-mono border border-white/10"><i data-lucide="navigation" class="w-3.5 h-3.5 text-gold"></i><span>~75–85 min | ~7,500 JPY (225 MYR) pp</span></div>
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Board return Joetsu Shinkansen at GALA Yuzawa Station (Platform 1/2) ➔ Ride 75 min direct back to Ueno Station (17:15) or Tokyo Station (17:28).</p>
+              <div class="mt-3.5 p-3 rounded-2xl bg-[#05070B] border border-cyan-500/30 space-y-1.5 font-mono text-xs shadow-inner">  <div class="flex flex-wrap items-center justify-between gap-2">    <div class="flex items-center gap-1.5 text-cyan-300 font-bold">      <span class="px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-[10px] uppercase">🚆 High-Speed Rail (Joetsu Shinkansen)</span>      <span class="text-white text-xs">🚉 Ueno / Tokyo Station</span>    </div>    <span class="text-gold text-[10px] font-bold">● Connected Hub</span>  </div>  <div class="text-slate-300 text-[11px] flex items-start gap-1.5 pl-0.5">    <span class="text-gold flex-shrink-0">🚶</span>    <span class="leading-relaxed">75 min direct return bullet train to Ueno/Tokyo</span>  </div></div>
             </div>
 
             <!-- Cost Tag -->
             <div class="border-t sm:border-t-0 pt-2 sm:pt-0 sm:pl-4 sm:border-l border-white/10 flex sm:flex-col justify-between sm:justify-start items-center sm:items-end flex-shrink-0">
               <span class="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider sm:mb-1">EST. COST</span>
-              <div class="text-right font-mono flex-shrink-0"><div class="text-base font-bold text-white">~¥7,500</div><div class="text-xs font-bold text-gold font-mono">RM 225 pp</div></div>
+              <div class="text-right font-mono font-bold text-white text-sm sm:text-base whitespace-nowrap">  ¥7,000</div><div class="text-right text-[11px] font-mono font-semibold text-gold whitespace-nowrap">  ~RM 205</div>
             </div>
           </div>
 
@@ -557,7 +434,7 @@
       </div>
 
       <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
-      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative">
+      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative" data-activity-index="5">
         <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
           
           <!-- LEFT: PROMINENT BIG TIME BLOCK -->
@@ -565,52 +442,11 @@
             <div class="space-y-0.5">
               <div class="text-[10px] font-mono uppercase font-bold text-slate-500 tracking-wider">SCHEDULED TIME</div>
               <div class="text-xl sm:text-2xl font-black font-mono text-gold tracking-tight drop-shadow-sm">
-                18:00–19:30
+                17:30–18:00
               </div>
             </div>
             <div class="pt-1 flex flex-wrap gap-1.5">
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-emerald-950/90 text-emerald-300 border border-emerald-800/80">Food</span>
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-bold bg-emerald-600 text-white flex items-center gap-1 shadow-sm">✓ Halal Verified</span>
-            </div>
-          </div>
-
-          <!-- RIGHT: ACTIVITY DETAILS & COST -->
-          <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-            <div class="space-y-2 flex-grow">
-              <div class="flex items-center gap-2">
-                <h3 class="text-lg font-bold text-white tracking-tight">
-                  Dinner @ Gyumon Halal Ramen Asakusa
-                </h3>
-                <a href="https://www.google.com/maps/search/?api=1&query=Gyumon%20Halal%20Ramen%20Asakusa" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
-              </div>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Rich, soothing halal beef broth ramen with tender chashu slices in Asakusa.</p>
-              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#05070B] text-slate-300 text-xs font-mono border border-white/10"><i data-lucide="navigation" class="w-3.5 h-3.5 text-gold"></i><span>Subway / walk</span></div>
-            </div>
-
-            <!-- Cost Tag -->
-            <div class="border-t sm:border-t-0 pt-2 sm:pt-0 sm:pl-4 sm:border-l border-white/10 flex sm:flex-col justify-between sm:justify-start items-center sm:items-end flex-shrink-0">
-              <span class="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider sm:mb-1">EST. COST</span>
-              <div class="text-right font-mono flex-shrink-0"><div class="text-base font-bold text-white">~¥1,600</div><div class="text-xs font-bold text-gold font-mono">RM 48 pp</div></div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
-      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative">
-        <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
-          
-          <!-- LEFT: PROMINENT BIG TIME BLOCK -->
-          <div class="flex-shrink-0 flex md:flex-col items-center md:items-start justify-between md:justify-start gap-2 min-w-[150px] pb-3 md:pb-0 border-b md:border-b-0 md:border-r border-white/10 md:pr-5">
-            <div class="space-y-0.5">
-              <div class="text-[10px] font-mono uppercase font-bold text-slate-500 tracking-wider">SCHEDULED TIME</div>
-              <div class="text-xl sm:text-2xl font-black font-mono text-gold tracking-tight drop-shadow-sm">
-                19:30–21:00
-              </div>
-            </div>
-            <div class="pt-1 flex flex-wrap gap-1.5">
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-[#0F1624] text-slate-300 border border-white/10">Logistics</span>
+              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-sky-950/90 text-sky-300 border-sky-800/80">Transit</span>
               
             </div>
           </div>
@@ -619,13 +455,95 @@
           <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
             <div class="space-y-2 flex-grow">
               <div class="flex items-center gap-2">
-                <h3 class="text-lg font-bold text-white tracking-tight">
-                  Return to Tokyo Hotel & rest
+                <h3 class="text-lg font-bold text-white tracking-tight font-mincho">
+                  Ueno Station ➔ Hotel Tavinos Asakusa
                 </h3>
-                <a href="https://www.google.com/maps/search/?api=1&query=Hotel%20Tavinos%20Asakusa%20Tokyo" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Hotel%20Tavinos%20Asakusa" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
               </div>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Warm bath and rest after an exciting day in the snow.</p>
-              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#05070B] text-slate-300 text-xs font-mono border border-white/10"><i data-lucide="navigation" class="w-3.5 h-3.5 text-gold"></i><span>To hotel</span></div>
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Transfer at Ueno Station to Tokyo Metro Ginza Line ➔ Ride 3 stops to Asakusa Station (5 min, ¥180) ➔ Walk 6 min back to Hotel Tavinos Asakusa.</p>
+              <div class="mt-3.5 p-3 rounded-2xl bg-[#05070B] border border-cyan-500/30 space-y-1.5 font-mono text-xs shadow-inner">  <div class="flex flex-wrap items-center justify-between gap-2">    <div class="flex items-center gap-1.5 text-cyan-300 font-bold">      <span class="px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-[10px] uppercase">🚆 Subway (5 min) + Walk (6 min)</span>      <span class="text-white text-xs">🚉 Asakusa Station</span>    </div>    <span class="text-gold text-[10px] font-bold">● Connected Hub</span>  </div>  <div class="text-slate-300 text-[11px] flex items-start gap-1.5 pl-0.5">    <span class="text-gold flex-shrink-0">🚶</span>    <span class="leading-relaxed">Ginza Line 3 stops to Asakusa ➔ Walk 6 min back to hotel</span>  </div></div>
+            </div>
+
+            <!-- Cost Tag -->
+            <div class="border-t sm:border-t-0 pt-2 sm:pt-0 sm:pl-4 sm:border-l border-white/10 flex sm:flex-col justify-between sm:justify-start items-center sm:items-end flex-shrink-0">
+              <span class="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider sm:mb-1">EST. COST</span>
+              <div class="text-right font-mono font-bold text-white text-sm sm:text-base whitespace-nowrap">  ¥180</div><div class="text-right text-[11px] font-mono font-semibold text-gold whitespace-nowrap">  ~RM 5</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
+      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative" data-activity-index="6">
+        <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
+          
+          <!-- LEFT: PROMINENT BIG TIME BLOCK -->
+          <div class="flex-shrink-0 flex md:flex-col items-center md:items-start justify-between md:justify-start gap-2 min-w-[150px] pb-3 md:pb-0 border-b md:border-b-0 md:border-r border-white/10 md:pr-5">
+            <div class="space-y-0.5">
+              <div class="text-[10px] font-mono uppercase font-bold text-slate-500 tracking-wider">SCHEDULED TIME</div>
+              <div class="text-xl sm:text-2xl font-black font-mono text-gold tracking-tight drop-shadow-sm">
+                18:30–20:30
+              </div>
+            </div>
+            <div class="pt-1 flex flex-wrap gap-1.5">
+              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-emerald-950/90 text-emerald-300 border-emerald-800/80">Food</span>
+              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-emerald-950/90 text-emerald-300 border border-emerald-800/80">🌱 Halal Certified Beef Ramen & Yakiniku</span>
+            </div>
+          </div>
+
+          <!-- RIGHT: ACTIVITY DETAILS & COST -->
+          <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+            <div class="space-y-2 flex-grow">
+              <div class="flex items-center gap-2">
+                <h3 class="text-lg font-bold text-white tracking-tight font-mincho">
+                  Dinner: Gyumon Halal Ramen & Yakiniku Asakusa
+                </h3>
+                <a href="https://www.google.com/maps/search/?api=1&query=Gyumon%20Halal%20Asakusa%20Tokyo" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Walk 5 min (400m) from hotel to Gyumon Asakusa for Halal-certified grilled beef and piping hot beef ramen.</p>
+              <div class="mt-3.5 p-3 rounded-2xl bg-[#05070B] border border-cyan-500/30 space-y-1.5 font-mono text-xs shadow-inner">  <div class="flex flex-wrap items-center justify-between gap-2">    <div class="flex items-center gap-1.5 text-cyan-300 font-bold">      <span class="px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-[10px] uppercase">🚆 Walk (5 min)</span>      <span class="text-white text-xs">🚉 Asakusa Station</span>    </div>    <span class="text-gold text-[10px] font-bold">● Connected Hub</span>  </div>  <div class="text-slate-300 text-[11px] flex items-start gap-1.5 pl-0.5">    <span class="text-gold flex-shrink-0">🚶</span>    <span class="leading-relaxed">Walk 5 min (400m) from hotel</span>  </div></div>
+            </div>
+
+            <!-- Cost Tag -->
+            <div class="border-t sm:border-t-0 pt-2 sm:pt-0 sm:pl-4 sm:border-l border-white/10 flex sm:flex-col justify-between sm:justify-start items-center sm:items-end flex-shrink-0">
+              <span class="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider sm:mb-1">EST. COST</span>
+              <div class="text-right font-mono font-bold text-white text-sm sm:text-base whitespace-nowrap">  ¥2,200</div><div class="text-right text-[11px] font-mono font-semibold text-gold whitespace-nowrap">  ~RM 65</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
+      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative" data-activity-index="7">
+        <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
+          
+          <!-- LEFT: PROMINENT BIG TIME BLOCK -->
+          <div class="flex-shrink-0 flex md:flex-col items-center md:items-start justify-between md:justify-start gap-2 min-w-[150px] pb-3 md:pb-0 border-b md:border-b-0 md:border-r border-white/10 md:pr-5">
+            <div class="space-y-0.5">
+              <div class="text-[10px] font-mono uppercase font-bold text-slate-500 tracking-wider">SCHEDULED TIME</div>
+              <div class="text-xl sm:text-2xl font-black font-mono text-gold tracking-tight drop-shadow-sm">
+                20:30–21:30
+              </div>
+            </div>
+            <div class="pt-1 flex flex-wrap gap-1.5">
+              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-slate-900 text-slate-300 border-slate-700">Logistics</span>
+              
+            </div>
+          </div>
+
+          <!-- RIGHT: ACTIVITY DETAILS & COST -->
+          <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+            <div class="space-y-2 flex-grow">
+              <div class="flex items-center gap-2">
+                <h3 class="text-lg font-bold text-white tracking-tight font-mincho">
+                  Return to Hotel Tavinos Asakusa
+                </h3>
+                <a href="https://www.google.com/maps/search/?api=1&query=Hotel%20Tavinos%20Asakusa" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Walk 5 min back to Hotel Tavinos Asakusa. Rest and recharge for Mt. Fuji tomorrow.</p>
+              <div class="mt-3.5 p-3 rounded-2xl bg-[#05070B] border border-cyan-500/30 space-y-1.5 font-mono text-xs shadow-inner">  <div class="flex flex-wrap items-center justify-between gap-2">    <div class="flex items-center gap-1.5 text-cyan-300 font-bold">      <span class="px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-[10px] uppercase">🚆 Walk (5 min)</span>      <span class="text-white text-xs">🚉 Asakusa Station</span>    </div>    <span class="text-gold text-[10px] font-bold">● Connected Hub</span>  </div>  <div class="text-slate-300 text-[11px] flex items-start gap-1.5 pl-0.5">    <span class="text-gold flex-shrink-0">🚶</span>    <span class="leading-relaxed">Walk 5 min back to Hotel Tavinos Base</span>  </div></div>
             </div>
 
             <!-- Cost Tag -->

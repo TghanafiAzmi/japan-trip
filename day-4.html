@@ -222,14 +222,14 @@
     <div class="space-y-4">
       <div class="flex items-center justify-between pb-2 border-b border-white/10">
         <h2 class="font-mincho text-xl sm:text-2xl font-bold text-white">
-          Day 4 Chronological Timeline
+          Day 4 Chronological Timeline & Connected Transit
         </h2>
-        <span class="text-xs font-mono text-gold font-bold">11 Scheduled Stops</span>
+        <span class="text-xs font-mono text-gold font-bold">8 Connected Stops</span>
       </div>
 
       <div class="space-y-4">
       <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
-      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative">
+      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative" data-activity-index="0">
         <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
           
           <!-- LEFT: PROMINENT BIG TIME BLOCK -->
@@ -237,12 +237,12 @@
             <div class="space-y-0.5">
               <div class="text-[10px] font-mono uppercase font-bold text-slate-500 tracking-wider">SCHEDULED TIME</div>
               <div class="text-xl sm:text-2xl font-black font-mono text-gold tracking-tight drop-shadow-sm">
-                07:30–08:15
+                08:00–08:30
               </div>
             </div>
             <div class="pt-1 flex flex-wrap gap-1.5">
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-emerald-950/90 text-emerald-300 border border-emerald-800/80">Food</span>
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-bold bg-amber-600 text-white flex items-center gap-1 shadow-sm">⚠️ Halal Caution</span>
+              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-sky-950/90 text-sky-300 border-sky-800/80">Transit</span>
+              
             </div>
           </div>
 
@@ -250,19 +250,19 @@
           <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
             <div class="space-y-2 flex-grow">
               <div class="flex items-center gap-2">
-                <h3 class="text-lg font-bold text-white tracking-tight">
-                  Breakfast
+                <h3 class="text-lg font-bold text-white tracking-tight font-mincho">
+                  Rinn Shirakawa South ➔ Kiyomizu-dera (Bus)
                 </h3>
-                <a href="https://www.google.com/maps/search/?api=1&query=Gion%20Kyoto" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Kiyomizu-dera%20Kyoto" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
               </div>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Early breakfast to get ahead of the morning crowds.</p>
-              
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Walk 5 min south to Shijo-dori ➔ Board Kyoto City Bus #207 (eastbound) at Gion bus stop ➔ Ride 8 min to Kiyomizumichi bus stop (¥230). Walk 8 min (500m) up the scenic Kiyomizu-zaka shopping slope to the temple gates.</p>
+              <div class="mt-3.5 p-3 rounded-2xl bg-[#05070B] border border-cyan-500/30 space-y-1.5 font-mono text-xs shadow-inner">  <div class="flex flex-wrap items-center justify-between gap-2">    <div class="flex items-center gap-1.5 text-cyan-300 font-bold">      <span class="px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-[10px] uppercase">🚆 Bus (8 min) + Walk (8 min uphill)</span>      <span class="text-white text-xs">🚉 Gion-Shijo / Kiyomizumichi</span>    </div>    <span class="text-gold text-[10px] font-bold">● Connected Hub</span>  </div>  <div class="text-slate-300 text-[11px] flex items-start gap-1.5 pl-0.5">    <span class="text-gold flex-shrink-0">🚶</span>    <span class="leading-relaxed">Bus #207 from Gion (8 min) ➔ Walk 8 min (500m) up Kiyomizu-zaka</span>  </div></div>
             </div>
 
             <!-- Cost Tag -->
             <div class="border-t sm:border-t-0 pt-2 sm:pt-0 sm:pl-4 sm:border-l border-white/10 flex sm:flex-col justify-between sm:justify-start items-center sm:items-end flex-shrink-0">
               <span class="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider sm:mb-1">EST. COST</span>
-              <div class="text-right font-mono flex-shrink-0"><div class="text-base font-bold text-white">~¥600</div><div class="text-xs font-bold text-gold font-mono">RM 18 pp</div></div>
+              <div class="text-right font-mono font-bold text-white text-sm sm:text-base whitespace-nowrap">  ¥230</div><div class="text-right text-[11px] font-mono font-semibold text-gold whitespace-nowrap">  ~RM 7</div>
             </div>
           </div>
 
@@ -270,7 +270,7 @@
       </div>
 
       <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
-      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative">
+      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative" data-activity-index="1">
         <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
           
           <!-- LEFT: PROMINENT BIG TIME BLOCK -->
@@ -282,7 +282,7 @@
               </div>
             </div>
             <div class="pt-1 flex flex-wrap gap-1.5">
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-purple-950/90 text-purple-300 border border-purple-800/80">Sightseeing</span>
+              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-rose-950/90 text-rose-300 border-rose-800/80">Sightseeing</span>
               
             </div>
           </div>
@@ -291,19 +291,19 @@
           <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
             <div class="space-y-2 flex-grow">
               <div class="flex items-center gap-2">
-                <h3 class="text-lg font-bold text-white tracking-tight">
-                  Kiyomizu-dera Temple
+                <h3 class="text-lg font-bold text-white tracking-tight font-mincho">
+                  Kiyomizu-dera Temple (Pure Water Stage)
                 </h3>
-                <a href="https://www.google.com/maps/search/?api=1&query=Kiyomizu-dera" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Kiyomizu-dera%20Temple" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
               </div>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Iconic UNESCO wooden temple stage built without nails overlooking Kyoto city, Otowa Waterfall, and winter hillside.</p>
-              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#05070B] text-slate-300 text-xs font-mono border border-white/10"><i data-lucide="navigation" class="w-3.5 h-3.5 text-gold"></i><span>Ticket ~400 JPY (12 MYR) pp</span></div>
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Enter via Deva Gate. Walk through the main hall and onto the iconic 13-meter-high wooden stage built without a single nail overlooking the cherry and maple forest. Visit the Otowa Waterfall beneath to drink from the sacred streams.</p>
+              <div class="mt-3.5 p-3 rounded-2xl bg-[#05070B] border border-cyan-500/30 space-y-1.5 font-mono text-xs shadow-inner">  <div class="flex flex-wrap items-center justify-between gap-2">    <div class="flex items-center gap-1.5 text-cyan-300 font-bold">      <span class="px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-[10px] uppercase">🚆 Temple Walking Tour</span>      <span class="text-white text-xs">🚉 Kiyomizu-Gojo / Kiyomizumichi</span>    </div>    <span class="text-gold text-[10px] font-bold">● Connected Hub</span>  </div>  <div class="text-slate-300 text-[11px] flex items-start gap-1.5 pl-0.5">    <span class="text-gold flex-shrink-0">🚶</span>    <span class="leading-relaxed">Walk through temple grounds & Otowa waterfall (entry ¥400)</span>  </div></div>
             </div>
 
             <!-- Cost Tag -->
             <div class="border-t sm:border-t-0 pt-2 sm:pt-0 sm:pl-4 sm:border-l border-white/10 flex sm:flex-col justify-between sm:justify-start items-center sm:items-end flex-shrink-0">
               <span class="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider sm:mb-1">EST. COST</span>
-              <div class="text-right font-mono flex-shrink-0"><div class="text-base font-bold text-white">~¥400</div><div class="text-xs font-bold text-gold font-mono">RM 12 pp</div></div>
+              <div class="text-right font-mono font-bold text-white text-sm sm:text-base whitespace-nowrap">  ¥400</div><div class="text-right text-[11px] font-mono font-semibold text-gold whitespace-nowrap">  ~RM 12</div>
             </div>
           </div>
 
@@ -311,7 +311,7 @@
       </div>
 
       <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
-      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative">
+      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative" data-activity-index="2">
         <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
           
           <!-- LEFT: PROMINENT BIG TIME BLOCK -->
@@ -323,7 +323,7 @@
               </div>
             </div>
             <div class="pt-1 flex flex-wrap gap-1.5">
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-purple-950/90 text-purple-300 border border-purple-800/80">Sightseeing</span>
+              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-rose-950/90 text-rose-300 border-rose-800/80">Sightseeing</span>
               
             </div>
           </div>
@@ -332,13 +332,13 @@
           <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
             <div class="space-y-2 flex-grow">
               <div class="flex items-center gap-2">
-                <h3 class="text-lg font-bold text-white tracking-tight">
-                  Sannenzaka–Ninenzaka stroll
+                <h3 class="text-lg font-bold text-white tracking-tight font-mincho">
+                  Sannenzaka & Ninenzaka Historic Slopes Stroll
                 </h3>
-                <a href="https://www.google.com/maps/search/?api=1&query=Sannenzaka%20Ninenzaka%20Kyoto" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Sannenzaka%20Kyoto" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
               </div>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Historic stone-flagged pedestrian slopes, traditional teahouses, craft shops, and Yasaka Pagoda photo spots.</p>
-              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#05070B] text-slate-300 text-xs font-mono border border-white/10"><i data-lucide="navigation" class="w-3.5 h-3.5 text-gold"></i><span>Walking</span></div>
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Walk down directly from Kiyomizu-dera onto the historic stone-paved pedestrian alleys of Sannenzaka and Ninenzaka. Pass the famous Yasaka Pagoda (Hokan-ji), traditional pottery shops, and wooden machiya cafes (20 min walk, 1.2km).</p>
+              <div class="mt-3.5 p-3 rounded-2xl bg-[#05070B] border border-cyan-500/30 space-y-1.5 font-mono text-xs shadow-inner">  <div class="flex flex-wrap items-center justify-between gap-2">    <div class="flex items-center gap-1.5 text-cyan-300 font-bold">      <span class="px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-[10px] uppercase">🚆 Walk (Scenic stone-paved downhill)</span>      <span class="text-white text-xs">🚉 Gion-Shijo Station</span>    </div>    <span class="text-gold text-[10px] font-bold">● Connected Hub</span>  </div>  <div class="text-slate-300 text-[11px] flex items-start gap-1.5 pl-0.5">    <span class="text-gold flex-shrink-0">🚶</span>    <span class="leading-relaxed">Walk down 20 min (1.2km) past Yasaka Pagoda towards Gion</span>  </div></div>
             </div>
 
             <!-- Cost Tag -->
@@ -352,7 +352,7 @@
       </div>
 
       <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
-      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative">
+      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative" data-activity-index="3">
         <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
           
           <!-- LEFT: PROMINENT BIG TIME BLOCK -->
@@ -360,11 +360,11 @@
             <div class="space-y-0.5">
               <div class="text-[10px] font-mono uppercase font-bold text-slate-500 tracking-wider">SCHEDULED TIME</div>
               <div class="text-xl sm:text-2xl font-black font-mono text-gold tracking-tight drop-shadow-sm">
-                12:00–12:30
+                12:30–14:30
               </div>
             </div>
             <div class="pt-1 flex flex-wrap gap-1.5">
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-sky-950/90 text-sky-300 border border-sky-800/80">Transit</span>
+              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-rose-950/90 text-rose-300 border-rose-800/80">Sightseeing</span>
               
             </div>
           </div>
@@ -373,19 +373,19 @@
           <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
             <div class="space-y-2 flex-grow">
               <div class="flex items-center gap-2">
-                <h3 class="text-lg font-bold text-white tracking-tight">
-                  Transit to central Kyoto
+                <h3 class="text-lg font-bold text-white tracking-tight font-mincho">
+                  Nishiki Market (Kyoto's 400-Year Food Alley)
                 </h3>
-                <a href="https://www.google.com/maps/search/?api=1&query=Shijo%20Kawaramachi" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Nishiki%20Market%20Kyoto" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
               </div>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Kyoto City Bus to Shijo-Kawaramachi.</p>
-              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#05070B] text-slate-300 text-xs font-mono border border-white/10"><i data-lucide="navigation" class="w-3.5 h-3.5 text-gold"></i><span>~15 min | ~230 JPY (7 MYR) pp</span></div>
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Walk west 15 min (1.1km) through Yasaka Shrine and across Shijo Bridge along Shijo-dori (or take Bus #207 for 6 min, ¥230) ➔ Turn north at Teramachi into Nishiki Market arcade. Explore the 400-meter narrow market lane with fresh strawberries, daifuku, roasted chestnuts, and Japanese culinary crafts.</p>
+              <div class="mt-3.5 p-3 rounded-2xl bg-[#05070B] border border-cyan-500/30 space-y-1.5 font-mono text-xs shadow-inner">  <div class="flex flex-wrap items-center justify-between gap-2">    <div class="flex items-center gap-1.5 text-cyan-300 font-bold">      <span class="px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-[10px] uppercase">🚆 Walk (15 min west) or Bus (6 min)</span>      <span class="text-white text-xs">🚉 Kyoto-Kawaramachi Station</span>    </div>    <span class="text-gold text-[10px] font-bold">● Connected Hub</span>  </div>  <div class="text-slate-300 text-[11px] flex items-start gap-1.5 pl-0.5">    <span class="text-gold flex-shrink-0">🚶</span>    <span class="leading-relaxed">Walk 15 min west across Kamogawa ➔ Exit 9 ➔ Walk 3 min into market</span>  </div></div>
             </div>
 
             <!-- Cost Tag -->
             <div class="border-t sm:border-t-0 pt-2 sm:pt-0 sm:pl-4 sm:border-l border-white/10 flex sm:flex-col justify-between sm:justify-start items-center sm:items-end flex-shrink-0">
               <span class="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider sm:mb-1">EST. COST</span>
-              <div class="text-right font-mono flex-shrink-0"><div class="text-base font-bold text-white">~¥230</div><div class="text-xs font-bold text-gold font-mono">RM 7 pp</div></div>
+              <div class="text-right font-mono font-bold text-white text-sm sm:text-base whitespace-nowrap">  ¥1,500</div><div class="text-right text-[11px] font-mono font-semibold text-gold whitespace-nowrap">  ~RM 45</div>
             </div>
           </div>
 
@@ -393,89 +393,7 @@
       </div>
 
       <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
-      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative">
-        <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
-          
-          <!-- LEFT: PROMINENT BIG TIME BLOCK -->
-          <div class="flex-shrink-0 flex md:flex-col items-center md:items-start justify-between md:justify-start gap-2 min-w-[150px] pb-3 md:pb-0 border-b md:border-b-0 md:border-r border-white/10 md:pr-5">
-            <div class="space-y-0.5">
-              <div class="text-[10px] font-mono uppercase font-bold text-slate-500 tracking-wider">SCHEDULED TIME</div>
-              <div class="text-xl sm:text-2xl font-black font-mono text-gold tracking-tight drop-shadow-sm">
-                12:30–14:00
-              </div>
-            </div>
-            <div class="pt-1 flex flex-wrap gap-1.5">
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-amber-950/90 text-amber-300 border border-amber-800/80">Shopping</span>
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-bold bg-amber-600 text-white flex items-center gap-1 shadow-sm">⚠️ Halal Caution</span>
-            </div>
-          </div>
-
-          <!-- RIGHT: ACTIVITY DETAILS & COST -->
-          <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-            <div class="space-y-2 flex-grow">
-              <div class="flex items-center gap-2">
-                <h3 class="text-lg font-bold text-white tracking-tight">
-                  Nishiki Market (browse & lunch)
-                </h3>
-                <a href="https://www.google.com/maps/search/?api=1&query=Nishiki%20Market" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
-              </div>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Kyoto's 400-year-old pantry! Fresh seasonal strawberries, roasted tea, and halal-conscious snacks.</p>
-              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#05070B] text-slate-300 text-xs font-mono border border-white/10"><i data-lucide="navigation" class="w-3.5 h-3.5 text-gold"></i><span>Walking</span></div>
-            </div>
-
-            <!-- Cost Tag -->
-            <div class="border-t sm:border-t-0 pt-2 sm:pt-0 sm:pl-4 sm:border-l border-white/10 flex sm:flex-col justify-between sm:justify-start items-center sm:items-end flex-shrink-0">
-              <span class="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider sm:mb-1">EST. COST</span>
-              <div class="text-right font-mono flex-shrink-0"><div class="text-base font-bold text-white">~¥1,500</div><div class="text-xs font-bold text-gold font-mono">RM 45 pp</div></div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
-      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative">
-        <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
-          
-          <!-- LEFT: PROMINENT BIG TIME BLOCK -->
-          <div class="flex-shrink-0 flex md:flex-col items-center md:items-start justify-between md:justify-start gap-2 min-w-[150px] pb-3 md:pb-0 border-b md:border-b-0 md:border-r border-white/10 md:pr-5">
-            <div class="space-y-0.5">
-              <div class="text-[10px] font-mono uppercase font-bold text-slate-500 tracking-wider">SCHEDULED TIME</div>
-              <div class="text-xl sm:text-2xl font-black font-mono text-gold tracking-tight drop-shadow-sm">
-                14:00–15:00
-              </div>
-            </div>
-            <div class="pt-1 flex flex-wrap gap-1.5">
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-teal-950/90 text-teal-300 border border-teal-800/80">Prayer / Rest</span>
-              
-            </div>
-          </div>
-
-          <!-- RIGHT: ACTIVITY DETAILS & COST -->
-          <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-            <div class="space-y-2 flex-grow">
-              <div class="flex items-center gap-2">
-                <h3 class="text-lg font-bold text-white tracking-tight">
-                  Rest / prayer break @ Rinn Shirakawa South
-                </h3>
-                <a href="https://www.google.com/maps/search/?api=1&query=Rinn%20Shirakawa%20South%20Kyoto" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
-              </div>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Midday Zuhr/Asr prayer break and recharge at hotel.</p>
-              
-            </div>
-
-            <!-- Cost Tag -->
-            <div class="border-t sm:border-t-0 pt-2 sm:pt-0 sm:pl-4 sm:border-l border-white/10 flex sm:flex-col justify-between sm:justify-start items-center sm:items-end flex-shrink-0">
-              <span class="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider sm:mb-1">EST. COST</span>
-              <div class="text-right text-xs font-semibold text-slate-400 font-mono flex-shrink-0">Free / Included</div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
-      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative">
+      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative" data-activity-index="4">
         <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
           
           <!-- LEFT: PROMINENT BIG TIME BLOCK -->
@@ -487,7 +405,7 @@
               </div>
             </div>
             <div class="pt-1 flex flex-wrap gap-1.5">
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-sky-950/90 text-sky-300 border border-sky-800/80">Transit</span>
+              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-sky-950/90 text-sky-300 border-sky-800/80">Transit</span>
               
             </div>
           </div>
@@ -496,19 +414,19 @@
           <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
             <div class="space-y-2 flex-grow">
               <div class="flex items-center gap-2">
-                <h3 class="text-lg font-bold text-white tracking-tight">
-                  Bus to Kinkaku-ji
+                <h3 class="text-lg font-bold text-white tracking-tight font-mincho">
+                  Nishiki Market ➔ Kinkaku-ji (Direct Bus #12/#205)
                 </h3>
-                <a href="https://www.google.com/maps/search/?api=1&query=Kinkakuji-michi%20Bus%20Stop" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Kinkaku-ji%20Kyoto" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
               </div>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Direct Kyoto City Bus #12 or #205 to Kinkakuji-michi.</p>
-              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#05070B] text-slate-300 text-xs font-mono border border-white/10"><i data-lucide="navigation" class="w-3.5 h-3.5 text-gold"></i><span>~30 min | ~230 JPY (7 MYR) pp</span></div>
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Walk 3 min south to Shijo-Karasuma bus stop ➔ Board Kyoto City Bus #12 (direct to Kinkakuji-mae, 35 min, ¥230) OR take Karasuma Subway Line north to Kita-Oji Station (9 min, ¥260), then board Bus #205 direct to Kinkakuji-michi (10 min, ¥230). Walk 2 min to entrance.</p>
+              <div class="mt-3.5 p-3 rounded-2xl bg-[#05070B] border border-cyan-500/30 space-y-1.5 font-mono text-xs shadow-inner">  <div class="flex flex-wrap items-center justify-between gap-2">    <div class="flex items-center gap-1.5 text-cyan-300 font-bold">      <span class="px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-[10px] uppercase">🚆 Bus (35 min) or Subway + Bus</span>      <span class="text-white text-xs">🚉 Kita-Oji Station / Kinkakuji-michi</span>    </div>    <span class="text-gold text-[10px] font-bold">● Connected Hub</span>  </div>  <div class="text-slate-300 text-[11px] flex items-start gap-1.5 pl-0.5">    <span class="text-gold flex-shrink-0">🚶</span>    <span class="leading-relaxed">Bus #12 from Shijo-Karasuma (35 min) direct to Kinkakuji-mae</span>  </div></div>
             </div>
 
             <!-- Cost Tag -->
             <div class="border-t sm:border-t-0 pt-2 sm:pt-0 sm:pl-4 sm:border-l border-white/10 flex sm:flex-col justify-between sm:justify-start items-center sm:items-end flex-shrink-0">
               <span class="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider sm:mb-1">EST. COST</span>
-              <div class="text-right font-mono flex-shrink-0"><div class="text-base font-bold text-white">~¥230</div><div class="text-xs font-bold text-gold font-mono">RM 7 pp</div></div>
+              <div class="text-right font-mono font-bold text-white text-sm sm:text-base whitespace-nowrap">  ¥230</div><div class="text-right text-[11px] font-mono font-semibold text-gold whitespace-nowrap">  ~RM 7</div>
             </div>
           </div>
 
@@ -516,7 +434,7 @@
       </div>
 
       <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
-      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative">
+      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative" data-activity-index="5">
         <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
           
           <!-- LEFT: PROMINENT BIG TIME BLOCK -->
@@ -528,7 +446,7 @@
               </div>
             </div>
             <div class="pt-1 flex flex-wrap gap-1.5">
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-purple-950/90 text-purple-300 border border-purple-800/80">Sightseeing</span>
+              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-rose-950/90 text-rose-300 border-rose-800/80">Sightseeing</span>
               
             </div>
           </div>
@@ -537,19 +455,19 @@
           <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
             <div class="space-y-2 flex-grow">
               <div class="flex items-center gap-2">
-                <h3 class="text-lg font-bold text-white tracking-tight">
+                <h3 class="text-lg font-bold text-white tracking-tight font-mincho">
                   Kinkaku-ji (The Golden Pavilion)
                 </h3>
-                <a href="https://www.google.com/maps/search/?api=1&query=Kinkaku-ji" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Kinkaku-ji%20Temple" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
               </div>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">World-renowned Zen temple covered in pure gold leaf reflecting into the Kyoko-chi mirror pond, with snow dusting on pine trees.</p>
-              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#05070B] text-slate-300 text-xs font-mono border border-white/10"><i data-lucide="navigation" class="w-3.5 h-3.5 text-gold"></i><span>Ticket ~500 JPY (15 MYR) pp</span></div>
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Walk through the serene pine path to Kyoko-chi (Mirror Pond). Marvel at the top two floors completely covered in brilliant gold leaf shimmering on the reflective water in winter afternoon light. Stroll through the tea garden and stone pagoda path.</p>
+              <div class="mt-3.5 p-3 rounded-2xl bg-[#05070B] border border-cyan-500/30 space-y-1.5 font-mono text-xs shadow-inner">  <div class="flex flex-wrap items-center justify-between gap-2">    <div class="flex items-center gap-1.5 text-cyan-300 font-bold">      <span class="px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-[10px] uppercase">🚆 Garden Walking Tour</span>      <span class="text-white text-xs">🚉 Kita-Oji Station / Kinkakuji-michi</span>    </div>    <span class="text-gold text-[10px] font-bold">● Connected Hub</span>  </div>  <div class="text-slate-300 text-[11px] flex items-start gap-1.5 pl-0.5">    <span class="text-gold flex-shrink-0">🚶</span>    <span class="leading-relaxed">Stroll around Mirror Pond garden (entry ¥500)</span>  </div></div>
             </div>
 
             <!-- Cost Tag -->
             <div class="border-t sm:border-t-0 pt-2 sm:pt-0 sm:pl-4 sm:border-l border-white/10 flex sm:flex-col justify-between sm:justify-start items-center sm:items-end flex-shrink-0">
               <span class="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider sm:mb-1">EST. COST</span>
-              <div class="text-right font-mono flex-shrink-0"><div class="text-base font-bold text-white">~¥500</div><div class="text-xs font-bold text-gold font-mono">RM 15 pp</div></div>
+              <div class="text-right font-mono font-bold text-white text-sm sm:text-base whitespace-nowrap">  ¥500</div><div class="text-right text-[11px] font-mono font-semibold text-gold whitespace-nowrap">  ~RM 15</div>
             </div>
           </div>
 
@@ -557,7 +475,7 @@
       </div>
 
       <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
-      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative">
+      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative" data-activity-index="6">
         <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
           
           <!-- LEFT: PROMINENT BIG TIME BLOCK -->
@@ -569,7 +487,7 @@
               </div>
             </div>
             <div class="pt-1 flex flex-wrap gap-1.5">
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-sky-950/90 text-sky-300 border border-sky-800/80">Transit</span>
+              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-sky-950/90 text-sky-300 border-sky-800/80">Transit</span>
               
             </div>
           </div>
@@ -578,101 +496,60 @@
           <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
             <div class="space-y-2 flex-grow">
               <div class="flex items-center gap-2">
-                <h3 class="text-lg font-bold text-white tracking-tight">
-                  Bus return to central Kyoto
-                </h3>
-                <a href="https://www.google.com/maps/search/?api=1&query=Gion-Shijo%20Station" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
-              </div>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Return bus to Karasuma / Gion.</p>
-              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#05070B] text-slate-300 text-xs font-mono border border-white/10"><i data-lucide="navigation" class="w-3.5 h-3.5 text-gold"></i><span>~230 JPY (7 MYR) pp</span></div>
-            </div>
-
-            <!-- Cost Tag -->
-            <div class="border-t sm:border-t-0 pt-2 sm:pt-0 sm:pl-4 sm:border-l border-white/10 flex sm:flex-col justify-between sm:justify-start items-center sm:items-end flex-shrink-0">
-              <span class="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider sm:mb-1">EST. COST</span>
-              <div class="text-right font-mono flex-shrink-0"><div class="text-base font-bold text-white">~¥230</div><div class="text-xs font-bold text-gold font-mono">RM 7 pp</div></div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
-      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative">
-        <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
-          
-          <!-- LEFT: PROMINENT BIG TIME BLOCK -->
-          <div class="flex-shrink-0 flex md:flex-col items-center md:items-start justify-between md:justify-start gap-2 min-w-[150px] pb-3 md:pb-0 border-b md:border-b-0 md:border-r border-white/10 md:pr-5">
-            <div class="space-y-0.5">
-              <div class="text-[10px] font-mono uppercase font-bold text-slate-500 tracking-wider">SCHEDULED TIME</div>
-              <div class="text-xl sm:text-2xl font-black font-mono text-gold tracking-tight drop-shadow-sm">
-                18:00–19:30
-              </div>
-            </div>
-            <div class="pt-1 flex flex-wrap gap-1.5">
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-emerald-950/90 text-emerald-300 border border-emerald-800/80">Food</span>
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-bold bg-emerald-600 text-white flex items-center gap-1 shadow-sm">✓ Halal Verified</span>
-            </div>
-          </div>
-
-          <!-- RIGHT: ACTIVITY DETAILS & COST -->
-          <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-            <div class="space-y-2 flex-grow">
-              <div class="flex items-center gap-2">
-                <h3 class="text-lg font-bold text-white tracking-tight">
-                  Dinner (Halal Wagyu Panga or Halal Ramen Ayam Ya)
-                </h3>
-                <a href="https://www.google.com/maps/search/?api=1&query=Halal%20Wagyu%20Yakiniku%20Panga%20Kyoto" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
-              </div>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Warm halal dinner in central Kyoto.</p>
-              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#05070B] text-slate-300 text-xs font-mono border border-white/10"><i data-lucide="navigation" class="w-3.5 h-3.5 text-gold"></i><span>Short walk</span></div>
-            </div>
-
-            <!-- Cost Tag -->
-            <div class="border-t sm:border-t-0 pt-2 sm:pt-0 sm:pl-4 sm:border-l border-white/10 flex sm:flex-col justify-between sm:justify-start items-center sm:items-end flex-shrink-0">
-              <span class="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider sm:mb-1">EST. COST</span>
-              <div class="text-right font-mono flex-shrink-0"><div class="text-base font-bold text-white">~¥2,500</div><div class="text-xs font-bold text-gold font-mono">RM 75 pp</div></div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
-      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative">
-        <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
-          
-          <!-- LEFT: PROMINENT BIG TIME BLOCK -->
-          <div class="flex-shrink-0 flex md:flex-col items-center md:items-start justify-between md:justify-start gap-2 min-w-[150px] pb-3 md:pb-0 border-b md:border-b-0 md:border-r border-white/10 md:pr-5">
-            <div class="space-y-0.5">
-              <div class="text-[10px] font-mono uppercase font-bold text-slate-500 tracking-wider">SCHEDULED TIME</div>
-              <div class="text-xl sm:text-2xl font-black font-mono text-gold tracking-tight drop-shadow-sm">
-                19:30–20:30
-              </div>
-            </div>
-            <div class="pt-1 flex flex-wrap gap-1.5">
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-[#0F1624] text-slate-300 border border-white/10">Logistics</span>
-              
-            </div>
-          </div>
-
-          <!-- RIGHT: ACTIVITY DETAILS & COST -->
-          <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-            <div class="space-y-2 flex-grow">
-              <div class="flex items-center gap-2">
-                <h3 class="text-lg font-bold text-white tracking-tight">
-                  Return to Rinn Shirakawa South, pack for Tokyo
+                <h3 class="text-lg font-bold text-white tracking-tight font-mincho">
+                  Kinkaku-ji ➔ Gion Base (Return Bus #12/#205)
                 </h3>
                 <a href="https://www.google.com/maps/search/?api=1&query=Rinn%20Shirakawa%20South%20Kyoto" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
               </div>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Final packing for tomorrow's Shinkansen bullet train to Tokyo.</p>
-              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#05070B] text-slate-300 text-xs font-mono border border-white/10"><i data-lucide="navigation" class="w-3.5 h-3.5 text-gold"></i><span>Walk to hotel</span></div>
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Board Kyoto City Bus #12 or #205 at Kinkakuji-michi bus stop ➔ Ride 35–40 min direct back to Shijo-Kawaramachi / Gion bus stop (¥230). Walk 5 min to Rinn Shirakawa South.</p>
+              <div class="mt-3.5 p-3 rounded-2xl bg-[#05070B] border border-cyan-500/30 space-y-1.5 font-mono text-xs shadow-inner">  <div class="flex flex-wrap items-center justify-between gap-2">    <div class="flex items-center gap-1.5 text-cyan-300 font-bold">      <span class="px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-[10px] uppercase">🚆 Bus (35 min) + Walk (5 min)</span>      <span class="text-white text-xs">🚉 Gion-Shijo Station</span>    </div>    <span class="text-gold text-[10px] font-bold">● Connected Hub</span>  </div>  <div class="text-slate-300 text-[11px] flex items-start gap-1.5 pl-0.5">    <span class="text-gold flex-shrink-0">🚶</span>    <span class="leading-relaxed">Bus #12/#205 to Shijo-Kawaramachi ➔ Walk 5 min to hotel</span>  </div></div>
             </div>
 
             <!-- Cost Tag -->
             <div class="border-t sm:border-t-0 pt-2 sm:pt-0 sm:pl-4 sm:border-l border-white/10 flex sm:flex-col justify-between sm:justify-start items-center sm:items-end flex-shrink-0">
               <span class="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider sm:mb-1">EST. COST</span>
-              <div class="text-right text-xs font-semibold text-slate-400 font-mono flex-shrink-0">Free / Included</div>
+              <div class="text-right font-mono font-bold text-white text-sm sm:text-base whitespace-nowrap">  ¥230</div><div class="text-right text-[11px] font-mono font-semibold text-gold whitespace-nowrap">  ~RM 7</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
+      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative" data-activity-index="7">
+        <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
+          
+          <!-- LEFT: PROMINENT BIG TIME BLOCK -->
+          <div class="flex-shrink-0 flex md:flex-col items-center md:items-start justify-between md:justify-start gap-2 min-w-[150px] pb-3 md:pb-0 border-b md:border-b-0 md:border-r border-white/10 md:pr-5">
+            <div class="space-y-0.5">
+              <div class="text-[10px] font-mono uppercase font-bold text-slate-500 tracking-wider">SCHEDULED TIME</div>
+              <div class="text-xl sm:text-2xl font-black font-mono text-gold tracking-tight drop-shadow-sm">
+                18:30–20:30
+              </div>
+            </div>
+            <div class="pt-1 flex flex-wrap gap-1.5">
+              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-emerald-950/90 text-emerald-300 border-emerald-800/80">Food</span>
+              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-emerald-950/90 text-emerald-300 border border-emerald-800/80">🌱 Halal Certified Dinner</span>
+            </div>
+          </div>
+
+          <!-- RIGHT: ACTIVITY DETAILS & COST -->
+          <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+            <div class="space-y-2 flex-grow">
+              <div class="flex items-center gap-2">
+                <h3 class="text-lg font-bold text-white tracking-tight font-mincho">
+                  Dinner: Halal Wagyu Panga or Ayam Ya
+                </h3>
+                <a href="https://www.google.com/maps/search/?api=1&query=Halal%20Wagyu%20Yakiniku%20Panga%20Gion" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Walk 5 min south to Wagyu Panga in Gion OR take 1-stop Hankyu train to Karasuma for Ayam Ya. Return to Rinn Shirakawa South. Pack bags for Shinkansen to Tokyo tomorrow!</p>
+              <div class="mt-3.5 p-3 rounded-2xl bg-[#05070B] border border-cyan-500/30 space-y-1.5 font-mono text-xs shadow-inner">  <div class="flex flex-wrap items-center justify-between gap-2">    <div class="flex items-center gap-1.5 text-cyan-300 font-bold">      <span class="px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-[10px] uppercase">🚆 Walk (5 min)</span>      <span class="text-white text-xs">🚉 Gion-Shijo Station</span>    </div>    <span class="text-gold text-[10px] font-bold">● Connected Hub</span>  </div>  <div class="text-slate-300 text-[11px] flex items-start gap-1.5 pl-0.5">    <span class="text-gold flex-shrink-0">🚶</span>    <span class="leading-relaxed">Walk 5 min to Wagyu Panga in Gion</span>  </div></div>
+            </div>
+
+            <!-- Cost Tag -->
+            <div class="border-t sm:border-t-0 pt-2 sm:pt-0 sm:pl-4 sm:border-l border-white/10 flex sm:flex-col justify-between sm:justify-start items-center sm:items-end flex-shrink-0">
+              <span class="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider sm:mb-1">EST. COST</span>
+              <div class="text-right font-mono font-bold text-white text-sm sm:text-base whitespace-nowrap">  ¥2,500</div><div class="text-right text-[11px] font-mono font-semibold text-gold whitespace-nowrap">  ~RM 75</div>
             </div>
           </div>
 
