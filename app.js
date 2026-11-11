@@ -19,14 +19,14 @@ const ITINERARY_DATA = [
     "image": "./images/osaka-dotonbori.jpg",
     "hotel": {
       "name": "Plum Hotel",
-      "nights": "1:00pm (Day 1) – 9:00am (Day 3) • 2 Nights",
-      "notes": "Luggage drop upon arrival; central base near Namba transport hubs",
+      "nights": "3:00pm (Day 1) – 9:00am (Day 3) • 2 Nights Base (Luggage drop from 1:00pm)",
+      "notes": "Luggage drop upon arrival (~1:00pm); standard room check-in from 3:00pm; central base near Namba transport hubs",
       "mapQuery": "Plum Hotel Osaka"
     },
     "activities": [
       {
-        "time": "09:45–10:30",
-        "title": "Kansai International Airport (Arrive KIX)",
+        "time": "09:45–11:45",
+        "title": "Kansai International Airport (Arrive KIX & Customs)",
         "costJpy": 0,
         "costMyr": 0,
         "category": "transit",
@@ -35,14 +35,14 @@ const ITINERARY_DATA = [
         "methodType": "flight",
         "connectedStation": "Kansai Airport Station (KIX)",
         "stationWalk": "Direct inside airport (0 min / 150m via 2F walkway)",
-        "transitSummary": "Flight arrival KIX • Walk 3 min across 2F bridge to station",
-        "note": "Flight touchdown at KIX Terminal 1. Clear immigration, collect baggage, and pass customs. Walk 3 min across 2F covered bridge to Kansai Airport Railway Station. Top up ICOCA IC Card at ticket machines.",
+        "transitSummary": "Flight arrival KIX • Customs clearance after 11:30am • Walk across 2F bridge to station",
+        "note": "Flight touchdown at KIX Terminal 1 (09:45). Clear immigration, collect baggage, pass customs (clearing after ~11:30am), and walk 3 min across 2F covered bridge to Kansai Airport Railway Station. Top up ICOCA IC Card at ticket machines.",
         "mapQuery": "Kansai International Airport",
         "lat": 34.4347,
         "lng": 135.2443
       },
       {
-        "time": "10:30–12:00",
+        "time": "11:45–13:00",
         "title": "Airport → Osaka Namba (Nankai Airport Express)",
         "costJpy": 970,
         "costMyr": 29,
@@ -53,13 +53,13 @@ const ITINERARY_DATA = [
         "connectedStation": "Namba Station (Nankai)",
         "stationWalk": "Board Platform 1/2 ➔ Direct to Namba 3F concourse (44 min)",
         "transitSummary": "Nankai Airport Express (44 min direct, ¥970 / ~RM 29 pp)",
-        "note": "Board Nankai Airport Express (Platform 1/2) at Kansai Airport Station. Scenic ride across Osaka Bay Sky Gate Bridge direct to Namba Station 3F concourse (44 min, 11 stops, ¥970).",
+        "note": "Board Nankai Airport Express (Platform 1/2) at Kansai Airport Station (~11:55 / 12:05). Scenic ride across Osaka Bay Sky Gate Bridge direct to Namba Station 3F concourse (44 min, 11 stops, ¥970).",
         "mapQuery": "Namba Station Osaka",
         "lat": 34.6629,
         "lng": 135.5003
       },
       {
-        "time": "12:00–13:00",
+        "time": "13:00–13:45",
         "title": "Namba Station ➔ Plum Hotel (Luggage Drop)",
         "costJpy": 0,
         "costMyr": 0,
@@ -70,13 +70,13 @@ const ITINERARY_DATA = [
         "connectedStation": "Daikokucho Station / Namba Station",
         "stationWalk": "Walk 8 min (600m) from Namba South Exit or 3 min from Daikokucho Exit 1",
         "transitSummary": "Walk 8 min (600m) south to Plum Hotel reception",
-        "note": "From Namba Station South Exit, walk 8 min (600m) south down Daikoku shopping street (or take Osaka Metro Midosuji Line 1 stop to Daikokucho Station Exit 1, walk 3 min) directly to Plum Hotel Osaka. Drop luggage at reception before lunch.",
+        "note": "From Namba Station South Exit, walk 8 min (600m) south down Daikoku shopping street (or take Osaka Metro Midosuji Line 1 stop to Daikokucho Station Exit 1, walk 3 min) directly to Plum Hotel Osaka. Drop luggage at reception before lunch (standard room check-in opens at 3:00pm).",
         "mapQuery": "Plum Hotel Osaka",
         "lat": 34.6565,
         "lng": 135.4985
       },
       {
-        "time": "13:00–14:30",
+        "time": "13:45–15:00",
         "title": "Lunch: Halal Ramen Naniwaya",
         "costJpy": 1500,
         "costMyr": 45,
@@ -94,7 +94,7 @@ const ITINERARY_DATA = [
         "lng": 135.5015
       },
       {
-        "time": "15:00–17:00",
+        "time": "15:00–17:30",
         "title": "Plum Hotel Check-in & Settle in / Prayer",
         "costJpy": 0,
         "costMyr": 0,
@@ -105,7 +105,7 @@ const ITINERARY_DATA = [
         "connectedStation": "Daikokucho Station",
         "stationWalk": "Walk 4 min (320m) back to Plum Hotel Base",
         "transitSummary": "Walk 4 min (320m) back to Plum Hotel",
-        "note": "Walk 4 min back to Plum Hotel Osaka. Collect room keys at front desk, settle into rooms, unpack winter gear, and perform Dhuhr/Asr prayer.",
+        "note": "Walk 4 min back to Plum Hotel Osaka. Official check-in opens at 3:00pm! Collect room keys at front desk, settle into rooms, unpack winter gear, and perform Dhuhr/Asr prayer.",
         "mapQuery": "Plum Hotel Osaka",
         "lat": 34.6565,
         "lng": 135.4985
