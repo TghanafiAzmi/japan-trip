@@ -193,27 +193,12 @@
         </div>
       </div>
 
-      <!-- Time Scrubber Controls -->
-      <div class="p-3.5 rounded-2xl bg-[#05070B] border border-white/10 space-y-2">
-        <div class="flex items-center justify-between text-xs font-mono">
-          <div class="flex items-center gap-2 text-slate-300">
-            <i data-lucide="clock" class="w-3.5 h-3.5 text-vermilion"></i>
-            <span class="text-[11px]">Time Simulator:</span>
-            <span id="day-slider-time-label" class="font-bold text-gold bg-white/5 px-2 py-0.5 rounded border border-white/10">11:00</span>
-          </div>
-          <button id="day-live-sync-btn" class="px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-[10px] font-mono font-bold hover:scale-105 transition-all">
-            ● Real JST Active
-          </button>
-        </div>
-        <input id="day-time-slider" type="range" min="360" max="1380" step="10" value="660" class="roadmap-time-slider">
-      </div>
-
-      <!-- Hotel & Train Transit Flow Strip -->
-      <div id="day-transit-flow-strip" class="space-y-3"></div>
+      <!-- Connected Journey Pipeline (Morning ➔ Afternoon ➔ Evening) -->
+      <div id="day-journey-pipeline-container" class="space-y-3"></div>
 
       <!-- Interactive Leaflet Map -->
       <div class="rounded-2xl overflow-hidden border border-white/10 shadow-lg">
-        <div id="day-roadmap-map" class="roadmap-map-container" style="height: 380px;" data-lenis-prevent="true"></div>
+        <div id="day-roadmap-map" class="roadmap-map-container" style="height: 400px;" data-lenis-prevent="true"></div>
       </div>
 
     </div>

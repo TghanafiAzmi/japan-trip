@@ -2840,12 +2840,165 @@ function resolveStepCoordinate(st, dayNumber) {
 }
 
 // -------------------------------------------------------------
+// CONNECTED JOURNEY PIPELINE BUILDER (Morning ➔ Afternoon ➔ Evening)
+// -------------------------------------------------------------
+function buildConnectedJourneyPipelineHTML(dayNumber, currentMins, clickHandlerName, focusHotelHandlerName) {
+  // Day 0: All 9 Days Nationwide Corridor
+  if (dayNumber === 0) {
+    const nationwideHubs = [
+      { name: 'Kansai Int Airport (KIX)', lat: 34.4347, lng: 135.2443, icon: '✈️', day: 'Day 1', note: 'Touchdown in Osaka', phase: 'Kansai Hub' },
+      { name: 'Plum Hotel Osaka', lat: 34.6565, lng: 135.4985, icon: '🏨', day: 'Days 1–2', note: 'Namba Minami Base', phase: 'Kansai Hub' },
+      { name: 'Nara Park (Todai-ji)', lat: 34.6851, lng: 135.8430, icon: '🦌', day: 'Day 2', note: 'Sacred Bowing Deer', phase: 'Kansai Hub' },
+      { name: 'Rinn Shirakawa Kyoto', lat: 35.0062, lng: 135.7760, icon: '🏨', day: 'Days 3–4', note: 'Gion Canal Base', phase: 'Kyoto Hub' },
+      { name: 'Kiyomizu-dera & Gion', lat: 34.9949, lng: 135.7850, icon: '⛩️', day: 'Day 4', note: 'Historic Temples', phase: 'Kyoto Hub' },
+      { name: 'Tokaido Shinkansen Route', lat: 35.2000, lng: 137.5000, icon: '🚅', day: 'Day 5', note: 'Bullet Train to Tokyo', phase: 'Rail Artery' },
+      { name: 'Hotel Tavinos Asakusa', lat: 35.7171, lng: 139.7915, icon: '🏨', day: 'Days 5–8', note: 'Tokyo Base Hotel', phase: 'Tokyo Hub' },
+      { name: 'GALA Yuzawa Ski Resort', lat: 36.9508, lng: 138.8005, icon: '⛷️', day: 'Day 6', note: 'Snow Shinkansen', phase: 'Excursion' },
+      { name: 'Mt. Fuji & Kawaguchiko', lat: 35.5015, lng: 138.8016, icon: '🗻', day: 'Day 7', note: 'Chureito Pagoda View', phase: 'Excursion' },
+      { name: 'Akihabara & Shinjuku', lat: 35.6987, lng: 139.7747, icon: '⚡', day: 'Day 8', note: 'Tokyo Pop Culture', phase: 'Tokyo Hub' },
+      { name: 'Narita Airport (NRT)', lat: 35.7720, lng: 140.3929, icon: '🛫', day: 'Day 9', note: 'Flight Departure Home', phase: 'Departure' }
+    ];
+
+    return [
+      '<div class="space-y-2.5">',
+      '  <div class="flex flex-wrap items-center justify-between gap-2 px-1">',
+      '    <div class="flex items-center gap-2">',
+      '      <span class="w-2 h-2 rounded-full bg-gold animate-ping"></span>',
+      '      <span class="text-xs font-mono font-bold uppercase tracking-wider text-gold">9-Day Japan Connected Corridor Flow</span>',
+      '    </div>',
+      '    <span class="text-[11px] font-mono text-slate-400">Click any destination to fly to map</span>',
+      '  </div>',
+      '  <div class="p-3.5 rounded-2xl bg-[#070B12] border border-white/10 shadow-card-oled">',
+      '    <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">',
+      nationwideHubs.map((hub, hIdx) => [
+        '<div class="flex items-center gap-2 flex-shrink-0">',
+        '  <div onclick="' + clickHandlerName + '(' + hIdx + ')" class="journey-pipeline-card hover:border-gold/50" data-hub-idx="' + hIdx + '">',
+        '    <div class="flex items-center justify-between mb-1">',
+        '      <span class="journey-phase-tag bg-gold/15 text-gold border border-gold/30">' + hub.day + '</span>',
+        '      <span class="text-base">' + hub.icon + '</span>',
+        '    </div>',
+        '    <div class="text-xs font-bold text-white truncate font-mincho">' + hub.name + '</div>',
+        '    <div class="text-[10px] text-slate-400 truncate mt-0.5">' + hub.note + '</div>',
+        '  </div>',
+        (hIdx < nationwideHubs.length - 1 ? '<div class="journey-pipeline-connector text-slate-600"><span class="font-bold text-sm">➔</span></div>' : ''),
+        '</div>'
+      ].join('')).join(''),
+      '    </div>',
+      '  </div>',
+      '</div>'
+    ].join('');
+  }
+
+  // Single Day Flow (Days 1 to 9)
+  const dayData = ROADMAP_DATA.find(d => d.day === dayNumber);
+  const transitFlowData = DAILY_TRANSIT_FLOW[dayNumber];
+  const hotel = HOTEL_BASES[dayNumber];
+  if (!dayData) return '';
+
+  let activeIdx = -1;
+  dayData.activities.forEach((act, idx) => {
+    const { start, end } = parseActivityMinutes(act.time);
+    if (currentMins >= start && currentMins < end) {
+      activeIdx = idx;
+    }
+  });
+
+  // Header Bar with Hotel Base & Main Train Route
+  const headerHtml = [
+    '<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-2">',
+    '  <div class="p-3 rounded-2xl bg-[#090D15] border border-gold/40 shadow-[0_0_15px_rgba(212,175,55,0.12)] flex items-center justify-between gap-3">',
+    '    <div class="flex items-center gap-2.5 min-w-0 cursor-pointer" onclick="' + focusHotelHandlerName + '()">',
+    '      <div class="w-9 h-9 rounded-xl bg-gold/20 text-gold flex items-center justify-center text-base flex-shrink-0">🏨</div>',
+    '      <div class="min-w-0">',
+    '        <div class="text-[9px] font-mono font-bold uppercase tracking-wider text-gold">BASE HOTEL (DAY ' + dayNumber + ')</div>',
+    '        <div class="text-xs font-bold text-white truncate font-mincho hover:text-gold transition-colors">' + (hotel ? hotel.name : 'Base Hotel') + '</div>',
+    '        <div class="text-[10px] text-slate-400 truncate">🚉 ' + (hotel ? hotel.nearestStation.split('/')[0].trim() : '') + '</div>',
+    '      </div>',
+    '    </div>',
+    '    <button onclick="' + focusHotelHandlerName + '()" class="px-2 py-1 rounded-lg bg-gold/20 hover:bg-gold/30 text-gold font-mono font-bold text-[10px] border border-gold/40 flex-shrink-0 transition-all">Focus Map</button>',
+    '  </div>',
+    '  <div class="p-3 rounded-2xl bg-[#090D15] border border-cyan-500/30 flex items-center gap-3">',
+    '    <div class="w-9 h-9 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-base flex-shrink-0">🚆</div>',
+    '    <div class="min-w-0 flex-grow">',
+    '      <div class="text-[9px] font-mono font-bold uppercase tracking-wider text-cyan-400">TRANSIT ARTERY</div>',
+    '      <div class="text-xs font-bold text-white truncate font-mono">' + (transitFlowData ? transitFlowData.mainTrain.line : 'Connected Rail') + '</div>',
+    '      <div class="text-[10px] text-slate-400 truncate">' + (transitFlowData ? transitFlowData.mainTrain.route + ' (' + transitFlowData.mainTrain.time + ')' : '') + '</div>',
+    '    </div>',
+    '    ' + (transitFlowData ? '<span class="text-[10px] font-mono text-cyan-300 font-bold bg-cyan-950 px-2 py-0.5 rounded border border-cyan-800 flex-shrink-0">' + transitFlowData.mainTrain.cost + '</span>' : ''),
+    '  </div>',
+    '</div>'
+  ].join('');
+
+  // Build Connected Pipeline Steps
+  const pipelineStepsHtml = dayData.activities.map((act, actIdx) => {
+    const { start, end } = parseActivityMinutes(act.time);
+    const badge = getStopCategoryBadge(act);
+    const isNow = actIdx === activeIdx;
+    const isLast = actIdx === dayData.activities.length - 1;
+
+    // Determine Phase Label
+    let phaseBadge = '';
+    if (start < 12 * 60) {
+      phaseBadge = '<span class="journey-phase-tag bg-amber-500/15 text-amber-300 border border-amber-500/30">🌅 Morning</span>';
+    } else if (start < 17 * 60 + 30) {
+      phaseBadge = '<span class="journey-phase-tag bg-sky-500/15 text-sky-300 border border-sky-500/30">☀️ Afternoon</span>';
+    } else {
+      phaseBadge = '<span class="journey-phase-tag bg-indigo-500/15 text-indigo-300 border border-indigo-500/30">🌙 Evening</span>';
+    }
+
+    const transitText = act.transit || (act.category === 'food' ? 'Dining stop' : 'Walk/Visit');
+    const stLink = getActivityStationLink(act, dayNumber);
+    const transitConnectorNote = stLink ? '🚶 ' + stLink.walk : (act.transit ? '🚆 ' + act.transit.split('(')[0].trim().substring(0, 20) : 'Next Stop');
+
+    return [
+      '<div class="flex items-center gap-2 flex-shrink-0">',
+      '  <div onclick="' + clickHandlerName + '(' + actIdx + ')" class="journey-pipeline-card ' + (isNow ? 'is-active-now' : '') + '" data-stop-idx="' + actIdx + '">',
+      '    <div class="flex items-center justify-between gap-1 mb-1">',
+      phaseBadge,
+      '      <span class="font-mono text-[10px] font-bold ' + (isNow ? 'text-vermilion' : 'text-gold') + '">' + act.time + '</span>',
+      '    </div>',
+      '    <div class="flex items-start gap-2 mt-1">',
+      '      <span class="text-base flex-shrink-0">' + badge.icon + '</span>',
+      '      <div class="min-w-0">',
+      '        <div class="text-xs font-bold text-white truncate font-mincho">' + act.title + '</div>',
+      '        <div class="text-[9px] ' + (act.halal ? 'text-emerald-400 font-bold' : 'text-slate-400') + ' truncate mt-0.5">' + (act.halal ? '🌱 ' + (act.halalNote || 'Halal Certified') : transitText) + '</div>',
+      '      </div>',
+      '    </div>',
+      '  </div>',
+      (!isLast ? [
+        '<div class="journey-pipeline-connector">',
+        '  <span class="text-slate-600 font-bold text-xs">➔</span>',
+        '  <span class="text-[9px] text-cyan-400 text-center leading-tight truncate max-w-[80px]">' + transitConnectorNote + '</span>',
+        '</div>'
+      ].join('') : ''),
+      '</div>'
+    ].join('');
+  }).join('');
+
+  return [
+    '<div class="space-y-2.5">',
+    headerHtml,
+    '  <div class="p-3.5 rounded-2xl bg-[#070B12] border border-white/10 shadow-card-oled">',
+    '    <div class="flex items-center justify-between mb-2 px-1">',
+    '      <div class="flex items-center gap-2">',
+    '        <span class="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider">Connected Daily Flow:</span>',
+    '        <span class="px-2 py-0.5 rounded text-[9px] font-mono font-bold bg-white/5 text-slate-300 border border-white/10">' + dayData.activities.length + ' Stops</span>',
+    '      </div>',
+    '      <button onclick="document.getElementById(\'recenter-master-roadmap-btn\')?.click() || document.getElementById(\'recenter-day-roadmap-btn\')?.click()" class="text-[10px] font-mono text-cyan-400 hover:underline cursor-pointer">🎯 Fit Map</button>',
+    '    </div>',
+    '    <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">',
+    pipelineStepsHtml,
+    '    </div>',
+    '  </div>',
+    '</div>'
+  ].join('');
+}
+
+// -------------------------------------------------------------
 // MASTER ROADMAP (For index.html)
 // -------------------------------------------------------------
 function initMasterRoadmap(containerId = 'master-roadmap-map') {
   let currentSelectedDay = 1;
-  let isSimulating = false;
-  let simulatedMinutes = 11 * 60;
   let currentBounds = null;
 
   const mapEl = document.getElementById(containerId);
@@ -2983,10 +3136,6 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
   setTimeout(() => map.invalidateSize(), 200);
   window.addEventListener('resize', () => map.invalidateSize());
 
-  function getEffectiveMinutes() {
-    return isSimulating ? simulatedMinutes : getJSTCurrentMinutes();
-  }
-
   function renderView(options = {}) {
     const shouldFit = options && options.fit === true;
 
@@ -2994,11 +3143,17 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
     connectorsLayer.clearLayers();
     trainRouteLayer.clearLayers();
 
-    const currentMins = getEffectiveMinutes();
+    const currentMins = getJSTCurrentMinutes();
+
+    // Update Live JST clock in header if present
+    const liveTimeEl = document.getElementById('roadmap-live-jst-clock');
+    if (liveTimeEl) {
+      liveTimeEl.textContent = getJSTTimeString() + ' JST';
+    }
 
     if (currentSelectedDay === 0) {
       renderAllJapanOverview(shouldFit);
-      updateRoadmapDashboard(null, -1, currentMins);
+      renderMasterPipeline(currentSelectedDay, currentMins);
       return;
     }
 
@@ -3115,7 +3270,7 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
       }
     }
 
-    updateRoadmapDashboard(dayData, activeIndex, currentMins);
+    renderMasterPipeline(currentSelectedDay, currentMins);
   }
 
   function renderAllJapanOverview(shouldFit = false) {
@@ -3123,7 +3278,7 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
     connectorsLayer.clearLayers();
     trainRouteLayer.clearLayers();
 
-    // 1. Draw ALL major train lines across Japan (The Rail Backbone)
+    // 1. Draw ALL major train lines across Japan
     const allTrainKeys = ['tokaidoShinkansen', 'joetsuShinkansen', 'nankaiAirportExpress', 'kintetsuNaraLine', 'jrKyotoLine', 'fujiExcursionRoute', 'keiseiSkyliner'];
     const allBoundsLatLngs = [];
 
@@ -3135,7 +3290,7 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
       }
     });
 
-    // 2. Render ALL 3 Place to Stay (HOTEL BASES) with Golden Beacons
+    // 2. Render ALL 3 Hotel Bases with Golden Beacons
     const allHotels = [HOTEL_BASES[1], HOTEL_BASES[3], HOTEL_BASES[5]];
     allHotels.forEach(h => {
       renderHotelBaseMarker(markersLayer, h, h.id.includes('osaka') ? '1–2' : (h.id.includes('kyoto') ? '3–4' : '5–8'));
@@ -3183,183 +3338,10 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
     }
   }
 
-  function updateRoadmapDashboard(dayData, activeIdx, currentMins) {
-    const liveTimeEl = document.getElementById('roadmap-live-jst-clock');
-    if (liveTimeEl) {
-      liveTimeEl.textContent = isSimulating ? formatMinutes(currentMins) + ' (Simulated)' : getJSTTimeString() + ' JST';
-    }
-
-    const activeCardEl = document.getElementById('roadmap-active-stop-card');
-    const stopsListEl = document.getElementById('roadmap-stops-chips-container');
-
-    // Day 0: All Japan Overview Mode
-    if (!dayData || activeIdx === -1) {
-      if (activeCardEl) {
-        activeCardEl.innerHTML = [
-          '<div class="p-4 rounded-2xl bg-[#090D15] border border-gold/40 shadow-[0_0_20px_rgba(212,175,55,0.12)] flex items-center justify-between gap-4">',
-          '  <div class="flex items-center gap-3.5">',
-          '    <div class="w-12 h-12 rounded-xl bg-gold/20 text-gold flex items-center justify-center font-bold font-mono text-lg border border-gold/30">🗾</div>',
-          '    <div>',
-          '      <div class="text-[10px] font-mono font-bold uppercase tracking-wider text-gold">Nationwide Route & Train Corridor</div>',
-          '      <div class="text-white font-bold text-sm sm:text-base font-mincho">Osaka • Nara • Kyoto • GALA Yuzawa • Mt. Fuji • Tokyo</div>',
-          '      <div class="text-xs text-slate-400 font-sans mt-0.5">3 Base Hotels • High-Speed Shinkansen Paths • Click any destination below to fly to map</div>',
-          '    </div>',
-          '  </div>',
-          '  <button onclick="document.getElementById(\'recenter-master-roadmap-btn\')?.click()" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gold/20 hover:bg-gold/30 text-gold font-mono font-bold text-xs border border-gold/40 transition-all">',
-          '    <span>🎯 Fit Japan</span>',
-          '  </button>',
-          '</div>'
-        ].join('');
-      }
-
-      // Render Nationwide Stops Carousel
-      if (stopsListEl) {
-        const nationwideHubs = [
-          { name: 'Kansai Int Airport (KIX)', lat: 34.4347, lng: 135.2443, icon: '✈️', day: 'Day 1', note: 'Osaka Airport Hub' },
-          { name: 'Plum Hotel Osaka', lat: 34.6565, lng: 135.4985, icon: '🏨', day: 'Days 1–2', note: 'Osaka Base Hotel' },
-          { name: 'Nara Park (Todai-ji)', lat: 34.6851, lng: 135.8430, icon: '🦌', day: 'Day 2', note: 'Sacred Bowing Deer' },
-          { name: 'Rinn Shirakawa Kyoto', lat: 35.0062, lng: 135.7760, icon: '🏨', day: 'Days 3–4', note: 'Kyoto Base Hotel' },
-          { name: 'Kiyomizu-dera Temple', lat: 34.9949, lng: 135.7850, icon: '⛩️', day: 'Day 4', note: 'Historic Kyoto Stage' },
-          { name: 'Tokaido Shinkansen Route', lat: 35.2000, lng: 137.5000, icon: '🚅', day: 'Day 5', note: 'Bullet Train Corridor' },
-          { name: 'Hotel Tavinos Asakusa', lat: 35.7171, lng: 139.7915, icon: '🏨', day: 'Days 5–8', note: 'Tokyo Base Hotel' },
-          { name: 'GALA Yuzawa Ski Resort', lat: 36.9508, lng: 138.8005, icon: '⛷️', day: 'Day 6', note: 'Shinkansen Snow Country' },
-          { name: 'Mt. Fuji (Lake Kawaguchi)', lat: 35.5015, lng: 138.8016, icon: '🗻', day: 'Day 7', note: 'Pagoda & Fuji Reflection' },
-          { name: 'Akihabara & Shinjuku', lat: 35.6987, lng: 139.7747, icon: '⚡', day: 'Day 8', note: 'Tokyo Pop Culture' },
-          { name: 'Narita Int Airport (NRT)', lat: 35.7720, lng: 140.3929, icon: '🛫', day: 'Day 9', note: 'Departure Flight' }
-        ];
-
-        stopsListEl.innerHTML = nationwideHubs.map((hub, hIdx) => {
-          return [
-            '<div class="flex items-center gap-2 flex-shrink-0">',
-            '  <button onclick="window.roadmapFocusHub(' + hIdx + ')" class="roadmap-stop-chip p-2.5 rounded-xl bg-[#090D15] hover:bg-white/10 border border-gold/30 hover:border-gold text-left transition-all flex items-center gap-2 max-w-[210px]" data-hub-idx="' + hIdx + '">',
-            '    <span class="text-base">' + hub.icon + '</span>',
-            '    <div class="min-w-0">',
-            '      <div class="text-[10px] font-mono text-gold font-bold">' + hub.day + '</div>',
-            '      <div class="text-xs font-bold text-white truncate">' + hub.name + '</div>',
-            '      <div class="text-[9px] text-slate-400 truncate">' + hub.note + '</div>',
-            '    </div>',
-            '  </button>',
-            (hIdx < nationwideHubs.length - 1 ? '<span class="text-slate-600 font-bold font-mono text-xs">➔</span>' : ''),
-            '</div>'
-          ].join('');
-        }).join('');
-      }
-      return;
-    }
-
-    const transitFlowData = DAILY_TRANSIT_FLOW[currentSelectedDay];
-    const hotel = HOTEL_BASES[currentSelectedDay];
-    const currentAct = dayData.activities[activeIdx];
-    const nextAct = dayData.activities[activeIdx + 1];
-
-    if (activeCardEl && currentAct && transitFlowData) {
-      const nextStart = nextAct ? parseActivityMinutes(nextAct.time).start : 0;
-      const diffToNext = nextAct ? Math.max(0, nextStart - currentMins) : 0;
-      const badge = getStopCategoryBadge(currentAct);
-
-      const nextCol = nextAct 
-        ? '<div class="text-left md:text-right"><div class="text-[10px] font-mono text-slate-400 uppercase">NEXT STOP (in ' + diffToNext + 'm)</div><div class="text-xs font-bold text-slate-200 truncate max-w-[170px]">' + nextAct.title + '</div></div>'
-        : '<div class="text-left md:text-right"><div class="text-[10px] font-mono text-emerald-400 uppercase">LAST STOP OF DAY</div><div class="text-xs font-bold text-slate-200">Back at Hotel</div></div>';
-
-      activeCardEl.innerHTML = [
-        '<div class="space-y-4">',
-        '  <!-- Hotel Base & Main Train Route Header Banner -->',
-        '  <div class="grid grid-cols-1 md:grid-cols-2 gap-3">',
-        '    <div class="p-3.5 rounded-2xl bg-[#090D15] border border-gold/50 shadow-[0_0_15px_rgba(212,175,55,0.15)] flex items-center gap-3">',
-        '      <div class="w-10 h-10 rounded-xl bg-gold/20 text-gold flex items-center justify-center text-lg flex-shrink-0 cursor-pointer" onclick="window.roadmapFocusStop(\'hotel\')" title="Focus Hotel on Map">🏨</div>',
-        '      <div class="min-w-0 cursor-pointer" onclick="window.roadmapFocusStop(\'hotel\')">',
-        '        <div class="text-[10px] font-mono font-bold uppercase tracking-wider text-gold">PLACE TO STAY (DAY ' + currentSelectedDay + ')</div>',
-        '        <div class="text-sm font-bold text-white truncate font-mincho hover:text-gold transition-colors">' + (hotel ? hotel.name : transitFlowData.hotel.name) + '</div>',
-        '        <div class="text-[10px] text-slate-300 truncate">🚉 ' + (hotel ? hotel.nearestStation : transitFlowData.hotel.note) + '</div>',
-        '      </div>',
-        '      <div class="ml-auto flex items-center gap-2 flex-shrink-0">',
-        '        <button onclick="window.roadmapFocusStop(\'hotel\')" class="px-2 py-1 rounded bg-white/10 hover:bg-white/20 text-slate-200 text-[10px] font-mono">Focus</button>',
-        '        <a href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(transitFlowData.hotel.mapQuery) + '" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1.5 rounded-lg bg-gold/20 hover:bg-gold/30 text-gold text-[10px] font-mono font-bold border border-gold/40">Hotel Map ↗</a>',
-        '      </div>',
-        '    </div>',
-        '    <div class="p-3.5 rounded-2xl bg-[#090D15] border border-cyan-500/40 flex items-center gap-3">',
-        '      <div class="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-lg flex-shrink-0">🚆</div>',
-        '      <div class="min-w-0">',
-        '        <div class="text-[10px] font-mono font-bold uppercase tracking-wider text-cyan-400">MAIN TRAIN ROUTE</div>',
-        '        <div class="text-sm font-bold text-white truncate font-mono">' + transitFlowData.mainTrain.line + '</div>',
-        '        <div class="text-[10px] text-slate-400 truncate">' + transitFlowData.mainTrain.route + ' (' + transitFlowData.mainTrain.time + ')</div>',
-        '      </div>',
-        '      <span class="ml-auto text-[10px] font-mono text-cyan-300 font-bold bg-cyan-950 px-2 py-1 rounded border border-cyan-800 flex-shrink-0">' + transitFlowData.mainTrain.cost + '</span>',
-        '    </div>',
-        '  </div>',
-
-        '  <!-- Active Activity Live Tracking Card -->',
-        '  <div class="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-[#090D15] via-[#0E1524] to-[#090D15] border border-vermilion/40 shadow-[0_0_25px_rgba(232,57,41,0.2)] flex flex-col md:flex-row items-start md:items-center justify-between gap-4">',
-        '    <div class="flex items-start gap-3.5 cursor-pointer" onclick="window.roadmapFocusStop(' + activeIdx + ')">',
-        '      <div class="relative flex-shrink-0">',
-        '        <div class="w-12 h-12 rounded-2xl text-white flex items-center justify-center font-bold font-mono text-lg shadow-[0_0_15px_#E83929]" style="background: ' + badge.border + ';">' + badge.icon + '</div>',
-        '        <span class="absolute -top-1 -right-1 flex h-3.5 w-3.5">',
-        '          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-vermilion opacity-75"></span>',
-        '          <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-vermilion"></span>',
-        '        </span>',
-        '      </div>',
-        '      <div>',
-        '        <div class="flex items-center gap-2 mb-0.5">',
-        '          <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-vermilion/20 text-vermilion border border-vermilion/40">● ACTIVE NOW (' + currentAct.time + ')</span>',
-        '          <span class="text-[10px] font-mono font-bold uppercase" style="color: ' + badge.color + ';">' + badge.label + '</span>',
-        '        </div>',
-        '        <h3 class="text-base sm:text-lg font-bold text-white font-mincho leading-snug hover:text-vermilion transition-colors">' + currentAct.title + '</h3>',
-        '        <p class="text-xs text-slate-300 font-sans mt-0.5 line-clamp-1">' + (currentAct.transit || currentAct.note || '') + '</p>',
-        '      </div>',
-        '    </div>',
-        '    <div class="flex items-center gap-3 w-full md:w-auto justify-between md:justify-end border-t md:border-t-0 pt-3 md:pt-0 border-white/10">',
-        nextCol,
-        '      <a href="https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(currentAct.mapQuery) + '" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl bg-vermilion hover:bg-red-600 text-white font-bold text-xs font-mono shadow-glow-red transition-all flex items-center gap-1.5 flex-shrink-0">',
-        '        <span>Transit Route ↗</span>',
-        '      </a>',
-        '    </div>',
-        '  </div>',
-        '</div>'
-      ].join('');
-    }
-
-    // Step-by-step Flow Strip: 100% matched to Hotel + Activities for exact navigation
-    if (stopsListEl && dayData) {
-      const chips = [];
-
-      // Hotel Base Chip
-      if (hotel) {
-        chips.push([
-          '<div class="flex items-center gap-2 flex-shrink-0">',
-          '  <button onclick="window.roadmapFocusStop(\'hotel\')" class="roadmap-stop-chip p-2.5 rounded-xl bg-[#090D15] hover:bg-white/10 border border-gold/40 hover:border-gold text-left transition-all flex items-center gap-2 max-w-[210px]" data-stop-key="hotel">',
-          '    <span class="text-base">🏨</span>',
-          '    <div class="min-w-0">',
-          '      <div class="text-[10px] font-mono text-gold font-bold">HOTEL BASE</div>',
-          '      <div class="text-xs font-bold text-white truncate">' + hotel.name + '</div>',
-          '      <div class="text-[9px] text-slate-400 truncate">🚉 ' + hotel.nearestStation.split('/')[0].trim() + '</div>',
-          '    </div>',
-          '  </button>',
-          '  <span class="text-slate-600 font-bold font-mono text-xs">➔</span>',
-          '</div>'
-        ].join(''));
-      }
-
-      // Activity Chips
-      dayData.activities.forEach((act, actIdx) => {
-        const badge = getStopCategoryBadge(act);
-        const isLast = actIdx === dayData.activities.length - 1;
-        chips.push([
-          '<div class="flex items-center gap-2 flex-shrink-0">',
-          '  <button onclick="window.roadmapFocusStop(' + actIdx + ')" class="roadmap-stop-chip p-2.5 rounded-xl bg-[#090D15] hover:bg-white/10 border border-white/10 hover:border-vermilion text-left transition-all flex items-center gap-2 max-w-[210px]" data-stop-idx="' + actIdx + '">',
-          '    <span class="text-base">' + badge.icon + '</span>',
-          '    <div class="min-w-0">',
-          '      <div class="text-[10px] font-mono text-gold">' + act.time + '</div>',
-          '      <div class="text-xs font-bold text-white truncate">' + act.title + '</div>',
-          '      <div class="text-[9px] text-cyan-300 truncate">' + (act.transit ? '🚆 ' + act.transit : badge.label) + '</div>',
-          '    </div>',
-          '  </button>',
-          (!isLast ? '<span class="text-slate-600 font-bold font-mono text-xs">➔</span>' : ''),
-          '</div>'
-        ].join(''));
-      });
-
-      stopsListEl.innerHTML = chips.join('');
-    }
+  function renderMasterPipeline(dayNumber, currentMins) {
+    const pipelineContainer = document.getElementById('master-journey-pipeline-container');
+    if (!pipelineContainer) return;
+    pipelineContainer.innerHTML = buildConnectedJourneyPipelineHTML(dayNumber, currentMins, 'window.roadmapFocusStop', 'window.roadmapFocusHotel');
   }
 
   window.roadmapFocusHub = function(hIdx) {
@@ -3368,13 +3350,13 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
       { name: 'Plum Hotel Osaka', lat: 34.6565, lng: 135.4985 },
       { name: 'Nara Park (Todai-ji)', lat: 34.6851, lng: 135.8430 },
       { name: 'Rinn Shirakawa Kyoto', lat: 35.0062, lng: 135.7760 },
-      { name: 'Kiyomizu-dera Temple', lat: 34.9949, lng: 135.7850 },
+      { name: 'Kiyomizu-dera & Gion', lat: 34.9949, lng: 135.7850 },
       { name: 'Tokaido Shinkansen Route', lat: 35.2000, lng: 137.5000 },
       { name: 'Hotel Tavinos Asakusa', lat: 35.7171, lng: 139.7915 },
       { name: 'GALA Yuzawa Ski Resort', lat: 36.9508, lng: 138.8005 },
-      { name: 'Mt. Fuji (Lake Kawaguchi)', lat: 35.5015, lng: 138.8016 },
+      { name: 'Mt. Fuji & Kawaguchiko', lat: 35.5015, lng: 138.8016 },
       { name: 'Akihabara & Shinjuku', lat: 35.6987, lng: 139.7747 },
-      { name: 'Narita Int Airport (NRT)', lat: 35.7720, lng: 140.3929 }
+      { name: 'Narita Airport (NRT)', lat: 35.7720, lng: 140.3929 }
     ];
     const hub = nationwideHubs[hIdx];
     if (!hub) return;
@@ -3390,37 +3372,33 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
       }
     });
 
-    document.querySelectorAll('.roadmap-stop-chip').forEach((c) => {
+    document.querySelectorAll('#master-journey-pipeline-container .journey-pipeline-card').forEach((c) => {
       if (c.getAttribute('data-hub-idx') === String(hIdx)) {
-        c.classList.add('is-focused');
+        c.classList.add('is-active-now');
         c.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
       } else {
-        c.classList.remove('is-focused');
+        c.classList.remove('is-active-now');
+      }
+    });
+  };
+
+  window.roadmapFocusHotel = function() {
+    const hotel = HOTEL_BASES[currentSelectedDay];
+    if (!hotel) return;
+    map.flyTo([hotel.lat, hotel.lng], 16, { duration: 1 });
+    markersLayer.eachLayer(layer => {
+      if (layer instanceof L.Marker) {
+        const p = layer.getLatLng();
+        if (Math.abs(p.lat - hotel.lat) < 0.0005 && Math.abs(p.lng - hotel.lng) < 0.0005) {
+          layer.openPopup();
+        }
       }
     });
   };
 
   window.roadmapFocusStop = function(target) {
-    if (target === 'hotel') {
-      const hotel = HOTEL_BASES[currentSelectedDay];
-      if (!hotel) return;
-      map.flyTo([hotel.lat, hotel.lng], 16, { duration: 1 });
-      markersLayer.eachLayer(layer => {
-        if (layer instanceof L.Marker) {
-          const p = layer.getLatLng();
-          if (Math.abs(p.lat - hotel.lat) < 0.0005 && Math.abs(p.lng - hotel.lng) < 0.0005) {
-            layer.openPopup();
-          }
-        }
-      });
-      document.querySelectorAll('.roadmap-stop-chip').forEach((c) => {
-        if (c.getAttribute('data-stop-key') === 'hotel') {
-          c.classList.add('is-focused');
-          c.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-        } else {
-          c.classList.remove('is-focused');
-        }
-      });
+    if (currentSelectedDay === 0) {
+      window.roadmapFocusHub(target);
       return;
     }
 
@@ -3445,12 +3423,12 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
   };
 
   function highlightStopCard(idx) {
-    document.querySelectorAll('.roadmap-stop-chip').forEach((c) => {
+    document.querySelectorAll('#master-journey-pipeline-container .journey-pipeline-card').forEach((c) => {
       if (c.getAttribute('data-stop-idx') === String(idx)) {
-        c.classList.add('is-focused');
+        c.classList.add('is-active-now');
         c.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
       } else {
-        c.classList.remove('is-focused');
+        c.classList.remove('is-active-now');
       }
     });
   }
@@ -3470,42 +3448,12 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
     });
   });
 
-  const slider = document.getElementById('roadmap-time-slider');
-  const sliderTimeLabel = document.getElementById('roadmap-slider-time-label');
-  const liveSyncBtn = document.getElementById('roadmap-live-sync-btn');
-
-  if (slider) {
-    slider.addEventListener('input', (e) => {
-      isSimulating = true;
-      simulatedMinutes = parseInt(e.target.value, 10);
-      if (sliderTimeLabel) sliderTimeLabel.textContent = formatMinutes(simulatedMinutes);
-      if (liveSyncBtn) {
-        liveSyncBtn.classList.remove('bg-emerald-500/20', 'text-emerald-300', 'border-emerald-500/40');
-        liveSyncBtn.classList.add('bg-amber-500/20', 'text-amber-300', 'border-amber-500/40');
-        liveSyncBtn.textContent = '⚡ Simulating (Click to Live Sync)';
-      }
-      renderView({ fit: false });
-    });
-  }
-
-  if (liveSyncBtn) {
-    liveSyncBtn.addEventListener('click', () => {
-      isSimulating = false;
-      const jstMins = getJSTCurrentMinutes();
-      if (slider) slider.value = jstMins;
-      if (sliderTimeLabel) sliderTimeLabel.textContent = formatMinutes(jstMins);
-      liveSyncBtn.classList.add('bg-emerald-500/20', 'text-emerald-300', 'border-emerald-500/40');
-      liveSyncBtn.classList.remove('bg-amber-500/20', 'text-amber-300', 'border-amber-500/40');
-      liveSyncBtn.textContent = '● Real JST Active';
-      renderView({ fit: false });
-    });
-  }
-
-  // Initial render: fit bounds to frame day nicely
+  // Initial render: frame day route cleanly
   renderView({ fit: true });
 
+  // Update live status every 30s without resetting map view
   setInterval(() => {
-    if (!isSimulating && currentSelectedDay > 0) {
+    if (currentSelectedDay > 0) {
       renderView({ fit: false });
     }
   }, 30000);
@@ -3516,7 +3464,6 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
 // -------------------------------------------------------------
 function initDayRoadmap(dayNumber, containerId = 'day-roadmap-map') {
   const dayData = ROADMAP_DATA.find(d => d.day === dayNumber);
-  const transitFlowData = DAILY_TRANSIT_FLOW[dayNumber];
   const hotel = HOTEL_BASES[dayNumber];
   const mapEl = document.getElementById(containerId);
   if (!dayData || !mapEl) return;
@@ -3653,13 +3600,6 @@ function initDayRoadmap(dayNumber, containerId = 'day-roadmap-map') {
   setTimeout(() => map.invalidateSize(), 200);
   window.addEventListener('resize', () => map.invalidateSize());
 
-  let isSimulating = false;
-  let simulatedMinutes = 11 * 60;
-
-  function getEffectiveMinutes() {
-    return isSimulating ? simulatedMinutes : getJSTCurrentMinutes();
-  }
-
   function render(options = {}) {
     const shouldFit = options && options.fit === true;
 
@@ -3667,7 +3607,7 @@ function initDayRoadmap(dayNumber, containerId = 'day-roadmap-map') {
     connectorsLayer.clearLayers();
     trainRouteLayer.clearLayers();
 
-    const currentMins = getEffectiveMinutes();
+    const currentMins = getJSTCurrentMinutes();
     const latlngs = [];
     let activeIdx = -1;
 
@@ -3762,6 +3702,7 @@ function initDayRoadmap(dayNumber, containerId = 'day-roadmap-map') {
       const m = L.marker(pos, { icon }).bindPopup(popupHtml).addTo(markersLayer);
       m.on('click', () => {
         highlightDayTimelineCard(idx);
+        highlightDayPipelineCard(idx);
       });
     });
 
@@ -3772,109 +3713,13 @@ function initDayRoadmap(dayNumber, containerId = 'day-roadmap-map') {
       }
     }
 
-    // Render Hotel & Train Flow Strip
-    const flowContainer = document.getElementById('day-transit-flow-strip');
-    if (flowContainer && transitFlowData) {
-      flowContainer.innerHTML = [
-        '<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-2">',
-        '  <div class="p-3 rounded-2xl bg-[#05070B] border border-gold/50 shadow-[0_0_15px_rgba(212,175,55,0.15)] flex items-center gap-3">',
-        '    <div class="w-9 h-9 rounded-xl bg-gold/20 text-gold flex items-center justify-center text-base flex-shrink-0 cursor-pointer" onclick="window.dayRoadmapFocusHotel()" title="Focus Hotel">🏨</div>',
-        '    <div class="min-w-0 cursor-pointer" onclick="window.dayRoadmapFocusHotel()">',
-        '      <div class="text-[9px] font-mono font-bold text-gold uppercase">PLACE TO STAY (DAY ' + dayNumber + ')</div>',
-        '      <div class="text-xs font-bold text-white truncate font-mincho hover:text-gold transition-colors">' + (hotel ? hotel.name : transitFlowData.hotel.name) + '</div>',
-        '      <div class="text-[10px] text-slate-300 truncate">🚉 ' + (hotel ? hotel.nearestStation : transitFlowData.hotel.note) + '</div>',
-        '    </div>',
-        '    <div class="ml-auto flex items-center gap-1.5 flex-shrink-0">',
-        '      <button onclick="window.dayRoadmapFocusHotel()" class="px-2 py-0.5 rounded bg-white/10 hover:bg-white/20 text-slate-200 text-[9px] font-mono">Focus</button>',
-        '      <a href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(transitFlowData.hotel.mapQuery) + '" target="_blank" rel="noopener noreferrer" class="px-2 py-1 rounded bg-gold/20 text-gold text-[9px] font-mono font-bold border border-gold/40">Map ↗</a>',
-        '    </div>',
-        '  </div>',
-        '  <div class="p-3 rounded-2xl bg-[#05070B] border border-cyan-500/40 flex items-center gap-3">',
-        '    <div class="w-9 h-9 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-base flex-shrink-0">🚆</div>',
-        '    <div class="min-w-0">',
-        '      <div class="text-[9px] font-mono font-bold text-cyan-400 uppercase">MAIN TRAIN ROUTE</div>',
-        '      <div class="text-xs font-bold text-white truncate font-mono">' + transitFlowData.mainTrain.line + '</div>',
-        '      <div class="text-[10px] text-slate-400 truncate">' + transitFlowData.mainTrain.route + ' (' + transitFlowData.mainTrain.time + ')</div>',
-        '    </div>',
-        '    <span class="ml-auto text-[9px] font-mono text-cyan-300 font-bold bg-cyan-950 px-2 py-0.5 rounded border border-cyan-800 flex-shrink-0">' + transitFlowData.mainTrain.cost + '</span>',
-        '  </div>',
-        '</div>',
-        '<div class="space-y-1.5">',
-        '  <div class="text-[10px] font-mono uppercase text-slate-400 flex items-center justify-between">',
-        '    <span>Daily Journey Flow (Click any stop to navigate map):</span>',
-        '    <button onclick="document.getElementById(\'recenter-day-roadmap-btn\')?.click()" class="text-cyan-400 hover:underline cursor-pointer">🎯 Fit Route</button>',
-        '  </div>',
-        '  <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">',
-        transitFlowData.steps.map((st, sIdx) => [
-          '<div class="flex items-center gap-1.5 flex-shrink-0">',
-          '  <button onclick="window.dayRoadmapFocusStep(' + sIdx + ')" class="day-flow-step-btn px-3 py-2 rounded-xl bg-[#05070B] hover:bg-white/10 border border-white/10 hover:border-vermilion text-left transition-all flex items-center gap-2 max-w-[200px]" data-step-idx="' + sIdx + '">',
-          '    <span class="text-sm">' + st.icon + '</span>',
-          '    <div class="min-w-0">',
-          '      <div class="text-[9px] font-mono text-gold">' + st.time + '</div>',
-          '      <div class="text-xs font-bold text-white truncate">' + st.title + '</div>',
-          '      ' + (st.transitNote ? '<div class="text-[9px] text-cyan-300 truncate">' + st.transitNote + '</div>' : ''),
-          '    </div>',
-          '  </button>',
-          (sIdx < transitFlowData.steps.length - 1 ? '<span class="text-slate-600 font-mono text-xs font-bold">➔</span>' : ''),
-          '</div>'
-        ].join('')).join(''),
-        '  </div>',
-        '</div>'
-      ].join('');
-
-      window.dayRoadmapFocusHotel = function() {
-        if (!hotel) return;
-        map.flyTo([hotel.lat, hotel.lng], 16, { duration: 0.8 });
-        markersLayer.eachLayer(layer => {
-          if (layer instanceof L.Marker) {
-            const p = layer.getLatLng();
-            if (Math.abs(p.lat - hotel.lat) < 0.0005 && Math.abs(p.lng - hotel.lng) < 0.0005) {
-              layer.openPopup();
-            }
-          }
-        });
-      };
-
-      window.dayRoadmapFocusStep = function(sIdx) {
-        const st = transitFlowData.steps[sIdx];
-        if (!st) return;
-
-        const resolved = resolveStepCoordinate(st, dayNumber);
-        if (resolved) {
-          map.flyTo([resolved.lat, resolved.lng], 16, { duration: 0.8 });
-          let foundMarker = false;
-          markersLayer.eachLayer(layer => {
-            if (layer instanceof L.Marker) {
-              const p = layer.getLatLng();
-              if (Math.abs(p.lat - resolved.lat) < 0.0015 && Math.abs(p.lng - resolved.lng) < 0.0015) {
-                layer.openPopup();
-                foundMarker = true;
-              }
-            }
-          });
-          if (!foundMarker) {
-            trainRouteLayer.eachLayer(layer => {
-              if (layer instanceof L.Marker) {
-                const p = layer.getLatLng();
-                if (Math.abs(p.lat - resolved.lat) < 0.0015 && Math.abs(p.lng - resolved.lng) < 0.0015) {
-                  layer.openPopup();
-                }
-              }
-            });
-          }
-        }
-
-        document.querySelectorAll('.day-flow-step-btn').forEach((btn) => {
-          if (btn.getAttribute('data-step-idx') === String(sIdx)) {
-            btn.classList.add('border-vermilion', 'bg-vermilion/20');
-            btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-          } else {
-            btn.classList.remove('border-vermilion', 'bg-vermilion/20');
-          }
-        });
-      };
+    // Render Connected Journey Pipeline directly above map
+    const pipelineContainer = document.getElementById('day-journey-pipeline-container');
+    if (pipelineContainer) {
+      pipelineContainer.innerHTML = buildConnectedJourneyPipelineHTML(dayNumber, currentMins, 'window.dayRoadmapFocusStop', 'window.dayRoadmapFocusHotel');
     }
 
+    // Status pill
     const statusPill = document.getElementById('day-roadmap-status-pill');
     if (statusPill && dayData.activities[activeIdx]) {
       const act = dayData.activities[activeIdx];
@@ -3882,10 +3727,52 @@ function initDayRoadmap(dayNumber, containerId = 'day-roadmap-map') {
       statusPill.innerHTML = [
         '<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-vermilion/20 text-vermilion border border-vermilion/40 text-xs font-mono font-bold">',
         '  <span class="w-2 h-2 rounded-full bg-vermilion animate-ping"></span>',
-        '  <span>LIVE NOW: ' + badge.icon + ' ' + act.title.substring(0, 32) + '...</span>',
+        '  <span>LIVE NOW: ' + badge.icon + ' ' + act.title.substring(0, 30) + '...</span>',
         '</span>'
       ].join('');
     }
+  }
+
+  window.dayRoadmapFocusHotel = function() {
+    if (!hotel) return;
+    map.flyTo([hotel.lat, hotel.lng], 16, { duration: 0.8 });
+    markersLayer.eachLayer(layer => {
+      if (layer instanceof L.Marker) {
+        const p = layer.getLatLng();
+        if (Math.abs(p.lat - hotel.lat) < 0.0005 && Math.abs(p.lng - hotel.lng) < 0.0005) {
+          layer.openPopup();
+        }
+      }
+    });
+  };
+
+  window.dayRoadmapFocusStop = function(actIdx) {
+    const act = dayData.activities[actIdx];
+    if (!act) return;
+
+    map.flyTo([act.lat, act.lng], 16, { duration: 0.8 });
+    markersLayer.eachLayer(layer => {
+      if (layer instanceof L.Marker) {
+        const p = layer.getLatLng();
+        if (Math.abs(p.lat - act.lat) < 0.0005 && Math.abs(p.lng - act.lng) < 0.0005) {
+          layer.openPopup();
+        }
+      }
+    });
+
+    highlightDayPipelineCard(actIdx);
+    highlightDayTimelineCard(actIdx);
+  };
+
+  function highlightDayPipelineCard(idx) {
+    document.querySelectorAll('#day-journey-pipeline-container .journey-pipeline-card').forEach((c) => {
+      if (c.getAttribute('data-stop-idx') === String(idx)) {
+        c.classList.add('is-active-now');
+        c.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      } else {
+        c.classList.remove('is-active-now');
+      }
+    });
   }
 
   function highlightDayTimelineCard(idx) {
@@ -3918,38 +3805,19 @@ function initDayRoadmap(dayNumber, containerId = 'day-roadmap-map') {
               }
             }
           });
+          highlightDayPipelineCard(actIdx);
         }
       });
     }
   });
 
-  const slider = document.getElementById('day-time-slider');
-  const sliderLabel = document.getElementById('day-slider-time-label');
-  const syncBtn = document.getElementById('day-live-sync-btn');
-
-  if (slider) {
-    slider.addEventListener('input', (e) => {
-      isSimulating = true;
-      simulatedMinutes = parseInt(e.target.value, 10);
-      if (sliderLabel) sliderLabel.textContent = formatMinutes(simulatedMinutes);
-      if (syncBtn) syncBtn.textContent = '⚡ Simulating';
-      render({ fit: false });
-    });
-  }
-
-  if (syncBtn) {
-    syncBtn.addEventListener('click', () => {
-      isSimulating = false;
-      const jstMins = getJSTCurrentMinutes();
-      if (slider) slider.value = jstMins;
-      if (sliderLabel) sliderLabel.textContent = formatMinutes(jstMins);
-      syncBtn.textContent = '● Real JST Active';
-      render({ fit: false });
-    });
-  }
-
-  // Initial render: frame the day route cleanly
+  // Initial render: frame day route cleanly
   render({ fit: true });
+
+  // Update live status every 30s without resetting map view
+  setInterval(() => {
+    render({ fit: false });
+  }, 30000);
 }
 
 window.initMasterRoadmap = initMasterRoadmap;
