@@ -478,6 +478,64 @@ body {
   }
 }
 
+.roadmap-map-container.is-expanded {
+  height: 75vh !important;
+  max-height: 850px;
+  transition: height 0.3s ease;
+}
+
+.map-floating-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.map-floating-btn {
+  background: #090D15;
+  color: #38BDF8;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  padding: 6px 11px;
+  border-radius: 9px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.85);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+  white-space: nowrap;
+}
+
+.map-floating-btn:hover {
+  background: #111827;
+  border-color: #38BDF8;
+  transform: translateY(-1px);
+  color: #FFFFFF;
+}
+
+.map-floating-btn.active {
+  background: rgba(56, 189, 248, 0.2);
+  border-color: #38BDF8;
+  color: #38BDF8;
+}
+
+.roadmap-stop-chip {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.roadmap-stop-chip.is-focused {
+  border-color: #E83929 !important;
+  background: rgba(232, 57, 41, 0.18) !important;
+  box-shadow: 0 0 18px rgba(232, 57, 41, 0.4) !important;
+  transform: scale(1.02);
+}
+
 /* Leaflet Dark Theme Overrides */
 .leaflet-container {
   background: #05070B !important;

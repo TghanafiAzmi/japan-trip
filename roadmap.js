@@ -2767,12 +2767,86 @@ function renderHotelBaseMarker(layerGroup, hotel, dayNumber) {
 }
 
 // -------------------------------------------------------------
+// STEP COORDINATE RESOLVER
+// -------------------------------------------------------------
+function resolveStepCoordinate(st, dayNumber) {
+  const hotel = HOTEL_BASES[dayNumber];
+  const dayData = ROADMAP_DATA.find(d => d.day === dayNumber);
+  const activities = dayData ? dayData.activities : [];
+  const sTitle = (st.title || '').toLowerCase();
+  const sType = (st.type || '').toLowerCase();
+
+  // 1. Hotel / Accommodation
+  if (sType === 'hotel' || sTitle.includes('hotel') || sTitle.includes('plum') || sTitle.includes('rinn') || sTitle.includes('tavinos') || sTitle.includes('check-in') || sTitle.includes('check-out') || sTitle.includes('bag drop') || sTitle.includes('rest & prayer') || sTitle.includes('pack')) {
+    if (hotel) return { lat: hotel.lat, lng: hotel.lng, title: hotel.name, isHotel: true };
+  }
+
+  // 2. Narita Airport (prioritize before generic airport check)
+  if (sTitle.includes('narita') || sTitle.includes('nrt')) {
+    return { lat: 35.7720, lng: 140.3929, title: 'Narita International Airport (NRT)' };
+  }
+
+  // 3. Kansai Airport
+  if (sType === 'flight' || sType === 'airport' || sTitle.includes('kix') || sTitle.includes('kansai')) {
+    return { lat: 34.4347, lng: 135.2443, title: 'Kansai International Airport (KIX)' };
+  }
+
+  // 4. Exact or substring match in activities
+  for (const act of activities) {
+    const aTitle = (act.title || '').toLowerCase();
+    if (aTitle.includes(sTitle) || sTitle.includes(aTitle)) {
+      return { lat: act.lat, lng: act.lng, title: act.title, act };
+    }
+  }
+
+  // 5. Significant keyword overlap with activities
+  const keywords = sTitle.split(/[\s➔\(\)\/,\-]+/).filter(w => w.length > 3 && !['train', 'metro', 'line', 'station', 'bus'].includes(w));
+  for (const act of activities) {
+    const aTitle = (act.title || '').toLowerCase();
+    for (const kw of keywords) {
+      if (aTitle.includes(kw)) {
+        return { lat: act.lat, lng: act.lng, title: act.title, act };
+      }
+    }
+  }
+
+  // 6. Check train route stations
+  const trainKeys = DAY_TRAIN_MAPPING[dayNumber] || [];
+  for (const tKey of trainKeys) {
+    const tRoute = TRAIN_ROUTES[tKey];
+    if (tRoute && tRoute.stations) {
+      for (const stObj of tRoute.stations) {
+        const stName = stObj.name.toLowerCase();
+        if (sTitle.includes(stName) || stName.includes(sTitle.replace(/station/g, '').trim())) {
+          return { lat: stObj.lat, lng: stObj.lng, title: stObj.name };
+        }
+      }
+    }
+  }
+
+  // 7. Nearest station fallback
+  if (hotel && (sType === 'station' || sTitle.includes('station'))) {
+    if (hotel.stationLat && hotel.stationLng) {
+      return { lat: hotel.stationLat, lng: hotel.stationLng, title: hotel.nearestStation };
+    }
+  }
+
+  // 8. Activity fallback
+  if (activities.length > 0) {
+    return { lat: activities[0].lat, lng: activities[0].lng, title: activities[0].title, act: activities[0] };
+  }
+
+  return hotel ? { lat: hotel.lat, lng: hotel.lng, title: hotel.name, isHotel: true } : null;
+}
+
+// -------------------------------------------------------------
 // MASTER ROADMAP (For index.html)
 // -------------------------------------------------------------
 function initMasterRoadmap(containerId = 'master-roadmap-map') {
   let currentSelectedDay = 1;
   let isSimulating = false;
   let simulatedMinutes = 11 * 60;
+  let currentBounds = null;
 
   const mapEl = document.getElementById(containerId);
   if (!mapEl) return;
@@ -2781,14 +2855,25 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
     mapInstances[containerId].remove();
   }
 
+  // Prevent Lenis smooth scroll from capturing wheel events over the map
+  mapEl.setAttribute('data-lenis-prevent', 'true');
+  mapEl.addEventListener('wheel', (e) => {
+    e.stopPropagation();
+  }, { passive: false });
+
   const map = L.map(containerId, {
     zoomControl: true,
-    scrollWheelZoom: false,
+    scrollWheelZoom: true,
+    doubleClickZoom: true,
+    touchZoom: true,
+    dragging: true,
+    boxZoom: true,
+    keyboard: true,
     attributionControl: true
   });
   mapInstances[containerId] = map;
 
-  // Base Layers: Clean, High Resolution Travel Maps (NO Dark Matter)
+  // Base Layers: Clean, High Resolution Travel Maps
   const baseLayers = {
     '🗺️ CARTO Voyager (Travel & Stations)': L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?key=cb1_55ym_1_992e6f8a3c0350305ec5dcf4', {
       maxZoom: 19,
@@ -2827,37 +2912,73 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
     '🚶 Station Walk Connectors': connectorsLayer
   };
 
-  // Default to CARTO Voyager (Travel & Stations)
+  // Default to CARTO Voyager
   baseLayers['🗺️ CARTO Voyager (Travel & Stations)'].addTo(map);
   L.control.layers(baseLayers, overlayLayers, { position: 'topright' }).addTo(map);
 
-  // Quick OpenRailwayMap toggle button on the map
-  const railControl = L.control({ position: 'bottomleft' });
-  railControl.onAdd = function() {
-    const div = L.DomUtil.create('div', 'leaflet-bar map-rail-quick-btn');
+  // Floating Navigation Toolbar (Fit Route, Rail Tracks, Expand Map)
+  const navToolbarControl = L.control({ position: 'bottomleft' });
+  navToolbarControl.onAdd = function() {
+    const div = L.DomUtil.create('div', 'map-floating-toolbar');
     div.innerHTML = [
-      '<button id="toggle-openrailwaymap-master-btn" title="Toggle OpenRailwayMap Rail Tracks" style="background: #090D15; color: #38BDF8; border: 1px solid rgba(56, 189, 248, 0.5); padding: 5px 10px; border-radius: 8px; font-family: monospace; font-size: 11px; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 5px; box-shadow: 0 4px 14px rgba(0,0,0,0.8);">',
+      '<button id="recenter-master-roadmap-btn" class="map-floating-btn" title="Re-center map to fit current route">',
+      '  <span>🎯 Fit Route</span>',
+      '</button>',
+      '<button id="toggle-openrailwaymap-master-btn" class="map-floating-btn" title="Toggle OpenRailwayMap Rail Tracks">',
       '  <span>🚆 Rail Tracks</span>',
+      '</button>',
+      '<button id="expand-master-roadmap-btn" class="map-floating-btn" title="Expand / Shrink map view">',
+      '  <span id="expand-btn-text">⛶ Expand Map</span>',
       '</button>'
     ].join('');
     L.DomEvent.disableClickPropagation(div);
-    const btn = div.querySelector('button');
-    btn.addEventListener('click', (e) => {
+
+    const fitBtn = div.querySelector('#recenter-master-roadmap-btn');
+    fitBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (currentBounds) {
+        map.fitBounds(currentBounds, { padding: [45, 45], maxZoom: 15 });
+      }
+    });
+
+    const railBtn = div.querySelector('#toggle-openrailwaymap-master-btn');
+    railBtn.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
       if (map.hasLayer(ormTileLayer)) {
         map.removeLayer(ormTileLayer);
-        btn.style.borderColor = 'rgba(255, 255, 255, 0.2)';
-        btn.style.color = '#94A3B8';
+        railBtn.classList.remove('active');
+        railBtn.style.color = '#94A3B8';
+        railBtn.style.borderColor = 'rgba(255, 255, 255, 0.2)';
       } else {
         map.addLayer(ormTileLayer);
-        btn.style.borderColor = '#38BDF8';
-        btn.style.color = '#38BDF8';
+        railBtn.classList.add('active');
+        railBtn.style.color = '#38BDF8';
+        railBtn.style.borderColor = '#38BDF8';
       }
     });
+
+    const expandBtn = div.querySelector('#expand-master-roadmap-btn');
+    const expandText = div.querySelector('#expand-btn-text');
+    expandBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      mapEl.classList.toggle('is-expanded');
+      const isExpanded = mapEl.classList.contains('is-expanded');
+      expandText.textContent = isExpanded ? '✕ Shrink Map' : '⛶ Expand Map';
+      expandBtn.classList.toggle('active', isExpanded);
+      setTimeout(() => {
+        map.invalidateSize();
+        if (currentBounds) {
+          map.fitBounds(currentBounds, { padding: [45, 45], maxZoom: 15 });
+        }
+      }, 320);
+    });
+
     return div;
   };
-  railControl.addTo(map);
+  navToolbarControl.addTo(map);
 
   setTimeout(() => map.invalidateSize(), 200);
   window.addEventListener('resize', () => map.invalidateSize());
@@ -2866,7 +2987,9 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
     return isSimulating ? simulatedMinutes : getJSTCurrentMinutes();
   }
 
-  function renderView() {
+  function renderView(options = {}) {
+    const shouldFit = options && options.fit === true;
+
     markersLayer.clearLayers();
     connectorsLayer.clearLayers();
     trainRouteLayer.clearLayers();
@@ -2874,7 +2997,7 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
     const currentMins = getEffectiveMinutes();
 
     if (currentSelectedDay === 0) {
-      renderAllJapanOverview();
+      renderAllJapanOverview(shouldFit);
       updateRoadmapDashboard(null, -1, currentMins);
       return;
     }
@@ -2899,7 +3022,7 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
       else if (currentMins >= lastEnd) activeIndex = dayData.activities.length - 1;
     }
 
-    // 1. Draw Day's Specific Train Route(s) (THE TRAIN PATH)
+    // 1. Draw Day's Specific Train Route(s)
     const trainKeys = DAY_TRAIN_MAPPING[currentSelectedDay] || [];
     trainKeys.forEach(tKey => {
       const tRoute = TRAIN_ROUTES[tKey];
@@ -2985,18 +3108,17 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
       marker.addTo(markersLayer);
     });
 
-    // NOTE: Red polyline is intentionally removed per user specification.
-    // The clean railway track and station-to-spot connectors provide the true transit flow.
-
     if (latlngs.length > 0) {
-      const bounds = L.latLngBounds(latlngs);
-      map.fitBounds(bounds, { padding: [45, 45], maxZoom: 15 });
+      currentBounds = L.latLngBounds(latlngs);
+      if (shouldFit) {
+        map.fitBounds(currentBounds, { padding: [45, 45], maxZoom: 15 });
+      }
     }
 
     updateRoadmapDashboard(dayData, activeIndex, currentMins);
   }
 
-  function renderAllJapanOverview() {
+  function renderAllJapanOverview(shouldFit = false) {
     markersLayer.clearLayers();
     connectorsLayer.clearLayers();
     trainRouteLayer.clearLayers();
@@ -3054,7 +3176,10 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
     });
 
     if (allBoundsLatLngs.length > 0) {
-      map.fitBounds(L.latLngBounds(allBoundsLatLngs), { padding: [40, 40] });
+      currentBounds = L.latLngBounds(allBoundsLatLngs);
+      if (shouldFit) {
+        map.fitBounds(currentBounds, { padding: [40, 40] });
+      }
     }
   }
 
@@ -3067,18 +3192,57 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
     const activeCardEl = document.getElementById('roadmap-active-stop-card');
     const stopsListEl = document.getElementById('roadmap-stops-chips-container');
 
+    // Day 0: All Japan Overview Mode
     if (!dayData || activeIdx === -1) {
       if (activeCardEl) {
         activeCardEl.innerHTML = [
-          '<div class="p-4 rounded-2xl bg-[#090D15] border border-white/10 flex items-center gap-4">',
-          '  <div class="w-12 h-12 rounded-xl bg-gold/20 text-gold flex items-center justify-center font-bold font-mono text-lg border border-gold/30">🗾</div>',
-          '  <div>',
-          '    <div class="text-[10px] font-mono font-bold uppercase tracking-wider text-gold">Nationwide Route & Train Corridor</div>',
-          '    <div class="text-white font-bold text-sm sm:text-base font-mincho">Osaka • Nara • Kyoto • GALA Yuzawa • Mt. Fuji • Tokyo</div>',
-          '    <div class="text-xs text-slate-400 font-sans mt-0.5">3 Base Hotels • High-Speed Shinkansen Paths • Station-to-Hotel Walk Links</div>',
+          '<div class="p-4 rounded-2xl bg-[#090D15] border border-gold/40 shadow-[0_0_20px_rgba(212,175,55,0.12)] flex items-center justify-between gap-4">',
+          '  <div class="flex items-center gap-3.5">',
+          '    <div class="w-12 h-12 rounded-xl bg-gold/20 text-gold flex items-center justify-center font-bold font-mono text-lg border border-gold/30">🗾</div>',
+          '    <div>',
+          '      <div class="text-[10px] font-mono font-bold uppercase tracking-wider text-gold">Nationwide Route & Train Corridor</div>',
+          '      <div class="text-white font-bold text-sm sm:text-base font-mincho">Osaka • Nara • Kyoto • GALA Yuzawa • Mt. Fuji • Tokyo</div>',
+          '      <div class="text-xs text-slate-400 font-sans mt-0.5">3 Base Hotels • High-Speed Shinkansen Paths • Click any destination below to fly to map</div>',
+          '    </div>',
           '  </div>',
+          '  <button onclick="document.getElementById(\'recenter-master-roadmap-btn\')?.click()" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gold/20 hover:bg-gold/30 text-gold font-mono font-bold text-xs border border-gold/40 transition-all">',
+          '    <span>🎯 Fit Japan</span>',
+          '  </button>',
           '</div>'
         ].join('');
+      }
+
+      // Render Nationwide Stops Carousel
+      if (stopsListEl) {
+        const nationwideHubs = [
+          { name: 'Kansai Int Airport (KIX)', lat: 34.4347, lng: 135.2443, icon: '✈️', day: 'Day 1', note: 'Osaka Airport Hub' },
+          { name: 'Plum Hotel Osaka', lat: 34.6565, lng: 135.4985, icon: '🏨', day: 'Days 1–2', note: 'Osaka Base Hotel' },
+          { name: 'Nara Park (Todai-ji)', lat: 34.6851, lng: 135.8430, icon: '🦌', day: 'Day 2', note: 'Sacred Bowing Deer' },
+          { name: 'Rinn Shirakawa Kyoto', lat: 35.0062, lng: 135.7760, icon: '🏨', day: 'Days 3–4', note: 'Kyoto Base Hotel' },
+          { name: 'Kiyomizu-dera Temple', lat: 34.9949, lng: 135.7850, icon: '⛩️', day: 'Day 4', note: 'Historic Kyoto Stage' },
+          { name: 'Tokaido Shinkansen Route', lat: 35.2000, lng: 137.5000, icon: '🚅', day: 'Day 5', note: 'Bullet Train Corridor' },
+          { name: 'Hotel Tavinos Asakusa', lat: 35.7171, lng: 139.7915, icon: '🏨', day: 'Days 5–8', note: 'Tokyo Base Hotel' },
+          { name: 'GALA Yuzawa Ski Resort', lat: 36.9508, lng: 138.8005, icon: '⛷️', day: 'Day 6', note: 'Shinkansen Snow Country' },
+          { name: 'Mt. Fuji (Lake Kawaguchi)', lat: 35.5015, lng: 138.8016, icon: '🗻', day: 'Day 7', note: 'Pagoda & Fuji Reflection' },
+          { name: 'Akihabara & Shinjuku', lat: 35.6987, lng: 139.7747, icon: '⚡', day: 'Day 8', note: 'Tokyo Pop Culture' },
+          { name: 'Narita Int Airport (NRT)', lat: 35.7720, lng: 140.3929, icon: '🛫', day: 'Day 9', note: 'Departure Flight' }
+        ];
+
+        stopsListEl.innerHTML = nationwideHubs.map((hub, hIdx) => {
+          return [
+            '<div class="flex items-center gap-2 flex-shrink-0">',
+            '  <button onclick="window.roadmapFocusHub(' + hIdx + ')" class="roadmap-stop-chip p-2.5 rounded-xl bg-[#090D15] hover:bg-white/10 border border-gold/30 hover:border-gold text-left transition-all flex items-center gap-2 max-w-[210px]" data-hub-idx="' + hIdx + '">',
+            '    <span class="text-base">' + hub.icon + '</span>',
+            '    <div class="min-w-0">',
+            '      <div class="text-[10px] font-mono text-gold font-bold">' + hub.day + '</div>',
+            '      <div class="text-xs font-bold text-white truncate">' + hub.name + '</div>',
+            '      <div class="text-[9px] text-slate-400 truncate">' + hub.note + '</div>',
+            '    </div>',
+            '  </button>',
+            (hIdx < nationwideHubs.length - 1 ? '<span class="text-slate-600 font-bold font-mono text-xs">➔</span>' : ''),
+            '</div>'
+          ].join('');
+        }).join('');
       }
       return;
     }
@@ -3102,13 +3266,16 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
         '  <!-- Hotel Base & Main Train Route Header Banner -->',
         '  <div class="grid grid-cols-1 md:grid-cols-2 gap-3">',
         '    <div class="p-3.5 rounded-2xl bg-[#090D15] border border-gold/50 shadow-[0_0_15px_rgba(212,175,55,0.15)] flex items-center gap-3">',
-        '      <div class="w-10 h-10 rounded-xl bg-gold/20 text-gold flex items-center justify-center text-lg flex-shrink-0">🏨</div>',
-        '      <div class="min-w-0">',
+        '      <div class="w-10 h-10 rounded-xl bg-gold/20 text-gold flex items-center justify-center text-lg flex-shrink-0 cursor-pointer" onclick="window.roadmapFocusStop(\'hotel\')" title="Focus Hotel on Map">🏨</div>',
+        '      <div class="min-w-0 cursor-pointer" onclick="window.roadmapFocusStop(\'hotel\')">',
         '        <div class="text-[10px] font-mono font-bold uppercase tracking-wider text-gold">PLACE TO STAY (DAY ' + currentSelectedDay + ')</div>',
-        '        <div class="text-sm font-bold text-white truncate font-mincho">' + (hotel ? hotel.name : transitFlowData.hotel.name) + '</div>',
+        '        <div class="text-sm font-bold text-white truncate font-mincho hover:text-gold transition-colors">' + (hotel ? hotel.name : transitFlowData.hotel.name) + '</div>',
         '        <div class="text-[10px] text-slate-300 truncate">🚉 ' + (hotel ? hotel.nearestStation : transitFlowData.hotel.note) + '</div>',
         '      </div>',
-        '      <a href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(transitFlowData.hotel.mapQuery) + '" target="_blank" rel="noopener noreferrer" class="ml-auto px-2.5 py-1.5 rounded-lg bg-gold/20 hover:bg-gold/30 text-gold text-[10px] font-mono font-bold border border-gold/40 flex-shrink-0">Hotel Map ↗</a>',
+        '      <div class="ml-auto flex items-center gap-2 flex-shrink-0">',
+        '        <button onclick="window.roadmapFocusStop(\'hotel\')" class="px-2 py-1 rounded bg-white/10 hover:bg-white/20 text-slate-200 text-[10px] font-mono">Focus</button>',
+        '        <a href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(transitFlowData.hotel.mapQuery) + '" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1.5 rounded-lg bg-gold/20 hover:bg-gold/30 text-gold text-[10px] font-mono font-bold border border-gold/40">Hotel Map ↗</a>',
+        '      </div>',
         '    </div>',
         '    <div class="p-3.5 rounded-2xl bg-[#090D15] border border-cyan-500/40 flex items-center gap-3">',
         '      <div class="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-lg flex-shrink-0">🚆</div>',
@@ -3123,7 +3290,7 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
 
         '  <!-- Active Activity Live Tracking Card -->',
         '  <div class="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-[#090D15] via-[#0E1524] to-[#090D15] border border-vermilion/40 shadow-[0_0_25px_rgba(232,57,41,0.2)] flex flex-col md:flex-row items-start md:items-center justify-between gap-4">',
-        '    <div class="flex items-start gap-3.5">',
+        '    <div class="flex items-start gap-3.5 cursor-pointer" onclick="window.roadmapFocusStop(' + activeIdx + ')">',
         '      <div class="relative flex-shrink-0">',
         '        <div class="w-12 h-12 rounded-2xl text-white flex items-center justify-center font-bold font-mono text-lg shadow-[0_0_15px_#E83929]" style="background: ' + badge.border + ';">' + badge.icon + '</div>',
         '        <span class="absolute -top-1 -right-1 flex h-3.5 w-3.5">',
@@ -3136,7 +3303,7 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
         '          <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-vermilion/20 text-vermilion border border-vermilion/40">● ACTIVE NOW (' + currentAct.time + ')</span>',
         '          <span class="text-[10px] font-mono font-bold uppercase" style="color: ' + badge.color + ';">' + badge.label + '</span>',
         '        </div>',
-        '        <h3 class="text-base sm:text-lg font-bold text-white font-mincho leading-snug">' + currentAct.title + '</h3>',
+        '        <h3 class="text-base sm:text-lg font-bold text-white font-mincho leading-snug hover:text-vermilion transition-colors">' + currentAct.title + '</h3>',
         '        <p class="text-xs text-slate-300 font-sans mt-0.5 line-clamp-1">' + (currentAct.transit || currentAct.note || '') + '</p>',
         '      </div>',
         '    </div>',
@@ -3151,30 +3318,116 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
       ].join('');
     }
 
-    // Step-by-step Flow Strip
-    if (stopsListEl && transitFlowData) {
-      stopsListEl.innerHTML = transitFlowData.steps.map((st, sIdx) => {
-        return [
+    // Step-by-step Flow Strip: 100% matched to Hotel + Activities for exact navigation
+    if (stopsListEl && dayData) {
+      const chips = [];
+
+      // Hotel Base Chip
+      if (hotel) {
+        chips.push([
           '<div class="flex items-center gap-2 flex-shrink-0">',
-          '  <button onclick="window.roadmapFocusStop(' + sIdx + ')" class="p-2.5 rounded-xl bg-[#090D15] hover:bg-white/10 border border-white/10 text-left transition-all flex items-center gap-2 max-w-[200px]">',
-          '    <span class="text-base">' + st.icon + '</span>',
+          '  <button onclick="window.roadmapFocusStop(\'hotel\')" class="roadmap-stop-chip p-2.5 rounded-xl bg-[#090D15] hover:bg-white/10 border border-gold/40 hover:border-gold text-left transition-all flex items-center gap-2 max-w-[210px]" data-stop-key="hotel">',
+          '    <span class="text-base">🏨</span>',
           '    <div class="min-w-0">',
-          '      <div class="text-[10px] font-mono text-gold">' + st.time + '</div>',
-          '      <div class="text-xs font-bold text-white truncate">' + st.title + '</div>',
-          '      ' + (st.transitNote ? '<div class="text-[9px] text-cyan-300 truncate">' + st.transitNote + '</div>' : ''),
+          '      <div class="text-[10px] font-mono text-gold font-bold">HOTEL BASE</div>',
+          '      <div class="text-xs font-bold text-white truncate">' + hotel.name + '</div>',
+          '      <div class="text-[9px] text-slate-400 truncate">🚉 ' + hotel.nearestStation.split('/')[0].trim() + '</div>',
           '    </div>',
           '  </button>',
-          (sIdx < transitFlowData.steps.length - 1 ? '<span class="text-slate-600 font-bold font-mono text-xs">➔</span>' : ''),
+          '  <span class="text-slate-600 font-bold font-mono text-xs">➔</span>',
           '</div>'
-        ].join('');
-      }).join('');
+        ].join(''));
+      }
+
+      // Activity Chips
+      dayData.activities.forEach((act, actIdx) => {
+        const badge = getStopCategoryBadge(act);
+        const isLast = actIdx === dayData.activities.length - 1;
+        chips.push([
+          '<div class="flex items-center gap-2 flex-shrink-0">',
+          '  <button onclick="window.roadmapFocusStop(' + actIdx + ')" class="roadmap-stop-chip p-2.5 rounded-xl bg-[#090D15] hover:bg-white/10 border border-white/10 hover:border-vermilion text-left transition-all flex items-center gap-2 max-w-[210px]" data-stop-idx="' + actIdx + '">',
+          '    <span class="text-base">' + badge.icon + '</span>',
+          '    <div class="min-w-0">',
+          '      <div class="text-[10px] font-mono text-gold">' + act.time + '</div>',
+          '      <div class="text-xs font-bold text-white truncate">' + act.title + '</div>',
+          '      <div class="text-[9px] text-cyan-300 truncate">' + (act.transit ? '🚆 ' + act.transit : badge.label) + '</div>',
+          '    </div>',
+          '  </button>',
+          (!isLast ? '<span class="text-slate-600 font-bold font-mono text-xs">➔</span>' : ''),
+          '</div>'
+        ].join(''));
+      });
+
+      stopsListEl.innerHTML = chips.join('');
     }
   }
 
-  window.roadmapFocusStop = function(idx) {
+  window.roadmapFocusHub = function(hIdx) {
+    const nationwideHubs = [
+      { name: 'Kansai Int Airport (KIX)', lat: 34.4347, lng: 135.2443 },
+      { name: 'Plum Hotel Osaka', lat: 34.6565, lng: 135.4985 },
+      { name: 'Nara Park (Todai-ji)', lat: 34.6851, lng: 135.8430 },
+      { name: 'Rinn Shirakawa Kyoto', lat: 35.0062, lng: 135.7760 },
+      { name: 'Kiyomizu-dera Temple', lat: 34.9949, lng: 135.7850 },
+      { name: 'Tokaido Shinkansen Route', lat: 35.2000, lng: 137.5000 },
+      { name: 'Hotel Tavinos Asakusa', lat: 35.7171, lng: 139.7915 },
+      { name: 'GALA Yuzawa Ski Resort', lat: 36.9508, lng: 138.8005 },
+      { name: 'Mt. Fuji (Lake Kawaguchi)', lat: 35.5015, lng: 138.8016 },
+      { name: 'Akihabara & Shinjuku', lat: 35.6987, lng: 139.7747 },
+      { name: 'Narita Int Airport (NRT)', lat: 35.7720, lng: 140.3929 }
+    ];
+    const hub = nationwideHubs[hIdx];
+    if (!hub) return;
+
+    map.flyTo([hub.lat, hub.lng], 14, { duration: 1 });
+
+    markersLayer.eachLayer(layer => {
+      if (layer instanceof L.Marker) {
+        const p = layer.getLatLng();
+        if (Math.abs(p.lat - hub.lat) < 0.05 && Math.abs(p.lng - hub.lng) < 0.05) {
+          layer.openPopup();
+        }
+      }
+    });
+
+    document.querySelectorAll('.roadmap-stop-chip').forEach((c) => {
+      if (c.getAttribute('data-hub-idx') === String(hIdx)) {
+        c.classList.add('is-focused');
+        c.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      } else {
+        c.classList.remove('is-focused');
+      }
+    });
+  };
+
+  window.roadmapFocusStop = function(target) {
+    if (target === 'hotel') {
+      const hotel = HOTEL_BASES[currentSelectedDay];
+      if (!hotel) return;
+      map.flyTo([hotel.lat, hotel.lng], 16, { duration: 1 });
+      markersLayer.eachLayer(layer => {
+        if (layer instanceof L.Marker) {
+          const p = layer.getLatLng();
+          if (Math.abs(p.lat - hotel.lat) < 0.0005 && Math.abs(p.lng - hotel.lng) < 0.0005) {
+            layer.openPopup();
+          }
+        }
+      });
+      document.querySelectorAll('.roadmap-stop-chip').forEach((c) => {
+        if (c.getAttribute('data-stop-key') === 'hotel') {
+          c.classList.add('is-focused');
+          c.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        } else {
+          c.classList.remove('is-focused');
+        }
+      });
+      return;
+    }
+
+    const idx = parseInt(target, 10);
     const dayData = ROADMAP_DATA.find(d => d.day === currentSelectedDay);
     if (!dayData) return;
-    const act = dayData.activities[idx] || dayData.activities[0];
+    const act = dayData.activities[idx];
     if (!act) return;
 
     map.flyTo([act.lat, act.lng], 16, { duration: 1 });
@@ -3182,7 +3435,7 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
     markersLayer.eachLayer(layer => {
       if (layer instanceof L.Marker) {
         const p = layer.getLatLng();
-        if (Math.abs(p.lat - act.lat) < 0.0001 && Math.abs(p.lng - act.lng) < 0.0001) {
+        if (Math.abs(p.lat - act.lat) < 0.0005 && Math.abs(p.lng - act.lng) < 0.0005) {
           layer.openPopup();
         }
       }
@@ -3192,10 +3445,14 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
   };
 
   function highlightStopCard(idx) {
-    const chips = document.querySelectorAll('#roadmap-stops-chips-container button');
-    if (chips[idx]) {
-      chips[idx].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-    }
+    document.querySelectorAll('.roadmap-stop-chip').forEach((c) => {
+      if (c.getAttribute('data-stop-idx') === String(idx)) {
+        c.classList.add('is-focused');
+        c.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      } else {
+        c.classList.remove('is-focused');
+      }
+    });
   }
 
   const dayPills = document.querySelectorAll('.master-roadmap-day-btn');
@@ -3209,7 +3466,7 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
       btn.classList.remove('bg-[#090D15]', 'text-slate-400');
 
       currentSelectedDay = parseInt(btn.getAttribute('data-day'), 10);
-      renderView();
+      renderView({ fit: true });
     });
   });
 
@@ -3227,7 +3484,7 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
         liveSyncBtn.classList.add('bg-amber-500/20', 'text-amber-300', 'border-amber-500/40');
         liveSyncBtn.textContent = '⚡ Simulating (Click to Live Sync)';
       }
-      renderView();
+      renderView({ fit: false });
     });
   }
 
@@ -3240,15 +3497,16 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
       liveSyncBtn.classList.add('bg-emerald-500/20', 'text-emerald-300', 'border-emerald-500/40');
       liveSyncBtn.classList.remove('bg-amber-500/20', 'text-amber-300', 'border-amber-500/40');
       liveSyncBtn.textContent = '● Real JST Active';
-      renderView();
+      renderView({ fit: false });
     });
   }
 
-  renderView();
+  // Initial render: fit bounds to frame day nicely
+  renderView({ fit: true });
 
   setInterval(() => {
     if (!isSimulating && currentSelectedDay > 0) {
-      renderView();
+      renderView({ fit: false });
     }
   }, 30000);
 }
@@ -3267,13 +3525,26 @@ function initDayRoadmap(dayNumber, containerId = 'day-roadmap-map') {
     mapInstances[containerId].remove();
   }
 
+  // Prevent Lenis smooth scroll from capturing wheel events over the map
+  mapEl.setAttribute('data-lenis-prevent', 'true');
+  mapEl.addEventListener('wheel', (e) => {
+    e.stopPropagation();
+  }, { passive: false });
+
+  let currentBounds = null;
+
   const map = L.map(containerId, {
     zoomControl: true,
-    scrollWheelZoom: false
+    scrollWheelZoom: true,
+    doubleClickZoom: true,
+    touchZoom: true,
+    dragging: true,
+    boxZoom: true,
+    keyboard: true
   });
   mapInstances[containerId] = map;
 
-  // Base Layers: Clean, High Resolution Travel Maps (NO Dark Matter)
+  // Base Layers: Clean, High Resolution Travel Maps
   const baseLayers = {
     '🗺️ CARTO Voyager (Travel & Stations)': L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?key=cb1_55ym_1_992e6f8a3c0350305ec5dcf4', {
       maxZoom: 19,
@@ -3315,33 +3586,69 @@ function initDayRoadmap(dayNumber, containerId = 'day-roadmap-map') {
   baseLayers['🗺️ CARTO Voyager (Travel & Stations)'].addTo(map);
   L.control.layers(baseLayers, overlayLayers, { position: 'topright' }).addTo(map);
 
-  // Quick OpenRailwayMap toggle button
-  const railControl = L.control({ position: 'bottomleft' });
-  railControl.onAdd = function() {
-    const div = L.DomUtil.create('div', 'leaflet-bar map-rail-quick-btn');
+  // Floating Navigation Toolbar (Fit Route, Rail Tracks, Expand Map)
+  const navToolbarControl = L.control({ position: 'bottomleft' });
+  navToolbarControl.onAdd = function() {
+    const div = L.DomUtil.create('div', 'map-floating-toolbar');
     div.innerHTML = [
-      '<button id="toggle-openrailwaymap-day-btn" title="Toggle OpenRailwayMap Rail Tracks" style="background: #090D15; color: #38BDF8; border: 1px solid rgba(56, 189, 248, 0.5); padding: 5px 10px; border-radius: 8px; font-family: monospace; font-size: 11px; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 5px; box-shadow: 0 4px 14px rgba(0,0,0,0.8);">',
+      '<button id="recenter-day-roadmap-btn" class="map-floating-btn" title="Re-center map to fit day route">',
+      '  <span>🎯 Fit Route</span>',
+      '</button>',
+      '<button id="toggle-openrailwaymap-day-btn" class="map-floating-btn" title="Toggle OpenRailwayMap Rail Tracks">',
       '  <span>🚆 Rail Tracks</span>',
+      '</button>',
+      '<button id="expand-day-roadmap-btn" class="map-floating-btn" title="Expand / Shrink map view">',
+      '  <span id="day-expand-btn-text">⛶ Expand Map</span>',
       '</button>'
     ].join('');
     L.DomEvent.disableClickPropagation(div);
-    const btn = div.querySelector('button');
-    btn.addEventListener('click', (e) => {
+
+    const fitBtn = div.querySelector('#recenter-day-roadmap-btn');
+    fitBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (currentBounds) {
+        map.fitBounds(currentBounds, { padding: [40, 40], maxZoom: 15 });
+      }
+    });
+
+    const railBtn = div.querySelector('#toggle-openrailwaymap-day-btn');
+    railBtn.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
       if (map.hasLayer(ormTileLayer)) {
         map.removeLayer(ormTileLayer);
-        btn.style.borderColor = 'rgba(255, 255, 255, 0.2)';
-        btn.style.color = '#94A3B8';
+        railBtn.classList.remove('active');
+        railBtn.style.color = '#94A3B8';
+        railBtn.style.borderColor = 'rgba(255, 255, 255, 0.2)';
       } else {
         map.addLayer(ormTileLayer);
-        btn.style.borderColor = '#38BDF8';
-        btn.style.color = '#38BDF8';
+        railBtn.classList.add('active');
+        railBtn.style.color = '#38BDF8';
+        railBtn.style.borderColor = '#38BDF8';
       }
     });
+
+    const expandBtn = div.querySelector('#expand-day-roadmap-btn');
+    const expandText = div.querySelector('#day-expand-btn-text');
+    expandBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      mapEl.classList.toggle('is-expanded');
+      const isExpanded = mapEl.classList.contains('is-expanded');
+      expandText.textContent = isExpanded ? '✕ Shrink Map' : '⛶ Expand Map';
+      expandBtn.classList.toggle('active', isExpanded);
+      setTimeout(() => {
+        map.invalidateSize();
+        if (currentBounds) {
+          map.fitBounds(currentBounds, { padding: [40, 40], maxZoom: 15 });
+        }
+      }, 320);
+    });
+
     return div;
   };
-  railControl.addTo(map);
+  navToolbarControl.addTo(map);
 
   setTimeout(() => map.invalidateSize(), 200);
   window.addEventListener('resize', () => map.invalidateSize());
@@ -3353,7 +3660,9 @@ function initDayRoadmap(dayNumber, containerId = 'day-roadmap-map') {
     return isSimulating ? simulatedMinutes : getJSTCurrentMinutes();
   }
 
-  function render() {
+  function render(options = {}) {
+    const shouldFit = options && options.fit === true;
+
     markersLayer.clearLayers();
     connectorsLayer.clearLayers();
     trainRouteLayer.clearLayers();
@@ -3375,7 +3684,7 @@ function initDayRoadmap(dayNumber, containerId = 'day-roadmap-map') {
       else if (currentMins >= lastEnd) activeIdx = dayData.activities.length - 1;
     }
 
-    // 1. Draw Day's Train Route(s) (THE TRAIN PATH)
+    // 1. Draw Day's Train Route(s)
     const trainKeys = DAY_TRAIN_MAPPING[dayNumber] || [];
     trainKeys.forEach(tKey => {
       const tRoute = TRAIN_ROUTES[tKey];
@@ -3456,10 +3765,11 @@ function initDayRoadmap(dayNumber, containerId = 'day-roadmap-map') {
       });
     });
 
-    // NOTE: Red polyline is intentionally removed per user specification.
-
     if (latlngs.length > 0) {
-      map.fitBounds(L.latLngBounds(latlngs), { padding: [40, 40], maxZoom: 15 });
+      currentBounds = L.latLngBounds(latlngs);
+      if (shouldFit) {
+        map.fitBounds(currentBounds, { padding: [40, 40], maxZoom: 15 });
+      }
     }
 
     // Render Hotel & Train Flow Strip
@@ -3468,13 +3778,16 @@ function initDayRoadmap(dayNumber, containerId = 'day-roadmap-map') {
       flowContainer.innerHTML = [
         '<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-2">',
         '  <div class="p-3 rounded-2xl bg-[#05070B] border border-gold/50 shadow-[0_0_15px_rgba(212,175,55,0.15)] flex items-center gap-3">',
-        '    <div class="w-9 h-9 rounded-xl bg-gold/20 text-gold flex items-center justify-center text-base flex-shrink-0">🏨</div>',
-        '    <div class="min-w-0">',
+        '    <div class="w-9 h-9 rounded-xl bg-gold/20 text-gold flex items-center justify-center text-base flex-shrink-0 cursor-pointer" onclick="window.dayRoadmapFocusHotel()" title="Focus Hotel">🏨</div>',
+        '    <div class="min-w-0 cursor-pointer" onclick="window.dayRoadmapFocusHotel()">',
         '      <div class="text-[9px] font-mono font-bold text-gold uppercase">PLACE TO STAY (DAY ' + dayNumber + ')</div>',
-        '      <div class="text-xs font-bold text-white truncate font-mincho">' + (hotel ? hotel.name : transitFlowData.hotel.name) + '</div>',
+        '      <div class="text-xs font-bold text-white truncate font-mincho hover:text-gold transition-colors">' + (hotel ? hotel.name : transitFlowData.hotel.name) + '</div>',
         '      <div class="text-[10px] text-slate-300 truncate">🚉 ' + (hotel ? hotel.nearestStation : transitFlowData.hotel.note) + '</div>',
         '    </div>',
-        '    <a href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(transitFlowData.hotel.mapQuery) + '" target="_blank" rel="noopener noreferrer" class="ml-auto px-2 py-1 rounded bg-gold/20 text-gold text-[9px] font-mono font-bold border border-gold/40 flex-shrink-0">Map ↗</a>',
+        '    <div class="ml-auto flex items-center gap-1.5 flex-shrink-0">',
+        '      <button onclick="window.dayRoadmapFocusHotel()" class="px-2 py-0.5 rounded bg-white/10 hover:bg-white/20 text-slate-200 text-[9px] font-mono">Focus</button>',
+        '      <a href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(transitFlowData.hotel.mapQuery) + '" target="_blank" rel="noopener noreferrer" class="px-2 py-1 rounded bg-gold/20 text-gold text-[9px] font-mono font-bold border border-gold/40">Map ↗</a>',
+        '    </div>',
         '  </div>',
         '  <div class="p-3 rounded-2xl bg-[#05070B] border border-cyan-500/40 flex items-center gap-3">',
         '    <div class="w-9 h-9 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-base flex-shrink-0">🚆</div>',
@@ -3487,13 +3800,14 @@ function initDayRoadmap(dayNumber, containerId = 'day-roadmap-map') {
         '  </div>',
         '</div>',
         '<div class="space-y-1.5">',
-        '  <div class="text-[10px] font-mono uppercase text-slate-400 flex items-center gap-1.5">',
-        '    <span>Daily Journey Flow (Click stop to focus map):</span>',
+        '  <div class="text-[10px] font-mono uppercase text-slate-400 flex items-center justify-between">',
+        '    <span>Daily Journey Flow (Click any stop to navigate map):</span>',
+        '    <button onclick="document.getElementById(\'recenter-day-roadmap-btn\')?.click()" class="text-cyan-400 hover:underline cursor-pointer">🎯 Fit Route</button>',
         '  </div>',
         '  <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">',
         transitFlowData.steps.map((st, sIdx) => [
           '<div class="flex items-center gap-1.5 flex-shrink-0">',
-          '  <button onclick="window.dayRoadmapFocusStep(' + sIdx + ')" class="px-3 py-2 rounded-xl bg-[#05070B] hover:bg-white/10 border border-white/10 text-left transition-all flex items-center gap-2 max-w-[200px]">',
+          '  <button onclick="window.dayRoadmapFocusStep(' + sIdx + ')" class="day-flow-step-btn px-3 py-2 rounded-xl bg-[#05070B] hover:bg-white/10 border border-white/10 hover:border-vermilion text-left transition-all flex items-center gap-2 max-w-[200px]" data-step-idx="' + sIdx + '">',
           '    <span class="text-sm">' + st.icon + '</span>',
           '    <div class="min-w-0">',
           '      <div class="text-[9px] font-mono text-gold">' + st.time + '</div>',
@@ -3508,19 +3822,56 @@ function initDayRoadmap(dayNumber, containerId = 'day-roadmap-map') {
         '</div>'
       ].join('');
 
+      window.dayRoadmapFocusHotel = function() {
+        if (!hotel) return;
+        map.flyTo([hotel.lat, hotel.lng], 16, { duration: 0.8 });
+        markersLayer.eachLayer(layer => {
+          if (layer instanceof L.Marker) {
+            const p = layer.getLatLng();
+            if (Math.abs(p.lat - hotel.lat) < 0.0005 && Math.abs(p.lng - hotel.lng) < 0.0005) {
+              layer.openPopup();
+            }
+          }
+        });
+      };
+
       window.dayRoadmapFocusStep = function(sIdx) {
-        const act = dayData.activities[sIdx] || dayData.activities[0];
-        if (act) {
-          map.flyTo([act.lat, act.lng], 16, { duration: 0.8 });
+        const st = transitFlowData.steps[sIdx];
+        if (!st) return;
+
+        const resolved = resolveStepCoordinate(st, dayNumber);
+        if (resolved) {
+          map.flyTo([resolved.lat, resolved.lng], 16, { duration: 0.8 });
+          let foundMarker = false;
           markersLayer.eachLayer(layer => {
             if (layer instanceof L.Marker) {
               const p = layer.getLatLng();
-              if (Math.abs(p.lat - act.lat) < 0.0001 && Math.abs(p.lng - act.lng) < 0.0001) {
+              if (Math.abs(p.lat - resolved.lat) < 0.0015 && Math.abs(p.lng - resolved.lng) < 0.0015) {
                 layer.openPopup();
+                foundMarker = true;
               }
             }
           });
+          if (!foundMarker) {
+            trainRouteLayer.eachLayer(layer => {
+              if (layer instanceof L.Marker) {
+                const p = layer.getLatLng();
+                if (Math.abs(p.lat - resolved.lat) < 0.0015 && Math.abs(p.lng - resolved.lng) < 0.0015) {
+                  layer.openPopup();
+                }
+              }
+            });
+          }
         }
+
+        document.querySelectorAll('.day-flow-step-btn').forEach((btn) => {
+          if (btn.getAttribute('data-step-idx') === String(sIdx)) {
+            btn.classList.add('border-vermilion', 'bg-vermilion/20');
+            btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+          } else {
+            btn.classList.remove('border-vermilion', 'bg-vermilion/20');
+          }
+        });
       };
     }
 
@@ -3538,20 +3889,21 @@ function initDayRoadmap(dayNumber, containerId = 'day-roadmap-map') {
   }
 
   function highlightDayTimelineCard(idx) {
-    const cards = document.querySelectorAll('.jp-card[data-activity-index]');
-    cards.forEach((c, i) => {
-      if (i === idx) {
+    const cards = document.querySelectorAll('.timeline-card[data-activity-index]');
+    cards.forEach((c) => {
+      const cIdx = parseInt(c.getAttribute('data-activity-index'), 10);
+      if (cIdx === idx) {
         c.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        c.classList.add('ring-2', 'ring-vermilion');
-        setTimeout(() => c.classList.remove('ring-2', 'ring-vermilion'), 2500);
+        c.classList.add('ring-2', 'ring-vermilion', 'bg-white/5');
+        setTimeout(() => c.classList.remove('ring-2', 'ring-vermilion', 'bg-white/5'), 2500);
       }
     });
   }
 
-  document.querySelectorAll('.jp-card').forEach((card, idx) => {
-    const actIdx = idx - 1;
-    if (actIdx >= 0 && actIdx < dayData.activities.length) {
-      card.setAttribute('data-activity-index', actIdx);
+  // Connect chronological timeline cards to map
+  document.querySelectorAll('.timeline-card[data-activity-index]').forEach((card) => {
+    const actIdx = parseInt(card.getAttribute('data-activity-index'), 10);
+    if (!isNaN(actIdx) && actIdx >= 0 && actIdx < dayData.activities.length) {
       card.style.cursor = 'pointer';
       card.addEventListener('click', (e) => {
         if (e.target.closest('a')) return;
@@ -3561,7 +3913,7 @@ function initDayRoadmap(dayNumber, containerId = 'day-roadmap-map') {
           markersLayer.eachLayer(layer => {
             if (layer instanceof L.Marker) {
               const p = layer.getLatLng();
-              if (Math.abs(p.lat - act.lat) < 0.0001 && Math.abs(p.lng - act.lng) < 0.0001) {
+              if (Math.abs(p.lat - act.lat) < 0.0005 && Math.abs(p.lng - act.lng) < 0.0005) {
                 layer.openPopup();
               }
             }
@@ -3581,7 +3933,7 @@ function initDayRoadmap(dayNumber, containerId = 'day-roadmap-map') {
       simulatedMinutes = parseInt(e.target.value, 10);
       if (sliderLabel) sliderLabel.textContent = formatMinutes(simulatedMinutes);
       if (syncBtn) syncBtn.textContent = '⚡ Simulating';
-      render();
+      render({ fit: false });
     });
   }
 
@@ -3592,11 +3944,12 @@ function initDayRoadmap(dayNumber, containerId = 'day-roadmap-map') {
       if (slider) slider.value = jstMins;
       if (sliderLabel) sliderLabel.textContent = formatMinutes(jstMins);
       syncBtn.textContent = '● Real JST Active';
-      render();
+      render({ fit: false });
     });
   }
 
-  render();
+  // Initial render: frame the day route cleanly
+  render({ fit: true });
 }
 
 window.initMasterRoadmap = initMasterRoadmap;
