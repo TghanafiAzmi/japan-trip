@@ -559,23 +559,11 @@ body {
   transform: translateY(-2px);
 }
 
-.journey-pipeline-card.is-active-now {
+.journey-pipeline-card.is-focused {
   border-color: #E83929 !important;
   background: linear-gradient(135deg, rgba(232, 57, 41, 0.22) 0%, #090D15 100%) !important;
   box-shadow: 0 0 25px rgba(232, 57, 41, 0.4) !important;
-}
-
-.journey-pipeline-card.is-active-now::after {
-  content: '';
-  position: absolute;
-  top: -3px;
-  right: -3px;
-  width: 9px;
-  height: 9px;
-  border-radius: 9999px;
-  background: #E83929;
-  box-shadow: 0 0 10px #E83929;
-  animation: roadmapPing 1.8s infinite;
+  transform: translateY(-2px);
 }
 
 .journey-pipeline-connector {
@@ -729,36 +717,26 @@ body {
   z-index: 1000 !important;
 }
 
+.roadmap-pin.is-focused,
 .roadmap-pin.is-active {
-  background: #E83929;
-  border-color: #FFFFFF;
-  color: #FFFFFF;
+  background: #E83929 !important;
+  border-color: #FFFFFF !important;
+  color: #FFFFFF !important;
   transform: scale(1.25);
-  box-shadow: 0 0 30px rgba(232, 57, 41, 1), 0 0 60px rgba(232, 57, 41, 0.6);
+  box-shadow: 0 0 25px rgba(232, 57, 41, 0.9) !important;
   z-index: 1001 !important;
-}
-
-.roadmap-pin.is-active::after {
-  content: '';
-  position: absolute;
-  inset: -8px;
-  border-radius: 9999px;
-  border: 2px solid #E83929;
-  animation: roadmapPing 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 
 .roadmap-pin.is-completed {
   border-color: #10B981;
   color: #10B981;
   background: #051A13;
-  box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
 }
 
 .roadmap-pin.is-upcoming {
   border-color: rgba(255, 255, 255, 0.3);
   color: #94A3B8;
   background: #090D15;
-  box-shadow: none;
 }
 
 @keyframes roadmapPing {

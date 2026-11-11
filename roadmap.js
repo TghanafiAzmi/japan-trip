@@ -617,7 +617,7 @@ const ROADMAP_DATA = [
         "connectedStation": "Gion-Shijo Station",
         "stationWalk": "Walk 5 min to Wagyu Panga in Gion",
         "transitSummary": "Walk 5 min to Halal Wagyu Panga or Ayam Ya",
-        "note": "Walk 5 min south to Wagyu Panga in Gion OR take 1-stop Hankyu train to Karasuma for Ayam Ya. Return to Rinn Shirakawa South. Pack bags for Shinkansen to Tokyo tomorrow!",
+        "note": "Walk 5 min south to Wagyu Panga in Gion OR take 1-stop Hankyu train to Karasuma for Ayam Ya. Return to Rinn Shirakawa South. Pack bags for overnight sleeper bus to Tokyo tomorrow!",
         "mapQuery": "Halal Wagyu Yakiniku Panga Gion",
         "lat": 35.0028,
         "lng": 135.7735
@@ -628,9 +628,9 @@ const ROADMAP_DATA = [
     "day": 5,
     "date": "Wed, 20 Jan 2027",
     "city": "Kyoto → Tokyo",
-    "cityTag": "Shinkansen to Tokyo",
+    "cityTag": "Kyoto → Tokyo Sleeper Bus",
     "weather": "8°C • Tokyo Metropolis",
-    "theme": "🚅 Tokaido Shinkansen Kyoto → Tokyo • Tokyo Hotel Check-in & Evening Lights",
+    "theme": "🚌 Kyoto → Tokyo Overnight Sleeper Bus • Tokyo Arrival & Evening Lights",
     "image": "./images/hero-banner.jpg",
     "hotel": {
       "name": "Tokyo Hotel (Choose 1)",
@@ -651,7 +651,7 @@ const ROADMAP_DATA = [
         "connectedStation": "Kyoto Station",
         "stationWalk": "Bus #206 from Gion-Shijo (15 min, ¥230) ➔ Kyoto Station Karasuma Concourse",
         "transitSummary": "Bus #206 (15 min, ¥230) or Taxi (~¥1,200 for 4) to station",
-        "note": "Check out of Rinn Shirakawa South by 11:30am with all luggage. Walk 5 min to Gion-Shijo bus stop ➔ Board Kyoto City Bus #206 (direct to Kyoto Station, 15 min, ¥230) OR take a quick 10-min taxi (~¥1,200 for 4 with suitcases directly to Shinkansen Hachijo Entrance).",
+        "note": "Check out of Rinn Shirakawa South by 11:30am with all luggage. Walk 5 min to Gion-Shijo bus stop ➔ Board Kyoto City Bus #206 (direct to Kyoto Station, 15 min, ¥230) OR take a quick 10-min taxi (~¥1,200 for 4 with suitcases directly to Kyoto Station Hachijo Entrance).",
         "mapQuery": "Kyoto Station",
         "lat": 34.9858,
         "lng": 135.7588
@@ -666,27 +666,27 @@ const ROADMAP_DATA = [
         "transitMethod": "Station Concourse Walk",
         "methodType": "walk",
         "connectedStation": "Kyoto Station",
-        "stationWalk": "Explore 15-story station atrium ➔ 2F Shinkansen gates",
+        "stationWalk": "Explore 15-story station atrium ➔ Hachijo bus gates",
         "transitSummary": "Explore futuristic station & purchase Halal bento / snacks",
-        "note": "Explore the futuristic 15-story Kyoto Station grand cathedral atrium. Purchase Halal bento / Ekiben, snacks, and matcha treats at the station concourse. Enter the Shinkansen gates (2F).",
+        "note": "Explore the futuristic 15-story Kyoto Station grand cathedral atrium. Purchase Halal bento / Ekiben, snacks, and matcha treats at the station concourse.",
         "mapQuery": "Kyoto Station",
         "lat": 34.9858,
         "lng": 135.7588
       },
       {
         "time": "14:00–16:30",
-        "title": "Kyoto ➔ Tokyo (JR Tokaido Shinkansen Bullet Train)",
-        "costJpy": 13320,
-        "costMyr": 390,
+        "title": "Kyoto ➔ Tokyo (Overnight Sleeper Bus)",
+        "costJpy": 5500,
+        "costMyr": 165,
         "category": "transit",
         "halal": null,
-        "transitMethod": "High-Speed Rail (Tokaido Shinkansen)",
-        "methodType": "train",
-        "connectedStation": "Tokyo Station",
-        "stationWalk": "Board Platform 11/12 ➔ 285 km/h high-speed run to Tokyo Station",
-        "transitSummary": "JR Tokaido Shinkansen (2h 15m, 285 km/h, ¥13,320 pp)",
-        "note": "Board JR Tokaido Shinkansen (Platform 11/12). Speed along the Pacific Coast at 285 km/h (2 hrs 15 min, ¥13,320–14,170 / ~RM 390 pp). Pass Nagoya, Lake Hamana, and view Mt. Fuji from the left-side windows (Seat E) between Shizuoka and Shin-Fuji! Arrive at Tokyo Central Station at 16:30.",
-        "mapQuery": "Tokyo Station",
+        "transitMethod": "Overnight Highway Coach (Willer Express / JR Dream Coach)",
+        "methodType": "bus",
+        "connectedStation": "Tokyo Station (Yaesu Exit)",
+        "stationWalk": "Kyoto Station Hachijo ➔ Scenic overnight highway coach ➔ Arrive Tokyo",
+        "transitSummary": "Overnight Sleeper Bus (7 hrs, ¥5,500 / ~RM 165 pp)",
+        "note": "Board comfortable overnight sleeper highway coach (Willer Express / JR Dream Coach) at Kyoto Station Hachijo Exit. Enjoy deep-reclining seats with canopy cover, blanket, and charging ports. Smooth, scenic highway overnight travel across the Tomei Expressway directly to Tokyo Station Yaesu Exit.",
+        "mapQuery": "Tokyo Station Yaesu Exit",
         "lat": 35.6812,
         "lng": 139.7671
       },
@@ -1645,10 +1645,10 @@ const DAILY_TRANSIT_FLOW = {
       "mapQuery": "Hotel Tavinos Asakusa Tokyo"
     },
     "mainTrain": {
-      "line": "JR Tokaido Shinkansen (Hikari / Nozomi)",
-      "route": "Kyoto Station ➔ Tokyo Station",
-      "time": "2 hrs 15 min (Bullet Train)",
-      "cost": "~¥13,320 (RM 390)"
+      "line": "Overnight Sleeper Bus (Willer Express / JR Dream Coach)",
+      "route": "Kyoto Station (Hachijo) ➔ Tokyo Station (Yaesu)",
+      "time": "7 hrs overnight",
+      "cost": "~¥5,500 (RM 165)"
     },
     "steps": [
       {
@@ -1659,21 +1659,21 @@ const DAILY_TRANSIT_FLOW = {
       },
       {
         "type": "station",
-        "title": "Kyoto Station",
+        "title": "Kyoto Station (Hachijo)",
         "icon": "🚉",
         "time": "12:00",
-        "transitNote": "Shinkansen Platform 11/12"
+        "transitNote": "Hachijo Bus Terminal"
       },
       {
         "type": "transit",
-        "title": "Tokaido Shinkansen Bullet Train",
-        "icon": "🚅",
+        "title": "Overnight Sleeper Bus (Kyoto ➔ Tokyo)",
+        "icon": "🚌",
         "time": "14:00",
-        "transitNote": "2h 15m high-speed train to Tokyo"
+        "transitNote": "7h overnight highway coach to Tokyo"
       },
       {
         "type": "station",
-        "title": "Tokyo Station",
+        "title": "Tokyo Station (Yaesu Exit)",
         "icon": "🚉",
         "time": "16:30",
         "transitNote": "Subway Ginza / Asakusa Line"
@@ -2202,7 +2202,29 @@ const HOTEL_BASES = {
 // DETAILED TRAIN ROUTES (Shinkansen, Airport Express & Commuter)
 // =============================================================
 const TRAIN_ROUTES = {
-  // 1. Tokaido Shinkansen (Bullet Train): Kyoto Station -> Tokyo Station
+  // 1. Overnight Sleeper Bus: Kyoto Station Hachijo -> Tokyo Station Yaesu
+  kyotoTokyoSleeperBus: {
+    id: 'kyotoTokyoSleeperBus',
+    name: 'Overnight Sleeper Highway Coach (Willer Express / JR Dream Coach)',
+    type: 'bus',
+    badge: '🚌 Overnight Sleeper Bus (~7 hrs)',
+    route: 'Kyoto Station (Hachijo) ➔ Tokyo Station (Yaesu)',
+    duration: 'Approx. 7 hrs overnight',
+    speed: '80–100 km/h (Expressway)',
+    color: '#F59E0B',
+    stations: [
+      { name: 'Kyoto Station Hachijo Exit', lat: 34.9840, lng: 135.7592, note: 'Board overnight coach (Kyoto Station Hachijo Bus Terminal)' },
+      { name: 'Kusatsu Rest Area', lat: 35.0089, lng: 135.9869, note: 'Meishin Expressway rest stop' },
+      { name: 'Nagoya Expressway Hub', lat: 35.1709, lng: 136.8815, note: 'Chubu expressway transit corridor' },
+      { name: 'Hamana-ko Service Area', lat: 34.7645, lng: 137.5647, note: 'Lake Hamana midnight rest pause' },
+      { name: 'Shizuoka Expressway Rest Stop', lat: 34.9961, lng: 138.4114, note: 'Tomei Expressway mid-journey stop' },
+      { name: 'Ashigara Service Area', lat: 35.3050, lng: 138.9772, note: 'Mt. Fuji foothills morning pause' },
+      { name: 'Ebina Rest Area', lat: 35.4389, lng: 139.3908, note: 'Kanagawa expressway gate' },
+      { name: 'Tokyo Station Yaesu Exit', lat: 35.6812, lng: 139.7690, note: 'Arrival at Tokyo Station Yaesu Highway Bus Terminal' }
+    ]
+  },
+
+  // Tokaido Shinkansen (Bullet Train): Kyoto Station -> Tokyo Station
   tokaidoShinkansen: {
     id: 'tokaidoShinkansen',
     name: 'JR Tokaido Shinkansen (Nozomi / Hikari)',
@@ -2403,12 +2425,12 @@ const TRAIN_ROUTES = {
 
 // Day-to-Train Mapping
 const DAY_TRAIN_MAPPING = {
-  0: ['tokaidoShinkansen', 'joetsuShinkansen', 'nankaiAirportExpress', 'kintetsuNaraLine', 'jrKyotoLine', 'fujiExcursionRoute', 'keiseiSkyliner'],
+  0: ['kyotoTokyoSleeperBus', 'joetsuShinkansen', 'nankaiAirportExpress', 'kintetsuNaraLine', 'jrKyotoLine', 'fujiExcursionRoute', 'keiseiSkyliner'],
   1: ['nankaiAirportExpress'],
   2: ['kintetsuNaraLine'],
   3: ['jrKyotoLine'],
   4: [],
-  5: ['tokaidoShinkansen'],
+  5: ['kyotoTokyoSleeperBus'],
   6: ['joetsuShinkansen'],
   7: ['fujiExcursionRoute'],
   8: ['tokyoRailLoop'],
@@ -2842,7 +2864,7 @@ function resolveStepCoordinate(st, dayNumber) {
 // -------------------------------------------------------------
 // CONNECTED JOURNEY PIPELINE BUILDER (Morning ➔ Afternoon ➔ Evening)
 // -------------------------------------------------------------
-function buildConnectedJourneyPipelineHTML(dayNumber, currentMins, clickHandlerName, focusHotelHandlerName) {
+function buildConnectedJourneyPipelineHTML(dayNumber, clickHandlerName, focusHotelHandlerName) {
   // Day 0: All 9 Days Nationwide Corridor
   if (dayNumber === 0) {
     const nationwideHubs = [
@@ -2851,7 +2873,7 @@ function buildConnectedJourneyPipelineHTML(dayNumber, currentMins, clickHandlerN
       { name: 'Nara Park (Todai-ji)', lat: 34.6851, lng: 135.8430, icon: '🦌', day: 'Day 2', note: 'Sacred Bowing Deer', phase: 'Kansai Hub' },
       { name: 'Rinn Shirakawa Kyoto', lat: 35.0062, lng: 135.7760, icon: '🏨', day: 'Days 3–4', note: 'Gion Canal Base', phase: 'Kyoto Hub' },
       { name: 'Kiyomizu-dera & Gion', lat: 34.9949, lng: 135.7850, icon: '⛩️', day: 'Day 4', note: 'Historic Temples', phase: 'Kyoto Hub' },
-      { name: 'Tokaido Shinkansen Route', lat: 35.2000, lng: 137.5000, icon: '🚅', day: 'Day 5', note: 'Bullet Train to Tokyo', phase: 'Rail Artery' },
+      { name: 'Kyoto ➔ Tokyo Sleeper Bus', lat: 35.1709, lng: 136.8815, icon: '🚌', day: 'Day 5', note: 'Overnight Highway Coach', phase: 'Overnight Transit' },
       { name: 'Hotel Tavinos Asakusa', lat: 35.7171, lng: 139.7915, icon: '🏨', day: 'Days 5–8', note: 'Tokyo Base Hotel', phase: 'Tokyo Hub' },
       { name: 'GALA Yuzawa Ski Resort', lat: 36.9508, lng: 138.8005, icon: '⛷️', day: 'Day 6', note: 'Snow Shinkansen', phase: 'Excursion' },
       { name: 'Mt. Fuji & Kawaguchiko', lat: 35.5015, lng: 138.8016, icon: '🗻', day: 'Day 7', note: 'Chureito Pagoda View', phase: 'Excursion' },
@@ -2863,7 +2885,7 @@ function buildConnectedJourneyPipelineHTML(dayNumber, currentMins, clickHandlerN
       '<div class="space-y-2.5">',
       '  <div class="flex flex-wrap items-center justify-between gap-2 px-1">',
       '    <div class="flex items-center gap-2">',
-      '      <span class="w-2 h-2 rounded-full bg-gold animate-ping"></span>',
+      '      <span class="w-2 h-2 rounded-full bg-gold"></span>',
       '      <span class="text-xs font-mono font-bold uppercase tracking-wider text-gold">9-Day Japan Connected Corridor Flow</span>',
       '    </div>',
       '    <span class="text-[11px] font-mono text-slate-400">Click any destination to fly to map</span>',
@@ -2895,14 +2917,6 @@ function buildConnectedJourneyPipelineHTML(dayNumber, currentMins, clickHandlerN
   const hotel = HOTEL_BASES[dayNumber];
   if (!dayData) return '';
 
-  let activeIdx = -1;
-  dayData.activities.forEach((act, idx) => {
-    const { start, end } = parseActivityMinutes(act.time);
-    if (currentMins >= start && currentMins < end) {
-      activeIdx = idx;
-    }
-  });
-
   // Header Bar with Hotel Base & Main Train Route
   const headerHtml = [
     '<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-2">',
@@ -2921,7 +2935,7 @@ function buildConnectedJourneyPipelineHTML(dayNumber, currentMins, clickHandlerN
     '    <div class="w-9 h-9 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-base flex-shrink-0">🚆</div>',
     '    <div class="min-w-0 flex-grow">',
     '      <div class="text-[9px] font-mono font-bold uppercase tracking-wider text-cyan-400">TRANSIT ARTERY</div>',
-    '      <div class="text-xs font-bold text-white truncate font-mono">' + (transitFlowData ? transitFlowData.mainTrain.line : 'Connected Rail') + '</div>',
+    '      <div class="text-xs font-bold text-white truncate font-mono">' + (transitFlowData ? transitFlowData.mainTrain.line : 'Connected Transit') + '</div>',
     '      <div class="text-[10px] text-slate-400 truncate">' + (transitFlowData ? transitFlowData.mainTrain.route + ' (' + transitFlowData.mainTrain.time + ')' : '') + '</div>',
     '    </div>',
     '    ' + (transitFlowData ? '<span class="text-[10px] font-mono text-cyan-300 font-bold bg-cyan-950 px-2 py-0.5 rounded border border-cyan-800 flex-shrink-0">' + transitFlowData.mainTrain.cost + '</span>' : ''),
@@ -2931,9 +2945,8 @@ function buildConnectedJourneyPipelineHTML(dayNumber, currentMins, clickHandlerN
 
   // Build Connected Pipeline Steps
   const pipelineStepsHtml = dayData.activities.map((act, actIdx) => {
-    const { start, end } = parseActivityMinutes(act.time);
+    const { start } = parseActivityMinutes(act.time);
     const badge = getStopCategoryBadge(act);
-    const isNow = actIdx === activeIdx;
     const isLast = actIdx === dayData.activities.length - 1;
 
     // Determine Phase Label
@@ -2952,10 +2965,10 @@ function buildConnectedJourneyPipelineHTML(dayNumber, currentMins, clickHandlerN
 
     return [
       '<div class="flex items-center gap-2 flex-shrink-0">',
-      '  <div onclick="' + clickHandlerName + '(' + actIdx + ')" class="journey-pipeline-card ' + (isNow ? 'is-active-now' : '') + '" data-stop-idx="' + actIdx + '">',
+      '  <div onclick="' + clickHandlerName + '(' + actIdx + ')" class="journey-pipeline-card hover:border-gold/50" data-stop-idx="' + actIdx + '">',
       '    <div class="flex items-center justify-between gap-1 mb-1">',
       phaseBadge,
-      '      <span class="font-mono text-[10px] font-bold ' + (isNow ? 'text-vermilion' : 'text-gold') + '">' + act.time + '</span>',
+      '      <span class="font-mono text-[10px] font-bold text-gold">' + act.time + '</span>',
       '    </div>',
       '    <div class="flex items-start gap-2 mt-1">',
       '      <span class="text-base flex-shrink-0">' + badge.icon + '</span>',
@@ -3032,10 +3045,6 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
       maxZoom: 19,
       subdomains: 'abcd',
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
-    }),
-    '🌍 OpenStreetMap Standard': L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }),
     '☀️ CARTO Positron (Light)': L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=cb1_55ym_1_992e6f8a3c0350305ec5dcf4', {
       maxZoom: 19,
@@ -3143,17 +3152,9 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
     connectorsLayer.clearLayers();
     trainRouteLayer.clearLayers();
 
-    const currentMins = getJSTCurrentMinutes();
-
-    // Update Live JST clock in header if present
-    const liveTimeEl = document.getElementById('roadmap-live-jst-clock');
-    if (liveTimeEl) {
-      liveTimeEl.textContent = getJSTTimeString() + ' JST';
-    }
-
     if (currentSelectedDay === 0) {
       renderAllJapanOverview(shouldFit);
-      renderMasterPipeline(currentSelectedDay, currentMins);
+      renderMasterPipeline(currentSelectedDay);
       return;
     }
 
@@ -3161,21 +3162,6 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
     if (!dayData) return;
 
     const latlngs = [];
-    let activeIndex = -1;
-
-    dayData.activities.forEach((act, idx) => {
-      const { start, end } = parseActivityMinutes(act.time);
-      if (currentMins >= start && currentMins < end) {
-        activeIndex = idx;
-      }
-    });
-
-    if (activeIndex === -1) {
-      const firstStart = parseActivityMinutes(dayData.activities[0].time).start;
-      const lastEnd = parseActivityMinutes(dayData.activities[dayData.activities.length - 1].time).end;
-      if (currentMins < firstStart) activeIndex = 0;
-      else if (currentMins >= lastEnd) activeIndex = dayData.activities.length - 1;
-    }
 
     // 1. Draw Day's Specific Train Route(s)
     const trainKeys = DAY_TRAIN_MAPPING[currentSelectedDay] || [];
@@ -3201,17 +3187,12 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
       const pos = [lat, lng];
       latlngs.push(pos);
 
-      const { start, end } = parseActivityMinutes(act.time);
-      const isCompleted = currentMins >= end;
-      const isActive = idx === activeIndex;
-
       const badge = getStopCategoryBadge(act);
-      let pulseClass = isActive ? 'is-active' : (isCompleted ? 'is-completed' : 'is-upcoming');
 
       const icon = L.divIcon({
         className: 'custom-roadmap-marker',
         html: [
-          '<div class="roadmap-pin ' + pulseClass + '" style="border-color: ' + (isActive ? '#FFFFFF' : badge.border) + '; background: ' + (isActive ? badge.border : badge.bg) + ';" id="marker-pin-' + containerId + '-' + idx + '">',
+          '<div class="roadmap-pin" style="border-color: ' + badge.border + '; background: ' + badge.bg + '; color: ' + badge.color + ';" id="marker-pin-' + containerId + '-' + idx + '">',
           '  <span class="text-xs">' + badge.icon + '</span>',
           '</div>'
         ].join(''),
@@ -3270,7 +3251,7 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
       }
     }
 
-    renderMasterPipeline(currentSelectedDay, currentMins);
+    renderMasterPipeline(currentSelectedDay);
   }
 
   function renderAllJapanOverview(shouldFit = false) {
@@ -3279,7 +3260,7 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
     trainRouteLayer.clearLayers();
 
     // 1. Draw ALL major train lines across Japan
-    const allTrainKeys = ['tokaidoShinkansen', 'joetsuShinkansen', 'nankaiAirportExpress', 'kintetsuNaraLine', 'jrKyotoLine', 'fujiExcursionRoute', 'keiseiSkyliner'];
+    const allTrainKeys = ['kyotoTokyoSleeperBus', 'joetsuShinkansen', 'nankaiAirportExpress', 'kintetsuNaraLine', 'jrKyotoLine', 'fujiExcursionRoute', 'keiseiSkyliner'];
     const allBoundsLatLngs = [];
 
     allTrainKeys.forEach(tKey => {
@@ -3310,7 +3291,7 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
       allBoundsLatLngs.push([hub.lat, hub.lng]);
       const icon = L.divIcon({
         className: 'custom-roadmap-marker',
-        html: '<div class="roadmap-pin is-active" style="background: #090D15; border-color: #D4AF37; color: #D4AF37;"><span class="text-xs font-bold">' + hub.type.split(' ')[0] + '</span></div>',
+        html: '<div class="roadmap-pin" style="background: #090D15; border-color: #D4AF37; color: #D4AF37;"><span class="text-xs font-bold">' + hub.type.split(' ')[0] + '</span></div>',
         iconSize: [36, 36],
         iconAnchor: [18, 18],
         popupAnchor: [0, -18]
@@ -3338,10 +3319,10 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
     }
   }
 
-  function renderMasterPipeline(dayNumber, currentMins) {
+  function renderMasterPipeline(dayNumber) {
     const pipelineContainer = document.getElementById('master-journey-pipeline-container');
     if (!pipelineContainer) return;
-    pipelineContainer.innerHTML = buildConnectedJourneyPipelineHTML(dayNumber, currentMins, 'window.roadmapFocusStop', 'window.roadmapFocusHotel');
+    pipelineContainer.innerHTML = buildConnectedJourneyPipelineHTML(dayNumber, 'window.roadmapFocusStop', 'window.roadmapFocusHotel');
   }
 
   window.roadmapFocusHub = function(hIdx) {
@@ -3351,7 +3332,7 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
       { name: 'Nara Park (Todai-ji)', lat: 34.6851, lng: 135.8430 },
       { name: 'Rinn Shirakawa Kyoto', lat: 35.0062, lng: 135.7760 },
       { name: 'Kiyomizu-dera & Gion', lat: 34.9949, lng: 135.7850 },
-      { name: 'Tokaido Shinkansen Route', lat: 35.2000, lng: 137.5000 },
+      { name: 'Kyoto ➔ Tokyo Sleeper Bus', lat: 35.1709, lng: 136.8815 },
       { name: 'Hotel Tavinos Asakusa', lat: 35.7171, lng: 139.7915 },
       { name: 'GALA Yuzawa Ski Resort', lat: 36.9508, lng: 138.8005 },
       { name: 'Mt. Fuji & Kawaguchiko', lat: 35.5015, lng: 138.8016 },
@@ -3374,10 +3355,10 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
 
     document.querySelectorAll('#master-journey-pipeline-container .journey-pipeline-card').forEach((c) => {
       if (c.getAttribute('data-hub-idx') === String(hIdx)) {
-        c.classList.add('is-active-now');
+        c.classList.add('is-focused');
         c.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
       } else {
-        c.classList.remove('is-active-now');
+        c.classList.remove('is-focused');
       }
     });
   };
@@ -3425,10 +3406,10 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
   function highlightStopCard(idx) {
     document.querySelectorAll('#master-journey-pipeline-container .journey-pipeline-card').forEach((c) => {
       if (c.getAttribute('data-stop-idx') === String(idx)) {
-        c.classList.add('is-active-now');
+        c.classList.add('is-focused');
         c.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
       } else {
-        c.classList.remove('is-active-now');
+        c.classList.remove('is-focused');
       }
     });
   }
@@ -3450,13 +3431,6 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
 
   // Initial render: frame day route cleanly
   renderView({ fit: true });
-
-  // Update live status every 30s without resetting map view
-  setInterval(() => {
-    if (currentSelectedDay > 0) {
-      renderView({ fit: false });
-    }
-  }, 30000);
 }
 
 // -------------------------------------------------------------
@@ -3497,10 +3471,6 @@ function initDayRoadmap(dayNumber, containerId = 'day-roadmap-map') {
       maxZoom: 19,
       subdomains: 'abcd',
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
-    }),
-    '🌍 OpenStreetMap Standard': L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }),
     '☀️ CARTO Positron (Light)': L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=cb1_55ym_1_992e6f8a3c0350305ec5dcf4', {
       maxZoom: 19,
@@ -3607,22 +3577,7 @@ function initDayRoadmap(dayNumber, containerId = 'day-roadmap-map') {
     connectorsLayer.clearLayers();
     trainRouteLayer.clearLayers();
 
-    const currentMins = getJSTCurrentMinutes();
     const latlngs = [];
-    let activeIdx = -1;
-
-    dayData.activities.forEach((act, idx) => {
-      const { start, end } = parseActivityMinutes(act.time);
-      if (currentMins >= start && currentMins < end) {
-        activeIdx = idx;
-      }
-    });
-    if (activeIdx === -1) {
-      const firstStart = parseActivityMinutes(dayData.activities[0].time).start;
-      const lastEnd = parseActivityMinutes(dayData.activities[dayData.activities.length - 1].time).end;
-      if (currentMins < firstStart) activeIdx = 0;
-      else if (currentMins >= lastEnd) activeIdx = dayData.activities.length - 1;
-    }
 
     // 1. Draw Day's Train Route(s)
     const trainKeys = DAY_TRAIN_MAPPING[dayNumber] || [];
@@ -3647,17 +3602,12 @@ function initDayRoadmap(dayNumber, containerId = 'day-roadmap-map') {
       const pos = [lat, lng];
       latlngs.push(pos);
 
-      const { start, end } = parseActivityMinutes(act.time);
-      const isCompleted = currentMins >= end;
-      const isActive = idx === activeIdx;
-
       const badge = getStopCategoryBadge(act);
-      let pulseClass = isActive ? 'is-active' : (isCompleted ? 'is-completed' : 'is-upcoming');
 
       const icon = L.divIcon({
         className: 'custom-roadmap-marker',
         html: [
-          '<div class="roadmap-pin ' + pulseClass + '" style="border-color: ' + (isActive ? '#FFFFFF' : badge.border) + '; background: ' + (isActive ? badge.border : badge.bg) + ';" id="marker-day-' + dayNumber + '-' + idx + '">',
+          '<div class="roadmap-pin" style="border-color: ' + badge.border + '; background: ' + badge.bg + '; color: ' + badge.color + ';" id="marker-day-' + dayNumber + '-' + idx + '">',
           '  <span class="text-xs">' + badge.icon + '</span>',
           '</div>'
         ].join(''),
@@ -3716,20 +3666,7 @@ function initDayRoadmap(dayNumber, containerId = 'day-roadmap-map') {
     // Render Connected Journey Pipeline directly above map
     const pipelineContainer = document.getElementById('day-journey-pipeline-container');
     if (pipelineContainer) {
-      pipelineContainer.innerHTML = buildConnectedJourneyPipelineHTML(dayNumber, currentMins, 'window.dayRoadmapFocusStop', 'window.dayRoadmapFocusHotel');
-    }
-
-    // Status pill
-    const statusPill = document.getElementById('day-roadmap-status-pill');
-    if (statusPill && dayData.activities[activeIdx]) {
-      const act = dayData.activities[activeIdx];
-      const badge = getStopCategoryBadge(act);
-      statusPill.innerHTML = [
-        '<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-vermilion/20 text-vermilion border border-vermilion/40 text-xs font-mono font-bold">',
-        '  <span class="w-2 h-2 rounded-full bg-vermilion animate-ping"></span>',
-        '  <span>LIVE NOW: ' + badge.icon + ' ' + act.title.substring(0, 30) + '...</span>',
-        '</span>'
-      ].join('');
+      pipelineContainer.innerHTML = buildConnectedJourneyPipelineHTML(dayNumber, 'window.dayRoadmapFocusStop', 'window.dayRoadmapFocusHotel');
     }
   }
 
@@ -3767,10 +3704,10 @@ function initDayRoadmap(dayNumber, containerId = 'day-roadmap-map') {
   function highlightDayPipelineCard(idx) {
     document.querySelectorAll('#day-journey-pipeline-container .journey-pipeline-card').forEach((c) => {
       if (c.getAttribute('data-stop-idx') === String(idx)) {
-        c.classList.add('is-active-now');
+        c.classList.add('is-focused');
         c.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
       } else {
-        c.classList.remove('is-active-now');
+        c.classList.remove('is-focused');
       }
     });
   }
@@ -3813,11 +3750,6 @@ function initDayRoadmap(dayNumber, containerId = 'day-roadmap-map') {
 
   // Initial render: frame day route cleanly
   render({ fit: true });
-
-  // Update live status every 30s without resetting map view
-  setInterval(() => {
-    render({ fit: false });
-  }, 30000);
 }
 
 window.initMasterRoadmap = initMasterRoadmap;
