@@ -1488,11 +1488,36 @@ document.addEventListener("DOMContentLoaded", () => {
   // 4. Start Live Clocks & Event Listeners
   startLiveClocks();
 
+  // 4b. Initialize Sticky Header Blur & Shadow on Scroll
+  initStickyHeader();
+
   // 5. Initialize Lucide Icons
   if (window.lucide) {
     window.lucide.createIcons();
   }
 });
+
+// ==========================================
+// 2b. STICKY BLURRED HEADER DYNAMIC CONTRAST
+// ==========================================
+
+function initStickyHeader() {
+  const header = document.getElementById("main-header");
+  if (!header) return;
+
+  function updateHeader() {
+    if (window.scrollY > 20) {
+      header.classList.add("bg-[#05070B]/95", "shadow-xl", "shadow-black/60", "border-white/15");
+      header.classList.remove("bg-[#05070B]/85", "border-white/10");
+    } else {
+      header.classList.remove("bg-[#05070B]/95", "shadow-xl", "shadow-black/60", "border-white/15");
+      header.classList.add("bg-[#05070B]/85", "border-white/10");
+    }
+  }
+
+  window.addEventListener("scroll", updateHeader, { passive: true });
+  updateHeader();
+}
 
 // ==========================================
 // 3. MOUNT FUJI RISING SUN PRELOADER LOGIC

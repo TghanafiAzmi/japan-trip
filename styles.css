@@ -16,6 +16,10 @@
 }
 
 /* Lenis Smooth Scroll */
+html {
+  scroll-padding-top: 5.5rem;
+}
+
 html.lenis, html.lenis body {
   height: auto;
 }
