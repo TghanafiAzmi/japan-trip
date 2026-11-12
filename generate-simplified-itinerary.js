@@ -1470,7 +1470,26 @@ daysData.forEach(day => {
     return;
   }
 
-  const cardsHtml = day.activities.map((act, i) => renderActivityCard(act, i)).join('\n\n');
+  const cardsHtml = day.activities.map((act, i) => {
+    const cardHtml = renderActivityCard(act, i);
+    const isLast = i === day.activities.length - 1;
+    const nextAct = day.activities[i + 1];
+
+    if (!isLast && nextAct) {
+      const connectorHtml = `      <!-- Route Connector to Next Destination -->
+      <div class="flex items-center justify-center my-2 sm:my-3">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#05070B] border border-gold/30 text-xs font-mono shadow-md">
+          <span class="w-1.5 h-1.5 rounded-full bg-vermilion animate-pulse"></span>
+          <i data-lucide="arrow-down" class="w-3.5 h-3.5 text-gold"></i>
+          <span class="text-gold font-bold uppercase text-[10px] tracking-wider">NEXT:</span>
+          <span class="text-white font-semibold text-[11px]">${nextAct.title.split('(')[0].trim()}</span>
+          ${nextAct.transit ? `<span class="text-slate-600">•</span><span class="text-cyan-400 text-[10px]">${nextAct.transit.detail || nextAct.transit.station}</span>` : ''}
+        </div>
+      </div>`;
+      return cardHtml + '\n\n' + connectorHtml;
+    }
+    return cardHtml;
+  }).join('\n\n');
 
   const newSection = `<!-- Timeline Schedule with BIG HIGHLIGHTED TIME -->
     <div class="space-y-4">

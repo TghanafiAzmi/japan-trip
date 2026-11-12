@@ -2965,6 +2965,8 @@ function buildConnectedJourneyPipelineHTML(dayNumber, clickHandlerName, focusHot
       phaseBadge = '<span class="journey-phase-tag bg-indigo-500/15 text-indigo-300 border border-indigo-500/30">🌙 Evening</span>';
     }
 
+    const nextAct = dayData.activities[actIdx + 1];
+    const nextTitle = nextAct ? nextAct.title.split('(')[0].replace(/^(Lunch:|Dinner:)/i, '').trim() : '';
     const transitText = act.transit || (act.category === 'food' ? 'Dining stop' : 'Walk/Visit');
     const stLink = getActivityStationLink(act, dayNumber);
     const transitConnectorNote = stLink ? '🚶 ' + stLink.walk : (act.transit ? '🚆 ' + act.transit.split('(')[0].trim().substring(0, 20) : 'Next Stop');
@@ -2984,10 +2986,14 @@ function buildConnectedJourneyPipelineHTML(dayNumber, clickHandlerName, focusHot
       '      </div>',
       '    </div>',
       '  </div>',
-      (!isLast ? [
-        '<div class="journey-pipeline-connector">',
-        '  <span class="text-slate-600 font-bold text-xs">➔</span>',
-        '  <span class="text-[9px] text-cyan-400 text-center leading-tight truncate max-w-[80px]">' + transitConnectorNote + '</span>',
+      (!isLast && nextAct ? [
+        '<div class="journey-pipeline-connector flex flex-col items-center justify-center px-1">',
+        '  <div class="flex items-center gap-1 text-gold text-[10px] font-bold font-mono">',
+        '    <span>➔</span>',
+        '    <span class="text-[9px] uppercase tracking-wider text-gold">NEXT</span>',
+        '  </div>',
+        '  <span class="text-[9px] text-white font-semibold text-center leading-tight truncate max-w-[95px]">' + nextTitle + '</span>',
+        '  <span class="text-[9px] text-cyan-400 text-center leading-tight truncate max-w-[95px]">' + transitConnectorNote + '</span>',
         '</div>'
       ].join('') : ''),
       '</div>'
@@ -3223,6 +3229,11 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
         ? '<div class="p-2 rounded-lg bg-[#05070B] border border-cyan-500/30 text-[10px] font-mono text-cyan-300">🚉 <b>' + stLink.stationName + '</b><br><span class="text-slate-400">🚶 ' + stLink.walk + '</span></div>' 
         : (act.transit ? '<div class="p-2 rounded-lg bg-[#05070B] border border-white/5 text-[10px] font-mono text-cyan-300">🚆 ' + act.transit + '</div>' : '');
 
+      const nextAct = dayData.activities[idx + 1];
+      const nextStopBanner = nextAct
+        ? '<div class="p-1.5 rounded-lg bg-gold/10 border border-gold/30 text-[10px] font-mono text-gold flex items-center justify-between"><span>➔ <b>Next:</b> #' + (idx + 2) + ' ' + nextAct.title.split('(')[0].trim().substring(0, 20) + '</span><span class="text-slate-400 text-[9px]">' + nextAct.time.split('–')[0] + '</span></div>'
+        : '<div class="p-1 rounded bg-emerald-950/40 border border-emerald-800/40 text-[9px] font-mono text-emerald-400 text-center font-bold">🏁 Final Stop of Day ' + currentSelectedDay + '</div>';
+
       const popupHtml = [
         '<div class="p-4 bg-[#090D15] text-slate-200 min-w-[270px] max-w-[320px] rounded-xl font-sans text-xs space-y-2">',
         '  <div class="flex items-center justify-between border-b border-white/10 pb-2">',
@@ -3232,6 +3243,7 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
         '  <div class="font-bold text-sm text-white font-mincho leading-tight">' + act.title + '</div>',
         halalPill,
         stationPill,
+        nextStopBanner,
         '  <p class="text-slate-400 text-[11px] leading-relaxed">' + (act.note || '') + '</p>',
         '  <div class="pt-2 border-t border-white/10 flex items-center justify-between">',
         '    <span class="text-[10px] font-mono text-slate-400">' + act.category.toUpperCase() + '</span>',
@@ -3249,6 +3261,47 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
       });
       marker.addTo(markersLayer);
     });
+
+    // 4. Draw Sequential Path Connectors between Consecutive Stops
+    for (let i = 0; i < dayData.activities.length - 1; i++) {
+      const fromAct = dayData.activities[i];
+      const toAct = dayData.activities[i + 1];
+      const fromPos = [fromAct.lat || 35.6812, fromAct.lng || 139.7671];
+      const toPos = [toAct.lat || 35.6812, toAct.lng || 139.7671];
+
+      const dist = Math.hypot(fromPos[0] - toPos[0], fromPos[1] - toPos[1]);
+      if (dist > 0.0001) {
+        L.polyline([fromPos, toPos], {
+          color: '#E83929',
+          weight: 4,
+          opacity: 0.7,
+          dashArray: '8, 8',
+          className: 'sequential-route-pulse'
+        }).addTo(connectorsLayer);
+
+        const routeLine = L.polyline([fromPos, toPos], {
+          color: '#D4AF37',
+          weight: 2,
+          opacity: 0.95,
+          dashArray: '4, 8'
+        }).addTo(connectorsLayer);
+
+        routeLine.bindTooltip('<b>Stop #' + (i + 1) + ' ➔ Next: Stop #' + (i + 2) + '</b><br><span style="color:#D4AF37;">' + toAct.title + '</span>', {
+          sticky: true,
+          className: 'custom-route-tooltip'
+        });
+
+        const midLat = (fromPos[0] + toPos[0]) / 2;
+        const midLng = (fromPos[1] + toPos[1]) / 2;
+        const nextIcon = L.divIcon({
+          className: 'route-step-indicator',
+          html: '<div class="px-1.5 py-0.5 rounded-full bg-[#05070B]/90 border border-gold/70 text-gold text-[9px] font-mono font-bold shadow-lg flex items-center gap-1 backdrop-blur-sm"><span>➔</span><span>#' + (i + 2) + '</span></div>',
+          iconSize: [42, 18],
+          iconAnchor: [21, 9]
+        });
+        L.marker([midLat, midLng], { icon: nextIcon, interactive: false }).addTo(connectorsLayer);
+      }
+    }
 
     if (latlngs.length > 0) {
       currentBounds = L.latLngBounds(latlngs);
@@ -3638,6 +3691,11 @@ function initDayRoadmap(dayNumber, containerId = 'day-roadmap-map') {
         ? '<div class="p-1.5 rounded-lg bg-[#05070B] border border-cyan-500/30 text-[10px] font-mono text-cyan-300">🚉 <b>' + stLink.stationName + '</b><br><span class="text-slate-400">🚶 ' + stLink.walk + '</span></div>'
         : (act.transit ? '<div class="p-1.5 rounded-lg bg-[#05070B] border border-white/5 text-[10px] font-mono text-cyan-300">🚆 ' + act.transit + '</div>' : '');
 
+      const nextAct = dayData.activities[idx + 1];
+      const nextStopHtml = nextAct
+        ? '<div class="p-1.5 rounded-lg bg-gold/10 border border-gold/30 text-[10px] font-mono text-gold flex items-center justify-between"><span>➔ <b>Next:</b> #' + (idx + 2) + ' ' + nextAct.title.split('(')[0].trim().substring(0, 20) + '</span><span class="text-slate-400 text-[9px]">' + nextAct.time.split('–')[0] + '</span></div>'
+        : '<div class="p-1 rounded bg-emerald-950/40 border border-emerald-800/40 text-[9px] font-mono text-emerald-400 text-center font-bold">🏁 Final Stop of Day ' + dayNumber + '</div>';
+
       const popupHtml = [
         '<div class="p-3.5 bg-[#090D15] text-slate-200 min-w-[250px] max-w-[300px] rounded-xl font-sans text-xs space-y-1.5">',
         '  <div class="flex items-center justify-between border-b border-white/10 pb-1.5">',
@@ -3647,6 +3705,7 @@ function initDayRoadmap(dayNumber, containerId = 'day-roadmap-map') {
         '  <div class="font-bold text-white text-sm font-mincho">' + act.title + '</div>',
         halalBadge,
         stationBadge,
+        nextStopHtml,
         '  <p class="text-slate-400 text-[11px] leading-relaxed">' + (act.note || '') + '</p>',
         '  <div class="pt-1 border-t border-white/10 flex items-center justify-between">',
         '    <span class="text-[10px] font-mono text-slate-400">' + act.category.toUpperCase() + '</span>',
@@ -3657,10 +3716,50 @@ function initDayRoadmap(dayNumber, containerId = 'day-roadmap-map') {
 
       const m = L.marker(pos, { icon }).bindPopup(popupHtml).addTo(markersLayer);
       m.on('click', () => {
-        highlightDayTimelineCard(idx);
         highlightDayPipelineCard(idx);
       });
     });
+
+    // 4. Draw Sequential Path Connectors between Consecutive Stops
+    for (let i = 0; i < dayData.activities.length - 1; i++) {
+      const fromAct = dayData.activities[i];
+      const toAct = dayData.activities[i + 1];
+      const fromPos = [fromAct.lat || 35.6812, fromAct.lng || 139.7671];
+      const toPos = [toAct.lat || 35.6812, toAct.lng || 139.7671];
+
+      const dist = Math.hypot(fromPos[0] - toPos[0], fromPos[1] - toPos[1]);
+      if (dist > 0.0001) {
+        L.polyline([fromPos, toPos], {
+          color: '#E83929',
+          weight: 4.5,
+          opacity: 0.75,
+          dashArray: '8, 8',
+          className: 'sequential-route-pulse'
+        }).addTo(connectorsLayer);
+
+        const routeLine = L.polyline([fromPos, toPos], {
+          color: '#D4AF37',
+          weight: 2,
+          opacity: 0.95,
+          dashArray: '4, 8'
+        }).addTo(connectorsLayer);
+
+        routeLine.bindTooltip('<b>Stop #' + (i + 1) + ' ➔ Next: Stop #' + (i + 2) + '</b><br><span style="color:#D4AF37;">' + toAct.title + '</span>', {
+          sticky: true,
+          className: 'custom-route-tooltip'
+        });
+
+        const midLat = (fromPos[0] + toPos[0]) / 2;
+        const midLng = (fromPos[1] + toPos[1]) / 2;
+        const nextIcon = L.divIcon({
+          className: 'route-step-indicator',
+          html: '<div class="px-1.5 py-0.5 rounded-full bg-[#05070B]/90 border border-gold/70 text-gold text-[9px] font-mono font-bold shadow-lg flex items-center gap-1 backdrop-blur-sm"><span>➔</span><span>#' + (i + 2) + '</span></div>',
+          iconSize: [42, 18],
+          iconAnchor: [21, 9]
+        });
+        L.marker([midLat, midLng], { icon: nextIcon, interactive: false }).addTo(connectorsLayer);
+      }
+    }
 
     if (latlngs.length > 0) {
       currentBounds = L.latLngBounds(latlngs);
@@ -3704,7 +3803,6 @@ function initDayRoadmap(dayNumber, containerId = 'day-roadmap-map') {
     });
 
     highlightDayPipelineCard(actIdx);
-    highlightDayTimelineCard(actIdx);
   };
 
   function highlightDayPipelineCard(idx) {
@@ -3723,7 +3821,6 @@ function initDayRoadmap(dayNumber, containerId = 'day-roadmap-map') {
     cards.forEach((c) => {
       const cIdx = parseInt(c.getAttribute('data-activity-index'), 10);
       if (cIdx === idx) {
-        c.scrollIntoView({ behavior: 'smooth', block: 'center' });
         c.classList.add('ring-2', 'ring-vermilion', 'bg-white/5');
         setTimeout(() => c.classList.remove('ring-2', 'ring-vermilion', 'bg-white/5'), 2500);
       }
