@@ -3073,6 +3073,7 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
   const markersLayer = L.layerGroup().addTo(map);
   const connectorsLayer = L.layerGroup().addTo(map);
   const trainRouteLayer = L.layerGroup().addTo(map);
+  const activeLegLayer = L.layerGroup().addTo(map);
 
   const ormTileLayer = L.tileLayer('https://{s}.tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png', {
     maxZoom: 19,
@@ -3083,7 +3084,7 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
   const overlayLayers = {
     '🚆 OpenRailwayMap (All Rails & Tracks)': ormTileLayer,
     '🚅 Shinkansen & Train Routes': trainRouteLayer,
-    '🚶 Station Walk Connectors': connectorsLayer
+    '🚶 Route Overview': connectorsLayer
   };
 
   // Default to CARTO Voyager
@@ -3111,6 +3112,8 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
     fitBtn.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
+      activeLegLayer.clearLayers();
+      document.querySelectorAll('.roadmap-pin').forEach(p => p.classList.remove('is-active', 'is-focused'));
       if (currentBounds) {
         map.fitBounds(currentBounds, { padding: [45, 45], maxZoom: 15 });
       }
@@ -3163,6 +3166,7 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
     markersLayer.clearLayers();
     connectorsLayer.clearLayers();
     trainRouteLayer.clearLayers();
+    activeLegLayer.clearLayers();
 
     if (currentSelectedDay === 0) {
       renderAllJapanOverview(shouldFit);
@@ -3175,12 +3179,12 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
 
     const latlngs = [];
 
-    // 1. Draw Day's Specific Train Route(s)
+    // 1. Draw Day's Specific Train Route(s) (Clean track without cluttered station pins)
     const trainKeys = DAY_TRAIN_MAPPING[currentSelectedDay] || [];
     trainKeys.forEach(tKey => {
       const tRoute = TRAIN_ROUTES[tKey];
       if (tRoute) {
-        drawTrainRouteOnLayer(trainRouteLayer, tRoute, { showStations: true });
+        drawTrainRouteOnLayer(trainRouteLayer, tRoute, { showStations: false });
         tRoute.stations.forEach(st => latlngs.push([st.lat, st.lng]));
       }
     });
@@ -3192,7 +3196,7 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
       latlngs.push([hotel.lat, hotel.lng]);
     }
 
-    // 3. Render Activity Markers & Station Connector Lines
+    // 3. Render Clean Activity Markers
     dayData.activities.forEach((act, idx) => {
       const lat = act.lat || 35.6812;
       const lng = act.lng || 139.7671;
@@ -3213,15 +3217,7 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
         popupAnchor: [0, -18]
       });
 
-      // Find Connected Train Station
       const stLink = getActivityStationLink(act, currentSelectedDay);
-      if (stLink && !stLink.isDirect && !stLink.isHotel) {
-        drawStationConnector(connectorsLayer, [stLink.lat, stLink.lng], pos, {
-          color: '#38BDF8',
-          label: '🚶 ' + stLink.walk + ' from ' + stLink.stationName
-        });
-      }
-
       const halalPill = act.halal 
         ? '<div class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-emerald-950/80 text-emerald-400 font-mono text-[10px] border border-emerald-800/60">🌱 ' + (act.halalNote || 'Halal Certified') + '</div>' 
         : '';
@@ -3257,50 +3253,28 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
 
       const marker = L.marker(pos, { icon }).bindPopup(popupHtml);
       marker.on('click', () => {
-        highlightStopCard(idx);
+        window.roadmapFocusStop(idx);
       });
       marker.addTo(markersLayer);
     });
 
-    // 4. Draw Sequential Path Connectors between Consecutive Stops
-    for (let i = 0; i < dayData.activities.length - 1; i++) {
-      const fromAct = dayData.activities[i];
-      const toAct = dayData.activities[i + 1];
-      const fromPos = [fromAct.lat || 35.6812, fromAct.lng || 139.7671];
-      const toPos = [toAct.lat || 35.6812, toAct.lng || 139.7671];
-
-      const dist = Math.hypot(fromPos[0] - toPos[0], fromPos[1] - toPos[1]);
-      if (dist > 0.0001) {
-        L.polyline([fromPos, toPos], {
-          color: '#E83929',
-          weight: 4,
-          opacity: 0.7,
-          dashArray: '8, 8',
-          className: 'sequential-route-pulse'
-        }).addTo(connectorsLayer);
-
-        const routeLine = L.polyline([fromPos, toPos], {
-          color: '#D4AF37',
-          weight: 2,
-          opacity: 0.95,
-          dashArray: '4, 8'
-        }).addTo(connectorsLayer);
-
-        routeLine.bindTooltip('<b>Stop #' + (i + 1) + ' ➔ Next: Stop #' + (i + 2) + '</b><br><span style="color:#D4AF37;">' + toAct.title + '</span>', {
-          sticky: true,
-          className: 'custom-route-tooltip'
-        });
-
-        const midLat = (fromPos[0] + toPos[0]) / 2;
-        const midLng = (fromPos[1] + toPos[1]) / 2;
-        const nextIcon = L.divIcon({
-          className: 'route-step-indicator',
-          html: '<div class="px-1.5 py-0.5 rounded-full bg-[#05070B]/90 border border-gold/70 text-gold text-[9px] font-mono font-bold shadow-lg flex items-center gap-1 backdrop-blur-sm"><span>➔</span><span>#' + (i + 2) + '</span></div>',
-          iconSize: [42, 18],
-          iconAnchor: [21, 9]
-        });
-        L.marker([midLat, midLng], { icon: nextIcon, interactive: false }).addTo(connectorsLayer);
+    // 4. Subtle, Clean Overview Route Trail (No Clutter)
+    const routeCoordinates = [];
+    dayData.activities.forEach(act => {
+      if (act.lat && act.lng) {
+        routeCoordinates.push([act.lat, act.lng]);
       }
+    });
+
+    if (routeCoordinates.length > 1) {
+      L.polyline(routeCoordinates, {
+        color: '#E83929',
+        weight: 3,
+        opacity: 0.35,
+        dashArray: '6, 8',
+        lineCap: 'round',
+        lineJoin: 'round'
+      }).addTo(connectorsLayer);
     }
 
     if (latlngs.length > 0) {
@@ -3448,7 +3422,48 @@ function initMasterRoadmap(containerId = 'master-roadmap-map') {
     const act = dayData.activities[idx];
     if (!act) return;
 
-    map.flyTo([act.lat, act.lng], 16, { duration: 1 });
+    activeLegLayer.clearLayers();
+
+    // Visual pin highlight
+    document.querySelectorAll('.roadmap-pin').forEach(p => p.classList.remove('is-active', 'is-focused'));
+    const targetPin = document.getElementById('marker-pin-' + containerId + '-' + idx);
+    if (targetPin) {
+      targetPin.classList.add('is-active', 'is-focused');
+    }
+
+    const currPos = [act.lat, act.lng];
+
+    if (idx > 0) {
+      const prevAct = dayData.activities[idx - 1];
+      const prevPos = [prevAct.lat, prevAct.lng];
+
+      // Highlight active leg cleanly
+      L.polyline([prevPos, currPos], {
+        color: '#E83929',
+        weight: 6,
+        opacity: 0.5,
+        lineCap: 'round',
+        lineJoin: 'round'
+      }).addTo(activeLegLayer);
+
+      const activeLine = L.polyline([prevPos, currPos], {
+        color: '#D4AF37',
+        weight: 3.5,
+        opacity: 1,
+        lineCap: 'round',
+        lineJoin: 'round'
+      }).addTo(activeLegLayer);
+
+      activeLine.bindTooltip('<b>Leg #' + idx + ' ➔ #' + (idx + 1) + '</b><br><span style="color:#D4AF37;">' + act.title + '</span>', {
+        sticky: true,
+        className: 'custom-route-tooltip'
+      });
+
+      const legBounds = L.latLngBounds([prevPos, currPos]);
+      map.fitBounds(legBounds, { padding: [60, 60], maxZoom: 16 });
+    } else {
+      map.flyTo(currPos, 16, { duration: 0.8 });
+    }
     
     markersLayer.eachLayer(layer => {
       if (layer instanceof L.Marker) {
@@ -3545,6 +3560,7 @@ function initDayRoadmap(dayNumber, containerId = 'day-roadmap-map') {
   const markersLayer = L.layerGroup().addTo(map);
   const connectorsLayer = L.layerGroup().addTo(map);
   const trainRouteLayer = L.layerGroup().addTo(map);
+  const activeLegLayer = L.layerGroup().addTo(map);
 
   const ormTileLayer = L.tileLayer('https://{s}.tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png', {
     maxZoom: 19,
@@ -3555,7 +3571,7 @@ function initDayRoadmap(dayNumber, containerId = 'day-roadmap-map') {
   const overlayLayers = {
     '🚆 OpenRailwayMap (All Rails & Tracks)': ormTileLayer,
     '🚅 Train Route': trainRouteLayer,
-    '🚶 Station Walk Connectors': connectorsLayer
+    '🚶 Route Overview': connectorsLayer
   };
 
   // Default to CARTO Voyager
@@ -3583,6 +3599,8 @@ function initDayRoadmap(dayNumber, containerId = 'day-roadmap-map') {
     fitBtn.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
+      activeLegLayer.clearLayers();
+      document.querySelectorAll('.roadmap-pin').forEach(p => p.classList.remove('is-active', 'is-focused'));
       if (currentBounds) {
         map.fitBounds(currentBounds, { padding: [40, 40], maxZoom: 15 });
       }
@@ -3635,15 +3653,16 @@ function initDayRoadmap(dayNumber, containerId = 'day-roadmap-map') {
     markersLayer.clearLayers();
     connectorsLayer.clearLayers();
     trainRouteLayer.clearLayers();
+    activeLegLayer.clearLayers();
 
     const latlngs = [];
 
-    // 1. Draw Day's Train Route(s)
+    // 1. Draw Day's Train Route(s) (stations hidden to keep map uncluttered)
     const trainKeys = DAY_TRAIN_MAPPING[dayNumber] || [];
     trainKeys.forEach(tKey => {
       const tRoute = TRAIN_ROUTES[tKey];
       if (tRoute) {
-        drawTrainRouteOnLayer(trainRouteLayer, tRoute, { showStations: true });
+        drawTrainRouteOnLayer(trainRouteLayer, tRoute, { showStations: false });
         tRoute.stations.forEach(st => latlngs.push([st.lat, st.lng]));
       }
     });
@@ -3654,7 +3673,7 @@ function initDayRoadmap(dayNumber, containerId = 'day-roadmap-map') {
       latlngs.push([hotel.lat, hotel.lng]);
     }
 
-    // 3. Draw Activity Markers & Station Connector Lines
+    // 3. Draw Activity Markers
     dayData.activities.forEach((act, idx) => {
       const lat = act.lat || 35.6812;
       const lng = act.lng || 139.7671;
@@ -3675,14 +3694,7 @@ function initDayRoadmap(dayNumber, containerId = 'day-roadmap-map') {
         popupAnchor: [0, -16]
       });
 
-      // Find Connected Train Station
       const stLink = getActivityStationLink(act, dayNumber);
-      if (stLink && !stLink.isDirect && !stLink.isHotel) {
-        drawStationConnector(connectorsLayer, [stLink.lat, stLink.lng], pos, {
-          color: '#38BDF8',
-          label: '🚶 ' + stLink.walk + ' from ' + stLink.stationName
-        });
-      }
 
       const halalBadge = act.halal 
         ? '<div class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-emerald-950/80 text-emerald-400 font-mono text-[10px]">🌱 ' + (act.halalNote || 'Halal') + '</div>'
@@ -3716,49 +3728,27 @@ function initDayRoadmap(dayNumber, containerId = 'day-roadmap-map') {
 
       const m = L.marker(pos, { icon }).bindPopup(popupHtml).addTo(markersLayer);
       m.on('click', () => {
-        highlightDayPipelineCard(idx);
+        window.dayRoadmapFocusStop(idx);
       });
     });
 
-    // 4. Draw Sequential Path Connectors between Consecutive Stops
-    for (let i = 0; i < dayData.activities.length - 1; i++) {
-      const fromAct = dayData.activities[i];
-      const toAct = dayData.activities[i + 1];
-      const fromPos = [fromAct.lat || 35.6812, fromAct.lng || 139.7671];
-      const toPos = [toAct.lat || 35.6812, toAct.lng || 139.7671];
-
-      const dist = Math.hypot(fromPos[0] - toPos[0], fromPos[1] - toPos[1]);
-      if (dist > 0.0001) {
-        L.polyline([fromPos, toPos], {
-          color: '#E83929',
-          weight: 4.5,
-          opacity: 0.75,
-          dashArray: '8, 8',
-          className: 'sequential-route-pulse'
-        }).addTo(connectorsLayer);
-
-        const routeLine = L.polyline([fromPos, toPos], {
-          color: '#D4AF37',
-          weight: 2,
-          opacity: 0.95,
-          dashArray: '4, 8'
-        }).addTo(connectorsLayer);
-
-        routeLine.bindTooltip('<b>Stop #' + (i + 1) + ' ➔ Next: Stop #' + (i + 2) + '</b><br><span style="color:#D4AF37;">' + toAct.title + '</span>', {
-          sticky: true,
-          className: 'custom-route-tooltip'
-        });
-
-        const midLat = (fromPos[0] + toPos[0]) / 2;
-        const midLng = (fromPos[1] + toPos[1]) / 2;
-        const nextIcon = L.divIcon({
-          className: 'route-step-indicator',
-          html: '<div class="px-1.5 py-0.5 rounded-full bg-[#05070B]/90 border border-gold/70 text-gold text-[9px] font-mono font-bold shadow-lg flex items-center gap-1 backdrop-blur-sm"><span>➔</span><span>#' + (i + 2) + '</span></div>',
-          iconSize: [42, 18],
-          iconAnchor: [21, 9]
-        });
-        L.marker([midLat, midLng], { icon: nextIcon, interactive: false }).addTo(connectorsLayer);
+    // 4. Clean, subtle route overview trail (non-distracting)
+    const routeCoordinates = [];
+    dayData.activities.forEach(act => {
+      if (act.lat && act.lng) {
+        routeCoordinates.push([act.lat, act.lng]);
       }
+    });
+
+    if (routeCoordinates.length > 1) {
+      L.polyline(routeCoordinates, {
+        color: '#E83929',
+        weight: 3,
+        opacity: 0.35,
+        dashArray: '6, 8',
+        lineCap: 'round',
+        lineJoin: 'round'
+      }).addTo(connectorsLayer);
     }
 
     if (latlngs.length > 0) {
@@ -3777,6 +3767,8 @@ function initDayRoadmap(dayNumber, containerId = 'day-roadmap-map') {
 
   window.dayRoadmapFocusHotel = function() {
     if (!hotel) return;
+    activeLegLayer.clearLayers();
+    document.querySelectorAll('.roadmap-pin').forEach(el => el.classList.remove('is-active', 'is-focused'));
     map.flyTo([hotel.lat, hotel.lng], 16, { duration: 0.8 });
     markersLayer.eachLayer(layer => {
       if (layer instanceof L.Marker) {
@@ -3792,7 +3784,45 @@ function initDayRoadmap(dayNumber, containerId = 'day-roadmap-map') {
     const act = dayData.activities[actIdx];
     if (!act) return;
 
-    map.flyTo([act.lat, act.lng], 16, { duration: 0.8 });
+    activeLegLayer.clearLayers();
+
+    // Reset all pin focus highlights and highlight selected
+    document.querySelectorAll('.roadmap-pin').forEach(el => el.classList.remove('is-active', 'is-focused'));
+    const targetPin = document.getElementById('marker-day-' + dayNumber + '-' + actIdx);
+    if (targetPin) {
+      targetPin.classList.add('is-active', 'is-focused');
+    }
+
+    const currPos = [act.lat || 35.6812, act.lng || 139.7671];
+    let prevPos = null;
+    if (actIdx > 0 && dayData.activities[actIdx - 1]) {
+      const prevAct = dayData.activities[actIdx - 1];
+      prevPos = [prevAct.lat || 35.6812, prevAct.lng || 139.7671];
+    }
+
+    if (prevPos) {
+      // Glow underlay
+      L.polyline([prevPos, currPos], {
+        color: '#E83929',
+        weight: 8,
+        opacity: 0.55,
+        lineCap: 'round'
+      }).addTo(activeLegLayer);
+
+      // Bright laser line
+      L.polyline([prevPos, currPos], {
+        color: '#D4AF37',
+        weight: 3.5,
+        opacity: 1,
+        dashArray: '6, 8',
+        className: 'sequential-route-pulse'
+      }).addTo(activeLegLayer);
+
+      map.fitBounds([prevPos, currPos], { padding: [60, 60], maxZoom: 16 });
+    } else {
+      map.flyTo(currPos, 16, { duration: 0.8 });
+    }
+
     markersLayer.eachLayer(layer => {
       if (layer instanceof L.Marker) {
         const p = layer.getLatLng();
