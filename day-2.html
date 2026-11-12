@@ -228,332 +228,652 @@
       </div>
 
       <div class="space-y-4">
-      <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
-      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative" data-activity-index="0">
-        <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
-          
-          <!-- LEFT: PROMINENT BIG TIME BLOCK -->
-          <div class="flex-shrink-0 flex md:flex-col items-center md:items-start justify-between md:justify-start gap-2 min-w-[150px] pb-3 md:pb-0 border-b md:border-b-0 md:border-r border-white/10 md:pr-5">
-            <div class="space-y-0.5">
-              <div class="text-[10px] font-mono uppercase font-bold text-slate-500 tracking-wider">SCHEDULED TIME</div>
-              <div class="text-xl sm:text-2xl font-black font-mono text-gold tracking-tight drop-shadow-sm">
-                08:30–09:00
-              </div>
-            </div>
-            <div class="pt-1 flex flex-wrap gap-1.5">
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-sky-950/90 text-sky-300 border-sky-800/80">Transit</span>
-              
-            </div>
+      <!-- Timeline Activity Card -->
+      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative group" data-activity-index="0">
+        
+        <!-- Header Row: Time + Category (Left) & Cost (Right) -->
+        <div class="flex flex-wrap items-center justify-between gap-2.5 pb-3 border-b border-white/10">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-gold/15 text-gold border border-gold/30 font-mono font-bold text-xs sm:text-sm tracking-wide">
+              <i data-lucide="clock" class="w-3.5 h-3.5 text-gold"></i>
+              <span>08:30–09:00</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-sky-950/80 text-sky-300 border border-sky-800/80 font-mono font-semibold text-xs">
+              <i data-lucide="footprints" class="w-3.5 h-3.5"></i>
+              <span>Walk Transit</span>
+            </span>
           </div>
 
-          <!-- RIGHT: ACTIVITY DETAILS & COST -->
-          <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-            <div class="space-y-2 flex-grow">
-              <div class="flex items-center gap-2">
-                <h3 class="text-lg font-bold text-white tracking-tight font-mincho">
-                  Plum Hotel ➔ Osaka-Namba Station
-                </h3>
-                <a href="https://www.google.com/maps/search/?api=1&query=Osaka-Namba%20Station" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
-              </div>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Depart Plum Hotel Osaka. Walk north 8 min (650m) along Daikokucho and Midosuji directly into Osaka-Namba Station Kintetsu underground concourse.</p>
-              <div class="mt-3.5 p-3 rounded-2xl bg-[#05070B] border border-cyan-500/30 space-y-1.5 font-mono text-xs shadow-inner">  <div class="flex flex-wrap items-center justify-between gap-2">    <div class="flex items-center gap-1.5 text-cyan-300 font-bold">      <span class="px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-[10px] uppercase">🚆 Walk (8 min)</span>      <span class="text-white text-xs">🚉 Osaka-Namba Station</span>    </div>    <span class="text-gold text-[10px] font-bold">● Connected Hub</span>  </div>  <div class="text-slate-300 text-[11px] flex items-start gap-1.5 pl-0.5">    <span class="text-gold flex-shrink-0">🚶</span>    <span class="leading-relaxed">Walk 8 min (650m) north to Kintetsu ticket gates</span>  </div></div>
-            </div>
-
-            <!-- Cost Tag -->
-            <div class="border-t sm:border-t-0 pt-2 sm:pt-0 sm:pl-4 sm:border-l border-white/10 flex sm:flex-col justify-between sm:justify-start items-center sm:items-end flex-shrink-0">
-              <span class="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider sm:mb-1">EST. COST</span>
-              <div class="text-right text-xs font-semibold text-slate-400 font-mono flex-shrink-0">Free / Included</div>
-            </div>
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/5 border border-white/10 font-mono text-xs font-semibold text-slate-300">
+            <i data-lucide="wallet" class="w-3.5 h-3.5 text-gold"></i>
+            <span class="text-white font-bold">Free / Included</span>
           </div>
-
         </div>
+
+        <!-- Title & Google Maps Button -->
+        <div class="flex items-start justify-between gap-3 pt-3.5 pb-2.5">
+          <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight font-mincho group-hover:text-gold transition-colors">
+            Plum Hotel ➔ Osaka-Namba Station
+          </h3>
+          <a href="https://www.google.com/maps/search/?api=1&query=Osaka-Namba%20Station" target="_blank" rel="noopener noreferrer" class="shrink-0 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-vermilion/20 text-slate-300 hover:text-vermilion border border-white/10 hover:border-vermilion/40 text-xs font-mono transition-colors" title="Open in Google Maps">
+            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-vermilion"></i>
+            <span class="hidden sm:inline">Map</span>
+            <i data-lucide="external-link" class="w-3 h-3 opacity-60"></i>
+          </a>
+        </div>
+
+        <!-- HIGHLIGHT ACTIVITY (Prominent Visual Banner) -->
+        <div class="my-3 p-3 rounded-xl bg-gradient-to-r from-vermilion/15 via-[#0C121D] to-[#05070B] border border-vermilion/30">
+          <div class="flex items-center gap-1.5 text-[10px] font-mono font-bold text-vermilion uppercase tracking-widest mb-2">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-vermilion animate-pulse"></i>
+            <span>HIGHLIGHT ACTIVITY</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="footprints" class="w-3.5 h-3.5 text-amber-400"></i>
+          <span>Morning Walk North (8 min)</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="train" class="w-3.5 h-3.5 text-sky-400"></i>
+          <span>Kintetsu Ticket Concourse</span>
+        </span>
+          </div>
+        </div>
+
+        <!-- Simplified Action Steps (Concise Bullets with Icons) -->
+        <div class="space-y-2 my-3 text-xs sm:text-sm text-slate-300 font-sans leading-relaxed">
+
+      <div class="flex items-start gap-2.5">
+        <i data-lucide="footprints" class="w-4 h-4 text-amber-400 shrink-0 mt-0.5"></i>
+        <span>Depart Plum Hotel Osaka; walk north 8 min (650m) along Daikokucho avenue.</span>
+      </div>
+      <div class="flex items-start gap-2.5">
+        <i data-lucide="navigation" class="w-4 h-4 text-cyan-400 shrink-0 mt-0.5"></i>
+        <span>Enter Osaka-Namba Station direct into Kintetsu underground gates for the Nara Express.</span>
+      </div>
+        </div>
+
+        <!-- Connected Route / Transit Pill -->
+
+    <div class="pt-3 border-t border-white/10 flex flex-wrap items-center gap-2 text-xs font-mono text-slate-400">
+      <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-cyan-300 font-medium">
+        <i data-lucide="footprints" class="w-3.5 h-3.5 text-cyan-400"></i>
+        <span>Osaka-Namba Station</span>
+      </span>
+      <span class="text-slate-500">•</span>
+      <span class="text-slate-300 text-[11px]">Walk 8 min (650m) north to Kintetsu ticket gates</span>
+    </div>
+
       </div>
 
-      <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
-      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative" data-activity-index="1">
-        <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
-          
-          <!-- LEFT: PROMINENT BIG TIME BLOCK -->
-          <div class="flex-shrink-0 flex md:flex-col items-center md:items-start justify-between md:justify-start gap-2 min-w-[150px] pb-3 md:pb-0 border-b md:border-b-0 md:border-r border-white/10 md:pr-5">
-            <div class="space-y-0.5">
-              <div class="text-[10px] font-mono uppercase font-bold text-slate-500 tracking-wider">SCHEDULED TIME</div>
-              <div class="text-xl sm:text-2xl font-black font-mono text-gold tracking-tight drop-shadow-sm">
-                09:00–10:00
-              </div>
-            </div>
-            <div class="pt-1 flex flex-wrap gap-1.5">
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-sky-950/90 text-sky-300 border-sky-800/80">Transit</span>
-              
-            </div>
+      <!-- Timeline Activity Card -->
+      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative group" data-activity-index="1">
+        
+        <!-- Header Row: Time + Category (Left) & Cost (Right) -->
+        <div class="flex flex-wrap items-center justify-between gap-2.5 pb-3 border-b border-white/10">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-gold/15 text-gold border border-gold/30 font-mono font-bold text-xs sm:text-sm tracking-wide">
+              <i data-lucide="clock" class="w-3.5 h-3.5 text-gold"></i>
+              <span>09:00–10:00</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-sky-950/80 text-sky-300 border border-sky-800/80 font-mono font-semibold text-xs">
+              <i data-lucide="train" class="w-3.5 h-3.5"></i>
+              <span>Train Transit</span>
+            </span>
           </div>
 
-          <!-- RIGHT: ACTIVITY DETAILS & COST -->
-          <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-            <div class="space-y-2 flex-grow">
-              <div class="flex items-center gap-2">
-                <h3 class="text-lg font-bold text-white tracking-tight font-mincho">
-                  Osaka-Namba ➔ Nara (Kintetsu Rapid Express)
-                </h3>
-                <a href="https://www.google.com/maps/search/?api=1&query=Kintetsu-Nara%20Station" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
-              </div>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Enter Kintetsu Ticket Gate (Platform 1/2). Board Kintetsu Nara Line Rapid Express (Kaisoku-Kyuko). 38 min direct through Mt. Ikoma Tunnel into Kintetsu-Nara Station (38 min, 6 stops, ¥680).</p>
-              <div class="mt-3.5 p-3 rounded-2xl bg-[#05070B] border border-cyan-500/30 space-y-1.5 font-mono text-xs shadow-inner">  <div class="flex flex-wrap items-center justify-between gap-2">    <div class="flex items-center gap-1.5 text-cyan-300 font-bold">      <span class="px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-[10px] uppercase">🚆 Train (Kintetsu Line)</span>      <span class="text-white text-xs">🚉 Kintetsu-Nara Station</span>    </div>    <span class="text-gold text-[10px] font-bold">● Connected Hub</span>  </div>  <div class="text-slate-300 text-[11px] flex items-start gap-1.5 pl-0.5">    <span class="text-gold flex-shrink-0">🚶</span>    <span class="leading-relaxed">Board Platform 1/2 ➔ 38 min direct to Kintetsu-Nara underground terminal</span>  </div></div>
-            </div>
-
-            <!-- Cost Tag -->
-            <div class="border-t sm:border-t-0 pt-2 sm:pt-0 sm:pl-4 sm:border-l border-white/10 flex sm:flex-col justify-between sm:justify-start items-center sm:items-end flex-shrink-0">
-              <span class="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider sm:mb-1">EST. COST</span>
-              <div class="text-right font-mono font-bold text-white text-sm sm:text-base whitespace-nowrap">  ¥680</div><div class="text-right text-[11px] font-mono font-semibold text-gold whitespace-nowrap">  ~RM 20</div>
-            </div>
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/5 border border-white/10 font-mono text-xs font-semibold text-slate-300">
+            <i data-lucide="wallet" class="w-3.5 h-3.5 text-gold"></i>
+            <span class="text-white font-bold">¥680 • ~RM 20</span>
           </div>
-
         </div>
+
+        <!-- Title & Google Maps Button -->
+        <div class="flex items-start justify-between gap-3 pt-3.5 pb-2.5">
+          <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight font-mincho group-hover:text-gold transition-colors">
+            Osaka-Namba ➔ Nara (Kintetsu Rapid Express)
+          </h3>
+          <a href="https://www.google.com/maps/search/?api=1&query=Kintetsu-Nara%20Station" target="_blank" rel="noopener noreferrer" class="shrink-0 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-vermilion/20 text-slate-300 hover:text-vermilion border border-white/10 hover:border-vermilion/40 text-xs font-mono transition-colors" title="Open in Google Maps">
+            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-vermilion"></i>
+            <span class="hidden sm:inline">Map</span>
+            <i data-lucide="external-link" class="w-3 h-3 opacity-60"></i>
+          </a>
+        </div>
+
+        <!-- HIGHLIGHT ACTIVITY (Prominent Visual Banner) -->
+        <div class="my-3 p-3 rounded-xl bg-gradient-to-r from-vermilion/15 via-[#0C121D] to-[#05070B] border border-vermilion/30">
+          <div class="flex items-center gap-1.5 text-[10px] font-mono font-bold text-vermilion uppercase tracking-widest mb-2">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-vermilion animate-pulse"></i>
+            <span>HIGHLIGHT ACTIVITY</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="train" class="w-3.5 h-3.5 text-sky-400"></i>
+          <span>Kintetsu Rapid Express</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="mountain" class="w-3.5 h-3.5 text-purple-400"></i>
+          <span>Pass Mt. Ikoma Tunnel</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="clock" class="w-3.5 h-3.5 text-gold"></i>
+          <span>38-min Direct Ride</span>
+        </span>
+          </div>
+        </div>
+
+        <!-- Simplified Action Steps (Concise Bullets with Icons) -->
+        <div class="space-y-2 my-3 text-xs sm:text-sm text-slate-300 font-sans leading-relaxed">
+
+      <div class="flex items-start gap-2.5">
+        <i data-lucide="train" class="w-4 h-4 text-sky-400 shrink-0 mt-0.5"></i>
+        <span>Board Kintetsu Nara Line Rapid Express (Platform 1/2, 38 min direct, ¥680).</span>
+      </div>
+      <div class="flex items-start gap-2.5">
+        <i data-lucide="map-pin" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+        <span>Smooth express transit through Mt. Ikoma Tunnel straight into Kintetsu-Nara terminal.</span>
+      </div>
+        </div>
+
+        <!-- Connected Route / Transit Pill -->
+
+    <div class="pt-3 border-t border-white/10 flex flex-wrap items-center gap-2 text-xs font-mono text-slate-400">
+      <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-cyan-300 font-medium">
+        <i data-lucide="train" class="w-3.5 h-3.5 text-cyan-400"></i>
+        <span>Kintetsu-Nara Station</span>
+      </span>
+      <span class="text-slate-500">•</span>
+      <span class="text-slate-300 text-[11px]">Platform 1/2 ➔ 38 min direct (6 stops, ¥680)</span>
+    </div>
+
       </div>
 
-      <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
-      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative" data-activity-index="2">
-        <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
-          
-          <!-- LEFT: PROMINENT BIG TIME BLOCK -->
-          <div class="flex-shrink-0 flex md:flex-col items-center md:items-start justify-between md:justify-start gap-2 min-w-[150px] pb-3 md:pb-0 border-b md:border-b-0 md:border-r border-white/10 md:pr-5">
-            <div class="space-y-0.5">
-              <div class="text-[10px] font-mono uppercase font-bold text-slate-500 tracking-wider">SCHEDULED TIME</div>
-              <div class="text-xl sm:text-2xl font-black font-mono text-gold tracking-tight drop-shadow-sm">
-                10:00–14:00
-              </div>
-            </div>
-            <div class="pt-1 flex flex-wrap gap-1.5">
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-rose-950/90 text-rose-300 border-rose-800/80">Sightseeing</span>
-              
-            </div>
+      <!-- Timeline Activity Card -->
+      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative group" data-activity-index="2">
+        
+        <!-- Header Row: Time + Category (Left) & Cost (Right) -->
+        <div class="flex flex-wrap items-center justify-between gap-2.5 pb-3 border-b border-white/10">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-gold/15 text-gold border border-gold/30 font-mono font-bold text-xs sm:text-sm tracking-wide">
+              <i data-lucide="clock" class="w-3.5 h-3.5 text-gold"></i>
+              <span>10:00–14:00</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-rose-950/80 text-rose-300 border border-rose-800/80 font-mono font-semibold text-xs">
+              <i data-lucide="camera" class="w-3.5 h-3.5"></i>
+              <span>Sightseeing</span>
+            </span>
           </div>
 
-          <!-- RIGHT: ACTIVITY DETAILS & COST -->
-          <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-            <div class="space-y-2 flex-grow">
-              <div class="flex items-center gap-2">
-                <h3 class="text-lg font-bold text-white tracking-tight font-mincho">
-                  Nara Park & Todai-ji (Sacred Bowing Deer)
-                </h3>
-                <a href="https://www.google.com/maps/search/?api=1&query=Nara%20Park" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
-              </div>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Take Exit 2 from Kintetsu-Nara Station ➔ Walk 5 min (400m) east up Noborioji-dori into Nara Park. Purchase deer crackers (¥200) to feed friendly bowing sika deer. Continue walking 8 min through park to Todai-ji Daibutsuden (Great Bronze Buddha Hall, entry ¥600).</p>
-              <div class="mt-3.5 p-3 rounded-2xl bg-[#05070B] border border-cyan-500/30 space-y-1.5 font-mono text-xs shadow-inner">  <div class="flex flex-wrap items-center justify-between gap-2">    <div class="flex items-center gap-1.5 text-cyan-300 font-bold">      <span class="px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-[10px] uppercase">🚆 Walk (5 min into park)</span>      <span class="text-white text-xs">🚉 Kintetsu-Nara Station</span>    </div>    <span class="text-gold text-[10px] font-bold">● Connected Hub</span>  </div>  <div class="text-slate-300 text-[11px] flex items-start gap-1.5 pl-0.5">    <span class="text-gold flex-shrink-0">🚶</span>    <span class="leading-relaxed">Take Exit 2 ➔ Walk 5 min (400m) east on Noborioji-dori into park</span>  </div></div>
-            </div>
-
-            <!-- Cost Tag -->
-            <div class="border-t sm:border-t-0 pt-2 sm:pt-0 sm:pl-4 sm:border-l border-white/10 flex sm:flex-col justify-between sm:justify-start items-center sm:items-end flex-shrink-0">
-              <span class="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider sm:mb-1">EST. COST</span>
-              <div class="text-right font-mono font-bold text-white text-sm sm:text-base whitespace-nowrap">  ¥600</div><div class="text-right text-[11px] font-mono font-semibold text-gold whitespace-nowrap">  ~RM 18</div>
-            </div>
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/5 border border-white/10 font-mono text-xs font-semibold text-slate-300">
+            <i data-lucide="wallet" class="w-3.5 h-3.5 text-gold"></i>
+            <span class="text-white font-bold">¥600 • ~RM 18</span>
           </div>
-
         </div>
+
+        <!-- Title & Google Maps Button -->
+        <div class="flex items-start justify-between gap-3 pt-3.5 pb-2.5">
+          <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight font-mincho group-hover:text-gold transition-colors">
+            Nara Park & Todai-ji (Sacred Bowing Deer)
+          </h3>
+          <a href="https://www.google.com/maps/search/?api=1&query=Todai-ji%20Temple%20Nara" target="_blank" rel="noopener noreferrer" class="shrink-0 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-vermilion/20 text-slate-300 hover:text-vermilion border border-white/10 hover:border-vermilion/40 text-xs font-mono transition-colors" title="Open in Google Maps">
+            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-vermilion"></i>
+            <span class="hidden sm:inline">Map</span>
+            <i data-lucide="external-link" class="w-3 h-3 opacity-60"></i>
+          </a>
+        </div>
+
+        <!-- HIGHLIGHT ACTIVITY (Prominent Visual Banner) -->
+        <div class="my-3 p-3 rounded-xl bg-gradient-to-r from-vermilion/15 via-[#0C121D] to-[#05070B] border border-vermilion/30">
+          <div class="flex items-center gap-1.5 text-[10px] font-mono font-bold text-vermilion uppercase tracking-widest mb-2">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-vermilion animate-pulse"></i>
+            <span>HIGHLIGHT ACTIVITY</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400"></i>
+          <span>Feed Bowing Sika Deer</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="landmark" class="w-3.5 h-3.5 text-gold"></i>
+          <span>Todai-ji Great Bronze Buddha</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="trees" class="w-3.5 h-3.5 text-emerald-400"></i>
+          <span>Ancient Nara Pine Forest</span>
+        </span>
+          </div>
+        </div>
+
+        <!-- Simplified Action Steps (Concise Bullets with Icons) -->
+        <div class="space-y-2 my-3 text-xs sm:text-sm text-slate-300 font-sans leading-relaxed">
+
+      <div class="flex items-start gap-2.5">
+        <i data-lucide="sparkles" class="w-4 h-4 text-gold shrink-0 mt-0.5"></i>
+        <span>Exit 2 into Nara Park; purchase deer crackers (¥200) to feed friendly bowing deer.</span>
+      </div>
+      <div class="flex items-start gap-2.5">
+        <i data-lucide="landmark" class="w-4 h-4 text-amber-400 shrink-0 mt-0.5"></i>
+        <span>Walk to Todai-ji Daibutsuden (entry ¥600) to see the monumental 15-meter bronze Buddha.</span>
+      </div>
+        </div>
+
+        <!-- Connected Route / Transit Pill -->
+
+    <div class="pt-3 border-t border-white/10 flex flex-wrap items-center gap-2 text-xs font-mono text-slate-400">
+      <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-cyan-300 font-medium">
+        <i data-lucide="footprints" class="w-3.5 h-3.5 text-cyan-400"></i>
+        <span>Kintetsu-Nara Station (Exit 2)</span>
+      </span>
+      <span class="text-slate-500">•</span>
+      <span class="text-slate-300 text-[11px]">Walk 5 min (400m) east on Noborioji-dori into park</span>
+    </div>
+
       </div>
 
-      <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
-      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative" data-activity-index="3">
-        <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
-          
-          <!-- LEFT: PROMINENT BIG TIME BLOCK -->
-          <div class="flex-shrink-0 flex md:flex-col items-center md:items-start justify-between md:justify-start gap-2 min-w-[150px] pb-3 md:pb-0 border-b md:border-b-0 md:border-r border-white/10 md:pr-5">
-            <div class="space-y-0.5">
-              <div class="text-[10px] font-mono uppercase font-bold text-slate-500 tracking-wider">SCHEDULED TIME</div>
-              <div class="text-xl sm:text-2xl font-black font-mono text-gold tracking-tight drop-shadow-sm">
-                14:00–15:00
-              </div>
-            </div>
-            <div class="pt-1 flex flex-wrap gap-1.5">
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-sky-950/90 text-sky-300 border-sky-800/80">Transit</span>
-              
-            </div>
+      <!-- Timeline Activity Card -->
+      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative group" data-activity-index="3">
+        
+        <!-- Header Row: Time + Category (Left) & Cost (Right) -->
+        <div class="flex flex-wrap items-center justify-between gap-2.5 pb-3 border-b border-white/10">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-gold/15 text-gold border border-gold/30 font-mono font-bold text-xs sm:text-sm tracking-wide">
+              <i data-lucide="clock" class="w-3.5 h-3.5 text-gold"></i>
+              <span>14:00–15:00</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-sky-950/80 text-sky-300 border border-sky-800/80 font-mono font-semibold text-xs">
+              <i data-lucide="train" class="w-3.5 h-3.5"></i>
+              <span>Train Transit</span>
+            </span>
           </div>
 
-          <!-- RIGHT: ACTIVITY DETAILS & COST -->
-          <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-            <div class="space-y-2 flex-grow">
-              <div class="flex items-center gap-2">
-                <h3 class="text-lg font-bold text-white tracking-tight font-mincho">
-                  Nara ➔ Osaka-Namba (Return Train)
-                </h3>
-                <a href="https://www.google.com/maps/search/?api=1&query=Plum%20Hotel%20Osaka" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
-              </div>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Walk 10 min back from Todai-ji to Kintetsu-Nara Station ➔ Board Kintetsu Nara Line Rapid Express back to Osaka-Namba Station (38 min, ¥680). Walk 8 min back to Plum Hotel for brief rest and prayer.</p>
-              <div class="mt-3.5 p-3 rounded-2xl bg-[#05070B] border border-cyan-500/30 space-y-1.5 font-mono text-xs shadow-inner">  <div class="flex flex-wrap items-center justify-between gap-2">    <div class="flex items-center gap-1.5 text-cyan-300 font-bold">      <span class="px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-[10px] uppercase">🚆 Train (Kintetsu Line) + Walk</span>      <span class="text-white text-xs">🚉 Osaka-Namba Station</span>    </div>    <span class="text-gold text-[10px] font-bold">● Connected Hub</span>  </div>  <div class="text-slate-300 text-[11px] flex items-start gap-1.5 pl-0.5">    <span class="text-gold flex-shrink-0">🚶</span>    <span class="leading-relaxed">Kintetsu train 38 min ➔ Walk 8 min back to Plum Hotel</span>  </div></div>
-            </div>
-
-            <!-- Cost Tag -->
-            <div class="border-t sm:border-t-0 pt-2 sm:pt-0 sm:pl-4 sm:border-l border-white/10 flex sm:flex-col justify-between sm:justify-start items-center sm:items-end flex-shrink-0">
-              <span class="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider sm:mb-1">EST. COST</span>
-              <div class="text-right font-mono font-bold text-white text-sm sm:text-base whitespace-nowrap">  ¥680</div><div class="text-right text-[11px] font-mono font-semibold text-gold whitespace-nowrap">  ~RM 20</div>
-            </div>
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/5 border border-white/10 font-mono text-xs font-semibold text-slate-300">
+            <i data-lucide="wallet" class="w-3.5 h-3.5 text-gold"></i>
+            <span class="text-white font-bold">¥680 • ~RM 20</span>
           </div>
-
         </div>
+
+        <!-- Title & Google Maps Button -->
+        <div class="flex items-start justify-between gap-3 pt-3.5 pb-2.5">
+          <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight font-mincho group-hover:text-gold transition-colors">
+            Nara ➔ Osaka-Namba (Return Train)
+          </h3>
+          <a href="https://www.google.com/maps/search/?api=1&query=Osaka-Namba%20Station" target="_blank" rel="noopener noreferrer" class="shrink-0 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-vermilion/20 text-slate-300 hover:text-vermilion border border-white/10 hover:border-vermilion/40 text-xs font-mono transition-colors" title="Open in Google Maps">
+            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-vermilion"></i>
+            <span class="hidden sm:inline">Map</span>
+            <i data-lucide="external-link" class="w-3 h-3 opacity-60"></i>
+          </a>
+        </div>
+
+        <!-- HIGHLIGHT ACTIVITY (Prominent Visual Banner) -->
+        <div class="my-3 p-3 rounded-xl bg-gradient-to-r from-vermilion/15 via-[#0C121D] to-[#05070B] border border-vermilion/30">
+          <div class="flex items-center gap-1.5 text-[10px] font-mono font-bold text-vermilion uppercase tracking-widest mb-2">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-vermilion animate-pulse"></i>
+            <span>HIGHLIGHT ACTIVITY</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="train" class="w-3.5 h-3.5 text-sky-400"></i>
+          <span>Rapid Express Return</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="hotel" class="w-3.5 h-3.5 text-purple-400"></i>
+          <span>Plum Hotel Afternoon Rest</span>
+        </span>
+          </div>
+        </div>
+
+        <!-- Simplified Action Steps (Concise Bullets with Icons) -->
+        <div class="space-y-2 my-3 text-xs sm:text-sm text-slate-300 font-sans leading-relaxed">
+
+      <div class="flex items-start gap-2.5">
+        <i data-lucide="train" class="w-4 h-4 text-sky-400 shrink-0 mt-0.5"></i>
+        <span>Catch Kintetsu Rapid Express back to Osaka-Namba Station (38 min, ¥680).</span>
+      </div>
+      <div class="flex items-start gap-2.5">
+        <i data-lucide="footprints" class="w-4 h-4 text-amber-400 shrink-0 mt-0.5"></i>
+        <span>Walk 8 min to Plum Hotel for a quick afternoon rest, freshen up, and prayer.</span>
+      </div>
+        </div>
+
+        <!-- Connected Route / Transit Pill -->
+
+    <div class="pt-3 border-t border-white/10 flex flex-wrap items-center gap-2 text-xs font-mono text-slate-400">
+      <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-cyan-300 font-medium">
+        <i data-lucide="train" class="w-3.5 h-3.5 text-cyan-400"></i>
+        <span>Osaka-Namba Station</span>
+      </span>
+      <span class="text-slate-500">•</span>
+      <span class="text-slate-300 text-[11px]">Kintetsu train 38 min ➔ Walk 8 min back to Plum Hotel</span>
+    </div>
+
       </div>
 
-      <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
-      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative" data-activity-index="4">
-        <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
-          
-          <!-- LEFT: PROMINENT BIG TIME BLOCK -->
-          <div class="flex-shrink-0 flex md:flex-col items-center md:items-start justify-between md:justify-start gap-2 min-w-[150px] pb-3 md:pb-0 border-b md:border-b-0 md:border-r border-white/10 md:pr-5">
-            <div class="space-y-0.5">
-              <div class="text-[10px] font-mono uppercase font-bold text-slate-500 tracking-wider">SCHEDULED TIME</div>
-              <div class="text-xl sm:text-2xl font-black font-mono text-gold tracking-tight drop-shadow-sm">
-                16:00–16:30
-              </div>
-            </div>
-            <div class="pt-1 flex flex-wrap gap-1.5">
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-sky-950/90 text-sky-300 border-sky-800/80">Transit</span>
-              
-            </div>
+      <!-- Timeline Activity Card -->
+      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative group" data-activity-index="4">
+        
+        <!-- Header Row: Time + Category (Left) & Cost (Right) -->
+        <div class="flex flex-wrap items-center justify-between gap-2.5 pb-3 border-b border-white/10">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-gold/15 text-gold border border-gold/30 font-mono font-bold text-xs sm:text-sm tracking-wide">
+              <i data-lucide="clock" class="w-3.5 h-3.5 text-gold"></i>
+              <span>16:00–16:30</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-sky-950/80 text-sky-300 border border-sky-800/80 font-mono font-semibold text-xs">
+              <i data-lucide="subway" class="w-3.5 h-3.5"></i>
+              <span>Subway Transit</span>
+            </span>
           </div>
 
-          <!-- RIGHT: ACTIVITY DETAILS & COST -->
-          <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-            <div class="space-y-2 flex-grow">
-              <div class="flex items-center gap-2">
-                <h3 class="text-lg font-bold text-white tracking-tight font-mincho">
-                  Plum Hotel ➔ Umeda Station (Subway)
-                </h3>
-                <a href="https://www.google.com/maps/search/?api=1&query=Umeda%20Sky%20Building" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
-              </div>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Walk 3 min to Daikokucho Station ➔ Board Osaka Metro Midosuji Line (Platform 2) direct to Umeda Station (12 min, 5 stops, ¥240) ➔ Exit North Central Gate ➔ Walk 9 min (650m) through underground walkway to Umeda Sky Building.</p>
-              <div class="mt-3.5 p-3 rounded-2xl bg-[#05070B] border border-cyan-500/30 space-y-1.5 font-mono text-xs shadow-inner">  <div class="flex flex-wrap items-center justify-between gap-2">    <div class="flex items-center gap-1.5 text-cyan-300 font-bold">      <span class="px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-[10px] uppercase">🚆 Subway (12 min) + Walk (9 min)</span>      <span class="text-white text-xs">🚉 JR Osaka / Umeda Station</span>    </div>    <span class="text-gold text-[10px] font-bold">● Connected Hub</span>  </div>  <div class="text-slate-300 text-[11px] flex items-start gap-1.5 pl-0.5">    <span class="text-gold flex-shrink-0">🚶</span>    <span class="leading-relaxed">Midosuji Line 12 min ➔ North Central Exit ➔ Walk 9 min (650m) via underground walkway</span>  </div></div>
-            </div>
-
-            <!-- Cost Tag -->
-            <div class="border-t sm:border-t-0 pt-2 sm:pt-0 sm:pl-4 sm:border-l border-white/10 flex sm:flex-col justify-between sm:justify-start items-center sm:items-end flex-shrink-0">
-              <span class="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider sm:mb-1">EST. COST</span>
-              <div class="text-right font-mono font-bold text-white text-sm sm:text-base whitespace-nowrap">  ¥240</div><div class="text-right text-[11px] font-mono font-semibold text-gold whitespace-nowrap">  ~RM 7</div>
-            </div>
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/5 border border-white/10 font-mono text-xs font-semibold text-slate-300">
+            <i data-lucide="wallet" class="w-3.5 h-3.5 text-gold"></i>
+            <span class="text-white font-bold">¥240 • ~RM 7</span>
           </div>
-
         </div>
+
+        <!-- Title & Google Maps Button -->
+        <div class="flex items-start justify-between gap-3 pt-3.5 pb-2.5">
+          <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight font-mincho group-hover:text-gold transition-colors">
+            Plum Hotel ➔ Umeda Station (Subway)
+          </h3>
+          <a href="https://www.google.com/maps/search/?api=1&query=Umeda%20Station%20Osaka" target="_blank" rel="noopener noreferrer" class="shrink-0 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-vermilion/20 text-slate-300 hover:text-vermilion border border-white/10 hover:border-vermilion/40 text-xs font-mono transition-colors" title="Open in Google Maps">
+            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-vermilion"></i>
+            <span class="hidden sm:inline">Map</span>
+            <i data-lucide="external-link" class="w-3 h-3 opacity-60"></i>
+          </a>
+        </div>
+
+        <!-- HIGHLIGHT ACTIVITY (Prominent Visual Banner) -->
+        <div class="my-3 p-3 rounded-xl bg-gradient-to-r from-vermilion/15 via-[#0C121D] to-[#05070B] border border-vermilion/30">
+          <div class="flex items-center gap-1.5 text-[10px] font-mono font-bold text-vermilion uppercase tracking-widest mb-2">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-vermilion animate-pulse"></i>
+            <span>HIGHLIGHT ACTIVITY</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="subway" class="w-3.5 h-3.5 text-sky-400"></i>
+          <span>Midosuji Line Northbound</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="navigation" class="w-3.5 h-3.5 text-cyan-400"></i>
+          <span>Underground Walkway (9 min)</span>
+        </span>
+          </div>
+        </div>
+
+        <!-- Simplified Action Steps (Concise Bullets with Icons) -->
+        <div class="space-y-2 my-3 text-xs sm:text-sm text-slate-300 font-sans leading-relaxed">
+
+      <div class="flex items-start gap-2.5">
+        <i data-lucide="subway" class="w-4 h-4 text-sky-400 shrink-0 mt-0.5"></i>
+        <span>Board Midosuji Line at Daikokucho direct to Umeda Station (12 min, 5 stops, ¥240).</span>
+      </div>
+      <div class="flex items-start gap-2.5">
+        <i data-lucide="footprints" class="w-4 h-4 text-amber-400 shrink-0 mt-0.5"></i>
+        <span>Exit North Central Gate; follow underground pedestrian tunnel (9 min) to Umeda Sky Building.</span>
+      </div>
+        </div>
+
+        <!-- Connected Route / Transit Pill -->
+
+    <div class="pt-3 border-t border-white/10 flex flex-wrap items-center gap-2 text-xs font-mono text-slate-400">
+      <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-cyan-300 font-medium">
+        <i data-lucide="subway" class="w-3.5 h-3.5 text-cyan-400"></i>
+        <span>JR Osaka / Umeda Station</span>
+      </span>
+      <span class="text-slate-500">•</span>
+      <span class="text-slate-300 text-[11px]">Midosuji Line 12 min ➔ Walk 9 min (650m) via underground walkway</span>
+    </div>
+
       </div>
 
-      <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
-      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative" data-activity-index="5">
-        <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
-          
-          <!-- LEFT: PROMINENT BIG TIME BLOCK -->
-          <div class="flex-shrink-0 flex md:flex-col items-center md:items-start justify-between md:justify-start gap-2 min-w-[150px] pb-3 md:pb-0 border-b md:border-b-0 md:border-r border-white/10 md:pr-5">
-            <div class="space-y-0.5">
-              <div class="text-[10px] font-mono uppercase font-bold text-slate-500 tracking-wider">SCHEDULED TIME</div>
-              <div class="text-xl sm:text-2xl font-black font-mono text-gold tracking-tight drop-shadow-sm">
-                16:30–18:30
-              </div>
-            </div>
-            <div class="pt-1 flex flex-wrap gap-1.5">
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-rose-950/90 text-rose-300 border-rose-800/80">Sightseeing</span>
-              
-            </div>
+      <!-- Timeline Activity Card -->
+      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative group" data-activity-index="5">
+        
+        <!-- Header Row: Time + Category (Left) & Cost (Right) -->
+        <div class="flex flex-wrap items-center justify-between gap-2.5 pb-3 border-b border-white/10">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-gold/15 text-gold border border-gold/30 font-mono font-bold text-xs sm:text-sm tracking-wide">
+              <i data-lucide="clock" class="w-3.5 h-3.5 text-gold"></i>
+              <span>16:30–18:30</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-rose-950/80 text-rose-300 border border-rose-800/80 font-mono font-semibold text-xs">
+              <i data-lucide="camera" class="w-3.5 h-3.5"></i>
+              <span>Sightseeing</span>
+            </span>
           </div>
 
-          <!-- RIGHT: ACTIVITY DETAILS & COST -->
-          <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-            <div class="space-y-2 flex-grow">
-              <div class="flex items-center gap-2">
-                <h3 class="text-lg font-bold text-white tracking-tight font-mincho">
-                  Umeda Sky Building Floating Garden (Sunset View)
-                </h3>
-                <a href="https://www.google.com/maps/search/?api=1&query=Umeda%20Sky%20Building%20Floating%20Garden" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
-              </div>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Ride glass elevator to 35F, then travel up the futuristic suspended tube escalator bridging the twin towers to Kuchu Teien Observatory (entry ¥1,500). Spectacular 360° open-air sunset views over Osaka skyline and Yodo River at 17:05 sunset.</p>
-              <div class="mt-3.5 p-3 rounded-2xl bg-[#05070B] border border-cyan-500/30 space-y-1.5 font-mono text-xs shadow-inner">  <div class="flex flex-wrap items-center justify-between gap-2">    <div class="flex items-center gap-1.5 text-cyan-300 font-bold">      <span class="px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-[10px] uppercase">🚆 Elevator & Escalator Observation Walk</span>      <span class="text-white text-xs">🚉 Umeda Station</span>    </div>    <span class="text-gold text-[10px] font-bold">● Connected Hub</span>  </div>  <div class="text-slate-300 text-[11px] flex items-start gap-1.5 pl-0.5">    <span class="text-gold flex-shrink-0">🚶</span>    <span class="leading-relaxed">Glass elevator 35F + suspended escalator to 40F rooftop (9 min walk from Umeda)</span>  </div></div>
-            </div>
-
-            <!-- Cost Tag -->
-            <div class="border-t sm:border-t-0 pt-2 sm:pt-0 sm:pl-4 sm:border-l border-white/10 flex sm:flex-col justify-between sm:justify-start items-center sm:items-end flex-shrink-0">
-              <span class="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider sm:mb-1">EST. COST</span>
-              <div class="text-right font-mono font-bold text-white text-sm sm:text-base whitespace-nowrap">  ¥1,500</div><div class="text-right text-[11px] font-mono font-semibold text-gold whitespace-nowrap">  ~RM 45</div>
-            </div>
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/5 border border-white/10 font-mono text-xs font-semibold text-slate-300">
+            <i data-lucide="wallet" class="w-3.5 h-3.5 text-gold"></i>
+            <span class="text-white font-bold">¥1,500 • ~RM 45</span>
           </div>
-
         </div>
+
+        <!-- Title & Google Maps Button -->
+        <div class="flex items-start justify-between gap-3 pt-3.5 pb-2.5">
+          <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight font-mincho group-hover:text-gold transition-colors">
+            Umeda Sky Building Floating Garden (Sunset View)
+          </h3>
+          <a href="https://www.google.com/maps/search/?api=1&query=Umeda%20Sky%20Building%20Osaka" target="_blank" rel="noopener noreferrer" class="shrink-0 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-vermilion/20 text-slate-300 hover:text-vermilion border border-white/10 hover:border-vermilion/40 text-xs font-mono transition-colors" title="Open in Google Maps">
+            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-vermilion"></i>
+            <span class="hidden sm:inline">Map</span>
+            <i data-lucide="external-link" class="w-3 h-3 opacity-60"></i>
+          </a>
+        </div>
+
+        <!-- HIGHLIGHT ACTIVITY (Prominent Visual Banner) -->
+        <div class="my-3 p-3 rounded-xl bg-gradient-to-r from-vermilion/15 via-[#0C121D] to-[#05070B] border border-vermilion/30">
+          <div class="flex items-center gap-1.5 text-[10px] font-mono font-bold text-vermilion uppercase tracking-widest mb-2">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-vermilion animate-pulse"></i>
+            <span>HIGHLIGHT ACTIVITY</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="sunset" class="w-3.5 h-3.5 text-gold"></i>
+          <span>Floating Garden Sunset (17:05)</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="navigation" class="w-3.5 h-3.5 text-cyan-400"></i>
+          <span>Glass Tube Escalator (35F)</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="camera" class="w-3.5 h-3.5 text-rose-400"></i>
+          <span>360° Open-Air Skyline View</span>
+        </span>
+          </div>
+        </div>
+
+        <!-- Simplified Action Steps (Concise Bullets with Icons) -->
+        <div class="space-y-2 my-3 text-xs sm:text-sm text-slate-300 font-sans leading-relaxed">
+
+      <div class="flex items-start gap-2.5">
+        <i data-lucide="navigation" class="w-4 h-4 text-cyan-400 shrink-0 mt-0.5"></i>
+        <span>Ascend the futuristic glass tube escalator bridging the twin 173m towers to Kuchu Teien Observatory.</span>
+      </div>
+      <div class="flex items-start gap-2.5">
+        <i data-lucide="sunset" class="w-4 h-4 text-gold shrink-0 mt-0.5"></i>
+        <span>Watch the panoramic winter sunset over Osaka Bay and Yodo River (entry ¥1,500).</span>
+      </div>
+        </div>
+
+        <!-- Connected Route / Transit Pill -->
+
+    <div class="pt-3 border-t border-white/10 flex flex-wrap items-center gap-2 text-xs font-mono text-slate-400">
+      <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-cyan-300 font-medium">
+        <i data-lucide="landmark" class="w-3.5 h-3.5 text-cyan-400"></i>
+        <span>Kuchu Teien Observatory</span>
+      </span>
+      <span class="text-slate-500">•</span>
+      <span class="text-slate-300 text-[11px]">Glass elevator to 35F + tube escalator to open-air rooftop</span>
+    </div>
+
       </div>
 
-      <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
-      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative" data-activity-index="6">
-        <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
-          
-          <!-- LEFT: PROMINENT BIG TIME BLOCK -->
-          <div class="flex-shrink-0 flex md:flex-col items-center md:items-start justify-between md:justify-start gap-2 min-w-[150px] pb-3 md:pb-0 border-b md:border-b-0 md:border-r border-white/10 md:pr-5">
-            <div class="space-y-0.5">
-              <div class="text-[10px] font-mono uppercase font-bold text-slate-500 tracking-wider">SCHEDULED TIME</div>
-              <div class="text-xl sm:text-2xl font-black font-mono text-gold tracking-tight drop-shadow-sm">
-                18:30–20:30
-              </div>
-            </div>
-            <div class="pt-1 flex flex-wrap gap-1.5">
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-emerald-950/90 text-emerald-300 border-emerald-800/80">Food</span>
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-emerald-950/90 text-emerald-300 border border-emerald-800/80">🌱 Halal Certified Biryani & Curries</span>
-            </div>
+      <!-- Timeline Activity Card -->
+      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative group" data-activity-index="6">
+        
+        <!-- Header Row: Time + Category (Left) & Cost (Right) -->
+        <div class="flex flex-wrap items-center justify-between gap-2.5 pb-3 border-b border-white/10">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-gold/15 text-gold border border-gold/30 font-mono font-bold text-xs sm:text-sm tracking-wide">
+              <i data-lucide="clock" class="w-3.5 h-3.5 text-gold"></i>
+              <span>18:30–20:30</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-950/80 text-emerald-300 border border-emerald-800/80 font-mono font-semibold text-xs">
+              <i data-lucide="utensils" class="w-3.5 h-3.5"></i>
+              <span>Halal Dining</span>
+            </span>
           </div>
 
-          <!-- RIGHT: ACTIVITY DETAILS & COST -->
-          <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-            <div class="space-y-2 flex-grow">
-              <div class="flex items-center gap-2">
-                <h3 class="text-lg font-bold text-white tracking-tight font-mincho">
-                  Dinner: Ali's Kitchen Pakistani (Shinsaibashi)
-                </h3>
-                <a href="https://www.google.com/maps/search/?api=1&query=Ali's%20Kitchen%20Osaka" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
-              </div>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Walk 9 min back to Umeda Station ➔ Board Midosuji Line (Platform 1) 3 stops south to Shinsaibashi Station (6 min, ¥240) ➔ Exit 6, walk 3 min (250m) to Ali's Kitchen (award-winning Halal Pakistani biryani, mutton nihari, and naan).</p>
-              <div class="mt-3.5 p-3 rounded-2xl bg-[#05070B] border border-cyan-500/30 space-y-1.5 font-mono text-xs shadow-inner">  <div class="flex flex-wrap items-center justify-between gap-2">    <div class="flex items-center gap-1.5 text-cyan-300 font-bold">      <span class="px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-[10px] uppercase">🚆 Subway (6 min) + Walk (3 min)</span>      <span class="text-white text-xs">🚉 Shinsaibashi Station</span>    </div>    <span class="text-gold text-[10px] font-bold">● Connected Hub</span>  </div>  <div class="text-slate-300 text-[11px] flex items-start gap-1.5 pl-0.5">    <span class="text-gold flex-shrink-0">🚶</span>    <span class="leading-relaxed">Midosuji Line 3 stops to Shinsaibashi ➔ Exit 6 ➔ Walk 3 min (250m)</span>  </div></div>
-            </div>
-
-            <!-- Cost Tag -->
-            <div class="border-t sm:border-t-0 pt-2 sm:pt-0 sm:pl-4 sm:border-l border-white/10 flex sm:flex-col justify-between sm:justify-start items-center sm:items-end flex-shrink-0">
-              <span class="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider sm:mb-1">EST. COST</span>
-              <div class="text-right font-mono font-bold text-white text-sm sm:text-base whitespace-nowrap">  ¥2,000</div><div class="text-right text-[11px] font-mono font-semibold text-gold whitespace-nowrap">  ~RM 60</div>
-            </div>
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/5 border border-white/10 font-mono text-xs font-semibold text-slate-300">
+            <i data-lucide="wallet" class="w-3.5 h-3.5 text-gold"></i>
+            <span class="text-white font-bold">¥2,000 • ~RM 60</span>
           </div>
-
         </div>
+
+        <!-- Title & Google Maps Button -->
+        <div class="flex items-start justify-between gap-3 pt-3.5 pb-2.5">
+          <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight font-mincho group-hover:text-gold transition-colors">
+            Dinner: Ali's Kitchen Pakistani (Shinsaibashi)
+          </h3>
+          <a href="https://www.google.com/maps/search/?api=1&query=Alis%20Kitchen%20Shinsaibashi%20Osaka" target="_blank" rel="noopener noreferrer" class="shrink-0 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-vermilion/20 text-slate-300 hover:text-vermilion border border-white/10 hover:border-vermilion/40 text-xs font-mono transition-colors" title="Open in Google Maps">
+            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-vermilion"></i>
+            <span class="hidden sm:inline">Map</span>
+            <i data-lucide="external-link" class="w-3 h-3 opacity-60"></i>
+          </a>
+        </div>
+
+        <!-- HIGHLIGHT ACTIVITY (Prominent Visual Banner) -->
+        <div class="my-3 p-3 rounded-xl bg-gradient-to-r from-vermilion/15 via-[#0C121D] to-[#05070B] border border-vermilion/30">
+          <div class="flex items-center gap-1.5 text-[10px] font-mono font-bold text-vermilion uppercase tracking-widest mb-2">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-vermilion animate-pulse"></i>
+            <span>HIGHLIGHT ACTIVITY</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="award" class="w-3.5 h-3.5 text-gold"></i>
+          <span>Michelin Bib Gourmand Biryani</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="utensils" class="w-3.5 h-3.5 text-emerald-400"></i>
+          <span>Garlic Naan & Mutton Karahi</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="shield-check" class="w-3.5 h-3.5 text-cyan-400"></i>
+          <span>100% Halal Verified</span>
+        </span>
+          </div>
+        </div>
+
+        <!-- Simplified Action Steps (Concise Bullets with Icons) -->
+        <div class="space-y-2 my-3 text-xs sm:text-sm text-slate-300 font-sans leading-relaxed">
+
+      <div class="flex items-start gap-2.5">
+        <i data-lucide="subway" class="w-4 h-4 text-sky-400 shrink-0 mt-0.5"></i>
+        <span>Take Midosuji Line from Umeda to Shinsaibashi Station (6 min, ¥240) ➔ Exit 1, walk 2 min.</span>
+      </div>
+      <div class="flex items-start gap-2.5">
+        <i data-lucide="utensils" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+        <span>Feast on award-winning Halal Pakistani aromatic biryani, sizzling kebabs, and fresh naan.</span>
+      </div>
+        </div>
+
+        <!-- Connected Route / Transit Pill -->
+
+    <div class="pt-3 border-t border-white/10 flex flex-wrap items-center gap-2 text-xs font-mono text-slate-400">
+      <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-cyan-300 font-medium">
+        <i data-lucide="subway" class="w-3.5 h-3.5 text-cyan-400"></i>
+        <span>Shinsaibashi Station (Exit 1)</span>
+      </span>
+      <span class="text-slate-500">•</span>
+      <span class="text-slate-300 text-[11px]">Midosuji Line 3 stops (6 min) ➔ Walk 2 min (150m)</span>
+    </div>
+
       </div>
 
-      <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
-      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative" data-activity-index="7">
-        <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
-          
-          <!-- LEFT: PROMINENT BIG TIME BLOCK -->
-          <div class="flex-shrink-0 flex md:flex-col items-center md:items-start justify-between md:justify-start gap-2 min-w-[150px] pb-3 md:pb-0 border-b md:border-b-0 md:border-r border-white/10 md:pr-5">
-            <div class="space-y-0.5">
-              <div class="text-[10px] font-mono uppercase font-bold text-slate-500 tracking-wider">SCHEDULED TIME</div>
-              <div class="text-xl sm:text-2xl font-black font-mono text-gold tracking-tight drop-shadow-sm">
-                20:30–21:30
-              </div>
-            </div>
-            <div class="pt-1 flex flex-wrap gap-1.5">
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-slate-900 text-slate-300 border-slate-700">Logistics</span>
-              
-            </div>
+      <!-- Timeline Activity Card -->
+      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative group" data-activity-index="7">
+        
+        <!-- Header Row: Time + Category (Left) & Cost (Right) -->
+        <div class="flex flex-wrap items-center justify-between gap-2.5 pb-3 border-b border-white/10">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-gold/15 text-gold border border-gold/30 font-mono font-bold text-xs sm:text-sm tracking-wide">
+              <i data-lucide="clock" class="w-3.5 h-3.5 text-gold"></i>
+              <span>20:30–21:30</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-purple-950/80 text-purple-300 border border-purple-800/80 font-mono font-semibold text-xs">
+              <i data-lucide="hotel" class="w-3.5 h-3.5"></i>
+              <span>Hotel Logistics</span>
+            </span>
           </div>
 
-          <!-- RIGHT: ACTIVITY DETAILS & COST -->
-          <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-            <div class="space-y-2 flex-grow">
-              <div class="flex items-center gap-2">
-                <h3 class="text-lg font-bold text-white tracking-tight font-mincho">
-                  Return to Plum Hotel Osaka
-                </h3>
-                <a href="https://www.google.com/maps/search/?api=1&query=Plum%20Hotel%20Osaka" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
-              </div>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Board Midosuji Line 1 stop from Shinsaibashi to Daikokucho Station (4 min, ¥190) ➔ Exit 1, walk 3 min back to Plum Hotel Osaka. Rest well for Kyoto tomorrow.</p>
-              <div class="mt-3.5 p-3 rounded-2xl bg-[#05070B] border border-cyan-500/30 space-y-1.5 font-mono text-xs shadow-inner">  <div class="flex flex-wrap items-center justify-between gap-2">    <div class="flex items-center gap-1.5 text-cyan-300 font-bold">      <span class="px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-[10px] uppercase">🚆 Subway (4 min) or Walk (12 min)</span>      <span class="text-white text-xs">🚉 Daikokucho Station</span>    </div>    <span class="text-gold text-[10px] font-bold">● Connected Hub</span>  </div>  <div class="text-slate-300 text-[11px] flex items-start gap-1.5 pl-0.5">    <span class="text-gold flex-shrink-0">🚶</span>    <span class="leading-relaxed">Midosuji Line 1 stop to Daikokucho ➔ Walk 3 min back to hotel</span>  </div></div>
-            </div>
-
-            <!-- Cost Tag -->
-            <div class="border-t sm:border-t-0 pt-2 sm:pt-0 sm:pl-4 sm:border-l border-white/10 flex sm:flex-col justify-between sm:justify-start items-center sm:items-end flex-shrink-0">
-              <span class="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider sm:mb-1">EST. COST</span>
-              <div class="text-right font-mono font-bold text-white text-sm sm:text-base whitespace-nowrap">  ¥190</div><div class="text-right text-[11px] font-mono font-semibold text-gold whitespace-nowrap">  ~RM 6</div>
-            </div>
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/5 border border-white/10 font-mono text-xs font-semibold text-slate-300">
+            <i data-lucide="wallet" class="w-3.5 h-3.5 text-gold"></i>
+            <span class="text-white font-bold">¥190 • ~RM 6</span>
           </div>
-
         </div>
+
+        <!-- Title & Google Maps Button -->
+        <div class="flex items-start justify-between gap-3 pt-3.5 pb-2.5">
+          <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight font-mincho group-hover:text-gold transition-colors">
+            Return to Plum Hotel Osaka
+          </h3>
+          <a href="https://www.google.com/maps/search/?api=1&query=Plum%20Hotel%20Osaka" target="_blank" rel="noopener noreferrer" class="shrink-0 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-vermilion/20 text-slate-300 hover:text-vermilion border border-white/10 hover:border-vermilion/40 text-xs font-mono transition-colors" title="Open in Google Maps">
+            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-vermilion"></i>
+            <span class="hidden sm:inline">Map</span>
+            <i data-lucide="external-link" class="w-3 h-3 opacity-60"></i>
+          </a>
+        </div>
+
+        <!-- HIGHLIGHT ACTIVITY (Prominent Visual Banner) -->
+        <div class="my-3 p-3 rounded-xl bg-gradient-to-r from-vermilion/15 via-[#0C121D] to-[#05070B] border border-vermilion/30">
+          <div class="flex items-center gap-1.5 text-[10px] font-mono font-bold text-vermilion uppercase tracking-widest mb-2">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-vermilion animate-pulse"></i>
+            <span>HIGHLIGHT ACTIVITY</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="subway" class="w-3.5 h-3.5 text-purple-400"></i>
+          <span>Subway 1 Stop to Base</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="luggage" class="w-3.5 h-3.5 text-gold"></i>
+          <span>Pack for Kyoto Move Tomorrow</span>
+        </span>
+          </div>
+        </div>
+
+        <!-- Simplified Action Steps (Concise Bullets with Icons) -->
+        <div class="space-y-2 my-3 text-xs sm:text-sm text-slate-300 font-sans leading-relaxed">
+
+      <div class="flex items-start gap-2.5">
+        <i data-lucide="subway" class="w-4 h-4 text-sky-400 shrink-0 mt-0.5"></i>
+        <span>Hop on Midosuji Line from Namba to Daikokucho Station Exit 1 (2 min, ¥190) ➔ Walk 3 min to hotel.</span>
+      </div>
+      <div class="flex items-start gap-2.5">
+        <i data-lucide="luggage" class="w-4 h-4 text-gold shrink-0 mt-0.5"></i>
+        <span>Pack suitcases and prepare for hotel checkout and transit to Kyoto in the morning.</span>
+      </div>
+        </div>
+
+        <!-- Connected Route / Transit Pill -->
+
+    <div class="pt-3 border-t border-white/10 flex flex-wrap items-center gap-2 text-xs font-mono text-slate-400">
+      <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-cyan-300 font-medium">
+        <i data-lucide="hotel" class="w-3.5 h-3.5 text-cyan-400"></i>
+        <span>Plum Hotel Osaka Base</span>
+      </span>
+      <span class="text-slate-500">•</span>
+      <span class="text-slate-300 text-[11px]">Subway to Daikokucho Exit 1 ➔ Walk 3 min (250m) to Plum Hotel</span>
+    </div>
+
       </div>
       </div>
     </div>

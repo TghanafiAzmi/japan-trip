@@ -228,332 +228,652 @@
       </div>
 
       <div class="space-y-4">
-      <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
-      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative" data-activity-index="0">
-        <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
-          
-          <!-- LEFT: PROMINENT BIG TIME BLOCK -->
-          <div class="flex-shrink-0 flex md:flex-col items-center md:items-start justify-between md:justify-start gap-2 min-w-[150px] pb-3 md:pb-0 border-b md:border-b-0 md:border-r border-white/10 md:pr-5">
-            <div class="space-y-0.5">
-              <div class="text-[10px] font-mono uppercase font-bold text-slate-500 tracking-wider">SCHEDULED TIME</div>
-              <div class="text-xl sm:text-2xl font-black font-mono text-gold tracking-tight drop-shadow-sm">
-                09:00–10:00
-              </div>
-            </div>
-            <div class="pt-1 flex flex-wrap gap-1.5">
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-sky-950/90 text-sky-300 border-sky-800/80">Transit</span>
-              
-            </div>
+      <!-- Timeline Activity Card -->
+      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative group" data-activity-index="0">
+        
+        <!-- Header Row: Time + Category (Left) & Cost (Right) -->
+        <div class="flex flex-wrap items-center justify-between gap-2.5 pb-3 border-b border-white/10">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-gold/15 text-gold border border-gold/30 font-mono font-bold text-xs sm:text-sm tracking-wide">
+              <i data-lucide="clock" class="w-3.5 h-3.5 text-gold"></i>
+              <span>09:00–10:00</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-sky-950/80 text-sky-300 border border-sky-800/80 font-mono font-semibold text-xs">
+              <i data-lucide="subway" class="w-3.5 h-3.5"></i>
+              <span>Subway Transit</span>
+            </span>
           </div>
 
-          <!-- RIGHT: ACTIVITY DETAILS & COST -->
-          <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-            <div class="space-y-2 flex-grow">
-              <div class="flex items-center gap-2">
-                <h3 class="text-lg font-bold text-white tracking-tight font-mincho">
-                  Hotel Tavinos Asakusa ➔ Shinjuku Kabukicho
-                </h3>
-                <a href="https://www.google.com/maps/search/?api=1&query=Hotel%20Gracery%20Shinjuku%20Godzilla" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
-              </div>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Walk 6 min to Asakusa Station ➔ Board Toei Asakusa Line 1 stop to Kuramae, transfer to Toei Oedo Line to Shinjuku-nishiguchi Station (22 min, ¥280) ➔ Take Exit D3, walk 5 min (400m) east through vibrant Kabukicho pedestrian arcade to Hotel Gracery Shinjuku.</p>
-              <div class="mt-3.5 p-3 rounded-2xl bg-[#05070B] border border-cyan-500/30 space-y-1.5 font-mono text-xs shadow-inner">  <div class="flex flex-wrap items-center justify-between gap-2">    <div class="flex items-center gap-1.5 text-cyan-300 font-bold">      <span class="px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-[10px] uppercase">🚆 Walk (6 min) + Subway (22 min)</span>      <span class="text-white text-xs">🚉 Shinjuku-nishiguchi / JR Shinjuku</span>    </div>    <span class="text-gold text-[10px] font-bold">● Connected Hub</span>  </div>  <div class="text-slate-300 text-[11px] flex items-start gap-1.5 pl-0.5">    <span class="text-gold flex-shrink-0">🚶</span>    <span class="leading-relaxed">Oedo Line to Shinjuku-nishiguchi Exit D3 ➔ Walk 5 min (400m) to Gracery</span>  </div></div>
-            </div>
-
-            <!-- Cost Tag -->
-            <div class="border-t sm:border-t-0 pt-2 sm:pt-0 sm:pl-4 sm:border-l border-white/10 flex sm:flex-col justify-between sm:justify-start items-center sm:items-end flex-shrink-0">
-              <span class="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider sm:mb-1">EST. COST</span>
-              <div class="text-right font-mono font-bold text-white text-sm sm:text-base whitespace-nowrap">  ¥280</div><div class="text-right text-[11px] font-mono font-semibold text-gold whitespace-nowrap">  ~RM 8</div>
-            </div>
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/5 border border-white/10 font-mono text-xs font-semibold text-slate-300">
+            <i data-lucide="wallet" class="w-3.5 h-3.5 text-gold"></i>
+            <span class="text-white font-bold">¥280 • ~RM 8</span>
           </div>
-
         </div>
+
+        <!-- Title & Google Maps Button -->
+        <div class="flex items-start justify-between gap-3 pt-3.5 pb-2.5">
+          <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight font-mincho group-hover:text-gold transition-colors">
+            Hotel Tavinos Asakusa ➔ Shinjuku Kabukicho
+          </h3>
+          <a href="https://www.google.com/maps/search/?api=1&query=Kabukicho%20Shinjuku%20Tokyo" target="_blank" rel="noopener noreferrer" class="shrink-0 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-vermilion/20 text-slate-300 hover:text-vermilion border border-white/10 hover:border-vermilion/40 text-xs font-mono transition-colors" title="Open in Google Maps">
+            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-vermilion"></i>
+            <span class="hidden sm:inline">Map</span>
+            <i data-lucide="external-link" class="w-3 h-3 opacity-60"></i>
+          </a>
+        </div>
+
+        <!-- HIGHLIGHT ACTIVITY (Prominent Visual Banner) -->
+        <div class="my-3 p-3 rounded-xl bg-gradient-to-r from-vermilion/15 via-[#0C121D] to-[#05070B] border border-vermilion/30">
+          <div class="flex items-center gap-1.5 text-[10px] font-mono font-bold text-vermilion uppercase tracking-widest mb-2">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-vermilion animate-pulse"></i>
+            <span>HIGHLIGHT ACTIVITY</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="subway" class="w-3.5 h-3.5 text-sky-400"></i>
+          <span>Oedo Line to Shinjuku-Nishiguchi</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-gold"></i>
+          <span>Kabukicho Entertainment Gateway</span>
+        </span>
+          </div>
+        </div>
+
+        <!-- Simplified Action Steps (Concise Bullets with Icons) -->
+        <div class="space-y-2 my-3 text-xs sm:text-sm text-slate-300 font-sans leading-relaxed">
+
+      <div class="flex items-start gap-2.5">
+        <i data-lucide="subway" class="w-4 h-4 text-sky-400 shrink-0 mt-0.5"></i>
+        <span>Asakusa Line to Kuramae, transfer to Oedo Line to Shinjuku-nishiguchi Station (22 min, ¥280).</span>
+      </div>
+      <div class="flex items-start gap-2.5">
+        <i data-lucide="footprints" class="w-4 h-4 text-amber-400 shrink-0 mt-0.5"></i>
+        <span>Exit D3; stroll 5 min through Kabukicho arcade directly to Hotel Gracery.</span>
+      </div>
+        </div>
+
+        <!-- Connected Route / Transit Pill -->
+
+    <div class="pt-3 border-t border-white/10 flex flex-wrap items-center gap-2 text-xs font-mono text-slate-400">
+      <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-cyan-300 font-medium">
+        <i data-lucide="subway" class="w-3.5 h-3.5 text-cyan-400"></i>
+        <span>Shinjuku-nishiguchi (Exit D3)</span>
+      </span>
+      <span class="text-slate-500">•</span>
+      <span class="text-slate-300 text-[11px]">Subway 22 min ➔ Walk 5 min (400m) to Kabukicho</span>
+    </div>
+
       </div>
 
-      <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
-      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative" data-activity-index="1">
-        <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
-          
-          <!-- LEFT: PROMINENT BIG TIME BLOCK -->
-          <div class="flex-shrink-0 flex md:flex-col items-center md:items-start justify-between md:justify-start gap-2 min-w-[150px] pb-3 md:pb-0 border-b md:border-b-0 md:border-r border-white/10 md:pr-5">
-            <div class="space-y-0.5">
-              <div class="text-[10px] font-mono uppercase font-bold text-slate-500 tracking-wider">SCHEDULED TIME</div>
-              <div class="text-xl sm:text-2xl font-black font-mono text-gold tracking-tight drop-shadow-sm">
-                10:00–11:00
-              </div>
-            </div>
-            <div class="pt-1 flex flex-wrap gap-1.5">
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-rose-950/90 text-rose-300 border-rose-800/80">Sightseeing</span>
-              
-            </div>
+      <!-- Timeline Activity Card -->
+      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative group" data-activity-index="1">
+        
+        <!-- Header Row: Time + Category (Left) & Cost (Right) -->
+        <div class="flex flex-wrap items-center justify-between gap-2.5 pb-3 border-b border-white/10">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-gold/15 text-gold border border-gold/30 font-mono font-bold text-xs sm:text-sm tracking-wide">
+              <i data-lucide="clock" class="w-3.5 h-3.5 text-gold"></i>
+              <span>10:00–11:00</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-rose-950/80 text-rose-300 border border-rose-800/80 font-mono font-semibold text-xs">
+              <i data-lucide="camera" class="w-3.5 h-3.5"></i>
+              <span>Sightseeing</span>
+            </span>
           </div>
 
-          <!-- RIGHT: ACTIVITY DETAILS & COST -->
-          <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-            <div class="space-y-2 flex-grow">
-              <div class="flex items-center gap-2">
-                <h3 class="text-lg font-bold text-white tracking-tight font-mincho">
-                  Hotel Gracery Shinjuku (Godzilla Head Photo Stop)
-                </h3>
-                <a href="https://www.google.com/maps/search/?api=1&query=Godzilla%20Head%20Hotel%20Gracery" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
-              </div>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Take elevator to 8F lobby terrace of Hotel Gracery Shinjuku. Stand face-to-face with the life-sized, roaring Godzilla Head roaring over the Shinjuku skyline (roars with smoke and red light effects on the hour!).</p>
-              <div class="mt-3.5 p-3 rounded-2xl bg-[#05070B] border border-cyan-500/30 space-y-1.5 font-mono text-xs shadow-inner">  <div class="flex flex-wrap items-center justify-between gap-2">    <div class="flex items-center gap-1.5 text-cyan-300 font-bold">      <span class="px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-[10px] uppercase">🚆 Terrace Walk (8F)</span>      <span class="text-white text-xs">🚉 JR Shinjuku Station</span>    </div>    <span class="text-gold text-[10px] font-bold">● Connected Hub</span>  </div>  <div class="text-slate-300 text-[11px] flex items-start gap-1.5 pl-0.5">    <span class="text-gold flex-shrink-0">🚶</span>    <span class="leading-relaxed">Take elevator to 8F lobby terrace (5 min walk from Shinjuku East Exit)</span>  </div></div>
-            </div>
-
-            <!-- Cost Tag -->
-            <div class="border-t sm:border-t-0 pt-2 sm:pt-0 sm:pl-4 sm:border-l border-white/10 flex sm:flex-col justify-between sm:justify-start items-center sm:items-end flex-shrink-0">
-              <span class="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider sm:mb-1">EST. COST</span>
-              <div class="text-right text-xs font-semibold text-slate-400 font-mono flex-shrink-0">Free / Included</div>
-            </div>
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/5 border border-white/10 font-mono text-xs font-semibold text-slate-300">
+            <i data-lucide="wallet" class="w-3.5 h-3.5 text-gold"></i>
+            <span class="text-white font-bold">Free / Included</span>
           </div>
-
         </div>
+
+        <!-- Title & Google Maps Button -->
+        <div class="flex items-start justify-between gap-3 pt-3.5 pb-2.5">
+          <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight font-mincho group-hover:text-gold transition-colors">
+            Hotel Gracery Shinjuku (Godzilla Head Photo Stop)
+          </h3>
+          <a href="https://www.google.com/maps/search/?api=1&query=Godzilla%20Head%20Hotel%20Gracery%20Shinjuku" target="_blank" rel="noopener noreferrer" class="shrink-0 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-vermilion/20 text-slate-300 hover:text-vermilion border border-white/10 hover:border-vermilion/40 text-xs font-mono transition-colors" title="Open in Google Maps">
+            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-vermilion"></i>
+            <span class="hidden sm:inline">Map</span>
+            <i data-lucide="external-link" class="w-3 h-3 opacity-60"></i>
+          </a>
+        </div>
+
+        <!-- HIGHLIGHT ACTIVITY (Prominent Visual Banner) -->
+        <div class="my-3 p-3 rounded-xl bg-gradient-to-r from-vermilion/15 via-[#0C121D] to-[#05070B] border border-vermilion/30">
+          <div class="flex items-center gap-1.5 text-[10px] font-mono font-bold text-vermilion uppercase tracking-widest mb-2">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-vermilion animate-pulse"></i>
+            <span>HIGHLIGHT ACTIVITY</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="camera" class="w-3.5 h-3.5 text-rose-400"></i>
+          <span>Life-Sized Godzilla Head Terrace (8F)</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="flame" class="w-3.5 h-3.5 text-gold"></i>
+          <span>Smoke & Roar Sound Effects</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="landmark" class="w-3.5 h-3.5 text-cyan-400"></i>
+          <span>Shinjuku Skyscraper Backdrop</span>
+        </span>
+          </div>
+        </div>
+
+        <!-- Simplified Action Steps (Concise Bullets with Icons) -->
+        <div class="space-y-2 my-3 text-xs sm:text-sm text-slate-300 font-sans leading-relaxed">
+
+      <div class="flex items-start gap-2.5">
+        <i data-lucide="navigation" class="w-4 h-4 text-cyan-400 shrink-0 mt-0.5"></i>
+        <span>Take elevator up to 8F outdoor lobby terrace of Hotel Gracery Shinjuku.</span>
+      </div>
+      <div class="flex items-start gap-2.5">
+        <i data-lucide="camera" class="w-4 h-4 text-rose-400 shrink-0 mt-0.5"></i>
+        <span>Stand face-to-face with the iconic giant Godzilla head peering over the skyline.</span>
+      </div>
+        </div>
+
+        <!-- Connected Route / Transit Pill -->
+
+    <div class="pt-3 border-t border-white/10 flex flex-wrap items-center gap-2 text-xs font-mono text-slate-400">
+      <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-cyan-300 font-medium">
+        <i data-lucide="landmark" class="w-3.5 h-3.5 text-cyan-400"></i>
+        <span>Hotel Gracery 8F Terrace</span>
+      </span>
+      <span class="text-slate-500">•</span>
+      <span class="text-slate-300 text-[11px]">Elevator to 8F hotel lobby & terrace</span>
+    </div>
+
       </div>
 
-      <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
-      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative" data-activity-index="2">
-        <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
-          
-          <!-- LEFT: PROMINENT BIG TIME BLOCK -->
-          <div class="flex-shrink-0 flex md:flex-col items-center md:items-start justify-between md:justify-start gap-2 min-w-[150px] pb-3 md:pb-0 border-b md:border-b-0 md:border-r border-white/10 md:pr-5">
-            <div class="space-y-0.5">
-              <div class="text-[10px] font-mono uppercase font-bold text-slate-500 tracking-wider">SCHEDULED TIME</div>
-              <div class="text-xl sm:text-2xl font-black font-mono text-gold tracking-tight drop-shadow-sm">
-                11:15–11:45
-              </div>
-            </div>
-            <div class="pt-1 flex flex-wrap gap-1.5">
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-sky-950/90 text-sky-300 border-sky-800/80">Transit</span>
-              
-            </div>
+      <!-- Timeline Activity Card -->
+      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative group" data-activity-index="2">
+        
+        <!-- Header Row: Time + Category (Left) & Cost (Right) -->
+        <div class="flex flex-wrap items-center justify-between gap-2.5 pb-3 border-b border-white/10">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-gold/15 text-gold border border-gold/30 font-mono font-bold text-xs sm:text-sm tracking-wide">
+              <i data-lucide="clock" class="w-3.5 h-3.5 text-gold"></i>
+              <span>11:15–11:45</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-sky-950/80 text-sky-300 border border-sky-800/80 font-mono font-semibold text-xs">
+              <i data-lucide="train" class="w-3.5 h-3.5"></i>
+              <span>Train Transit</span>
+            </span>
           </div>
 
-          <!-- RIGHT: ACTIVITY DETAILS & COST -->
-          <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-            <div class="space-y-2 flex-grow">
-              <div class="flex items-center gap-2">
-                <h3 class="text-lg font-bold text-white tracking-tight font-mincho">
-                  Shinjuku ➔ Akihabara (JR Chuo-Sobu Line)
-                </h3>
-                <a href="https://www.google.com/maps/search/?api=1&query=Akihabara%20Station%20Tokyo" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
-              </div>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Walk 5 min south to JR Shinjuku Station ➔ Enter Central Ticket Gate, go to Platform 13/16 ➔ Board JR Chuo-Sobu Line (Yellow Line) direct to JR Akihabara Station (14 min, 7 stops, ¥180 / ~RM 5 pp). Exit via Electric Town Exit (Denki-gai Gate)!</p>
-              <div class="mt-3.5 p-3 rounded-2xl bg-[#05070B] border border-cyan-500/30 space-y-1.5 font-mono text-xs shadow-inner">  <div class="flex flex-wrap items-center justify-between gap-2">    <div class="flex items-center gap-1.5 text-cyan-300 font-bold">      <span class="px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-[10px] uppercase">🚆 Train (JR Chuo-Sobu Line)</span>      <span class="text-white text-xs">🚉 JR Akihabara Station</span>    </div>    <span class="text-gold text-[10px] font-bold">● Connected Hub</span>  </div>  <div class="text-slate-300 text-[11px] flex items-start gap-1.5 pl-0.5">    <span class="text-gold flex-shrink-0">🚶</span>    <span class="leading-relaxed">Platform 13/16 at Shinjuku ➔ 14 min direct to Akihabara Electric Town Exit</span>  </div></div>
-            </div>
-
-            <!-- Cost Tag -->
-            <div class="border-t sm:border-t-0 pt-2 sm:pt-0 sm:pl-4 sm:border-l border-white/10 flex sm:flex-col justify-between sm:justify-start items-center sm:items-end flex-shrink-0">
-              <span class="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider sm:mb-1">EST. COST</span>
-              <div class="text-right font-mono font-bold text-white text-sm sm:text-base whitespace-nowrap">  ¥180</div><div class="text-right text-[11px] font-mono font-semibold text-gold whitespace-nowrap">  ~RM 5</div>
-            </div>
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/5 border border-white/10 font-mono text-xs font-semibold text-slate-300">
+            <i data-lucide="wallet" class="w-3.5 h-3.5 text-gold"></i>
+            <span class="text-white font-bold">¥180 • ~RM 5</span>
           </div>
-
         </div>
+
+        <!-- Title & Google Maps Button -->
+        <div class="flex items-start justify-between gap-3 pt-3.5 pb-2.5">
+          <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight font-mincho group-hover:text-gold transition-colors">
+            Shinjuku ➔ Akihabara (JR Chuo-Sobu Line)
+          </h3>
+          <a href="https://www.google.com/maps/search/?api=1&query=JR%20Akihabara%20Station" target="_blank" rel="noopener noreferrer" class="shrink-0 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-vermilion/20 text-slate-300 hover:text-vermilion border border-white/10 hover:border-vermilion/40 text-xs font-mono transition-colors" title="Open in Google Maps">
+            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-vermilion"></i>
+            <span class="hidden sm:inline">Map</span>
+            <i data-lucide="external-link" class="w-3 h-3 opacity-60"></i>
+          </a>
+        </div>
+
+        <!-- HIGHLIGHT ACTIVITY (Prominent Visual Banner) -->
+        <div class="my-3 p-3 rounded-xl bg-gradient-to-r from-vermilion/15 via-[#0C121D] to-[#05070B] border border-vermilion/30">
+          <div class="flex items-center gap-1.5 text-[10px] font-mono font-bold text-vermilion uppercase tracking-widest mb-2">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-vermilion animate-pulse"></i>
+            <span>HIGHLIGHT ACTIVITY</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="train" class="w-3.5 h-3.5 text-sky-400"></i>
+          <span>JR Chuo-Sobu Line Direct</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="zap" class="w-3.5 h-3.5 text-gold"></i>
+          <span>Electric Town Gate Exit (Denki-gai)</span>
+        </span>
+          </div>
+        </div>
+
+        <!-- Simplified Action Steps (Concise Bullets with Icons) -->
+        <div class="space-y-2 my-3 text-xs sm:text-sm text-slate-300 font-sans leading-relaxed">
+
+      <div class="flex items-start gap-2.5">
+        <i data-lucide="train" class="w-4 h-4 text-sky-400 shrink-0 mt-0.5"></i>
+        <span>Board JR Chuo-Sobu Yellow Line at Shinjuku Platform 13/16 direct to Akihabara (14 min, ¥180).</span>
+      </div>
+      <div class="flex items-start gap-2.5">
+        <i data-lucide="navigation" class="w-4 h-4 text-cyan-400 shrink-0 mt-0.5"></i>
+        <span>Exit via Electric Town Gate (Denki-gai) right into the anime and tech hub plaza.</span>
+      </div>
+        </div>
+
+        <!-- Connected Route / Transit Pill -->
+
+    <div class="pt-3 border-t border-white/10 flex flex-wrap items-center gap-2 text-xs font-mono text-slate-400">
+      <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-cyan-300 font-medium">
+        <i data-lucide="train" class="w-3.5 h-3.5 text-cyan-400"></i>
+        <span>JR Akihabara Station</span>
+      </span>
+      <span class="text-slate-500">•</span>
+      <span class="text-slate-300 text-[11px]">JR train 14 min direct ➔ Electric Town Exit</span>
+    </div>
+
       </div>
 
-      <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
-      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative" data-activity-index="3">
-        <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
-          
-          <!-- LEFT: PROMINENT BIG TIME BLOCK -->
-          <div class="flex-shrink-0 flex md:flex-col items-center md:items-start justify-between md:justify-start gap-2 min-w-[150px] pb-3 md:pb-0 border-b md:border-b-0 md:border-r border-white/10 md:pr-5">
-            <div class="space-y-0.5">
-              <div class="text-[10px] font-mono uppercase font-bold text-slate-500 tracking-wider">SCHEDULED TIME</div>
-              <div class="text-xl sm:text-2xl font-black font-mono text-gold tracking-tight drop-shadow-sm">
-                12:00–15:00
-              </div>
-            </div>
-            <div class="pt-1 flex flex-wrap gap-1.5">
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-amber-950/90 text-amber-300 border-amber-800/80">Shopping</span>
-              
-            </div>
+      <!-- Timeline Activity Card -->
+      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative group" data-activity-index="3">
+        
+        <!-- Header Row: Time + Category (Left) & Cost (Right) -->
+        <div class="flex flex-wrap items-center justify-between gap-2.5 pb-3 border-b border-white/10">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-gold/15 text-gold border border-gold/30 font-mono font-bold text-xs sm:text-sm tracking-wide">
+              <i data-lucide="clock" class="w-3.5 h-3.5 text-gold"></i>
+              <span>12:00–15:00</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-amber-950/80 text-amber-300 border border-amber-800/80 font-mono font-semibold text-xs">
+              <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
+              <span>Shopping</span>
+            </span>
           </div>
 
-          <!-- RIGHT: ACTIVITY DETAILS & COST -->
-          <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-            <div class="space-y-2 flex-grow">
-              <div class="flex items-center gap-2">
-                <h3 class="text-lg font-bold text-white tracking-tight font-mincho">
-                  Akihabara Electric Town & Yodobashi-Akiba
-                </h3>
-                <a href="https://www.google.com/maps/search/?api=1&query=Yodobashi%20Akiba%20Tokyo" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
-              </div>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Step directly out from Electric Town Exit into Radio Kaikan, Mandarake, and Animate anime/gaming towers. Walk 1 min across the plaza into Yodobashi Camera Multimedia Akiba (9 massive floors of electronics, camera lenses, noise-canceling headphones, handheld consoles, and duty-free tech).</p>
-              <div class="mt-3.5 p-3 rounded-2xl bg-[#05070B] border border-cyan-500/30 space-y-1.5 font-mono text-xs shadow-inner">  <div class="flex flex-wrap items-center justify-between gap-2">    <div class="flex items-center gap-1.5 text-cyan-300 font-bold">      <span class="px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-[10px] uppercase">🚆 Walk (1 min from Electric Town Exit!)</span>      <span class="text-white text-xs">🚉 JR Akihabara Station</span>    </div>    <span class="text-gold text-[10px] font-bold">● Connected Hub</span>  </div>  <div class="text-slate-300 text-[11px] flex items-start gap-1.5 pl-0.5">    <span class="text-gold flex-shrink-0">🚶</span>    <span class="leading-relaxed">Step directly out from Electric Town Exit into Yodobashi & arcades (1 min)</span>  </div></div>
-            </div>
-
-            <!-- Cost Tag -->
-            <div class="border-t sm:border-t-0 pt-2 sm:pt-0 sm:pl-4 sm:border-l border-white/10 flex sm:flex-col justify-between sm:justify-start items-center sm:items-end flex-shrink-0">
-              <span class="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider sm:mb-1">EST. COST</span>
-              <div class="text-right text-xs font-semibold text-slate-400 font-mono flex-shrink-0">Free / Included</div>
-            </div>
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/5 border border-white/10 font-mono text-xs font-semibold text-slate-300">
+            <i data-lucide="wallet" class="w-3.5 h-3.5 text-gold"></i>
+            <span class="text-white font-bold">Free / Included</span>
           </div>
-
         </div>
+
+        <!-- Title & Google Maps Button -->
+        <div class="flex items-start justify-between gap-3 pt-3.5 pb-2.5">
+          <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight font-mincho group-hover:text-gold transition-colors">
+            Akihabara Electric Town & Yodobashi-Akiba
+          </h3>
+          <a href="https://www.google.com/maps/search/?api=1&query=Yodobashi-Akiba%20Akihabara%20Tokyo" target="_blank" rel="noopener noreferrer" class="shrink-0 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-vermilion/20 text-slate-300 hover:text-vermilion border border-white/10 hover:border-vermilion/40 text-xs font-mono transition-colors" title="Open in Google Maps">
+            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-vermilion"></i>
+            <span class="hidden sm:inline">Map</span>
+            <i data-lucide="external-link" class="w-3 h-3 opacity-60"></i>
+          </a>
+        </div>
+
+        <!-- HIGHLIGHT ACTIVITY (Prominent Visual Banner) -->
+        <div class="my-3 p-3 rounded-xl bg-gradient-to-r from-vermilion/15 via-[#0C121D] to-[#05070B] border border-vermilion/30">
+          <div class="flex items-center gap-1.5 text-[10px] font-mono font-bold text-vermilion uppercase tracking-widest mb-2">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-vermilion animate-pulse"></i>
+            <span>HIGHLIGHT ACTIVITY</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="gamepad-2" class="w-3.5 h-3.5 text-purple-400"></i>
+          <span>Radio Kaikan & Mandarake Towers</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="cpu" class="w-3.5 h-3.5 text-cyan-400"></i>
+          <span>Yodobashi-Akiba (9 Tech Floors)</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-gold"></i>
+          <span>Duty-Free Electronics & Gachapon</span>
+        </span>
+          </div>
+        </div>
+
+        <!-- Simplified Action Steps (Concise Bullets with Icons) -->
+        <div class="space-y-2 my-3 text-xs sm:text-sm text-slate-300 font-sans leading-relaxed">
+
+      <div class="flex items-start gap-2.5">
+        <i data-lucide="gamepad-2" class="w-4 h-4 text-purple-400 shrink-0 mt-0.5"></i>
+        <span>Explore multi-level anime figure shops, retro games, and gachapon alleys at Radio Kaikan.</span>
+      </div>
+      <div class="flex items-start gap-2.5">
+        <i data-lucide="shopping-bag" class="w-4 h-4 text-gold shrink-0 mt-0.5"></i>
+        <span>Browse Yodobashi Camera Multimedia Akiba across 9 massive floors of electronics and gadgets.</span>
+      </div>
+        </div>
+
+        <!-- Connected Route / Transit Pill -->
+
+    <div class="pt-3 border-t border-white/10 flex flex-wrap items-center gap-2 text-xs font-mono text-slate-400">
+      <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-cyan-300 font-medium">
+        <i data-lucide="shopping-bag" class="w-3.5 h-3.5 text-cyan-400"></i>
+        <span>Akihabara Electric Town</span>
+      </span>
+      <span class="text-slate-500">•</span>
+      <span class="text-slate-300 text-[11px]">Direct outside Electric Town Exit</span>
+    </div>
+
       </div>
 
-      <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
-      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative" data-activity-index="4">
-        <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
-          
-          <!-- LEFT: PROMINENT BIG TIME BLOCK -->
-          <div class="flex-shrink-0 flex md:flex-col items-center md:items-start justify-between md:justify-start gap-2 min-w-[150px] pb-3 md:pb-0 border-b md:border-b-0 md:border-r border-white/10 md:pr-5">
-            <div class="space-y-0.5">
-              <div class="text-[10px] font-mono uppercase font-bold text-slate-500 tracking-wider">SCHEDULED TIME</div>
-              <div class="text-xl sm:text-2xl font-black font-mono text-gold tracking-tight drop-shadow-sm">
-                15:15–16:45
-              </div>
-            </div>
-            <div class="pt-1 flex flex-wrap gap-1.5">
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-amber-950/90 text-amber-300 border-amber-800/80">Shopping</span>
-              
-            </div>
+      <!-- Timeline Activity Card -->
+      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative group" data-activity-index="4">
+        
+        <!-- Header Row: Time + Category (Left) & Cost (Right) -->
+        <div class="flex flex-wrap items-center justify-between gap-2.5 pb-3 border-b border-white/10">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-gold/15 text-gold border border-gold/30 font-mono font-bold text-xs sm:text-sm tracking-wide">
+              <i data-lucide="clock" class="w-3.5 h-3.5 text-gold"></i>
+              <span>15:15–16:45</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-amber-950/80 text-amber-300 border border-amber-800/80 font-mono font-semibold text-xs">
+              <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
+              <span>Shopping</span>
+            </span>
           </div>
 
-          <!-- RIGHT: ACTIVITY DETAILS & COST -->
-          <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-            <div class="space-y-2 flex-grow">
-              <div class="flex items-center gap-2">
-                <h3 class="text-lg font-bold text-white tracking-tight font-mincho">
-                  Don Quijote Akihabara (Souvenirs & Tax-Free)
-                </h3>
-                <a href="https://www.google.com/maps/search/?api=1&query=Don%20Quijote%20Akihabara" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
-              </div>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Walk 4 min (300m) north along main Chuo-dori avenue to Don Quijote Akihabara (5 floors of discount Japanese snacks, matcha KitKats, cosmetics, skincare, novelty goods, and duty-free checkout on top floor).</p>
-              <div class="mt-3.5 p-3 rounded-2xl bg-[#05070B] border border-cyan-500/30 space-y-1.5 font-mono text-xs shadow-inner">  <div class="flex flex-wrap items-center justify-between gap-2">    <div class="flex items-center gap-1.5 text-cyan-300 font-bold">      <span class="px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-[10px] uppercase">🚆 Walk (4 min)</span>      <span class="text-white text-xs">🚉 JR Akihabara Station</span>    </div>    <span class="text-gold text-[10px] font-bold">● Connected Hub</span>  </div>  <div class="text-slate-300 text-[11px] flex items-start gap-1.5 pl-0.5">    <span class="text-gold flex-shrink-0">🚶</span>    <span class="leading-relaxed">Walk 4 min (300m) north along Chuo-dori avenue</span>  </div></div>
-            </div>
-
-            <!-- Cost Tag -->
-            <div class="border-t sm:border-t-0 pt-2 sm:pt-0 sm:pl-4 sm:border-l border-white/10 flex sm:flex-col justify-between sm:justify-start items-center sm:items-end flex-shrink-0">
-              <span class="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider sm:mb-1">EST. COST</span>
-              <div class="text-right text-xs font-semibold text-slate-400 font-mono flex-shrink-0">Free / Included</div>
-            </div>
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/5 border border-white/10 font-mono text-xs font-semibold text-slate-300">
+            <i data-lucide="wallet" class="w-3.5 h-3.5 text-gold"></i>
+            <span class="text-white font-bold">Free / Included</span>
           </div>
-
         </div>
+
+        <!-- Title & Google Maps Button -->
+        <div class="flex items-start justify-between gap-3 pt-3.5 pb-2.5">
+          <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight font-mincho group-hover:text-gold transition-colors">
+            Don Quijote Akihabara (Souvenirs & Tax-Free)
+          </h3>
+          <a href="https://www.google.com/maps/search/?api=1&query=Don%20Quijote%20Akihabara%20Tokyo" target="_blank" rel="noopener noreferrer" class="shrink-0 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-vermilion/20 text-slate-300 hover:text-vermilion border border-white/10 hover:border-vermilion/40 text-xs font-mono transition-colors" title="Open in Google Maps">
+            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-vermilion"></i>
+            <span class="hidden sm:inline">Map</span>
+            <i data-lucide="external-link" class="w-3 h-3 opacity-60"></i>
+          </a>
+        </div>
+
+        <!-- HIGHLIGHT ACTIVITY (Prominent Visual Banner) -->
+        <div class="my-3 p-3 rounded-xl bg-gradient-to-r from-vermilion/15 via-[#0C121D] to-[#05070B] border border-vermilion/30">
+          <div class="flex items-center gap-1.5 text-[10px] font-mono font-bold text-vermilion uppercase tracking-widest mb-2">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-vermilion animate-pulse"></i>
+            <span>HIGHLIGHT ACTIVITY</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="shopping-bag" class="w-3.5 h-3.5 text-gold"></i>
+          <span>Tax-Free Souvenir Shopping</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-emerald-400"></i>
+          <span>Matcha KitKats & Japanese Snacks</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="badge-percent" class="w-3.5 h-3.5 text-cyan-400"></i>
+          <span>Duty-Free Passport Checkout (5F)</span>
+        </span>
+          </div>
+        </div>
+
+        <!-- Simplified Action Steps (Concise Bullets with Icons) -->
+        <div class="space-y-2 my-3 text-xs sm:text-sm text-slate-300 font-sans leading-relaxed">
+
+      <div class="flex items-start gap-2.5">
+        <i data-lucide="footprints" class="w-4 h-4 text-amber-400 shrink-0 mt-0.5"></i>
+        <span>Walk 4 min north along Chuo-dori avenue into Don Quijote Akihabara.</span>
+      </div>
+      <div class="flex items-start gap-2.5">
+        <i data-lucide="shopping-bag" class="w-4 h-4 text-gold shrink-0 mt-0.5"></i>
+        <span>5 floors of souvenirs, matcha chocolates, skincare, and novelty gifts with tax-free checkout.</span>
+      </div>
+        </div>
+
+        <!-- Connected Route / Transit Pill -->
+
+    <div class="pt-3 border-t border-white/10 flex flex-wrap items-center gap-2 text-xs font-mono text-slate-400">
+      <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-cyan-300 font-medium">
+        <i data-lucide="shopping-bag" class="w-3.5 h-3.5 text-cyan-400"></i>
+        <span>Don Quijote Akihabara</span>
+      </span>
+      <span class="text-slate-500">•</span>
+      <span class="text-slate-300 text-[11px]">Walk 4 min (300m) north on Chuo-dori</span>
+    </div>
+
       </div>
 
-      <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
-      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative" data-activity-index="5">
-        <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
-          
-          <!-- LEFT: PROMINENT BIG TIME BLOCK -->
-          <div class="flex-shrink-0 flex md:flex-col items-center md:items-start justify-between md:justify-start gap-2 min-w-[150px] pb-3 md:pb-0 border-b md:border-b-0 md:border-r border-white/10 md:pr-5">
-            <div class="space-y-0.5">
-              <div class="text-[10px] font-mono uppercase font-bold text-slate-500 tracking-wider">SCHEDULED TIME</div>
-              <div class="text-xl sm:text-2xl font-black font-mono text-gold tracking-tight drop-shadow-sm">
-                17:15–19:00
-              </div>
-            </div>
-            <div class="pt-1 flex flex-wrap gap-1.5">
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-amber-950/90 text-amber-300 border-amber-800/80">Shopping</span>
-              
-            </div>
+      <!-- Timeline Activity Card -->
+      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative group" data-activity-index="5">
+        
+        <!-- Header Row: Time + Category (Left) & Cost (Right) -->
+        <div class="flex flex-wrap items-center justify-between gap-2.5 pb-3 border-b border-white/10">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-gold/15 text-gold border border-gold/30 font-mono font-bold text-xs sm:text-sm tracking-wide">
+              <i data-lucide="clock" class="w-3.5 h-3.5 text-gold"></i>
+              <span>17:15–19:00</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-amber-950/80 text-amber-300 border border-amber-800/80 font-mono font-semibold text-xs">
+              <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
+              <span>Shopping</span>
+            </span>
           </div>
 
-          <!-- RIGHT: ACTIVITY DETAILS & COST -->
-          <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-            <div class="space-y-2 flex-grow">
-              <div class="flex items-center gap-2">
-                <h3 class="text-lg font-bold text-white tracking-tight font-mincho">
-                  Ameyoko Shopping Street & Ueno Park (Thrifting & Bargains)
-                </h3>
-                <a href="https://www.google.com/maps/search/?api=1&query=Ameyoko%20Shopping%20Street%20Ueno" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
-              </div>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Walk north 10–12 min (800m) along the elevated JR railway arches straight into the south entrance of Ameyoko Shopping Street at Okachimachi Station (or take JR Yamanote Line 1 stop, 2 min, ¥150). Hunt for vintage Japanese streetwear, sneakers, jacket thrifting, dried seafood, and stroll into Ueno Park.</p>
-              <div class="mt-3.5 p-3 rounded-2xl bg-[#05070B] border border-cyan-500/30 space-y-1.5 font-mono text-xs shadow-inner">  <div class="flex flex-wrap items-center justify-between gap-2">    <div class="flex items-center gap-1.5 text-cyan-300 font-bold">      <span class="px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-[10px] uppercase">🚆 Walk (10 min) or Train (1 stop)</span>      <span class="text-white text-xs">🚉 JR Okachimachi / Ueno Station</span>    </div>    <span class="text-gold text-[10px] font-bold">● Connected Hub</span>  </div>  <div class="text-slate-300 text-[11px] flex items-start gap-1.5 pl-0.5">    <span class="text-gold flex-shrink-0">🚶</span>    <span class="leading-relaxed">Walk 10 min north along rail arches straight into Ameyoko (1 min from Okachimachi)</span>  </div></div>
-            </div>
-
-            <!-- Cost Tag -->
-            <div class="border-t sm:border-t-0 pt-2 sm:pt-0 sm:pl-4 sm:border-l border-white/10 flex sm:flex-col justify-between sm:justify-start items-center sm:items-end flex-shrink-0">
-              <span class="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider sm:mb-1">EST. COST</span>
-              <div class="text-right font-mono font-bold text-white text-sm sm:text-base whitespace-nowrap">  ¥150</div><div class="text-right text-[11px] font-mono font-semibold text-gold whitespace-nowrap">  ~RM 4</div>
-            </div>
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/5 border border-white/10 font-mono text-xs font-semibold text-slate-300">
+            <i data-lucide="wallet" class="w-3.5 h-3.5 text-gold"></i>
+            <span class="text-white font-bold">¥150 • ~RM 4</span>
           </div>
-
         </div>
+
+        <!-- Title & Google Maps Button -->
+        <div class="flex items-start justify-between gap-3 pt-3.5 pb-2.5">
+          <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight font-mincho group-hover:text-gold transition-colors">
+            Ameyoko Shopping Street & Ueno Park (Thrifting & Bargains)
+          </h3>
+          <a href="https://www.google.com/maps/search/?api=1&query=Ameyoko%20Shopping%20District%20Ueno%20Tokyo" target="_blank" rel="noopener noreferrer" class="shrink-0 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-vermilion/20 text-slate-300 hover:text-vermilion border border-white/10 hover:border-vermilion/40 text-xs font-mono transition-colors" title="Open in Google Maps">
+            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-vermilion"></i>
+            <span class="hidden sm:inline">Map</span>
+            <i data-lucide="external-link" class="w-3 h-3 opacity-60"></i>
+          </a>
+        </div>
+
+        <!-- HIGHLIGHT ACTIVITY (Prominent Visual Banner) -->
+        <div class="my-3 p-3 rounded-xl bg-gradient-to-r from-vermilion/15 via-[#0C121D] to-[#05070B] border border-vermilion/30">
+          <div class="flex items-center gap-1.5 text-[10px] font-mono font-bold text-vermilion uppercase tracking-widest mb-2">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-vermilion animate-pulse"></i>
+            <span>HIGHLIGHT ACTIVITY</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="shopping-bag" class="w-3.5 h-3.5 text-amber-400"></i>
+          <span>Vintage Streetwear & Sneakers</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-gold"></i>
+          <span>Bustling Open-Air Market Alley</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="trees" class="w-3.5 h-3.5 text-emerald-400"></i>
+          <span>Ueno Park Evening Walk</span>
+        </span>
+          </div>
+        </div>
+
+        <!-- Simplified Action Steps (Concise Bullets with Icons) -->
+        <div class="space-y-2 my-3 text-xs sm:text-sm text-slate-300 font-sans leading-relaxed">
+
+      <div class="flex items-start gap-2.5">
+        <i data-lucide="footprints" class="w-4 h-4 text-amber-400 shrink-0 mt-0.5"></i>
+        <span>Stroll 10 min north along railway arches to Okachimachi / Ameyoko (or JR Yamanote 1 stop, ¥150).</span>
+      </div>
+      <div class="flex items-start gap-2.5">
+        <i data-lucide="shopping-bag" class="w-4 h-4 text-gold shrink-0 mt-0.5"></i>
+        <span>Bargain-hunt for Japanese jackets, sneaker boutiques, dried fruit, and stroll into Ueno Park.</span>
+      </div>
+        </div>
+
+        <!-- Connected Route / Transit Pill -->
+
+    <div class="pt-3 border-t border-white/10 flex flex-wrap items-center gap-2 text-xs font-mono text-slate-400">
+      <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-cyan-300 font-medium">
+        <i data-lucide="shopping-bag" class="w-3.5 h-3.5 text-cyan-400"></i>
+        <span>Ameyoko Street / Okachimachi</span>
+      </span>
+      <span class="text-slate-500">•</span>
+      <span class="text-slate-300 text-[11px]">Walk 10 min north along JR railway arches</span>
+    </div>
+
       </div>
 
-      <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
-      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative" data-activity-index="6">
-        <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
-          
-          <!-- LEFT: PROMINENT BIG TIME BLOCK -->
-          <div class="flex-shrink-0 flex md:flex-col items-center md:items-start justify-between md:justify-start gap-2 min-w-[150px] pb-3 md:pb-0 border-b md:border-b-0 md:border-r border-white/10 md:pr-5">
-            <div class="space-y-0.5">
-              <div class="text-[10px] font-mono uppercase font-bold text-slate-500 tracking-wider">SCHEDULED TIME</div>
-              <div class="text-xl sm:text-2xl font-black font-mono text-gold tracking-tight drop-shadow-sm">
-                19:00–20:30
-              </div>
-            </div>
-            <div class="pt-1 flex flex-wrap gap-1.5">
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-emerald-950/90 text-emerald-300 border-emerald-800/80">Food</span>
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-emerald-950/90 text-emerald-300 border border-emerald-800/80">🌱 Halal Certified Farewell Dinner</span>
-            </div>
+      <!-- Timeline Activity Card -->
+      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative group" data-activity-index="6">
+        
+        <!-- Header Row: Time + Category (Left) & Cost (Right) -->
+        <div class="flex flex-wrap items-center justify-between gap-2.5 pb-3 border-b border-white/10">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-gold/15 text-gold border border-gold/30 font-mono font-bold text-xs sm:text-sm tracking-wide">
+              <i data-lucide="clock" class="w-3.5 h-3.5 text-gold"></i>
+              <span>19:00–20:30</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-950/80 text-emerald-300 border border-emerald-800/80 font-mono font-semibold text-xs">
+              <i data-lucide="utensils" class="w-3.5 h-3.5"></i>
+              <span>Halal Dining</span>
+            </span>
           </div>
 
-          <!-- RIGHT: ACTIVITY DETAILS & COST -->
-          <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-            <div class="space-y-2 flex-grow">
-              <div class="flex items-center gap-2">
-                <h3 class="text-lg font-bold text-white tracking-tight font-mincho">
-                  Farewell Halal Dinner: HALAL SAKURA
-                </h3>
-                <a href="https://www.google.com/maps/search/?api=1&query=HALAL%20SAKURA%20Asakusa%20Tokyo" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
-              </div>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Walk 2 min to Tokyo Metro Ueno Station ➔ Board Ginza Line 3 stops direct to Asakusa Station (5 min, ¥180) ➔ Walk 8 min to HALAL SAKURA for farewell dinner.</p>
-              <div class="mt-3.5 p-3 rounded-2xl bg-[#05070B] border border-cyan-500/30 space-y-1.5 font-mono text-xs shadow-inner">  <div class="flex flex-wrap items-center justify-between gap-2">    <div class="flex items-center gap-1.5 text-cyan-300 font-bold">      <span class="px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-[10px] uppercase">🚆 Subway (5 min) + Walk (8 min)</span>      <span class="text-white text-xs">🚉 Asakusa Station</span>    </div>    <span class="text-gold text-[10px] font-bold">● Connected Hub</span>  </div>  <div class="text-slate-300 text-[11px] flex items-start gap-1.5 pl-0.5">    <span class="text-gold flex-shrink-0">🚶</span>    <span class="leading-relaxed">Ginza Line 3 stops from Ueno to Asakusa (5 min, ¥180) ➔ Walk 8 min</span>  </div></div>
-            </div>
-
-            <!-- Cost Tag -->
-            <div class="border-t sm:border-t-0 pt-2 sm:pt-0 sm:pl-4 sm:border-l border-white/10 flex sm:flex-col justify-between sm:justify-start items-center sm:items-end flex-shrink-0">
-              <span class="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider sm:mb-1">EST. COST</span>
-              <div class="text-right font-mono font-bold text-white text-sm sm:text-base whitespace-nowrap">  ¥2,200</div><div class="text-right text-[11px] font-mono font-semibold text-gold whitespace-nowrap">  ~RM 65</div>
-            </div>
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/5 border border-white/10 font-mono text-xs font-semibold text-slate-300">
+            <i data-lucide="wallet" class="w-3.5 h-3.5 text-gold"></i>
+            <span class="text-white font-bold">¥2,200 • ~RM 65</span>
           </div>
-
         </div>
+
+        <!-- Title & Google Maps Button -->
+        <div class="flex items-start justify-between gap-3 pt-3.5 pb-2.5">
+          <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight font-mincho group-hover:text-gold transition-colors">
+            Farewell Halal Dinner: HALAL SAKURA
+          </h3>
+          <a href="https://www.google.com/maps/search/?api=1&query=HALAL%20SAKURA%20Asakusa%20Tokyo" target="_blank" rel="noopener noreferrer" class="shrink-0 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-vermilion/20 text-slate-300 hover:text-vermilion border border-white/10 hover:border-vermilion/40 text-xs font-mono transition-colors" title="Open in Google Maps">
+            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-vermilion"></i>
+            <span class="hidden sm:inline">Map</span>
+            <i data-lucide="external-link" class="w-3 h-3 opacity-60"></i>
+          </a>
+        </div>
+
+        <!-- HIGHLIGHT ACTIVITY (Prominent Visual Banner) -->
+        <div class="my-3 p-3 rounded-xl bg-gradient-to-r from-vermilion/15 via-[#0C121D] to-[#05070B] border border-vermilion/30">
+          <div class="flex items-center gap-1.5 text-[10px] font-mono font-bold text-vermilion uppercase tracking-widest mb-2">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-vermilion animate-pulse"></i>
+            <span>HIGHLIGHT ACTIVITY</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="utensils" class="w-3.5 h-3.5 text-emerald-400"></i>
+          <span>Grand Farewell Japanese Hotpot</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="heart" class="w-3.5 h-3.5 text-rose-400"></i>
+          <span>Trip Memories Celebration</span>
+        </span>
+          </div>
+        </div>
+
+        <!-- Simplified Action Steps (Concise Bullets with Icons) -->
+        <div class="space-y-2 my-3 text-xs sm:text-sm text-slate-300 font-sans leading-relaxed">
+
+      <div class="flex items-start gap-2.5">
+        <i data-lucide="subway" class="w-4 h-4 text-sky-400 shrink-0 mt-0.5"></i>
+        <span>Take Ginza Line 3 stops from Ueno to Asakusa (5 min, ¥180) ➔ Walk to HALAL SAKURA.</span>
+      </div>
+      <div class="flex items-start gap-2.5">
+        <i data-lucide="utensils" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+        <span>Celebrate your final night in Japan with delicious Halal sukiyaki, nabe hotpot, and ramen.</span>
+      </div>
+        </div>
+
+        <!-- Connected Route / Transit Pill -->
+
+    <div class="pt-3 border-t border-white/10 flex flex-wrap items-center gap-2 text-xs font-mono text-slate-400">
+      <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-cyan-300 font-medium">
+        <i data-lucide="footprints" class="w-3.5 h-3.5 text-cyan-400"></i>
+        <span>HALAL SAKURA Asakusa</span>
+      </span>
+      <span class="text-slate-500">•</span>
+      <span class="text-slate-300 text-[11px]">Ginza Line 5 min ➔ Walk to restaurant</span>
+    </div>
+
       </div>
 
-      <!-- Timeline Activity Row with BIG HIGHLIGHTED TIME -->
-      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative" data-activity-index="7">
-        <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6">
-          
-          <!-- LEFT: PROMINENT BIG TIME BLOCK -->
-          <div class="flex-shrink-0 flex md:flex-col items-center md:items-start justify-between md:justify-start gap-2 min-w-[150px] pb-3 md:pb-0 border-b md:border-b-0 md:border-r border-white/10 md:pr-5">
-            <div class="space-y-0.5">
-              <div class="text-[10px] font-mono uppercase font-bold text-slate-500 tracking-wider">SCHEDULED TIME</div>
-              <div class="text-xl sm:text-2xl font-black font-mono text-gold tracking-tight drop-shadow-sm">
-                20:30–22:00
-              </div>
-            </div>
-            <div class="pt-1 flex flex-wrap gap-1.5">
-              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-slate-900 text-slate-300 border-slate-700">Logistics</span>
-              
-            </div>
+      <!-- Timeline Activity Card -->
+      <div class="timeline-card p-5 sm:p-6 shadow-card-oled relative group" data-activity-index="7">
+        
+        <!-- Header Row: Time + Category (Left) & Cost (Right) -->
+        <div class="flex flex-wrap items-center justify-between gap-2.5 pb-3 border-b border-white/10">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-gold/15 text-gold border border-gold/30 font-mono font-bold text-xs sm:text-sm tracking-wide">
+              <i data-lucide="clock" class="w-3.5 h-3.5 text-gold"></i>
+              <span>20:30–22:00</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-purple-950/80 text-purple-300 border border-purple-800/80 font-mono font-semibold text-xs">
+              <i data-lucide="hotel" class="w-3.5 h-3.5"></i>
+              <span>Hotel Logistics</span>
+            </span>
           </div>
 
-          <!-- RIGHT: ACTIVITY DETAILS & COST -->
-          <div class="flex-grow flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-            <div class="space-y-2 flex-grow">
-              <div class="flex items-center gap-2">
-                <h3 class="text-lg font-bold text-white tracking-tight font-mincho">
-                  Return to Hotel Tavinos Asakusa (Pack Luggage)
-                </h3>
-                <a href="https://www.google.com/maps/search/?api=1&query=Hotel%20Tavinos%20Asakusa" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-vermilion transition-colors p-1" title="Open in Google Maps"><i data-lucide="external-link" class="w-4 h-4"></i></a>
-              </div>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">Walk 5 min back to Hotel Tavinos Asakusa. Weigh and pack suitcases for departure tomorrow!</p>
-              <div class="mt-3.5 p-3 rounded-2xl bg-[#05070B] border border-cyan-500/30 space-y-1.5 font-mono text-xs shadow-inner">  <div class="flex flex-wrap items-center justify-between gap-2">    <div class="flex items-center gap-1.5 text-cyan-300 font-bold">      <span class="px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-[10px] uppercase">🚆 Walk (5 min)</span>      <span class="text-white text-xs">🚉 Asakusa Station</span>    </div>    <span class="text-gold text-[10px] font-bold">● Connected Hub</span>  </div>  <div class="text-slate-300 text-[11px] flex items-start gap-1.5 pl-0.5">    <span class="text-gold flex-shrink-0">🚶</span>    <span class="leading-relaxed">Walk 5 min back to Hotel Tavinos Base</span>  </div></div>
-            </div>
-
-            <!-- Cost Tag -->
-            <div class="border-t sm:border-t-0 pt-2 sm:pt-0 sm:pl-4 sm:border-l border-white/10 flex sm:flex-col justify-between sm:justify-start items-center sm:items-end flex-shrink-0">
-              <span class="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider sm:mb-1">EST. COST</span>
-              <div class="text-right text-xs font-semibold text-slate-400 font-mono flex-shrink-0">Free / Included</div>
-            </div>
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/5 border border-white/10 font-mono text-xs font-semibold text-slate-300">
+            <i data-lucide="wallet" class="w-3.5 h-3.5 text-gold"></i>
+            <span class="text-white font-bold">Free / Included</span>
           </div>
-
         </div>
+
+        <!-- Title & Google Maps Button -->
+        <div class="flex items-start justify-between gap-3 pt-3.5 pb-2.5">
+          <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight font-mincho group-hover:text-gold transition-colors">
+            Return to Hotel Tavinos Asakusa (Pack Luggage)
+          </h3>
+          <a href="https://www.google.com/maps/search/?api=1&query=Hotel%20Tavinos%20Asakusa%20Tokyo" target="_blank" rel="noopener noreferrer" class="shrink-0 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-vermilion/20 text-slate-300 hover:text-vermilion border border-white/10 hover:border-vermilion/40 text-xs font-mono transition-colors" title="Open in Google Maps">
+            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-vermilion"></i>
+            <span class="hidden sm:inline">Map</span>
+            <i data-lucide="external-link" class="w-3 h-3 opacity-60"></i>
+          </a>
+        </div>
+
+        <!-- HIGHLIGHT ACTIVITY (Prominent Visual Banner) -->
+        <div class="my-3 p-3 rounded-xl bg-gradient-to-r from-vermilion/15 via-[#0C121D] to-[#05070B] border border-vermilion/30">
+          <div class="flex items-center gap-1.5 text-[10px] font-mono font-bold text-vermilion uppercase tracking-widest mb-2">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-vermilion animate-pulse"></i>
+            <span>HIGHLIGHT ACTIVITY</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="luggage" class="w-3.5 h-3.5 text-gold"></i>
+          <span>Weigh & Pack Suitcases</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#05070B] text-slate-100 border border-white/10 font-mono text-xs font-semibold shadow-sm">
+          <i data-lucide="moon" class="w-3.5 h-3.5 text-purple-400"></i>
+          <span>Prepare for Flight Departure Tomorrow</span>
+        </span>
+          </div>
+        </div>
+
+        <!-- Simplified Action Steps (Concise Bullets with Icons) -->
+        <div class="space-y-2 my-3 text-xs sm:text-sm text-slate-300 font-sans leading-relaxed">
+
+      <div class="flex items-start gap-2.5">
+        <i data-lucide="footprints" class="w-4 h-4 text-amber-400 shrink-0 mt-0.5"></i>
+        <span>Walk 5 min back to Hotel Tavinos Asakusa.</span>
+      </div>
+      <div class="flex items-start gap-2.5">
+        <i data-lucide="luggage" class="w-4 h-4 text-gold shrink-0 mt-0.5"></i>
+        <span>Weigh, organize, and pack all your souvenirs and winter gear for tomorrow's flight home!</span>
+      </div>
+        </div>
+
+        <!-- Connected Route / Transit Pill -->
+
+    <div class="pt-3 border-t border-white/10 flex flex-wrap items-center gap-2 text-xs font-mono text-slate-400">
+      <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-cyan-300 font-medium">
+        <i data-lucide="hotel" class="w-3.5 h-3.5 text-cyan-400"></i>
+        <span>Hotel Tavinos Asakusa</span>
+      </span>
+      <span class="text-slate-500">•</span>
+      <span class="text-slate-300 text-[11px]">Walk 5 min back to hotel base</span>
+    </div>
+
       </div>
       </div>
     </div>
